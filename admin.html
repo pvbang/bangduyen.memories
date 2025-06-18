@@ -240,8 +240,7 @@
                 <div class="section-title-wrapper">
                     <h2 class="section-title">Quản lý kỷ niệm</h2>
                     <p class="section-subtitle">Xem, chỉnh sửa và xóa các kỷ niệm đã lưu</p>
-                </div>
-                <div class="section-actions">
+                </div>                <div class="section-actions">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
                         <input type="text" placeholder="Tìm kiếm kỷ niệm..." id="searchMemories">
@@ -254,6 +253,16 @@
                             <option value="anniversary">Kỷ niệm</option>
                             <option value="trip">Du lịch</option>
                         </select>
+                    </div>
+                    <div class="data-actions">
+                        <button class="action-btn-secondary" onclick="exportBackup()" title="Xuất dữ liệu">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                        <button class="action-btn-secondary" onclick="importMemories()" title="Nhập dữ liệu">
+                            <i class="fas fa-upload"></i>
+                            Import
+                        </button>
                     </div>
                 </div>
             </div>

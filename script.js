@@ -538,7 +538,12 @@ function createAdminMemoryCard(memory) {
   });
   
   const categoryIcon = getCategoryIcon(memory.category);
-  const moodIcon = getMoodIcon(memory.mood);
+  const moodIcon = getMoodIcon(memory.mood || 'happy');
+  
+  // Handle both old and new image format
+  const imageCount = memory.images ? 
+    (Array.isArray(memory.images) ? memory.images.length : 0) : 
+    (memory.showImages ? 1 : 0);
   
   return `
     <div class="admin-memory-card" data-id="${memory.id}">
@@ -563,26 +568,26 @@ function createAdminMemoryCard(memory) {
           ${formattedDate}
         </div>
         
-        <p class="admin-card-text">${memory.content.length > 100 ? 
-          memory.content.substring(0, 100) + '...' : 
+        <p class="admin-card-text">${memory.content.length > 150 ? 
+          memory.content.substring(0, 150) + '...' : 
           memory.content}</p>
         
-        ${memory.images && memory.images.length > 0 ? `
+        ${imageCount > 0 ? `
           <div class="admin-card-images">
             <div class="image-count">
               <i class="fas fa-images"></i>
-              ${memory.images.length} ảnh
+              ${imageCount} ảnh
             </div>
           </div>
         ` : ''}
         
         <div class="admin-card-footer">
           <div class="admin-card-mood">
-            ${moodIcon} ${getMoodName(memory.mood)}
+            ${moodIcon} ${getMoodName(memory.mood || 'happy')}
           </div>
           <div class="admin-card-template">
             <i class="fas fa-palette"></i>
-            ${memory.template || 'Ngẫu nhiên'}
+            ${memory.template ? getCategoryName(memory.template) : 'Ngẫu nhiên'}
           </div>
         </div>
       </div>
@@ -591,31 +596,41 @@ function createAdminMemoryCard(memory) {
 }
 
 function editMemory(memoryId) {
-  const memory = memories.find(m => m.id === memoryId);
+  const memory = memories.find(m => m.id == memoryId); // Use == instead of === to handle string/number comparison
   if (!memory) return;
   
   // Fill form with memory data
-  document.getElementById('title').value = memory.title;
-  document.getElementById('date').value = memory.date;
-  document.getElementById('category').value = memory.category;
-  document.getElementById('content').value = memory.content;
+  document.getElementById('title').value = memory.title || '';
+  document.getElementById('date').value = memory.date || '';
+  document.getElementById('category').value = memory.category || '';
+  document.getElementById('content').value = memory.content || '';
   document.getElementById('template').value = memory.template || 'random';
   document.getElementById('mood').value = memory.mood || 'happy';
   
-  if (memory.images && memory.images.length > 0) {
+  // Handle images - support both old and new format
+  const hasImages = memory.showImages || (memory.images && memory.images.length > 0);
+  
+  if (hasImages) {
     document.getElementById('showImages').checked = true;
     document.getElementById('imageUploadSection').style.display = 'block';
     
-    // Show existing images in preview
+    // Show existing images in preview if available
     const imagePreview = document.getElementById('imagePreview');
-    imagePreview.innerHTML = memory.images.map((image, index) => `
-      <div class="preview-image">
-        <img src="${image}" alt="Memory image ${index + 1}">
-        <button type="button" class="remove-btn" onclick="removeImage(this)">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-    `).join('');
+    if (memory.images && Array.isArray(memory.images) && memory.images.length > 0) {
+      imagePreview.innerHTML = memory.images.map((image, index) => `
+        <div class="preview-image">
+          <img src="data/images/${image}" alt="Memory image ${index + 1}" onerror="this.src='data/images/placeholder.jpg'">
+          <button type="button" class="remove-btn" onclick="removeImage(this)">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      `).join('');
+    } else {
+      imagePreview.innerHTML = '<p class="image-note">Kỷ niệm này có hình ảnh nhưng chưa được tải lên</p>';
+    }
+  } else {
+    document.getElementById('showImages').checked = false;
+    document.getElementById('imageUploadSection').style.display = 'none';
   }
   
   // Store editing memory ID
@@ -1545,4 +1560,86 @@ function saveMemory(e) {
   
   // Show success modal
   showSuccessModal();
+}
+
+function downloadUpdatedJSON() {
+  // Create JSON structure matching the original format
+  const jsonData = {
+    memories: memories,
+    couple_info: {
+      boy: {
+        name: "Phan Văn Bằng",
+        birthday_lunar: "23/09/2002",
+        birthday_solar: "28/10/2002",
+        zodiac_sign: "Bọ Cạp"
+      },
+      girl: {
+        name: "Nguyễn Thị Mỹ Duyên",
+        birthday: "08/10/2003",
+        zodiac_sign: "Thiên Bình"
+      },
+      relationship: {
+        first_meet: "08/02/2025",
+        first_message: "09/02/2025",
+        change_messenger_color: "28/02/2025",
+        first_dates: ["06/03/2025", "12/03/2025", "15/03/2025", "22/03/2025"],
+        official_couple: "23/03/2025"
+      }
+    },
+    quotes: [
+      "iuuu em cao hơn cả núi dài hơn cả sông, rộng hơn cả đất xanh hơn cả trời, bay ra vũ trụ giãn nở cùng vũ trụ vô hạnnnnn",
+      "Nếu anh có thể cho em một khả năng đặc biệt trong cuộc đời này, anh sẽ cho em khả năng nhìn thấy chính mình qua đôi mắt của anh. Sau đó em sẽ nhận ra, em thật đặc biệt thế nào đối với anh.",
+      "a vô tình bước vô cuộc đời e nma a cố tình ở lại đó chớ :)))",
+      "nếu quá khứ của e là một chiếc bánh dở tệ thì a sẽ ăn hết rồi đền cho e một chiếc bánh ngon hơn",
+      "Khôm được bỏ công túa đi trước một mình"
+    ]
+  };
+  
+  const dataStr = JSON.stringify(jsonData, null, 2);
+  const dataBlob = new Blob([dataStr], { type: 'application/json' });
+  
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(dataBlob);
+  link.download = 'memories.json';
+  link.click();
+  
+  // Show notification about download
+  showNotification('Đã tải xuống file memories.json cập nhật. Vui lòng thay thế file trong thư mục data/', 'info');
+}
+
+function exportBackup() {
+  downloadUpdatedJSON();
+}
+
+function importMemories() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const jsonData = JSON.parse(e.target.result);
+        if (jsonData.memories && Array.isArray(jsonData.memories)) {
+          memories = jsonData.memories;
+          localStorage.setItem("memoriesData", JSON.stringify(memories));
+          displayAdminMemories(memories);
+          updateStats();
+          showNotification('Import dữ liệu thành công!', 'success');
+        } else {
+          throw new Error('Invalid JSON structure');
+        }
+      } catch (error) {
+        showNotification('Lỗi: File JSON không hợp lệ!', 'error');
+        console.error('Import error:', error);
+      }
+    };
+    reader.readAsText(file);
+  };
+  
+  input.click();
 }
