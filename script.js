@@ -1404,3 +1404,106 @@ function logout() {
   // Redirect to login page
   window.location.href = "index.html";
 }
+
+function saveMemory(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const formData = new FormData(form);
+  
+  // Validate form
+  const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+  let isValid = true;
+  
+  inputs.forEach(input => {
+    if (!validateField({ target: input })) {
+      isValid = false;
+    }
+  });
+  
+  if (!isValid) {
+    showNotification('Vui lòng kiểm tra lại thông tin!', 'error');
+    return;
+  }
+  
+  const title = formData.get('title');
+  const date = formData.get('date');
+  const category = formData.get('category');
+  const content = formData.get('content');
+  const template = formData.get('template') || 'random';
+  const mood = formData.get('mood') || 'happy';
+  const showImages = formData.get('showImages') === 'on';
+  
+  // Handle images
+  let images = [];
+  if (showImages) {
+    const imagePreview = document.getElementById('imagePreview');
+    const imageElements = imagePreview.querySelectorAll('img');
+    images = Array.from(imageElements).map(img => img.src);
+  }
+  
+  // Check if editing existing memory
+  const editingId = form.dataset.editingId;
+  
+  const memoryData = {
+    id: editingId || Date.now().toString(),
+    title,
+    date,
+    category,
+    content,
+    template,
+    mood,
+    images: showImages ? images : [],
+    createdAt: editingId ? memories.find(m => m.id === editingId)?.createdAt : new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  
+  if (editingId) {
+    // Update existing memory
+    const index = memories.findIndex(m => m.id === editingId);
+    if (index !== -1) {
+      memories[index] = memoryData;
+    }
+    showNotification('Cập nhật kỷ niệm thành công!', 'success');
+  } else {
+    // Add new memory
+    memories.push(memoryData);
+    showNotification('Thêm kỷ niệm thành công!', 'success');
+  }
+  
+  // Save to localStorage
+  localStorage.setItem("memoriesData", JSON.stringify(memories));
+  
+  // Reset form and UI
+  form.reset();
+  form.removeAttribute('data-editing-id');
+  document.getElementById('imageUploadSection').style.display = 'none';
+  document.getElementById('imagePreview').innerHTML = '';
+  
+  // Reset submit button text
+  const submitBtn = document.querySelector('.submit-btn span');
+  if (submitBtn) {
+    submitBtn.textContent = 'Lưu kỷ niệm';
+  }
+  
+  // Refresh admin display
+  displayAdminMemories(memories);
+  updateStats();
+  
+  // Reset preview
+  const previewContainer = document.getElementById('previewContainer');
+  if (previewContainer) {
+    previewContainer.innerHTML = `
+      <div class="memory-card preview-card">
+        <div class="preview-placeholder">
+          <i class="fas fa-magic"></i>
+          <h4>Xem trước tại đây</h4>
+          <p>Nhập thông tin bên trái để xem trước kỷ niệm</p>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Show success modal
+  showSuccessModal();
+}
