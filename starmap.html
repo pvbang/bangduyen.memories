@@ -63,39 +63,43 @@
                 <i class="fas fa-star"></i>
                 Bản đồ chòm sao của cả hai
             </h2>
-            <div class="constellation-container">
-                <div class="constellation-canvas" id="constellationCanvas"> <!-- Scorpio Constellation -->
+            <div class="constellation-container">                <div class="constellation-canvas" id="constellationCanvas">
+                    <!-- Scorpio Constellation -->
                     <div class="constellation scorpio-constellation">
                         <div class="constellation-name">Bọ Cạp ♏</div>
                         <div class="stars-container">
-                            <!-- Đầu bọ cạp -->
-                            <div class="star" style="top: 20%; left: 15%;" title="Dschubba">✦</div>
-                            <div class="star" style="top: 25%; left: 18%;" title="Pi Scorpii">✦</div>
-                            <div class="star" style="top: 28%; left: 22%;" title="Rho Scorpii">✦</div>
-
-                            <!-- Thân bọ cạp -->
-                            <div class="star major-star" style="top: 35%; left: 25%;" data-name="Antares"
-                                title="Antares - Trái tim Bọ Cạp">★</div>
-                            <div class="star" style="top: 40%; left: 28%;" title="Tau Scorpii">✦</div>
-                            <div class="star" style="top: 45%; left: 30%;" title="Sargas">✦</div>
-                            <div class="star" style="top: 50%; left: 33%;" title="Wei">✦</div>
-
-                            <!-- Đuôi bọ cạp (cong lên) -->
-                            <div class="star" style="top: 55%; left: 35%;" title="Girtab">✦</div>
-                            <div class="star" style="top: 58%; left: 38%;" title="Epsilon Scorpii">✦</div>
-                            <div class="star" style="top: 60%; left: 42%;" title="Mu Scorpii">✦</div>
-                            <div class="star" style="top: 58%; left: 46%;" title="Zeta Scorpii">✦</div>
-                            <div class="star" style="top: 55%; left: 50%;" title="Eta Scorpii">✦</div>
-                            <div class="star" style="top: 50%; left: 52%;" title="Theta Scorpii">✦</div>
-                            <div class="star" style="top: 45%; left: 54%;" title="Iota Scorpii">✦</div>
-                            <div class="star bright" style="top: 40%; left: 55%;" title="Shaula - Đuôi độc">✦</div>
-                            <div class="star" style="top: 35%; left: 56%;" title="Lesath">✦</div>
+                            <!-- Phần đầu và càng Bọ Cạp -->
+                            <div class="star" style="top: 15%; left: 20%;" title="β Scorpii (Graffias)">✦</div>
+                            <div class="star" style="top: 22%; left: 18%;" title="δ Scorpii (Dschubba)">✦</div>
+                            <div class="star" style="top: 28%; left: 16%;" title="π Scorpii">✦</div>
+                            <div class="star" style="top: 35%; left: 14%;" title="ρ Scorpii">✦</div>
+                            
+                            <!-- Thân chính với Antares ở giữa -->
+                            <div class="star major-star" style="top: 45%; left: 25%;" data-name="Antares"
+                                title="α Scorpii (Antares) - Trái tim Bọ Cạp">★</div>
+                            <div class="star" style="top: 52%; left: 28%;" title="τ Scorpii">✦</div>
+                            <div class="star" style="top: 58%; left: 32%;" title="σ Scorpii (Alniyat)">✦</div>
+                            
+                            <!-- Đuôi bọ cạp - phần thẳng -->
+                            <div class="star" style="top: 64%; left: 36%;" title="ε Scorpii (Wei)">✦</div>
+                            <div class="star" style="top: 68%; left: 42%;" title="μ₁ Scorpii (Xamidimura)">✦</div>
+                            <div class="star" style="top: 70%; left: 48%;" title="ζ₁ Scorpii">✦</div>
+                            
+                            <!-- Đuôi bọ cạp - phần cong lên -->
+                            <div class="star" style="top: 65%; left: 54%;" title="η Scorpii">✦</div>
+                            <div class="star" style="top: 58%; left: 58%;" title="θ Scorpii (Sargas)">✦</div>
+                            <div class="star" style="top: 50%; left: 60%;" title="ι₁ Scorpii">✦</div>
+                            <div class="star" style="top: 42%; left: 62%;" title="κ Scorpii">✦</div>
+                            
+                            <!-- Đuôi độc - hai ngôi sao cuối -->
+                            <div class="star bright" style="top: 34%; left: 64%;" title="λ Scorpii (Shaula)">✦</div>
+                            <div class="star" style="top: 28%; left: 66%;" title="υ Scorpii (Lesath)">✦</div>
 
                             <div class="constellation-lines">
-                                <svg width="100%" height="100%">
+                                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
                                     <defs>
                                         <filter id="glow">
-                                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                                             <feMerge>
                                                 <feMergeNode in="coloredBlur" />
                                                 <feMergeNode in="SourceGraphic" />
@@ -106,21 +110,31 @@
                                             <stop offset="100%" style="stop-color:#c471ed;stop-opacity:1" />
                                         </linearGradient>
                                     </defs>
-                                    <!-- Thân chính -->
-                                    <path d="M15,20 L18,25 L22,28 L25,35 L28,40 L30,45 L33,50"
-                                        stroke="url(#scorpioGradient)" stroke-width="3" fill="none" opacity="0.9"
-                                        filter="url(#glow)" />
-                                    <!-- Đuôi cong -->
-                                    <path d="M33,50 L35,55 L38,58 L42,60 L46,58 L50,55 L52,50 L54,45 L55,40 L56,35"
-                                        stroke="url(#scorpioGradient)" stroke-width="3" fill="none" opacity="0.9"
-                                        filter="url(#glow)" />
-                                    <!-- Càng bọ cạp -->
-                                    <path d="M25,35 L20,30 M25,35 L20,40" stroke="url(#scorpioGradient)"
-                                        stroke-width="2" fill="none" opacity="0.7" filter="url(#glow)" />
+                                    <!-- Đầu và càng -->
+                                    <path d="M20,15 L18,22 L16,28 L14,35" stroke="url(#scorpioGradient)" 
+                                          stroke-width="2" fill="none" opacity="0.8" filter="url(#glow)" />
+                                    <!-- Càng trái -->
+                                    <path d="M18,22 L12,18" stroke="url(#scorpioGradient)" 
+                                          stroke-width="1.5" fill="none" opacity="0.7" filter="url(#glow)" />
+                                    <!-- Càng phải -->  
+                                    <path d="M18,22 L12,26" stroke="url(#scorpioGradient)" 
+                                          stroke-width="1.5" fill="none" opacity="0.7" filter="url(#glow)" />
+                                    
+                                    <!-- Thân chính đến Antares -->
+                                    <path d="M14,35 L25,45" stroke="url(#scorpioGradient)" 
+                                          stroke-width="2.5" fill="none" opacity="0.9" filter="url(#glow)" />
+                                    
+                                    <!-- Từ Antares đến đuôi -->
+                                    <path d="M25,45 L28,52 L32,58 L36,64 L42,68 L48,70" stroke="url(#scorpioGradient)" 
+                                          stroke-width="2.5" fill="none" opacity="0.9" filter="url(#glow)" />
+                                    
+                                    <!-- Đuôi cong lên -->
+                                    <path d="M48,70 L54,65 L58,58 L60,50 L62,42 L64,34 L66,28" stroke="url(#scorpioGradient)" 
+                                          stroke-width="2.5" fill="none" opacity="0.9" filter="url(#glow)" />
                                 </svg>
                             </div>
                         </div>
-                        <br>
+                        <br><br><br>
                         <div class="constellation-info">
                             <p><strong>Ngôi sao chủ:</strong> Antares (Trái tim Bọ Cạp)</p>
                             <p><strong>Đặc điểm:</strong> Đam mê, bí ẩn, trung thành, sâu sắc</p>
@@ -132,24 +146,23 @@
                     <div class="constellation libra-constellation">
                         <div class="constellation-name">Thiên Bình ♎</div>
                         <div class="stars-container">
-                            <!-- Cân trái -->
-                            <div class="star" style="top: 25%; right: 35%;" title="Sigma Librae">✦</div>
-                            <div class="star" style="top: 30%; right: 40%;" title="Alpha2 Librae">✦</div>
-                            <div class="star major-star" style="top: 35%; right: 45%;" data-name="Zubenelgenubi"
-                                title="Zubenelgenubi - Móng Bọ Cạp Nam">★</div>
-
-                            <!-- Trục cân -->
-                            <div class="star" style="top: 40%; right: 35%;" title="Gamma Librae">✦</div>
-                            <div class="star" style="top: 45%; right: 30%;" title="Tau Librae">✦</div>
-
-                            <!-- Cân phải -->
-                            <div class="star major-star" style="top: 30%; right: 20%;" data-name="Zubeneschamali"
-                                title="Zubeneschamali - Móng Bọ Cạp Bắc">★</div>
-                            <div class="star" style="top: 25%; right: 15%;" title="Beta Librae">✦</div>
-                            <div class="star" style="top: 35%; right: 15%;" title="Delta Librae">✦</div>
+                            <!-- Cân trái (phía Tây) -->
+                            <div class="star" style="top: 30%; right: 50%;" title="σ Librae (Brachium)">✦</div>
+                            <div class="star major-star" style="top: 45%; right: 55%;" data-name="Zubenelgenubi"
+                                title="α² Librae (Zubenelgenubi)">★</div>
+                            <div class="star" style="top: 25%; right: 60%;" title="τ Librae">✦</div>
+                            
+                            <!-- Trục cân trung tâm -->
+                            <div class="star" style="top: 55%; right: 45%;" title="γ Librae (Zubenelakrab)">✦</div>
+                            
+                            <!-- Cân phải (phía Đông) -->
+                            <div class="star major-star" style="top: 35%; right: 25%;" data-name="Zubeneschamali"
+                                title="β Librae (Zubeneschamali)">★</div>
+                            <div class="star" style="top: 50%; right: 20%;" title="δ Librae">✦</div>
+                            <div class="star" style="top: 28%; right: 30%;" title="ι Librae">✦</div>
 
                             <div class="constellation-lines">
-                                <svg width="100%" height="100%">
+                                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
                                     <defs>
                                         <linearGradient id="libraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
@@ -157,21 +170,21 @@
                                         </linearGradient>
                                     </defs>
                                     <!-- Cân trái -->
-                                    <path d="M65,25 L60,30 L55,35" stroke="url(#libraGradient)" stroke-width="3"
-                                        fill="none" opacity="0.9" filter="url(#glow)" />
+                                    <path d="M50,30 L45,45 L40,25" stroke="url(#libraGradient)" stroke-width="2"
+                                        fill="none" opacity="0.8" filter="url(#glow)" />
                                     <!-- Trục chính -->
-                                    <path d="M55,35 L65,40 L70,45" stroke="url(#libraGradient)" stroke-width="3"
+                                    <path d="M45,45 L55,55" stroke="url(#libraGradient)" stroke-width="2.5"
                                         fill="none" opacity="0.9" filter="url(#glow)" />
                                     <!-- Cân phải -->
-                                    <path d="M80,30 L85,25 L85,35" stroke="url(#libraGradient)" stroke-width="3"
-                                        fill="none" opacity="0.9" filter="url(#glow)" />
+                                    <path d="M75,35 L80,50 L70,28" stroke="url(#libraGradient)" stroke-width="2"
+                                        fill="none" opacity="0.8" filter="url(#glow)" />
                                     <!-- Nối hai cân -->
-                                    <path d="M55,35 L80,30" stroke="url(#libraGradient)" stroke-width="2" fill="none"
-                                        opacity="0.7" filter="url(#glow)" />
+                                    <path d="M45,45 L75,35" stroke="url(#libraGradient)" stroke-width="2.5" fill="none"
+                                        opacity="0.9" filter="url(#glow)" />
                                 </svg>
                             </div>
                         </div>
-                        <br>
+                        <br><br><br>
                         <div class="constellation-info">
                             <p><strong>Ngôi sao chủ:</strong> Zubeneschamali & Zubenelgenubi</p>
                             <p><strong>Đặc điểm:</strong> Cân bằng, hài hòa, công bằng, thanh lịch</p>
@@ -184,9 +197,11 @@
                         <div class="connection-heart">
                             <div class="pulsing-heart">💕</div>
                         </div> 
-                        iuuu emmm
+                        <div>
+                            <span>iuuu emmm</span>
+                        </div>
                         <div class="connection-line cosmic-line"></div>
-                        <div class="connection-text">
+                        <div>
                             <span>Tình yêu vượt thời gian</span>
                         </div>
                     </div>

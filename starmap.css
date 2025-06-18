@@ -1521,6 +1521,12 @@
 .relationship-timeline {
   margin: 100px 0;
   position: relative;
+  z-index: 20;
+  clear: both;
+  isolation: isolate;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 50px 0;
+  border-radius: 30px;
 }
 
 .relationship-timeline h3 {
@@ -1536,13 +1542,16 @@
   animation: gradientShift 4s ease-in-out infinite;
   font-weight: 700;
   text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+  position: relative;
+  z-index: 21;
 }
 
 .timeline {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 40px 20px;
+  z-index: 15;
 }
 
 .timeline::before {
@@ -1567,6 +1576,7 @@
   align-items: center;
   opacity: 0;
   animation: timelineSlideIn 0.8s ease-out forwards;
+  z-index: 2;
 }
 
 .timeline-item:nth-child(1) { animation-delay: 0.2s; }
@@ -1634,6 +1644,8 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 16;
 }
 
 .timeline-date:hover {
@@ -1658,6 +1670,7 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  z-index: 16;
 }
 
 .timeline-content::before {
@@ -2033,10 +2046,10 @@
 }
 
 /* Improved timeline animations */
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(1) { animation-delay: 0.2s !important; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s !important; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s !important; }
+.timeline-item:nth-child(4) { animation-delay: 0.8s !important; }
 
 /* Planet cards hover effects */
 .planet-card:hover .planet-icon {
