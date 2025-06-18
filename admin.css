@@ -1061,96 +1061,195 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .admin-header h1 {
-    font-size: 2.2rem;
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
   }
+  
+  .admin-preview-section {
+    position: static;
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .quick-nav {
+    order: 2;
+  }
+  
+  .back-btn {
+    order: 1;
+  }
+}
 
-  .admin-nav-items {
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+  
+  .header-brand {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .brand-text .page-title {
+    font-size: 2rem;
+  }
+  
+  .quick-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-link {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .form-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .form-actions {
     flex-direction: column;
     align-items: center;
   }
-
-  .admin-nav-btn {
+  
+  .submit-btn, .reset-btn {
     width: 100%;
-    max-width: 300px;
     justify-content: center;
   }
-
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .admin-form {
-    padding: 25px 20px;
-  }
-
-  .table-responsive {
-    overflow-x: auto;
-  }
-
-  .table {
-    min-width: 600px;
-  }
-
-  .action-buttons {
+  
+  .section-actions {
     flex-direction: column;
-    gap: 5px;
+    width: 100%;
   }
-
+  
+  .search-box input {
+    width: 100%;
+  }
+  
+  .memories-stats {
+    grid-template-columns: 1fr;
+  }
+  
   .rules-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--spacing-lg);
   }
-
+  
   .rule-card {
-    padding: 25px 20px;
-  }
-
-  .rule-content h3 {
-    font-size: 1.2rem;
-  }
-
-  .rule-content p {
-    font-size: 0.9rem;
-  }
-
-  .location-info {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .location-card {
-    padding: 25px 20px;
+    padding: var(--spacing-lg);
   }
 }
 
 @media (max-width: 480px) {
-  .admin-header h1 {
+  .admin-container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .brand-text .page-title {
     font-size: 1.8rem;
   }
-
-  .admin-container {
-    padding: 0 15px;
+  
+  .form-container {
+    padding: var(--spacing-md);
   }
-
-  .admin-form {
-    padding: 20px 15px;
+  
+  .section-title {
+    font-size: 1.8rem;
   }
-
-  .dashboard-card {
-    padding: 20px;
+  
+  .modal-content {
+    padding: var(--spacing-lg);
   }
+  
+  .rule-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  .rule-content p {
+    font-size: 0.9rem;
+  }
+}
 
-  .admin-btn {
-    width: 100%;
-    justify-content: center;
+/* ===== PRINT STYLES ===== */
+@media print {
+  .admin-header,
+  .form-actions,
+  .back-btn,
+  .quick-nav,
+  .section-actions {
+    display: none !important;
+  }
+  
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .background-animation {
+    display: none;
+  }
+  
+  body {
+    background: white;
+  }
+  
+  .form-container,
+  .rule-card,
+  .stat-card {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-hearts {
+    display: none;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #000;
+    --text-secondary: #333;
+    --text-muted: #666;
+    --bg-glass: rgba(255, 255, 255, 1);
+    --bg-white: white;
+  }
+  
+  .form-input {
+    border-width: 3px;
+  }
+  
+  .form-input:focus {
+    border-width: 4px;
   }
 }

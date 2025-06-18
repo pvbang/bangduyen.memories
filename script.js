@@ -438,24 +438,216 @@ function closeModal() {
 
 // Admin Page Functions
 function initAdminPage() {
-  // Check authentication first
-  if (!checkAuthentication()) return;
-
-  setupAdminForm();
+  loadMemoriesForAdmin();
+  setupFormInteractions();
   setupImageUpload();
   setupPreview();
-  loadExistingMemories();
+  setupSmoothScrolling();
+  setupSearch();
+  updateStats();
 }
 
-function setupAdminForm() {
-  const form = document.getElementById("memoryForm");
+function loadMemoriesForAdmin() {
+  const savedMemories = localStorage.getItem("memoriesData");
+  if (savedMemories) {
+    memories = JSON.parse(savedMemories);
+  }
+  displayAdminMemories(memories);
+}
+
+function displayAdminMemories(memoriesToShow = memories) {
+  const container = document.getElementById("adminMemoriesContainer");
+  const loadingSpinner = document.getElementById("loadingSpinner");
+  
+  if (!container) return;
+  
+  // Show loading
+  if (loadingSpinner) {
+    loadingSpinner.style.display = "flex";
+  }
+  
+  setTimeout(() => {
+    if (memoriesToShow.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-heart-broken"></i>
+          </div>
+          <h3>Chưa có kỷ niệm nào</h3>
+          <p>Hãy thêm kỷ niệm đầu tiên của chúng ta!</p>
+          <a href="#form" class="add-memory-btn">
+            <i class="fas fa-plus"></i>
+            Thêm kỷ niệm
+          </a>
+        </div>
+      `;
+    } else {
+      container.innerHTML = memoriesToShow
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map(memory => createAdminMemoryCard(memory))
+        .join("");
+    }
+    
+    if (loadingSpinner) {
+      loadingSpinner.style.display = "none";
+    }
+  }, 500);
+}
+
+function createAdminMemoryCard(memory) {
+  const date = new Date(memory.date);
+  const formattedDate = date.toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit', 
+    year: 'numeric'
+  });
+  
+  const categoryIcon = getCategoryIcon(memory.category);
+  const moodIcon = getMoodIcon(memory.mood);
+  
+  return `
+    <div class="admin-memory-card" data-id="${memory.id}">
+      <div class="admin-card-header">
+        <div class="admin-card-category ${memory.category}">
+          ${categoryIcon} ${getCategoryName(memory.category)}
+        </div>
+        <div class="admin-card-actions">
+          <button class="action-btn edit-btn" onclick="editMemory('${memory.id}')" title="Chỉnh sửa">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="action-btn delete-btn" onclick="deleteMemory('${memory.id}')" title="Xóa">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="admin-card-content">
+        <h4 class="admin-card-title">${memory.title}</h4>
+        <div class="admin-card-date">
+          <i class="fas fa-calendar-alt"></i>
+          ${formattedDate}
+        </div>
+        
+        <p class="admin-card-text">${memory.content.length > 100 ? 
+          memory.content.substring(0, 100) + '...' : 
+          memory.content}</p>
+        
+        ${memory.images && memory.images.length > 0 ? `
+          <div class="admin-card-images">
+            <div class="image-count">
+              <i class="fas fa-images"></i>
+              ${memory.images.length} ảnh
+            </div>
+          </div>
+        ` : ''}
+        
+        <div class="admin-card-footer">
+          <div class="admin-card-mood">
+            ${moodIcon} ${getMoodName(memory.mood)}
+          </div>
+          <div class="admin-card-template">
+            <i class="fas fa-palette"></i>
+            ${memory.template || 'Ngẫu nhiên'}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function editMemory(memoryId) {
+  const memory = memories.find(m => m.id === memoryId);
+  if (!memory) return;
+  
+  // Fill form with memory data
+  document.getElementById('title').value = memory.title;
+  document.getElementById('date').value = memory.date;
+  document.getElementById('category').value = memory.category;
+  document.getElementById('content').value = memory.content;
+  document.getElementById('template').value = memory.template || 'random';
+  document.getElementById('mood').value = memory.mood || 'happy';
+  
+  if (memory.images && memory.images.length > 0) {
+    document.getElementById('showImages').checked = true;
+    document.getElementById('imageUploadSection').style.display = 'block';
+    
+    // Show existing images in preview
+    const imagePreview = document.getElementById('imagePreview');
+    imagePreview.innerHTML = memory.images.map((image, index) => `
+      <div class="preview-image">
+        <img src="${image}" alt="Memory image ${index + 1}">
+        <button type="button" class="remove-btn" onclick="removeImage(this)">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `).join('');
+  }
+  
+  // Store editing memory ID
+  document.getElementById('memoryForm').dataset.editingId = memoryId;
+  
+  // Scroll to form
+  document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+  
+  // Change submit button text
+  const submitBtn = document.querySelector('.submit-btn span');
+  if (submitBtn) {
+    submitBtn.textContent = 'Cập nhật kỷ niệm';
+  }
+}
+
+function deleteMemory(memoryId) {
+  if (confirm('Bạn có chắc chắn muốn xóa kỷ niệm này không?')) {
+    memories = memories.filter(m => m.id !== memoryId);
+    localStorage.setItem("memoriesData", JSON.stringify(memories));
+    displayAdminMemories(memories);
+    updateStats();
+    
+    // Show success message
+    showNotification('Đã xóa kỷ niệm thành công!', 'success');
+  }
+}
+
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+      <span>${message}</span>
+    </div>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Show notification
+  setTimeout(() => {
+    notification.classList.add('show');
+  }, 100);
+  
+  // Hide notification after 3 seconds
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => {
+      notification.remove();
+    }, 300);
+  }, 3000);
+}
+
+function setupFormInteractions() {
   const showImagesCheckbox = document.getElementById("showImages");
   const imageUploadSection = document.getElementById("imageUploadSection");
+  const form = document.getElementById("memoryForm");
 
   // Toggle image upload section
   if (showImagesCheckbox && imageUploadSection) {
     showImagesCheckbox.addEventListener("change", function () {
-      imageUploadSection.style.display = this.checked ? "block" : "none";
+      if (this.checked) {
+        imageUploadSection.style.display = "block";
+        imageUploadSection.style.animation = "slideDown 0.3s ease-out";
+      } else {
+        imageUploadSection.style.display = "none";
+      }
     });
   }
 
@@ -463,428 +655,434 @@ function setupAdminForm() {
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      saveMemory();
+      saveMemory(e);
+    });
+  }
+
+  // Real-time form validation
+  const inputs = form.querySelectorAll("input, textarea, select");
+  inputs.forEach((input) => {
+    input.addEventListener("input", validateField);
+    input.addEventListener("blur", validateField);
+  });
+}
+
+function setupImageUpload() {
+  const uploadArea = document.getElementById("uploadArea");
+  const fileInput = document.getElementById("images");
+  const imagePreview = document.getElementById("imagePreview");
+
+  if (!uploadArea || !fileInput) return;
+
+  // Click to upload
+  uploadArea.addEventListener("click", () => fileInput.click());
+
+  // Drag and drop
+  uploadArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadArea.classList.add("drag-over");
+  });
+
+  uploadArea.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("drag-over");
+  });
+
+  uploadArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove("drag-over");
+    handleFiles(e.dataTransfer.files);
+  });
+
+  // File input change
+  fileInput.addEventListener("change", (e) => {
+    handleFiles(e.target.files);
+  });
+
+  function handleFiles(files) {
+    imagePreview.innerHTML = "";
+    Array.from(files).forEach((file, index) => {
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const previewDiv = document.createElement("div");
+          previewDiv.className = "preview-image";
+          previewDiv.innerHTML = `
+            <img src="${e.target.result}" alt="Preview ${index + 1}">
+            <button type="button" class="remove-btn" onclick="removeImage(this)">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+          imagePreview.appendChild(previewDiv);
+        };
+        reader.readAsDataURL(file);
+      }
     });
   }
 }
 
-function setupImageUpload() {
-  const imageInput = document.getElementById("images");
-  const imagePreview = document.getElementById("imagePreview");
-
-  if (imageInput && imagePreview) {
-    imageInput.addEventListener("change", function (e) {
-      const files = e.target.files;
-      imagePreview.innerHTML = "";
-
-      Array.from(files).forEach((file) => {
-        if (file.type.startsWith("image/")) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            img.className = "preview-image";
-            imagePreview.appendChild(img);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    });
-  }
+function removeImage(button) {
+  button.parentElement.remove();
 }
 
 function setupPreview() {
   const form = document.getElementById("memoryForm");
   const previewContainer = document.getElementById("previewContainer");
 
-  if (form && previewContainer) {
-    // Update preview when form changes
-    const inputs = form.querySelectorAll("input, textarea, select");
-    inputs.forEach((input) => {
-      input.addEventListener("input", updatePreview);
-    });
+  if (!form || !previewContainer) return;
+
+  const inputs = form.querySelectorAll("input, textarea, select");
+  inputs.forEach((input) => {
+    input.addEventListener("input", updatePreview);
+  });
+
+  function updatePreview() {
+    const title = document.getElementById("title").value;
+    const date = document.getElementById("date").value;
+    const category = document.getElementById("category").value;
+    const content = document.getElementById("content").value;
+    const mood = document.getElementById("mood").value;
+
+    if (title || date || content) {
+      const formattedDate = date
+        ? new Date(date).toLocaleDateString("vi-VN")
+        : "";
+      const categoryIcon = getCategoryIcon(category);
+      const moodIcon = getMoodIcon(mood);
+
+      previewContainer.innerHTML = `
+        <div class="memory-card preview-card ${category} ${mood}">
+          <div class="card-header">
+            <div class="card-category">
+              ${categoryIcon} ${category ? getCategoryName(category) : ""}
+            </div>
+            <div class="card-date">
+              <i class="fas fa-calendar-alt"></i>
+              ${formattedDate}
+            </div>
+          </div>
+          <div class="card-content">
+            <h4 class="card-title">${title || "Tiêu đề kỷ niệm"}</h4>
+            <p class="card-text">${
+              content || "Nội dung kỷ niệm sẽ hiển thị tại đây..."
+            }</p>
+            <div class="card-mood">
+              ${moodIcon} ${mood ? getMoodName(mood) : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }
   }
 }
 
-function updatePreview() {
-  const title = document.getElementById("title").value || "Tiêu đề kỷ niệm";
-  const date =
-    document.getElementById("date").value ||
-    new Date().toISOString().split("T")[0];
-  const category = document.getElementById("category").value || "special";
-  const content =
-    document.getElementById("content").value ||
-    "Nội dung kỷ niệm sẽ hiển thị tại đây...";
-  const mood = document.getElementById("mood").value || "happy";
-  const template = document.getElementById("template").value || "classic";
-  const showImages = document.getElementById("showImages").checked;
+function setupSmoothScrolling() {
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+}
 
-  const previewContainer = document.getElementById("previewContainer");
+function setupSearch() {
+  const searchInput = document.getElementById("searchMemories");
+  const filterSelect = document.getElementById("filterCategory");
 
-  const categoryLabels = {
+  if (searchInput) {
+    searchInput.addEventListener("input", debounce(filterMemories, 300));
+  }
+
+  if (filterSelect) {
+    filterSelect.addEventListener("change", filterMemories);
+  }
+}
+
+function validateField(e) {
+  const field = e.target;
+  const value = field.value.trim();
+  const fieldName = field.name;
+
+  // Remove existing error messages
+  const existingError = field.parentNode.querySelector(".field-error");
+  if (existingError) {
+    existingError.remove();
+  }
+
+  field.classList.remove("error");
+
+  let isValid = true;
+  let errorMessage = "";
+
+  // Validation rules
+  switch (fieldName) {
+    case "title":
+      if (!value) {
+        isValid = false;
+        errorMessage = "Tiêu đề không được để trống";
+      } else if (value.length < 5) {
+        isValid = false;
+        errorMessage = "Tiêu đề phải có ít nhất 5 ký tự";
+      }
+      break;
+    case "date":
+      if (!value) {
+        isValid = false;
+        errorMessage = "Vui lòng chọn ngày";
+      }
+      break;
+    case "content":
+      if (!value) {
+        isValid = false;
+        errorMessage = "Nội dung không được để trống";
+      } else if (value.length < 10) {
+        isValid = false;
+        errorMessage = "Nội dung phải có ít nhất 10 ký tự";
+      }
+      break;
+    case "category":
+      if (!value) {
+        isValid = false;
+        errorMessage = "Vui lòng chọn loại kỷ niệm";
+      }
+      break;
+  }
+
+  if (!isValid) {
+    field.classList.add("error");
+    const errorDiv = document.createElement("div");
+    errorDiv.className = "field-error";
+    errorDiv.textContent = errorMessage;
+    field.parentNode.appendChild(errorDiv);
+  }
+
+  return isValid;
+}
+
+function filterMemories() {
+  const searchTerm = document.getElementById("searchMemories").value.toLowerCase();
+  const filterCategory = document.getElementById("filterCategory").value;
+
+  const filteredMemories = memories.filter((memory) => {
+    const matchesSearch =
+      memory.title.toLowerCase().includes(searchTerm) ||
+      memory.content.toLowerCase().includes(searchTerm);
+    const matchesCategory = !filterCategory || memory.category === filterCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  displayAdminMemories(filteredMemories);
+  updateStats(filteredMemories);
+}
+
+function updateStats(filteredMemories = memories) {
+  const totalElement = document.getElementById("totalMemories");
+  const specialElement = document.getElementById("specialMemories");
+  const thisMonthElement = document.getElementById("thisMonth");
+
+  if (totalElement) {
+    totalElement.textContent = filteredMemories.length;
+    animateNumber(totalElement, filteredMemories.length);
+  }
+
+  if (specialElement) {
+    const specialCount = filteredMemories.filter(
+      (m) => m.category === "special"
+    ).length;
+    specialElement.textContent = specialCount;
+    animateNumber(specialElement, specialCount);
+  }
+
+  if (thisMonthElement) {
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const thisMonthCount = filteredMemories.filter((m) => {
+      const memoryDate = new Date(m.date);
+      return (
+        memoryDate.getMonth() === currentMonth &&
+        memoryDate.getFullYear() === currentYear
+      );
+    }).length;
+    thisMonthElement.textContent = thisMonthCount;
+    animateNumber(thisMonthElement, thisMonthCount);
+  }
+}
+
+function animateNumber(element, targetNumber) {
+  const startNumber = 0;
+  const duration = 1000;
+  const startTime = performance.now();
+
+  function updateNumber(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    const currentNumber = Math.floor(
+      startNumber + (targetNumber - startNumber) * progress
+    );
+    element.textContent = currentNumber;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateNumber);
+    }
+  }
+
+  requestAnimationFrame(updateNumber);
+}
+
+function getCategoryIcon(category) {
+  const icons = {
+    special: "✨",
+    daily: "🌸",
+    anniversary: "💕",
+    trip: "🎒",
+    milestone: "🎯",
+  };
+  return icons[category] || "💝";
+}
+
+function getCategoryName(category) {
+  const names = {
     special: "Đặc biệt",
     daily: "Hàng ngày",
     anniversary: "Kỷ niệm",
     trip: "Du lịch",
+    milestone: "Cột mốc",
   };
+  return names[category] || category;
+}
 
-  const moodEmojis = {
+function getMoodIcon(mood) {
+  const icons = {
     happy: "😊",
     romantic: "💕",
     nostalgic: "🌅",
     sweet: "🍯",
     excited: "🎉",
+    peaceful: "🕊️",
   };
-
-  const imagesHTML = showImages
-    ? `<div class="card-images">
-             <div style="background: #f0f0f0; height: 100px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999;">
-                 <i class="fas fa-image"></i> Hình ảnh sẽ hiển thị ở đây
-             </div>
-           </div>`
-    : "";
-
-  previewContainer.innerHTML = `
-        <div class="memory-card template-${template} preview-card">
-            <div class="card-header">
-                <h4 class="card-title">${title}</h4>
-                <div class="card-date">
-                    <i class="fas fa-calendar"></i>
-                    ${formatDate(date)}
-                </div>
-                <span class="card-category">${categoryLabels[category]}</span>
-            </div>
-            <div class="card-content">
-                <p class="card-text">${content}</p>
-                ${imagesHTML}
-                <div class="card-mood">
-                    <span>${moodEmojis[mood]} ${mood}</span>
-                </div>
-            </div>
-        </div>
-    `;
+  return icons[mood] || "💝";
 }
 
-function saveMemory() {
-  // Get form data
-  const formData = new FormData(document.getElementById("memoryForm"));
-  const editingId = document.getElementById("memoryForm").dataset.editingId;
-
-  // Handle image upload
-  const imageFiles = document.getElementById("images").files;
-  const imageNames = [];
-
-  // In a real application, you would upload images to server
-  // For now, we'll simulate with placeholder names
-  for (let i = 0; i < imageFiles.length; i++) {
-    const fileName = `memory_${Date.now()}_${i}.jpg`;
-    imageNames.push(fileName);
-    // Here you would typically upload the file to data/images/
-  }
-
-  // Create memory object
-  const memory = {
-    id: editingId ? parseInt(editingId) : Date.now(),
-    title: formData.get("title"),
-    date: formData.get("date"),
-    category: formData.get("category"),
-    content: formData.get("content"),
-    mood: formData.get("mood"),
-    template:
-      formData.get("template") === "random"
-        ? getRandomTemplate()
-        : formData.get("template"),
-    showImages: formData.get("showImages") === "on",
-    images: formData.get("showImages") === "on" ? imageNames : [],
+function getMoodName(mood) {
+  const names = {
+    happy: "Vui vẻ",
+    romantic: "Lãng mạn",
+    nostalgic: "Hoài niệm",
+    sweet: "Ngọt ngào",
+    excited: "Phấn khích",
+    peaceful: "Yên bình",
   };
-
-  // Simulate saving to JSON file (in real app, send to server)
-  console.log(editingId ? "Updating memory:" : "Saving new memory:", memory);
-
-  // Show success modal
-  showSuccessModal();
-
-  // Reset form
-  document.getElementById("memoryForm").reset();
-  document.getElementById("memoryForm").removeAttribute("data-editing-id");
-  document.querySelector(".submit-btn").innerHTML =
-    '<i class="fas fa-heart"></i> Lưu kỷ niệm <i class="fas fa-heart"></i>';
-  document.getElementById("imageUploadSection").style.display = "none";
-  document.getElementById("imagePreview").innerHTML = "";
-  updatePreview();
-
-  // Reload admin memories list if it exists
-  if (document.getElementById("adminMemoriesContainer")) {
-    loadExistingMemories();
-  }
+  return names[mood] || mood;
 }
 
-function getRandomTemplate() {
-  return cardTemplates[Math.floor(Math.random() * cardTemplates.length)];
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 function showSuccessModal() {
   const modal = document.getElementById("successModal");
-  modal.style.display = "block";
-  document.body.style.overflow = "hidden";
+  if (modal) {
+    modal.classList.add("show");
+
+    // Auto close after 3 seconds
+    setTimeout(() => {
+      closeSuccessModal();
+    }, 3000);
+  }
 }
 
 function closeSuccessModal() {
   const modal = document.getElementById("successModal");
-  modal.style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-// Admin CRUD Functions
-function loadExistingMemories() {
-  fetch("data/memories.json")
-    .then((response) => response.json())
-    .then((data) => {
-      displayAdminMemories(data.memories);
-    })
-    .catch((error) => {
-      console.error("Error loading memories for admin:", error);
-    });
-}
-
-function displayAdminMemories(memoriesList) {
-  const adminMemoriesContainer = document.getElementById(
-    "adminMemoriesContainer"
-  );
-  if (!adminMemoriesContainer) return;
-
-  adminMemoriesContainer.innerHTML = memoriesList
-    .map(
-      (memory) => `
-        <div class="admin-memory-card" data-id="${memory.id}">
-            <div class="admin-card-header">
-                <h4>${memory.title}</h4>
-                <div class="admin-card-actions">
-                    <button onclick="editMemory(${memory.id})" class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button onclick="deleteMemory(${
-                      memory.id
-                    })" class="delete-btn">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="admin-card-content">
-                <p><strong>Ngày:</strong> ${formatDate(memory.date)}</p>
-                <p><strong>Danh mục:</strong> ${memory.category}</p>
-                <p><strong>Nội dung:</strong> ${truncateText(
-                  memory.content,
-                  100
-                )}</p>
-            </div>
-        </div>
-    `
-    )
-    .join("");
-}
-
-function editMemory(id) {
-  fetch("data/memories.json")
-    .then((response) => response.json())
-    .then((data) => {
-      const memory = data.memories.find((m) => m.id === id);
-      if (memory) {
-        // Fill form with memory data
-        document.getElementById("title").value = memory.title;
-        document.getElementById("date").value = memory.date;
-        document.getElementById("category").value = memory.category;
-        document.getElementById("content").value = memory.content;
-        document.getElementById("mood").value = memory.mood;
-        document.getElementById("template").value = memory.template;
-        document.getElementById("showImages").checked = memory.showImages;
-
-        // Set editing mode
-        document.getElementById("memoryForm").dataset.editingId = id;
-        document.querySelector(".submit-btn").innerHTML =
-          '<i class="fas fa-save"></i> Cập nhật kỷ niệm <i class="fas fa-save"></i>';
-
-        // Show image upload section if needed
-        if (memory.showImages) {
-          document.getElementById("imageUploadSection").style.display = "block";
-        }
-
-        updatePreview();
-      }
-    });
-}
-
-function deleteMemory(id) {
-  if (confirm("Bạn có chắc chắn muốn xóa kỷ niệm này không?")) {
-    // In a real application, you would send a DELETE request to server
-    // For now, we'll simulate the deletion
-    fetch("data/memories.json")
-      .then((response) => response.json())
-      .then((data) => {
-        data.memories = data.memories.filter((m) => m.id !== id);
-        // Simulate saving (in real app, send to server)
-        console.log("Memory deleted:", id);
-        showSuccessMessage("Đã xóa kỷ niệm thành công!");
-        loadExistingMemories();
-      })
-      .catch((error) => {
-        console.error("Error deleting memory:", error);
-        alert("Có lỗi xảy ra khi xóa kỷ niệm!");
-      });
+  if (modal) {
+    modal.classList.remove("show");
   }
 }
 
-function showSuccessMessage(message) {
-  const successDiv = document.createElement("div");
-  successDiv.className = "success-message";
-  successDiv.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        ${message}
-    `;
-  successDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #4caf50, #66bb6a);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-    `;
-
-  document.body.appendChild(successDiv);
-
-  setTimeout(() => {
-    successDiv.remove();
-  }, 3000);
-}
-
-// Starmap Page Functions
-function initStarmapPage() {
-  // Check authentication first
-  if (!checkAuthentication()) return;
-
-  setupQuotesCarousel();
-  animateCompatibilityScores();
-}
-
-let currentQuoteIndex = 0;
-const quotes = [
-  {
-    text: "iuuu em cao hơn cả núi dài hơn cả sông, rộng hơn cả đất xanh hơn cả trời, bay ra vũ trụ giãn nở cùng vũ trụ vô hạnnnnn",
-    author: "Bằng",
-  },
-  {
-    text: "Nếu anh có thể cho em một khả năng đặc biệt trong cuộc đời này, anh sẽ cho em khả năng nhìn thấy chính mình qua đôi mắt của anh. Sau đó em sẽ nhận ra, em thật đặc biệt thế nào đối với anh.",
-    author: "Bằng",
-  },
-  {
-    text: "a vô tình bước vô cuộc đời e nma a cố tình ở lại đó chớ :)))",
-    author: "Bằng",
-  },
-  {
-    text: "nếu quá khứ của e là một chiếc bánh dở tệ thì a sẽ ăn hết rồi đền cho e một chiếc bánh ngon hơn",
-    author: "Bằng",
-  },
-  {
-    text: "Khôm được bỏ công túa đi trước một mình",
-    author: "Lưu ý từ công túa",
-  },
-];
-
-function setupQuotesCarousel() {
-  const quotesCarousel = document.getElementById("quotesCarousel");
-  if (!quotesCarousel) return;
-
-  // Clear existing quotes and add from array
-  quotesCarousel.innerHTML = quotes
-    .map(
-      (quote, index) => `
-        <div class="quote-card ${index === 0 ? "active" : ""}">
-            <p>"${quote.text}"</p>
-            <span class="quote-author">- ${quote.author}</span>
-        </div>
-    `
-    )
-    .join("");
-
-  // Auto-rotate quotes every 5 seconds
-  setInterval(() => {
-    changeQuote(1);
-  }, 5000);
-}
-
-function changeQuote(direction) {
-  const quoteCards = document.querySelectorAll(".quote-card");
-  if (quoteCards.length === 0) return;
-
-  // Remove active class from current quote
-  quoteCards[currentQuoteIndex].classList.remove("active");
-
-  // Calculate new index
-  currentQuoteIndex += direction;
-  if (currentQuoteIndex >= quotes.length) {
-    currentQuoteIndex = 0;
-  } else if (currentQuoteIndex < 0) {
-    currentQuoteIndex = quotes.length - 1;
+// Add CSS for enhanced form validation
+const additionalCSS = `
+  .form-input.error {
+    border-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.05);
   }
-
-  // Add active class to new quote
-  quoteCards[currentQuoteIndex].classList.add("active");
-}
-
-function animateCompatibilityScores() {
-  const scoreElements = document.querySelectorAll(".aspect-score");
-  scoreElements.forEach((element, index) => {
-    setTimeout(() => {
-      element.style.animation = "pulse 1s ease-in-out";
-    }, index * 200);
-  });
-}
-
-// Header toggle functionality
-function setupHeaderToggle() {
-  const headerToggle = document.getElementById("headerToggle");
-  const memoriesHeader = document.getElementById("memoriesHeader");
-
-  if (headerToggle && memoriesHeader) {
-    headerToggle.addEventListener("click", function () {
-      memoriesHeader.classList.toggle("collapsed");
-      const icon = headerToggle.querySelector("i");
-
-      if (memoriesHeader.classList.contains("collapsed")) {
-        icon.className = "fas fa-chevron-down";
-        headerToggle.style.transform = "rotate(180deg)";
-      } else {
-        icon.className = "fas fa-chevron-up";
-        headerToggle.style.transform = "rotate(0deg)";
-      }
-    });
-
-    // Auto-collapse on scroll down, expand on scroll up
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", function () {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling down
-        memoriesHeader.classList.add("collapsed");
-        headerToggle.querySelector("i").className = "fas fa-chevron-down";
-        headerToggle.style.transform = "rotate(180deg)";
-      } else if (scrollTop < lastScrollTop) {
-        // Scrolling up
-        memoriesHeader.classList.remove("collapsed");
-        headerToggle.querySelector("i").className = "fas fa-chevron-up";
-        headerToggle.style.transform = "rotate(0deg)";
-      }
-
-      lastScrollTop = scrollTop;
-    });
+  
+  .field-error {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
-}
+  
+  .field-error::before {
+    content: "⚠️";
+    font-size: 0.7rem;
+  }
+  
+  .upload-area.drag-over {
+    border-color: var(--primary-pink);
+    background: rgba(255, 107, 157, 0.2);
+    transform: scale(1.02);
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .memory-card.preview-card {
+    border: 2px dashed var(--primary-pink);
+    background: var(--gradient-soft);
+  }
+  
+  .card-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--primary-pink);
+    font-weight: 600;
+  }
+  
+  .card-mood {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 107, 157, 0.1);
+  }
+`;
+
+// Inject additional CSS
+const styleSheet = document.createElement("style");
+styleSheet.textContent = additionalCSS;
+document.head.appendChild(styleSheet);
 
 // Enhanced UI Functions for better user experience
 
