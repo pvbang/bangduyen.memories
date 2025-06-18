@@ -22,15 +22,14 @@ function checkAuthentication() {
     return true;
 }
 
-// Love start date
-const loveStartDate = new Date('2022-03-23T00:00:00');
+// Love start date (23/03/2025 - chính thức thành ny)
+const loveStartDate = new Date('2025-03-23T00:00:00');
 
 // Important dates
 const importantDates = {
-    engagement: new Date('2025-03-23T18:00:00'),
-    anniversary: new Date('2025-03-23T00:00:00'),
-    duyenBirthday: calculateNextBirthday(8, 15), // August 15
-    bangBirthday: calculateNextBirthday(12, 10)  // December 10
+    bangBirthday: calculateNextBirthday(10, 28), // October 28
+    anniversary: new Date('2026-03-23T00:00:00'), // Kỷ niệm 1 năm
+    duyenBirthday: calculateNextBirthday(10, 8)  // October 8
 };
 
 // Initialize countdown
@@ -104,7 +103,7 @@ function updateProgressRing(totalDays) {
 
 // Update special countdowns
 function updateSpecialCountdowns() {
-    updateCountdown('engagement', importantDates.engagement, 'engage');
+    updateCountdown('bangBirthday', importantDates.bangBirthday, 'engage');
     updateCountdown('anniversary', importantDates.anniversary, 'anni');
     updateCountdown('duyenBirthday', importantDates.duyenBirthday, 'duyen');
     updateCountdown('bangBirthday', importantDates.bangBirthday, 'bang');
@@ -143,9 +142,8 @@ function updateCountdown(eventName, targetDate, prefix) {
 // Update countdown progress
 function updateCountdownProgress(eventName, targetDate, prefix) {
     let startDate;
-    
-    switch(eventName) {
-        case 'engagement':
+      switch(eventName) {
+        case 'bangBirthday':
         case 'anniversary':
             startDate = loveStartDate;
             break;

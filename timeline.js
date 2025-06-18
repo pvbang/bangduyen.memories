@@ -34,8 +34,8 @@ function initTimeline() {
     });
 }
 
-// Love start date
-const loveStartDate = new Date('2022-03-23T00:00:00');
+// Love start date (23/03/2025 - chính thức thành ny)
+const loveStartDate = new Date('2025-03-23T00:00:00');
 
 // Update love counter
 function updateLoveCounter() {
@@ -62,94 +62,101 @@ function updateLoveCounter() {
 const timelineEvents = [
     {
         id: 1,
-        date: '2022-03-23',
-        title: 'Ngày đầu tiên',
-        description: 'Ngày chúng ta chính thức bắt đầu hành trình tình yêu',
+        date: '2025-02-08',
+        title: 'Lần đầu gặp nhau',
+        description: 'Ngày chúng ta gặp nhau lần đầu tiên tại văn phòng',
         type: 'milestones',
-        icon: '💕',
-        details: 'Ngày đặc biệt nhất trong cuộc đời chúng ta. Từ một tình bạn đẹp, chúng ta đã quyết định bước vào một mối quan hệ nghiêm túc.'
+        icon: '�',
+        details: 'Ngày 08/02/2025 - Em là con bé chiều hôm qua mới qua văn phòng chào mn á. Một cuộc gặp gỡ định mệnh đã thay đổi cuộc đời cả hai.'
     },
     {
         id: 2,
-        date: '2022-04-14',
-        title: 'Hẹn hò đầu tiên',
-        description: 'Buổi hẹn hò chính thức đầu tiên của chúng ta',
-        type: 'dates',
-        icon: '🎭',
-        details: 'Chúng ta đã cùng nhau xem phim và ăn tối. Cả hai đều rất hồi hộp nhưng cũng rất hạnh phúc.'
+        date: '2025-02-09',
+        title: 'Tin nhắn đầu tiên',
+        description: '"Anh ơi, e là con bé chiều hôm qua mới qua văn phòng chào mn á. E hỏi anh cái này xíu"',
+        type: 'milestones',
+        icon: '💬',
+        details: 'Tin nhắn đầu tiên của em đã mở ra cánh cửa cho tình yêu của chúng ta. Đơn giản nhưng đầy ý nghĩa.'
     },
     {
         id: 3,
-        date: '2022-06-30',
-        title: '100 ngày yêu',
-        description: 'Cột mốc 100 ngày đầu tiên',
-        type: 'milestones',
-        icon: '💯',
-        details: '100 ngày đầu tiên đầy ắp những kỷ niệm đẹp. Chúng ta đã học được nhiều điều về nhau.'
+        date: '2025-02-28',
+        title: 'Đổi màu Mess',
+        description: 'Ngày chúng ta đổi màu tin nhắn - dấu hiệu đầu tiên của tình cảm đặc biệt',
+        type: 'special',
+        icon: '🎨',
+        details: 'Một cử chỉ nhỏ nhưng có ý nghĩa lớn. Cả hai đều cảm nhận được sự khác biệt trong mối quan hệ.'
     },
     {
         id: 4,
-        date: '2022-08-15',
-        title: 'Sinh nhật Duyên',
-        description: 'Sinh nhật đầu tiên của Duyên khi chúng ta yêu nhau',
-        type: 'special',
-        icon: '🎂',
-        details: 'Bang đã chuẩn bị một bữa tiệc sinh nhật nhỏ thật ấm cúng và bất ngờ cho Duyên.'
+        date: '2025-03-06',
+        title: 'First Date #1',
+        description: 'Cuộc hẹn hò đầu tiên của chúng ta',
+        type: 'dates',
+        icon: '💝',
+        details: 'Ngày 06/03/2025 - Buổi hẹn đầu tiên đầy ắp những cảm xúc mới mẻ và hồi hộp.'
     },
     {
         id: 5,
-        date: '2022-10-01',
-        title: 'Chuyến du lịch Đà Lạt',
-        description: 'Chuyến du lịch đầu tiên cùng nhau',
-        type: 'trips',
-        icon: '✈️',
-        details: 'Chuyến đi 3 ngày 2 đêm tuyệt vời tại thành phố sương mù. Rất nhiều kỷ niệm đẹp được tạo ra.'
+        date: '2025-03-12',
+        title: 'First Date #2',
+        description: 'Cuộc hẹn thứ hai ngày càng gần nhau hơn',
+        type: 'dates',
+        icon: '�',
+        details: 'Ngày 12/03/2025 - Chúng ta ngày càng hiểu nhau hơn qua những cuộc trò chuyện sâu sắc.'
     },
     {
         id: 6,
-        date: '2022-12-10',
-        title: 'Sinh nhật Bang',
-        description: 'Sinh nhật đầu tiên của Bang trong mối quan hệ',
-        type: 'special',
-        icon: '🎂',
-        details: 'Duyên đã tự tay làm bánh sinh nhật và chuẩn bị món quà handmade đầy ý nghĩa.'
+        date: '2025-03-15',
+        title: 'First Date #3',
+        description: 'Cuộc hẹn thứ ba với nhiều cảm xúc',
+        type: 'dates',
+        icon: '💖',
+        details: 'Ngày 15/03/2025 - Tình cảm giữa hai ta ngày càng sâu đậm và rõ ràng hơn.'
     },
     {
         id: 7,
-        date: '2023-03-23',
-        title: 'Kỷ niệm 1 năm',
-        description: 'Tròn 1 năm yêu nhau',
-        type: 'milestones',
-        icon: '🏆',
-        details: 'Ngày kỷ niệm 1 năm yêu nhau. Chúng ta đã tổ chức một bữa tối lãng mạn tại nhà hàng yêu thích.'
+        date: '2025-03-22',
+        title: 'First Date cuối',
+        description: 'Cuộc hẹn cuối cùng trước khi trở thành người yêu',
+        type: 'dates',
+        icon: '🌹',
+        details: 'Ngày 22/03/2025 - Buổi hẹn cuối cùng trước khi anh chính thức tỏ tình với em.'
     },
     {
         id: 8,
-        date: '2023-05-20',
-        title: 'Gặp gia đình',
-        description: 'Bang gặp gia đình Duyên lần đầu',
+        date: '2025-03-23',
+        title: 'Chính thức thành người yêu ❤️',
+        description: 'Ngày thiêng liêng nhất - anh tỏ tình và em đồng ý',
         type: 'milestones',
-        icon: '👨‍👩‍👧‍👦',
-        details: 'Một cột mốc quan trọng trong mối quan hệ. Gia đình Duyên đã đón nhận Bang rất tốt.'
+        icon: '�',
+        details: 'Ngày 23/03/2025 - "em đồng ý làm người yêu anh nha" - Câu trả lời làm anh hạnh phúc nhất đời. Từ đây, chúng ta chính thức bắt đầu hành trình tình yêu.'
     },
     {
         id: 9,
-        date: '2023-07-15',
-        title: 'Chuyến biển Nha Trang',
-        description: 'Kỳ nghỉ hè tuyệt vời bên bờ biển',
-        type: 'trips',
-        icon: '🏖️',
-        details: 'Chuyến du lịch biển đầu tiên cùng nhau. Chúng ta đã có những bức ảnh đẹp và kỷ niệm khó quên.'
+        date: '2025-04-24',
+        title: 'Ngày chuộc lỗi đặc biệt',
+        description: 'Ngày anh thêm vào lịch để chuộc lỗi vì nhầm ngày sinh nhật',
+        type: 'special',
+        icon: '🤭',
+        details: 'Ngày 24/04/2025 - "bị cáo đề nghị thêm một ngày 24 vào lịch là ngày chuộc lỗi nữa :)))" - Một ngày đặc biệt chỉ có của riêng chúng ta.'
     },
     {
         id: 10,
-        date: '2024-03-23',
-        title: 'Kỷ niệm 2 năm',
-        description: 'Tròn 2 năm hạnh phúc bên nhau',
-        type: 'milestones',
-        icon: '💖',
-        details: 'Kỷ niệm 2 năm yêu nhau. Chúng ta đã trưởng thành và hiểu nhau hơn rất nhiều.'
-    }
+        date: '2025-10-08',
+        title: 'Sinh nhật em Duyên',
+        description: 'Sinh nhật lần thứ 22 của công chúa',
+        type: 'special',
+        icon: '🎂',
+        details: 'Ngày 08/10/2025 - Sinh nhật đầu tiên của em khi chúng ta đã là người yêu. Anh sẽ chuẩn bị những điều đặc biệt nhát cho em.'
+    },
+    {
+        id: 11,
+        date: '2025-10-28',
+        title: 'Sinh nhật anh Bằng',
+        description: 'Sinh nhật lần thứ 23 của anh Bằng',
+        type: 'special',
+        icon: '🎂',        details: 'Ngày 28/10/2025 - Sinh nhật đầu tiên của anh khi chúng ta đã yêu nhau. Em sẽ có những món quà bất ngờ cho anh.'    }
 ];
 
 // Load timeline events

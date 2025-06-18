@@ -1,0 +1,514 @@
+/* Starmap CSS - Giao diện đẹp cho Bản Đồ Sao */
+
+/* Starmap Specific Styles */
+.starmap-page {
+    background: linear-gradient(135deg, 
+        #0f0c29 0%, 
+        #302b63 25%,
+        #24243e 50%,
+        #302b63 75%, 
+        #0f0c29 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: white;
+}
+
+/* Starmap Header */
+.starmap-header {
+    background: rgba(15, 12, 41, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 30px 0;
+    box-shadow: 
+        0 8px 35px rgba(102, 126, 234, 0.15),
+        0 2px 15px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.starmap-header h1 {
+    font-family: 'Pacifico', 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #667eea;
+    text-align: center;
+    margin: 0;
+    text-shadow: 
+        0 0 20px rgba(102, 126, 234, 0.8),
+        0 0 40px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #667eea, #764ba2, #ff6b9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.starmap-subtitle {
+    text-align: center;
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+/* Star Background Animation */
+.stars-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+.star.bright {
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.star.dim {
+    opacity: 0.3;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Main Starmap Container */
+.starmap-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Constellation Display */
+.constellation-display {
+    background: rgba(15, 12, 41, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 30px;
+    padding: 50px 40px;
+    margin-bottom: 50px;
+    box-shadow: 
+        0 20px 50px rgba(102, 126, 234, 0.2),
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.constellation-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        transparent 70%);
+    z-index: -1;
+}
+
+.constellation-title {
+    font-family: 'Pacifico', 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    text-shadow: 
+        0 0 20px rgba(102, 126, 234, 0.8),
+        0 0 40px rgba(102, 126, 234, 0.4);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 20px rgba(102, 126, 234, 0.8),
+            0 0 40px rgba(102, 126, 234, 0.4);
+    }
+    to {
+        text-shadow: 
+            0 0 30px rgba(102, 126, 234, 1),
+            0 0 60px rgba(102, 126, 234, 0.6),
+            0 0 80px rgba(102, 126, 234, 0.3);
+    }
+}
+
+.constellation-info {
+    font-size: 1.3rem;
+    color: #c0c0c0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Starmap Canvas */
+.starmap-canvas {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 50px rgba(102, 126, 234, 0.1);
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.starmap-placeholder {
+    text-align: center;
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.starmap-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.6;
+}
+
+/* Location Section */
+.location-section {
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 40px 0;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.location-section h3 {
+    color: #fff;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.location-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.location-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.location-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #ff6b9d);
+    border-radius: 20px 20px 0 0;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.location-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.location-card h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+}
+
+.location-card p {
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.location-card i {
+    color: #667eea;
+    margin-right: 8px;
+}
+
+/* Star Sign Information */
+.star-signs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.star-sign-card {
+    background: rgba(15, 12, 41, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 
+        0 12px 30px rgba(102, 126, 234, 0.12),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.star-sign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 45px rgba(102, 126, 234, 0.2),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.star-sign-symbol {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.6));
+}
+
+.star-sign-name {
+    color: #667eea;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+}
+
+.star-sign-date {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.star-sign-description {
+    color: #c0c0c0;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+/* Romantic Messages */
+.romantic-messages {
+    background: rgba(15, 12, 41, 0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    margin: 60px 0;
+    text-align: center;
+    box-shadow: 
+        0 15px 40px rgba(102, 126, 234, 0.15),
+        0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.romantic-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+}
+
+.romantic-quote {
+    font-size: 1.4rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+}
+
+.quote-author {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Interactive Star Points */
+.star-point {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #667eea;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 15px rgba(102, 126, 234, 0.8),
+        0 0 30px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.star-point:hover {
+    transform: scale(1.5);
+    box-shadow: 
+        0 0 25px rgba(102, 126, 234, 1),
+        0 0 50px rgba(102, 126, 234, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .starmap-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .constellation-title {
+        font-size: 2.2rem;
+    }
+    
+    .location-info {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .star-signs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .constellation-display {
+        padding: 30px 20px;
+    }
+    
+    .starmap-canvas {
+        padding: 20px;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .starmap-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .constellation-title {
+        font-size: 1.8rem;
+    }
+    
+    .star-signs {
+        grid-template-columns: 1fr;
+    }
+    
+    .location-card {
+        padding: 20px;
+    }
+    
+    .romantic-title {
+        font-size: 2rem;
+    }
+    
+    .romantic-quote {
+        font-size: 1.2rem;
+    }
+}
+
+/* Additional Star Animations */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: shootingStar 4s linear infinite;
+}
+
+@keyframes shootingStar {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) translateY(-100px);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100vw) translateY(100vh);
+    }
+}
+
+/* Constellation Lines */
+.constellation-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(102, 126, 234, 0.6), 
+        transparent);
+    transform-origin: left center;
+    animation: drawLine 2s ease-in-out;
+}
+
+@keyframes drawLine {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* Galaxy Background Effect */
+.galaxy-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.05) 50%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: -2;
+    animation: galaxyRotate 60s linear infinite;
+}
+
+@keyframes galaxyRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
