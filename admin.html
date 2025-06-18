@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Bang & Duyen Memories ♥</title>
+    <link rel="stylesheet" href="style.css">    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <div class="background-animation">
+        <div class="floating-hearts">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
+    </div>
+
+    <header class="admin-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-cog"></i>
+                Quản trị kỷ niệm
+                <i class="fas fa-heart"></i>
+            </h1>
+            <div class="header-actions">
+                <a href="memories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Về trang chính
+                </a>
+            </div>
+        </div>
+    </header>    <main class="admin-container">
+        <div class="admin-form-container">
+            <h2 class="section-title">
+                <i class="fas fa-plus"></i>
+                Thêm kỷ niệm mới
+            </h2>
+            <form class="memory-form" id="memoryForm">
+                <div class="form-section">
+                    <h3><i class="fas fa-heart"></i> Thông tin kỷ niệm</h3>
+                    
+                    <div class="form-group">
+                        <label for="title">Tiêu đề kỷ niệm</label>
+                        <input type="text" id="title" name="title" placeholder="Ví dụ: Ngày đầu tiên gặp nhau..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Ngày tháng</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Loại kỷ niệm</label>
+                        <select id="category" name="category" required>
+                            <option value="">Chọn loại kỷ niệm</option>
+                            <option value="special">Đặc biệt</option>
+                            <option value="daily">Hàng ngày</option>
+                            <option value="anniversary">Kỷ niệm</option>
+                            <option value="trip">Du lịch</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Nội dung kỷ niệm</label>
+                        <textarea id="content" name="content" rows="5" placeholder="Kể về kỷ niệm này..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-image"></i> Hình ảnh</h3>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showImages" name="showImages">
+                            <span class="checkmark"></span>
+                            Hiển thị hình ảnh
+                        </label>
+                    </div>
+
+                    <div class="image-upload-section" id="imageUploadSection" style="display: none;">
+                        <div class="form-group">
+                            <label for="images">Chọn hình ảnh (có thể chọn nhiều)</label>
+                            <input type="file" id="images" name="images" multiple accept="image/*">
+                            <div class="file-upload-hint">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Kéo thả hoặc click để chọn ảnh
+                            </div>
+                        </div>
+
+                        <div class="image-preview" id="imagePreview">
+                            <!-- Preview images will be shown here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-palette"></i> Tùy chỉnh hiển thị</h3>
+                    
+                    <div class="form-group">
+                        <label for="template">Template hiển thị</label>
+                        <select id="template" name="template">
+                            <option value="random">Ngẫu nhiên</option>
+                            <option value="classic">Cổ điển</option>
+                            <option value="modern">Hiện đại</option>
+                            <option value="romantic">Lãng mạn</option>
+                            <option value="minimalist">Tối giản</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mood">Tâm trạng</label>
+                        <select id="mood" name="mood">
+                            <option value="happy">Vui vẻ 😊</option>
+                            <option value="romantic">Lãng mạn 💕</option>
+                            <option value="nostalgic">Hoài niệm 🌅</option>
+                            <option value="sweet">Ngọt ngào 🍯</option>
+                            <option value="excited">Phấn khích 🎉</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-heart"></i>
+                        Lưu kỷ niệm
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <button type="reset" class="reset-btn">
+                        <i class="fas fa-undo"></i>
+                        Làm mới
+                    </button>
+                </div>
+            </form>
+        </div>        <div class="admin-preview">
+            <h3><i class="fas fa-eye"></i> Xem trước</h3>
+            <div class="preview-container" id="previewContainer">
+                <div class="memory-card preview-card">
+                    <div class="card-header">
+                        <h4>Xem trước sẽ hiển thị ở đây</h4>
+                        <span class="card-date">Khi bạn nhập thông tin</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Nội dung kỷ niệm sẽ hiển thị tại đây...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="admin-memories-section">
+        <div class="admin-memories-container">
+            <h2 class="section-title">
+                <i class="fas fa-list"></i>
+                Quản lý kỷ niệm
+            </h2>
+            <div class="admin-memories-grid" id="adminMemoriesContainer">
+                <!-- Existing memories will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <div class="success-modal" id="successModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="success-content">
+                <i class="fas fa-heart success-icon"></i>
+                <h3>Thành công!</h3>
+                <p>Kỷ niệm đã được lưu thành công</p>
+                <button onclick="closeSuccessModal()" class="ok-btn">
+                    <i class="fas fa-check"></i>
+                    Tuyệt vời!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

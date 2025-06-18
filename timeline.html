@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Tình Yêu - Bang & Duyen Memories</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="timeline-page">
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-hearts">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="timeline-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-heart"></i> Timeline Tình Yêu</h1>
+                <p>Hành trình 1000 ngày yêu của Bang & Duyên</p>
+            </div>
+            <div class="nav-actions">
+                <a href="memories.html" class="nav-btn">
+                    <i class="fas fa-photo-video"></i> Kỷ Niệm
+                </a>
+                <a href="starmap.html" class="nav-btn">
+                    <i class="fas fa-star"></i> Bản Đồ Sao
+                </a>
+                <a href="countdown.html" class="nav-btn">
+                    <i class="fas fa-clock"></i> Đếm Ngày
+                </a>
+                <a href="index.html" class="nav-btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="timeline-content">
+        <div class="container">
+            <!-- Love Counter -->
+            <div class="love-counter">
+                <div class="counter-card">
+                    <h2><i class="fas fa-calendar-heart"></i> Chúng ta đã yêu nhau được</h2>
+                    <div class="counter-display">
+                        <div class="counter-item">
+                            <span class="counter-number" id="years">0</span>
+                            <span class="counter-label">Năm</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-number" id="months">0</span>
+                            <span class="counter-label">Tháng</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-number" id="days">0</span>
+                            <span class="counter-label">Ngày</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-number" id="hours">0</span>
+                            <span class="counter-label">Giờ</span>
+                        </div>
+                    </div>
+                    <div class="love-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text">Tiến tới mục tiêu 10,000 ngày yêu nhau ❤️</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Timeline -->
+            <div class="interactive-timeline">
+                <h2><i class="fas fa-timeline"></i> Dòng thời gian tình yêu</h2>
+                <div class="timeline-controls">
+                    <button class="timeline-btn active" data-filter="all">Tất cả</button>
+                    <button class="timeline-btn" data-filter="milestones">Cột mốc</button>
+                    <button class="timeline-btn" data-filter="dates">Hẹn hò</button>
+                    <button class="timeline-btn" data-filter="trips">Du lịch</button>
+                    <button class="timeline-btn" data-filter="special">Đặc biệt</button>
+                </div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-events" id="timelineEvents">
+                        <!-- Timeline events will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones -->
+            <div class="milestones-section">
+                <h2><i class="fas fa-trophy"></i> Những cột mốc quan trọng</h2>
+                <div class="milestones-grid" id="milestonesGrid">
+                    <!-- Milestones will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Future Plans -->
+            <div class="future-plans">
+                <h2><i class="fas fa-rocket"></i> Kế hoạch tương lai</h2>
+                <div class="plans-container">
+                    <div class="plan-item">
+                        <div class="plan-icon">💍</div>
+                        <h3>Đính hôn</h3>
+                        <p>23/03/2025</p>
+                        <div class="countdown-to-event" data-target="2025-03-23">
+                            <span class="countdown-days">0</span> ngày nữa
+                        </div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">👰</div>
+                        <h3>Đám cưới</h3>
+                        <p>Dự kiến 2026</p>
+                        <div class="plan-status">Đang lên kế hoạch</div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">🏠</div>
+                        <h3>Tổ ấm</h3>
+                        <p>Mơ ước chung</p>
+                        <div class="plan-status">Đang tiết kiệm</div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">✈️</div>
+                        <h3>Honeymoon</h3>
+                        <p>Nhật Bản</p>
+                        <div class="plan-status">Trong ước mơ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Stats -->
+            <div class="memory-stats">
+                <h2><i class="fas fa-chart-line"></i> Thống kê tình yêu</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">📸</div>
+                        <div class="stat-number" id="totalPhotos">0</div>
+                        <div class="stat-label">Ảnh chung</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📍</div>
+                        <div class="stat-number" id="placesVisited">0</div>
+                        <div class="stat-label">Địa điểm</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🎂</div>
+                        <div class="stat-number" id="birthdays">2</div>
+                        <div class="stat-label">Sinh nhật</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🎉</div>
+                        <div class="stat-number" id="celebrations">0</div>
+                        <div class="stat-label">Lễ kỷ niệm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Timeline Modal -->
+    <div id="timelineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Event details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="timeline.js"></script>
+</body>
+</html>

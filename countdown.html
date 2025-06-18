@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồng Hồ Tình Yêu - Bang & Duyen Memories</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="countdown-page">
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-hearts">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="countdown-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-clock"></i> Đồng Hồ Tình Yêu</h1>
+                <p>Thời gian quý giá cùng nhau</p>
+            </div>
+            <div class="nav-actions">
+                <a href="memories.html" class="nav-btn">
+                    <i class="fas fa-photo-video"></i> Kỷ Niệm
+                </a>
+                <a href="timeline.html" class="nav-btn">
+                    <i class="fas fa-timeline"></i> Timeline
+                </a>
+                <a href="starmap.html" class="nav-btn">
+                    <i class="fas fa-star"></i> Bản Đồ Sao
+                </a>
+                <a href="index.html" class="nav-btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="countdown-content">
+        <div class="container">
+            <!-- Main Love Counter -->
+            <div class="main-counter">
+                <div class="counter-card featured">
+                    <h2><i class="fas fa-heart-pulse"></i> Chúng ta đã yêu nhau</h2>
+                    <div class="main-display">
+                        <div class="time-circle">
+                            <div class="circle-content">
+                                <div class="main-number" id="totalDays">0</div>
+                                <div class="main-label">NGÀY</div>
+                            </div>
+                            <svg class="progress-ring" width="200" height="200">
+                                <circle class="progress-ring-circle" cx="100" cy="100" r="90" 
+                                        fill="transparent" stroke="#ffe0e6" stroke-width="8"/>
+                                <circle id="progressCircle" class="progress-ring-circle active" 
+                                        cx="100" cy="100" r="90" fill="transparent" 
+                                        stroke="#ff6b9d" stroke-width="8" 
+                                        stroke-dasharray="565.48" stroke-dashoffset="565.48"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="detailed-time">
+                        <div class="time-item">
+                            <span class="time-number" id="detailYears">0</span>
+                            <span class="time-label">Năm</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-number" id="detailMonths">0</span>
+                            <span class="time-label">Tháng</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-number" id="detailDays">0</span>
+                            <span class="time-label">Ngày</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-number" id="detailHours">0</span>
+                            <span class="time-label">Giờ</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-number" id="detailMinutes">0</span>
+                            <span class="time-label">Phút</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-number" id="detailSeconds">0</span>
+                            <span class="time-label">Giây</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Countdowns -->
+            <div class="special-countdowns">
+                <h2><i class="fas fa-calendar-heart"></i> Những ngày đặc biệt</h2>
+                <div class="countdowns-grid">
+                    <!-- Engagement Countdown -->
+                    <div class="countdown-item engagement">
+                        <div class="countdown-icon">💍</div>
+                        <h3>Đính Hôn</h3>
+                        <div class="countdown-date">23/03/2025</div>
+                        <div class="countdown-display" id="engagementCountdown">
+                            <div class="cd-item">
+                                <span class="cd-number" id="engageDays">0</span>
+                                <span class="cd-label">Ngày</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="engageHours">0</span>
+                                <span class="cd-label">Giờ</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="engageMinutes">0</span>
+                                <span class="cd-label">Phút</span>
+                            </div>
+                        </div>
+                        <div class="countdown-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="engageProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Anniversary -->
+                    <div class="countdown-item anniversary">
+                        <div class="countdown-icon">🎉</div>
+                        <h3>Kỷ niệm 3 năm</h3>
+                        <div class="countdown-date">23/03/2025</div>
+                        <div class="countdown-display" id="anniversaryCountdown">
+                            <div class="cd-item">
+                                <span class="cd-number" id="anniDays">0</span>
+                                <span class="cd-label">Ngày</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="anniHours">0</span>
+                                <span class="cd-label">Giờ</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="anniMinutes">0</span>
+                                <span class="cd-label">Phút</span>
+                            </div>
+                        </div>
+                        <div class="countdown-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="anniProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duyen's Birthday -->
+                    <div class="countdown-item birthday">
+                        <div class="countdown-icon">🎂</div>
+                        <h3>Sinh nhật Duyên</h3>
+                        <div class="countdown-date" id="duyenBirthday">15/08/2024</div>
+                        <div class="countdown-display" id="duyenCountdown">
+                            <div class="cd-item">
+                                <span class="cd-number" id="duyenDays">0</span>
+                                <span class="cd-label">Ngày</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="duyenHours">0</span>
+                                <span class="cd-label">Giờ</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="duyenMinutes">0</span>
+                                <span class="cd-label">Phút</span>
+                            </div>
+                        </div>
+                        <div class="countdown-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="duyenProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bang's Birthday -->
+                    <div class="countdown-item birthday">
+                        <div class="countdown-icon">🎂</div>
+                        <h3>Sinh nhật Bang</h3>
+                        <div class="countdown-date" id="bangBirthday">10/12/2024</div>
+                        <div class="countdown-display" id="bangCountdown">
+                            <div class="cd-item">
+                                <span class="cd-number" id="bangDays">0</span>
+                                <span class="cd-label">Ngày</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="bangHours">0</span>
+                                <span class="cd-label">Giờ</span>
+                            </div>
+                            <div class="cd-item">
+                                <span class="cd-number" id="bangMinutes">0</span>
+                                <span class="cd-label">Phút</span>
+                            </div>
+                        </div>
+                        <div class="countdown-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="bangProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone Achievements -->
+            <div class="milestone-achievements">
+                <h2><i class="fas fa-trophy"></i> Những cột mốc đã đạt được</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-item completed">
+                        <div class="achievement-icon">💕</div>
+                        <h3>100 ngày yêu</h3>
+                        <p>Đã hoàn thành</p>
+                        <div class="achievement-date">30/06/2022</div>
+                    </div>
+                    <div class="achievement-item completed">
+                        <div class="achievement-icon">💖</div>
+                        <h3>365 ngày yêu</h3>
+                        <p>Đã hoàn thành</p>
+                        <div class="achievement-date">23/03/2023</div>
+                    </div>
+                    <div class="achievement-item completed">
+                        <div class="achievement-icon">💝</div>
+                        <h3>500 ngày yêu</h3>
+                        <p>Đã hoàn thành</p>
+                        <div class="achievement-date">05/08/2023</div>
+                    </div>
+                    <div class="achievement-item completed">
+                        <div class="achievement-icon">💘</div>
+                        <h3>730 ngày yêu</h3>
+                        <p>Đã hoàn thành</p>
+                        <div class="achievement-date">23/03/2024</div>
+                    </div>
+                    <div class="achievement-item pending">
+                        <div class="achievement-icon">🏆</div>
+                        <h3>1000 ngày yêu</h3>
+                        <p>Sắp đến rồi!</p>
+                        <div class="achievement-countdown" id="milestone1000"></div>
+                    </div>
+                    <div class="achievement-item future">
+                        <div class="achievement-icon">👑</div>
+                        <h3>1500 ngày yêu</h3>
+                        <p>Mục tiêu tương lai</p>
+                        <div class="achievement-date">Tháng 10/2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Love Quotes -->
+            <div class="love-quotes-section">
+                <h2><i class="fas fa-quote-heart"></i> Câu nói tình yêu</h2>
+                <div class="quotes-carousel">
+                    <div class="quote-card active" id="quote1">
+                        <p>"Tình yêu không phải là nhìn nhau, mà là cùng nhau nhìn về một hướng."</p>
+                        <cite>- Antoine de Saint-Exupéry</cite>
+                    </div>
+                    <div class="quote-card" id="quote2">
+                        <p>"Thời gian không làm tình yêu nhạt đi, mà làm nó sâu sắc hơn."</p>
+                        <cite>- Anaïs Nin</cite>
+                    </div>
+                    <div class="quote-card" id="quote3">
+                        <p>"Trong tình yêu, một phút có thể bằng cả một đời."</p>
+                        <cite>- Benjamin Disraeli</cite>
+                    </div>
+                </div>
+                <div class="quote-controls">
+                    <button class="quote-btn prev" onclick="previousQuote()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="quote-btn next" onclick="nextQuote()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="countdown.js"></script>
+</body>
+</html>

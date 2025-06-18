@@ -1,0 +1,96 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "title": "Lần gặp đầu tiên",
+      "date": "2025-02-08",
+      "category": "special",
+      "content": "Ngày 08/02/2025, anh và em đã gặp nhau lần đầu tiên. Em là con bé chiều hôm qua mới qua văn phòng chào mọi người. Đó là khoảnh khắc định mệnh khi ánh mắt chúng ta chạm nhau.",
+      "mood": "romantic",
+      "template": "romantic",
+      "showImages": true,
+      "images": ["sample1.jpg"]
+    },
+    {
+      "id": 2,
+      "title": "Tin nhắn đầu tiên",
+      "date": "2025-02-09",
+      "category": "special",
+      "content": "Ngày 09/02/2025 - 'Anh ơi, e là con bé chiều hôm qua mới qua văn phòng chào mn á. E hỏi anh cái này xíu' - Tin nhắn đầu tiên của em gửi anh, khởi đầu cho câu chuyện tình yêu của chúng ta.",
+      "mood": "sweet",
+      "template": "classic",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 3,
+      "title": "Đổi màu Messenger",
+      "date": "2025-02-28",
+      "category": "daily",
+      "content": "Ngày 28/02/2025, chúng ta đã đổi màu Messenger. Một dấu hiệu nhỏ nhưng ý nghĩa, cho thấy mối quan hệ của chúng ta đang phát triển theo chiều hướng tích cực.",
+      "mood": "happy",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 4,
+      "title": "First Date đầu tiên",
+      "date": "2025-03-06",
+      "category": "special",
+      "content": "Ngày 06/03/2025 - Buổi hẹn hò đầu tiên của chúng ta. Cả hai đều hồi hộp và háo hức. Đó là khoảnh khắc đẹp nhất khi chúng ta bắt đầu tìm hiểu nhau nhiều hơn.",
+      "mood": "excited",
+      "template": "romantic",
+      "showImages": true,
+      "images": ["sample2.jpg"]
+    },
+    {
+      "id": 5,
+      "title": "Ngày chính thức thành người yêu",
+      "date": "2025-03-23",
+      "category": "anniversary",
+      "content": "Ngày 23/03/2025 - Ngày chúng ta chính thức thành người yêu. 'e đồng ý làm người yêu anh nha' - Câu nói ngọt ngào nhất mà anh từng được nghe. Từ đó, cuộc đời anh có thêm ý nghĩa với sự hiện diện của em.",
+      "mood": "romantic",
+      "template": "romantic",
+      "showImages": true,
+      "images": ["sample3.jpg"]
+    },
+    {
+      "id": 6,
+      "title": "Những lời yêu thương",
+      "date": "2025-04-15",
+      "category": "daily",
+      "content": "'A biết là dù ko có anh thì e vẫn làm đc mọi thứ, thì lâu chừ vẫn rk mà. Anh cũng rk, a sẽ k nói mấy câu như là, ko có e thì a k sống đc, nma có một điều anh khẳng định được, anh thích cuộc đời anh có em' - Những lời yêu thương chân thành nhất của anh.",
+      "mood": "sweet",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    }
+  ],
+  "couple_info": {
+    "boy": {
+      "name": "Phan Văn Bằng",
+      "birthday_lunar": "23/09/2002",
+      "birthday_solar": "28/10/2002",
+      "zodiac_sign": "Bọ Cạp"
+    },    "girl": {
+      "name": "Nguyễn Thị Mỹ Duyên",
+      "birthday": "08/10/2003",
+      "zodiac_sign": "Thiên Bình"
+    },
+    "relationship": {
+      "first_meet": "08/02/2025",
+      "first_message": "09/02/2025",
+      "change_messenger_color": "28/02/2025",
+      "first_dates": ["06/03/2025", "12/03/2025", "15/03/2025", "22/03/2025"],
+      "official_couple": "23/03/2025"
+    }
+  },
+  "quotes": [
+    "iuuu em cao hơn cả núi dài hơn cả sông, rộng hơn cả đất xanh hơn cả trời, bay ra vũ trụ giãn nở cùng vũ trụ vô hạnnnnn",
+    "Nếu anh có thể cho em một khả năng đặc biệt trong cuộc đời này, anh sẽ cho em khả năng nhìn thấy chính mình qua đôi mắt của anh. Sau đó em sẽ nhận ra, em thật đặc biệt thế nào đối với anh.",
+    "a vô tình bước vô cuộc đời e nma a cố tình ở lại đó chớ :)))",
+    "nếu quá khứ của e là một chiếc bánh dở tệ thì a sẽ ăn hết rồi đền cho e một chiếc bánh ngon hơn",
+    "Khôm được bỏ công túa đi trước một mình"
+  ]
+}

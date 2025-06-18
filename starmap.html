@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ sao của chúng ta ♥</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="starmap-page">
+    <div class="background-animation">
+        <div class="floating-hearts">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
+        <div class="stars-background">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+
+    <header class="starmap-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-star"></i>
+                Bản đồ sao của chúng ta
+                <i class="fas fa-heart"></i>
+            </h1>
+            <p class="page-subtitle">Khám phá sự hợp cung hoàng đạo của Bằng & Duyên</p>
+        </div>
+        <div class="header-actions">
+            <a href="memories.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Về trang kỷ niệm
+            </a>
+        </div>
+    </header>    <main class="starmap-container">
+        <!-- Constellation Map -->
+        <div class="constellation-map-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Bản đồ chòm sao của cả hai
+            </h2>
+            <div class="constellation-container">
+                <div class="constellation-canvas" id="constellationCanvas">
+                    <!-- Scorpio Constellation -->
+                    <div class="constellation scorpio-constellation">
+                        <div class="constellation-name">Bọ Cạp</div>
+                        <div class="stars-container">
+                            <div class="star major-star" style="top: 30%; left: 20%;" data-name="Antares">★</div>
+                            <div class="star" style="top: 25%; left: 15%;">✦</div>
+                            <div class="star" style="top: 35%; left: 25%;">✦</div>
+                            <div class="star" style="top: 40%; left: 30%;">✦</div>
+                            <div class="star" style="top: 45%; left: 35%;">✦</div>
+                            <div class="star" style="top: 50%; left: 40%;">✦</div>
+                            <div class="star" style="top: 55%; left: 45%;">✦</div>
+                            <div class="star" style="top: 60%; left: 50%;">✦</div>
+                            <div class="constellation-lines">
+                                <svg width="100%" height="100%">
+                                    <path d="M20,30 L25,35 L30,40 L35,45 L40,50 L45,55 L50,60" stroke="#ff6b9d" stroke-width="2" fill="none" opacity="0.7"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="constellation-info">
+                            <p><strong>Ngôi sao chủ:</strong> Antares (Trái tim Bọ Cạp)</p>
+                            <p><strong>Đặc điểm:</strong> Đam mê, bí ẩn, trung thành</p>
+                        </div>
+                    </div>
+
+                    <!-- Libra Constellation -->
+                    <div class="constellation libra-constellation">
+                        <div class="constellation-name">Thiên Bình</div>
+                        <div class="stars-container">
+                            <div class="star major-star" style="top: 30%; right: 20%;" data-name="Zubenelgenubi">★</div>
+                            <div class="star" style="top: 25%; right: 25%;">✦</div>
+                            <div class="star" style="top: 35%; right: 15%;">✦</div>
+                            <div class="star" style="top: 40%; right: 30%;">✦</div>
+                            <div class="star" style="top: 35%; right: 35%;">✦</div>
+                            <div class="constellation-lines">
+                                <svg width="100%" height="100%">
+                                    <path d="M75,25 L80,30 L70,35 L65,40 L60,35" stroke="#87CEEB" stroke-width="2" fill="none" opacity="0.7"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="constellation-info">
+                            <p><strong>Ngôi sao chủ:</strong> Zubenelgenubi</p>
+                            <p><strong>Đặc điểm:</strong> Cân bằng, hài hòa, công bằng</p>
+                        </div>
+                    </div>
+
+                    <!-- Connection between constellations -->
+                    <div class="cosmic-connection">
+                        <div class="connection-line cosmic-line"></div>
+                        <div class="connection-heart">
+                            <div class="pulsing-heart">💕</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="couple-info-section">
+            <div class="person-card boy-card">
+                <div class="person-avatar">
+                    <i class="fas fa-mars"></i>
+                </div>
+                <div class="person-info">
+                    <h3>Phan Văn Bằng</h3>
+                    <div class="birthday-info">
+                        <p><i class="fas fa-calendar-alt"></i> 28/10/2002 (Dương lịch)</p>
+                        <p><i class="fas fa-moon"></i> 23/09/2002 (Âm lịch)</p>
+                    </div>
+                    <div class="zodiac-info">
+                        <div class="zodiac-sign scorpio">
+                            <i class="fas fa-scorpion"></i>
+                            <span>Bọ Cạp</span>
+                        </div>
+                        <div class="zodiac-element">
+                            <span>Nguyên tố: Nước</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="love-connection">
+                <div class="connection-line"></div>
+                <div class="love-heart">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="compatibility-score">
+                    <div class="score-circle">
+                        <span class="score-number">89%</span>
+                        <span class="score-label">Hợp cung</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card girl-card">
+                <div class="person-avatar">
+                    <i class="fas fa-venus"></i>
+                </div>                <div class="person-info">
+                    <h3>Nguyễn Thị Mỹ Duyên</h3>
+                    <div class="birthday-info">
+                        <p><i class="fas fa-calendar-alt"></i> 08/10/2003</p>
+                    </div>
+                    <div class="zodiac-info">
+                        <div class="zodiac-sign libra">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Thiên Bình</span>
+                        </div>
+                        <div class="zodiac-element">
+                            <span>Nguyên tố: Khí</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="compatibility-analysis">
+            <div class="analysis-card">
+                <h3><i class="fas fa-heart"></i> Phân tích tương thích chi tiết</h3>
+                <div class="compatibility-details">
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-heart"></i>
+                            <h4>Tình yêu & Lãng mạn</h4>
+                            <span class="aspect-score">95%</span>
+                        </div>
+                        <p>Bọ Cạp (Bằng) và Thiên Bình (Duyên) tạo thành một cặp đôi cực kỳ hấp dẫn và bổ sung cho nhau. Bọ Cạp mang đến sự sâu sắc, đam mê và tình yêu mãnh liệt, trong khi Thiên Bình đem lại sự cân bằng, thanh lịch và hài hòa. Sự khác biệt này không làm họ xa cách mà ngược lại tạo nên sức hút mạnh mẽ như nam châm.</p>
+                        <div class="aspect-details">
+                            <div class="detail-item">
+                                <i class="fas fa-fire"></i>
+                                <span>Đam mê: Bọ Cạp sẽ khơi dậy ngọn lửa tình yêu trong Thiên Bình</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>Cân bằng: Thiên Bình giúp Bọ Cạp kiểm soát cảm xúc mạnh mẽ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-comments"></i>
+                            <h4>Giao tiếp & Hiểu biết</h4>
+                            <span class="aspect-score">88%</span>
+                        </div>
+                        <p>Thiên Bình có khả năng giao tiếp tuyệt vời và kỹ năng ngoại giao bẩm sinh, giúp Bọ Cạp bộc lộ những cảm xúc sâu kín mà họ thường giấu kín. Bọ Cạp sẽ học cách thể hiện tình cảm một cách tinh tế và lãng mạn hơn từ Thiên Bình.</p>
+                        <div class="aspect-details">
+                            <div class="detail-item">
+                                <i class="fas fa-ear-listen"></i>
+                                <span>Lắng nghe: Thiên Bình biết cách lắng nghe và thấu hiểu</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-lock-open"></i>
+                                <span>Mở lòng: Bọ Cạp sẽ từ từ mở lòng với Thiên Bình</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Tin tưởng & Trung thành</h4>
+                            <span class="aspect-score">92%</span>
+                        </div>
+                        <p>Cả hai cung đều coi trọng sự trung thành và cam kết trong tình yêu. Bọ Cạp có bản năng bảo vệ mạnh mẽ và sẽ che chở cho Thiên Bình một cách tuyệt đối. Thiên Bình với tính cách công bằng và trung thực sẽ mang đến sự tin tưởng và an toàn cho Bọ Cạp.</p>
+                        <div class="aspect-details">
+                            <div class="detail-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Bảo vệ: Bọ Cạp sẽ là lá chắn vững chắc cho Thiên Bình</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-heart-circle-check"></i>
+                                <span>Trung thành: Thiên Bình sẽ chung thủy và tận tụy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-home"></i>
+                            <h4>Gia đình & Tương lai</h4>
+                            <span class="aspect-score">94%</span>
+                        </div>
+                        <p>Thiên Bình có khả năng tạo nên một tổ ấm hài hòa, ấm cúng với gu thẩm mỹ tuyệt vời, trong khi Bọ Cạp đảm bảo sự ổn định tài chính và bảo vệ gia đình. Cả hai đều có khát vọng mạnh mẽ về việc xây dựng một mối quan hệ lâu dài và bền vững.</p>
+                        <div class="aspect-details">
+                            <div class="detail-item">
+                                <i class="fas fa-palette"></i>
+                                <span>Thẩm mỹ: Thiên Bình tạo không gian sống đẹp đẽ</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-piggy-bank"></i>
+                                <span>Ổn định: Bọ Cạp đảm bảo an ninh tài chính</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-brain"></i>
+                            <h4>Trí tuệ & Sáng tạo</h4>
+                            <span class="aspect-score">87%</span>
+                        </div>
+                        <p>Bọ Cạp có trí tuệ sâu sắc và khả năng phân tích tuyệt vời, trong khi Thiên Bình có tư duy cân bằng và óc thẩm mỹ cao. Sự kết hợp này tạo ra những quyết định thông minh và các hoạt động sáng tạo đầy ý nghĩa.</p>
+                    </div>
+
+                    <div class="compatibility-aspect">
+                        <div class="aspect-header">
+                            <i class="fas fa-seedling"></i>
+                            <h4>Phát triển cá nhân</h4>
+                            <span class="aspect-score">90%</span>
+                        </div>
+                        <p>Mối quan hệ này giúp cả hai phát triển: Bọ Cạp học cách kiềm chế và thanh lịch hơn, Thiên Bình trở nên quyết đoán và mạnh mẽ hơn. Họ bổ sung cho nhau một cách hoàn hảo trong hành trình trưởng thành.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planetary Influences -->
+            <div class="planetary-analysis">
+                <h3><i class="fas fa-globe"></i> Ảnh hưởng của các hành tinh</h3>
+                <div class="planets-grid">
+                    <div class="planet-card">
+                        <div class="planet-icon">♂</div>
+                        <h4>Sao Hỏa (Bọ Cạp)</h4>
+                        <p>Mang đến năng lượng, đam mê và sự quyết đoán. Ảnh hưởng tích cực đến khả năng bảo vệ và yêu thương của Bằng.</p>
+                    </div>
+                    <div class="planet-card">
+                        <div class="planet-icon">♀</div>
+                        <h4>Sao Kim (Thiên Bình)</h4>
+                        <p>Tượng trưng cho tình yêu, vẻ đẹp và hài hòa. Giúp Duyên có khả năng tạo ra sự cân bằng và lãng mạn trong mối quan hệ.</p>
+                    </div>
+                    <div class="planet-card">
+                        <div class="planet-icon">♇</div>
+                        <h4>Sao Diêm Vương (Bọ Cạp)</h4>
+                        <p>Hành tinh của sự chuyển đổi và tái sinh. Mang đến khả năng vượt qua khó khăn và tình yêu sâu sắc cho Bằng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relationship-timeline">
+            <h3><i class="fas fa-timeline"></i> Dòng thời gian tình yêu</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">08/02/2025</div>
+                    <div class="timeline-content">
+                        <h4>Lần gặp đầu tiên</h4>
+                        <p>Ngày định mệnh khi hai trái tim tìm thấy nhau</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">09/02/2025</div>
+                    <div class="timeline-content">
+                        <h4>Tin nhắn đầu tiên</h4>
+                        <p>Bước đầu tiên của cuộc trò chuyện không bao giờ kết thúc</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">23/03/2025</div>
+                    <div class="timeline-content">
+                        <h4>Chính thức thành người yêu</h4>
+                        <p>Ngày mà hai trái tim quyết định đồng hành cùng nhau</p>
+                    </div>
+                </div>
+                <div class="timeline-item future">
+                    <div class="timeline-date">∞</div>
+                    <div class="timeline-content">
+                        <h4>Mãi mãi bên nhau</h4>
+                        <p>Tình yêu vô hạn như vũ trụ giãn nở</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="love-quotes-section">
+            <h3><i class="fas fa-quote-left"></i> Những lời yêu thương</h3>
+            <div class="quotes-carousel" id="quotesCarousel">
+                <div class="quote-card active">
+                    <p>"iuuu em cao hơn cả núi dài hơn cả sông, rộng hơn cả đất xanh hơn cả trời, bay ra vũ trụ giãn nở cùng vũ trụ vô hạnnnnn"</p>
+                    <span class="quote-author">- Bằng</span>
+                </div>
+                <div class="quote-card">
+                    <p>"Nếu anh có thể cho em một khả năng đặc biệt trong cuộc đời này, anh sẽ cho em khả năng nhìn thấy chính mình qua đôi mắt của anh. Sau đó em sẽ nhận ra, em thật đặc biệt thế nào đối với anh."</p>
+                    <span class="quote-author">- Bằng</span>
+                </div>
+                <div class="quote-card">
+                    <p>"a vô tình bước vô cuộc đời e nma a cố tình ở lại đó chớ :)))"</p>
+                    <span class="quote-author">- Bằng</span>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="changeQuote(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="changeQuote(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
