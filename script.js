@@ -448,11 +448,46 @@ function initAdminPage() {
 }
 
 function loadMemoriesForAdmin() {
-  const savedMemories = localStorage.getItem("memoriesData");
-  if (savedMemories) {
-    memories = JSON.parse(savedMemories);
-  }
-  displayAdminMemories(memories);
+  // Try to load from JSON file first
+  fetch('data/memories.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Cannot load memories.json');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.memories && Array.isArray(data.memories)) {
+        memories = data.memories;
+        // Also sync with localStorage for offline access
+        localStorage.setItem("memoriesData", JSON.stringify(memories));
+      } else {
+        throw new Error('Invalid data structure in memories.json');
+      }
+      displayAdminMemories(memories);
+      updateStats();
+    })
+    .catch(error => {
+      console.log('Loading from JSON failed, trying localStorage:', error);
+      // Fallback to localStorage
+      const savedMemories = localStorage.getItem("memoriesData");
+      if (savedMemories) {
+        try {
+          memories = JSON.parse(savedMemories);
+          displayAdminMemories(memories);
+          updateStats();
+        } catch (e) {
+          console.error('Error parsing localStorage data:', e);
+          memories = [];
+          displayAdminMemories(memories);
+          updateStats();
+        }
+      } else {
+        memories = [];
+        displayAdminMemories(memories);
+        updateStats();
+      }
+    });
 }
 
 function displayAdminMemories(memoriesToShow = memories) {
@@ -1470,9 +1505,13 @@ function saveMemory(e) {
     memories.push(memoryData);
     showNotification('Thêm kỷ niệm thành công!', 'success');
   }
-  
-  // Save to localStorage
+    // Save to localStorage
   localStorage.setItem("memoriesData", JSON.stringify(memories));
+  
+  // For development: also provide download link for updated JSON
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+    downloadUpdatedJSON();
+  }
   
   // Reset form and UI
   form.reset();
