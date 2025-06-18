@@ -7,7 +7,8 @@
 
 body {
     font-family: 'Inter', 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, rgba(255, 171, 205, 0.85) 100%);
+    /* linear-gradient(135deg, rgba(134, 167, 250, 0.5) 15%, rgba(255, 171, 205, 0.85) 50%); */
     min-height: 100vh;
     overflow-x: hidden;
     font-weight: 400;
@@ -285,7 +286,6 @@ body {
     font-size: 0.95rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
