@@ -543,9 +543,9 @@ class ModernGallery {  constructor() {
       "Khoảnh khắc ngọt ngào 💕",
       "Nụ cười rạng rỡ 😊",
       "Hạnh phúc bên nhau 👫",
-      "Yêu thương ngọt ngào 💖",
+      "Yêu thương 💖",
       "Kỷ niệm đẹp ✨",
-      "Tình yêu đẹp nhất 💝",
+      "Tình iuuu 💝",
       "Iuuuu emmmmm 🥰",
     ];
 
@@ -1118,8 +1118,7 @@ class ModernGallery {  constructor() {
       mediaContainer.appendChild(actionsContainer);
       div.appendChild(mediaContainer);
       div.appendChild(typeIndicator);
-    }
-      // Add click handler for lightbox
+    }    // Add click handler for lightbox
     div.addEventListener("click", () => {
       const itemIndex = this.filteredItems.findIndex(filteredItem => filteredItem.id === item.id);
       this.openLightbox(itemIndex >= 0 ? itemIndex : 0);
@@ -1147,17 +1146,22 @@ class ModernGallery {  constructor() {
       alert('Link đã được sao chép vào clipboard!');
     }
   }
-
   openLightbox(index) {
     this.currentLightboxIndex = index;
     const item = this.filteredItems[index];
+
+    if (!item) return; // Safety check
 
     const lightboxModal = document.getElementById("lightboxModal");
     const mediaContainer = document.getElementById("lightboxMedia");
     const titleElement = document.querySelector("#lightboxTitle h3");
     const dateElement = document.querySelector("#lightboxTitle .lightbox-date");
-    const descriptionElement = document.querySelector("#lightboxInfo .lightbox-description p");    // Clear previous content
-    mediaContainer.innerHTML = "";    // Update title and info
+    const descriptionElement = document.querySelector("#lightboxInfo .lightbox-description p");
+
+    // Clear previous content
+    mediaContainer.innerHTML = "";
+
+    // Update title and info
     if (titleElement) titleElement.textContent = item.title;
     if (dateElement) dateElement.textContent = new Date(item.date).toLocaleDateString('vi-VN');
     if (descriptionElement) descriptionElement.textContent = item.description;
@@ -1179,7 +1183,9 @@ class ModernGallery {  constructor() {
       video.style.maxWidth = "100%";
       video.style.maxHeight = "100%";
       mediaContainer.appendChild(video);
-    }    // Generate thumbnails
+    }
+
+    // Generate thumbnails
     this.generateThumbnails();
 
     // Show lightbox
@@ -1400,8 +1406,7 @@ class ModernGallery {  constructor() {
       }
     };
     
-    resizeCanvas();
-    drawCircuits();
+    resizeCanvas();    drawCircuits();
     
     window.addEventListener('resize', resizeCanvas);
     setInterval(drawCircuits, 3000);
@@ -1410,80 +1415,34 @@ class ModernGallery {  constructor() {
   }
 }
 
-// Global functions for lightbox navigation
-function closeLightbox() {
-  gallery.closeLightbox();
-}
-
-function prevMedia() {
-  gallery.prevMedia();
-}
-
-function nextMedia() {
-  gallery.nextMedia();
-}
-
 // Initialize gallery when DOM is loaded
 let gallery;
 document.addEventListener("DOMContentLoaded", () => {
-  gallery = new Gallery();
+  gallery = new ModernGallery();
 });
 
-// Utility function to download images/videos from Google Drive
-async function downloadFromGoogleDrive() {
-  const imagesFolderId = "1-0DvqbcbIYKC9og5-n_jh_6YO2otC9XF";
-  const videosFolderId = "1-3TWO9LyMW0CeG76DaNEXMInwj0esrrR";
-
-  console.log("Để tải file từ Google Drive, bạn cần:");
-  console.log("1. Truy cập vào các link folder");
-  console.log("2. Tải từng file một cách thủ công");
-  console.log("3. Hoặc sử dụng Google Drive API với authentication");
-  console.log(
-    "Images folder: https://drive.google.com/drive/folders/" + imagesFolderId
-  );
-  console.log(
-    "Videos folder: https://drive.google.com/drive/folders/" + videosFolderId
-  );
-}
-
-// Function to add new media items dynamically
-function addMediaItem(type, filename, title, description) {
-  const item = {
-    id: `${type}_${Date.now()}`,
-    type: type,
-    filename: filename,
-    path: `data/${type}s/${filename}`,
-    title: title || `${type === "image" ? "Hình ảnh" : "Video"} mới`,
-    date: new Date().toISOString().split("T")[0],
-    description:
-      description || "Một khoảnh khắc đẹp trong kỷ niệm của chúng ta",
-  };
-  gallery.mediaItems.unshift(item);
-  gallery.setFilter(gallery.currentFilter); // Refresh the current view
-}
-
-// Global functions for lightbox
+// Global functions for lightbox navigation
 function closeLightbox() {
-  if (window.gallery) {
-    window.gallery.closeLightbox();
+  if (gallery) {
+    gallery.closeLightbox();
   }
 }
 
 function prevMedia() {
-  if (window.gallery) {
-    window.gallery.prevMedia();
+  if (gallery) {
+    gallery.prevMedia();
   }
 }
 
 function nextMedia() {
-  if (window.gallery) {
-    window.gallery.nextMedia();
+  if (gallery) {
+    gallery.nextMedia();
   }
 }
 
 function downloadImage() {
-  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
-    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
+  if (gallery && gallery.filteredItems[gallery.currentLightboxIndex]) {
+    const item = gallery.filteredItems[gallery.currentLightboxIndex];
     const link = document.createElement('a');
     link.href = item.path;
     link.download = item.filename;
@@ -1494,20 +1453,15 @@ function downloadImage() {
 }
 
 function shareImage() {
-  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
-    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
-    window.gallery.shareItem(item);
+  if (gallery && gallery.filteredItems[gallery.currentLightboxIndex]) {
+    const item = gallery.filteredItems[gallery.currentLightboxIndex];
+    gallery.shareItem(item);
   }
 }
 
 function toggleFavorite() {
-  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
-    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
-    window.gallery.toggleFavorite(item.id);
+  if (gallery && gallery.filteredItems[gallery.currentLightboxIndex]) {
+    const item = gallery.filteredItems[gallery.currentLightboxIndex];
+    gallery.toggleFavorite(item.id);
   }
 }
-
-// Initialize gallery when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  window.gallery = new ModernGallery();
-});
