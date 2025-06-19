@@ -1,4 +1,4 @@
-// Timeline page functionality - Tính toán thời gian chính xác
+// Timeline page functionality - Tính toán thời gian chính xác và hiện đại
 document.addEventListener("DOMContentLoaded", function () {
     // Auth-guard.js đã xử lý việc kiểm tra xác thực
     initializeTimeline();
@@ -7,19 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
     setupModal();
     setupScrollAnimations();
     
-    // Update counters every second
+    // Update counters every second with smooth animation
     setInterval(updateAllCounters, 1000);
+    
+    // Add intersection observer for scroll animations
+    observeElements();
 });
 
 // Initialize timeline functionality
 function initializeTimeline() {
-    console.log("Timeline initialized");
+    console.log("Timeline initialized with enhanced features");
+    document.documentElement.style.visibility = 'visible';
+    document.documentElement.style.opacity = '1';
 }
 
-// Important dates - Chính xác theo yêu cầu
+// Important dates - Chính xác theo yêu cầu với thông tin chi tiết
 const IMPORTANT_DATES = {
-    // Sinh nhật Bang - 28/10/2002
+    // Sinh nhật Bang - 28/10/2002 (23/09/2002 âm lịch)
     bangBirthday: new Date("2002-10-28"),
+    bangBirthdayLunar: "23/09/2002 âm lịch",
     // Sinh nhật Duyên - 08/10/2003
     duyenBirthday: new Date("2003-10-08"),
     // Lần đầu gặp nhau - 08/02/2025
@@ -33,13 +39,13 @@ const IMPORTANT_DATES = {
     firstDate2: new Date("2025-03-12"),
     firstDate3: new Date("2025-03-15"),
     firstDate4: new Date("2025-03-22"),
-    // Chính thức thành người yêu - 23/03/2025
-    officialCouple: new Date("2025-03-23"),
+    // Chính thức thành người yêu - 23/03/2025 19h30
+    officialCouple: new Date("2025-03-23T19:30:00"),
     // Ngày chuộc lỗi - 24/04/2025
     makeUpDay: new Date("2025-04-24")
 };
 
-// Update all counters
+// Update all counters with smooth animation
 function updateAllCounters() {
     updateLoveCounter();
     updateBirthdayCounters();
@@ -47,7 +53,7 @@ function updateAllCounters() {
     updateMilestoneCountdowns();
 }
 
-// Update love counter (since 23/03/2025)
+// Update love counter with years, months, days, hours, minutes, seconds
 function updateLoveCounter() {
     const now = new Date();
     const loveStart = IMPORTANT_DATES.officialCouple;
@@ -60,10 +66,12 @@ function updateLoveCounter() {
         const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
         
-        document.getElementById("totalDays").textContent = `Còn ${days}`;
-        document.getElementById("totalHours").textContent = `${hours}`;
-        document.getElementById("totalMinutes").textContent = `${minutes}`;
-        document.getElementById("totalSeconds").textContent = `${seconds}`;
+        animateCounter("totalYears", 0);
+        animateCounter("totalMonths", 0);
+        animateCounter("totalDays", days);
+        animateCounter("totalHours", hours);
+        animateCounter("totalMinutes", minutes);
+        animateCounter("totalSeconds", seconds);
         
         // Progress bar (0% nếu chưa yêu)
         document.getElementById("progressFill").style.width = "0%";
@@ -71,21 +79,48 @@ function updateLoveCounter() {
     }
     
     const timeDiff = now - loveStart;
-    const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    
+    // Tính toán chi tiết hơn
+    const totalSeconds = Math.floor(timeDiff / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
+    const totalMonths = Math.floor(totalDays / 30.44); // Average days per month
+    const totalYears = Math.floor(totalDays / 365.25); // Account for leap years
     
     // Phần dư để hiển thị
-    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+    const years = totalYears;
+    const months = totalMonths % 12;
+    const days = totalDays % Math.floor(30.44);
+    const hours = totalHours % 24;
+    const minutes = totalMinutes % 60;
+    const seconds = totalSeconds % 60;
     
-    document.getElementById("totalDays").textContent = totalDays;
-    document.getElementById("totalHours").textContent = hours;
-    document.getElementById("totalMinutes").textContent = minutes;
-    document.getElementById("totalSeconds").textContent = seconds;
+    animateCounter("totalYears", years);
+    animateCounter("totalMonths", months);
+    animateCounter("totalDays", days);
+    animateCounter("totalHours", hours);
+    animateCounter("totalMinutes", minutes);
+    animateCounter("totalSeconds", seconds);
     
     // Progress towards 1000 days
     const progressPercent = Math.min((totalDays / 1000) * 100, 100);
     document.getElementById("progressFill").style.width = progressPercent + "%";
+}
+
+// Animate counter numbers
+function animateCounter(elementId, newValue) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    const currentValue = parseInt(element.textContent) || 0;
+    if (currentValue !== newValue) {
+        element.textContent = newValue;
+        element.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+        }, 150);
+    }
 }
 
 // Update birthday counters and ages
@@ -107,8 +142,8 @@ function updateBirthdayCounters() {
         duyenAge--;
     }
     
-    document.getElementById("bangAge").textContent = bangAge;
-    document.getElementById("duyenAge").textContent = duyenAge;
+    animateCounter("bangAge", bangAge);
+    animateCounter("duyenAge", duyenAge);
     
     // Tính ngày sinh nhật tiếp theo
     const nextBangBirthday = now < bangBirthdayThisYear ? bangBirthdayThisYear : new Date(currentYear + 1, IMPORTANT_DATES.bangBirthday.getMonth(), IMPORTANT_DATES.bangBirthday.getDate());
@@ -116,9 +151,8 @@ function updateBirthdayCounters() {
     
     const daysToBangBirthday = Math.ceil((nextBangBirthday - now) / (1000 * 60 * 60 * 24));
     const daysToDuyenBirthday = Math.ceil((nextDuyenBirthday - now) / (1000 * 60 * 60 * 24));
-    
-    document.getElementById("bangNextBirthday").textContent = daysToBangBirthday;
-    document.getElementById("duyenNextBirthday").textContent = daysToDuyenBirthday;
+      animateCounter("bangNextBirthday", daysToBangBirthday);
+    animateCounter("duyenNextBirthday", daysToDuyenBirthday);
 }
 
 // Update days since important events
@@ -134,36 +168,56 @@ function updateDaysCounters() {
     document.getElementById("daysSinceFirstMessage").textContent = Math.max(0, daysSinceFirstMessage);
 }
 
-// Update milestone countdowns
+// Enhanced milestone countdowns with multiple milestones
 function updateMilestoneCountdowns() {
     const now = new Date();
     const loveStart = IMPORTANT_DATES.officialCouple;
     
-    // 100 days milestone
-    const milestone100 = new Date(loveStart.getTime() + (100 * 24 * 60 * 60 * 1000));
-    const milestone100Element = document.getElementById("milestone100days");
-    const countdown100Element = document.getElementById("countdown100days");
+    // Array of milestones
+    const milestones = [
+        { days: 30, elementId: "milestone30days", countdownId: "countdown30days" },
+        { days: 50, elementId: "milestone50days", countdownId: "countdown50days" },
+        { days: 100, elementId: "milestone100days", countdownId: "countdown100days" },
+        { days: 200, elementId: "milestone200days", countdownId: "countdown200days" },
+        { days: 365, elementId: "milestone365days", countdownId: "countdown365days" },
+        { days: 500, elementId: "milestone500days", countdownId: "countdown500days" },
+        { days: 1000, elementId: "milestone1000days", countdownId: "countdown1000days" }
+    ];
     
-    if (milestone100Element && countdown100Element) {
-        milestone100Element.textContent = formatDate(milestone100);
+    milestones.forEach(milestone => {
+        const milestoneDate = new Date(loveStart.getTime() + (milestone.days * 24 * 60 * 60 * 1000));
+        const milestoneElement = document.getElementById(milestone.elementId);
+        const countdownElement = document.getElementById(milestone.countdownId);
         
-        if (now < milestone100) {
-            const daysTo100 = Math.ceil((milestone100 - now) / (1000 * 60 * 60 * 24));
-            countdown100Element.textContent = `Còn ${daysTo100} ngày`;
-        } else {
-            countdown100Element.textContent = "Đã qua ✓";
-            countdown100Element.style.color = "#48bb78";
+        if (milestoneElement && countdownElement) {
+            milestoneElement.textContent = formatDate(milestoneDate);
+            
+            if (now < milestoneDate) {
+                const daysToMilestone = Math.ceil((milestoneDate - now) / (1000 * 60 * 60 * 24));
+                countdownElement.textContent = `Còn ${daysToMilestone} ngày`;
+                countdownElement.style.color = "";
+            } else {
+                countdownElement.textContent = "Đã qua ✓";
+                countdownElement.style.color = "#48bb78";
+                
+                // Mark milestone card as achieved
+                const milestoneCard = countdownElement.closest('.milestone-card');
+                if (milestoneCard) {
+                    milestoneCard.classList.remove('upcoming');
+                    milestoneCard.classList.add('achieved');
+                }
+            }
         }
-    }
-    
-    // 1 year milestone
-    const milestone1Year = new Date(loveStart.getFullYear() + 1, loveStart.getMonth(), loveStart.getDate());
+    });
+      // 1 year milestone
+    const milestone1Year = new Date(loveStart.getFullYear() + 1, loveStart.getMonth(), loveStart.getDate(), loveStart.getHours(), loveStart.getMinutes());
     const countdown1YearElement = document.getElementById("countdown1year");
     
     if (countdown1YearElement) {
         if (now < milestone1Year) {
             const daysTo1Year = Math.ceil((milestone1Year - now) / (1000 * 60 * 60 * 24));
             countdown1YearElement.textContent = `Còn ${daysTo1Year} ngày`;
+            countdown1YearElement.style.color = "";
         } else {
             countdown1YearElement.textContent = "Đã qua ✓";
             countdown1YearElement.style.color = "#48bb78";
@@ -171,15 +225,15 @@ function updateMilestoneCountdowns() {
     }
 }
 
-// Timeline events data - Theo thứ tự thời gian
+// Timeline events data - Enhanced với nội dung chi tiết hơn
 const timelineEvents = [
     {
         id: 1,
         date: "2025-02-08",
         title: "Lần Đầu Gặp Nhau 👫",
-        description: "Ngày chúng mình gặp nhau lần đầu tiên tại văn phòng",
+        description: "Ngày định mệnh - chúng mình gặp nhau lần đầu tiên tại văn phòng",
         icon: "👫",
-        story: "Một cuộc gặp gỡ định mệnh đã thay đổi cuộc đời cả hai. Em là con bé chiều hôm qua mới qua văn phòng chào mọi người..."
+        story: "Một cuộc gặp gỡ định mệnh đã thay đổi cuộc đời cả hai. Em là con bé chiều hôm qua mới qua văn phòng chào mọi người. Ai ngờ đó lại là khởi đầu cho một câu chuyện tình yêu đẹp như cổ tích..."
     },
     {
         id: 2,
@@ -187,7 +241,7 @@ const timelineEvents = [
         title: "Tin Nhắn Đầu Tiên 💬",
         description: "\"Anh ơi, e là con bé chiều hôm qua mới qua văn phòng chào mn á. E hỏi anh cái này xíu\"",
         icon: "💬",
-        story: "Tin nhắn đầu tiên của em đã mở ra cánh cửa cho tình yêu của chúng mình."
+        story: "Tin nhắn đầu tiên của em đã mở ra cánh cửa cho tình yêu của chúng mình. Một câu hỏi đơn giản nhưng đã kết nối hai trái tim, bắt đầu những cuộc trò chuyện không bao giờ muốn kết thúc."
     },
     {
         id: 3,
@@ -266,11 +320,10 @@ function loadTimelineEvents() {
 
 // Create timeline event element
 function createTimelineEvent(event, index) {
-    const eventDiv = document.createElement("div");
-    eventDiv.className = `timeline-event${event.special ? ' special' : ''}`;
+    const eventDiv = document.createElement("div");    eventDiv.className = `timeline-event${event.special ? ' special' : ''}`;
     eventDiv.dataset.eventId = event.id;
     
-    var formattedDate = formatDate(memory.date);
+    var formattedDate = formatDate(event.date);
     if (formattedDate == "Invalid Date") {
         formattedDate = 'Ký ức';
     }

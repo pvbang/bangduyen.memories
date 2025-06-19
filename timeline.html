@@ -13,9 +13,8 @@
     <!-- Authentication Guard - Load first -->
     <script src="auth-guard.js"></script>
     <link rel="stylesheet" href="timeline.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap"
         rel="stylesheet">
 </head>
 
@@ -68,8 +67,15 @@
                     <div class="counter-header">
                         <h2><i class="fas fa-heartbeat"></i> Chúng Mình Đã Yêu Nhau Được</h2>
                         <p class="counter-subtitle">Kể từ ngày 23/03/2025 - Ngày chính thức thành người yêu</p>
-                    </div>
-                    <div class="counter-display">
+                    </div>                    <div class="counter-display">
+                        <div class="counter-item">
+                            <span class="counter-number" id="totalYears">0</span>
+                            <span class="counter-label">Năm</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-number" id="totalMonths">0</span>
+                            <span class="counter-label">Tháng</span>
+                        </div>
                         <div class="counter-item">
                             <span class="counter-number" id="totalDays">0</span>
                             <span class="counter-label">Ngày</span>
@@ -98,12 +104,12 @@
 
             <!-- Important Dates Counter -->
             <section class="important-dates">
-                <h2><i class="fas fa-calendar-heart"></i> Những Ngày Đặc Biệt</h2>
-                <div class="dates-grid">
+                <h2><i class="fas fa-calendar-heart"></i> Những Ngày Đặc Biệt</h2>                <div class="dates-grid">
                     <div class="date-card birthday-bang">
                         <div class="date-icon">🎂</div>
                         <h3>Sinh Nhật Anh</h3>
                         <p class="date-info">28/10/2002</p>
+                        <p class="date-info-lunar">(23/09/2002 âm lịch)</p>
                         <div class="age-counter">
                             <span id="bangAge">22</span> tuổi
                         </div>
@@ -141,6 +147,24 @@
                             Đã <span id="daysSinceFirstMessage">0</span> ngày
                         </div>
                     </div>
+
+                    <div class="date-card color-change">
+                        <div class="date-icon">🎨</div>
+                        <h3>Đổi Màu Mess</h3>
+                        <p class="date-info">28/02/2025</p>
+                        <div class="days-counter">
+                            Đã <span id="daysSinceColorChange">0</span> ngày
+                        </div>
+                    </div>
+
+                    <div class="date-card official-love">
+                        <div class="date-icon">❤️</div>
+                        <h3>Chính Thức Yêu Nhau</h3>
+                        <p class="date-info">23/03/2025 - 19h30</p>
+                        <div class="days-counter">
+                            Đã <span id="daysSinceOfficial">0</span> ngày
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -157,8 +181,7 @@
 
             <!-- Milestones -->
             <section class="milestones-section">
-                <h2><i class="fas fa-trophy"></i> Những Cột Mốc Quan Trọng</h2>
-                <div class="milestones-grid">
+                <h2><i class="fas fa-trophy"></i> Những Cột Mốc Quan Trọng</h2>                <div class="milestones-grid">
                     <div class="milestone-card achieved">
                         <div class="milestone-icon">❤️</div>
                         <h3>Chính Thức Yêu Nhau</h3>
@@ -167,17 +190,59 @@
                     </div>
 
                     <div class="milestone-card upcoming">
-                        <div class="milestone-icon">🏆</div>
+                        <div class="milestone-icon">�</div>
+                        <h3>30 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone30days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown30days">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">🎊</div>
+                        <h3>50 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone50days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown50days">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">�🏆</div>
                         <h3>100 Ngày Yêu</h3>
                         <p class="milestone-date" id="milestone100days">Tính toán...</p>
                         <div class="milestone-countdown" id="countdown100days">Còn ... ngày</div>
                     </div>
 
                     <div class="milestone-card upcoming">
-                        <div class="milestone-icon">😘</div>
+                        <div class="milestone-icon">💎</div>
+                        <h3>200 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone200days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown200days">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">🎯</div>
+                        <h3>365 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone365days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown365days">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">�</div>
                         <h3>1 Năm Yêu Nhau</h3>
                         <p class="milestone-date">23/03/2026</p>
                         <div class="milestone-countdown" id="countdown1year">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">🎂</div>
+                        <h3>500 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone500days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown500days">Còn ... ngày</div>
+                    </div>
+
+                    <div class="milestone-card upcoming">
+                        <div class="milestone-icon">🌟</div>
+                        <h3>1000 Ngày Yêu</h3>
+                        <p class="milestone-date" id="milestone1000days">Tính toán...</p>
+                        <div class="milestone-countdown" id="countdown1000days">Còn ... ngày</div>
                     </div>
 
                     <div class="milestone-card dream">
@@ -185,6 +250,20 @@
                         <h3>Đính Hôn</h3>
                         <p class="milestone-date">Trong tương lai</p>
                         <div class="milestone-status">Heheh iuuu emmm - Nhanh thoi</div>
+                    </div>
+
+                    <div class="milestone-card dream">
+                        <div class="milestone-icon">👰‍♀️</div>
+                        <h3>Đám Cưới</h3>
+                        <p class="milestone-date">Trong tương lai</p>
+                        <div class="milestone-status">Mơ ước của cả hai</div>
+                    </div>
+
+                    <div class="milestone-card dream">
+                        <div class="milestone-icon">👶</div>
+                        <h3>Baby Đầu Lòng</h3>
+                        <p class="milestone-date">Trong tương lai</p>
+                        <div class="milestone-status">Gia đình nhỏ hạnh phúc</div>
                     </div>
                 </div>
             </section>
