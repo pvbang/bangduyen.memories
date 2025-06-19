@@ -280,7 +280,10 @@ function createTimelineEvent(event, index) {
     eventDiv.className = `timeline-event${event.special ? ' special' : ''}`;
     eventDiv.dataset.eventId = event.id;
     
-    const formattedDate = formatDate(event.date);
+    var formattedDate = formatDate(memory.date);
+    if (formattedDate == "Invalid Date") {
+        formattedDate = 'Ký ức';
+    }
     
     eventDiv.innerHTML = `
         <div class="event-marker" onclick="showEventModal(${event.id})">

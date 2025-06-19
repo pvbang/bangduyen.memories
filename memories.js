@@ -113,7 +113,11 @@ function createMemoryCard(memory) {
     card.className = `memory-card ${memory.mood || 'default'}`;
     card.addEventListener('click', () => openModal(memory));
 
-    const formattedDate = formatDate(memory.date);
+    var formattedDate = formatDate(memory.date);
+    if (formattedDate == "Invalid Date") {
+        formattedDate = 'Ký ức';
+    }
+
     const categoryIcon = getCategoryIcon(memory.category);
     const moodIcon = getMoodIcon(memory.mood);
 
@@ -207,7 +211,10 @@ function openModal(memory) {
     
     if (!modal || !modalBody) return;
 
-    const formattedDate = formatDate(memory.date);
+    var formattedDate = formatDate(memory.date);
+    if (formattedDate == "Invalid Date") {
+        formattedDate = 'Ký ức';
+    }
     const categoryIcon = getCategoryIcon(memory.category);
     const moodIcon = getMoodIcon(memory.mood);
 
@@ -337,7 +344,6 @@ function getCategoryIcon(category) {
         'dating': 'fas fa-heart',
         'daily': 'fas fa-calendar-day',
         'quotes': 'fas fa-quote-left',
-        'funny': 'fas fa-laugh'
     };
     return icons[category] || 'fas fa-heart';
 }
@@ -349,7 +355,6 @@ function getCategoryName(category) {
         'dating': 'Hẹn hò',
         'daily': 'Hàng ngày',
         'quotes': 'Lời yêu thương',
-        'funny': 'Hài hước'
     };
     return names[category] || 'Khác';
 }
