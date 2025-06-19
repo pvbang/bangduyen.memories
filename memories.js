@@ -5,6 +5,7 @@
 
 // Global State
 let memories = [];
+let categories = {};
 let currentPage = 1;
 const memoriesPerPage = 6;
 let currentFilter = "all";
@@ -30,14 +31,38 @@ async function loadMemories() {
         
         const data = await response.json();
         memories = data.memories || [];
+        categories = data.categories || {};
         
         renderMemories();
+        updateFilterButtons();
         hideLoading();
     } catch (error) {
         console.error('Error loading memories:', error);
         showError('Không thể tải kỷ niệm. Vui lòng kiểm tra kết nối mạng.');
         hideLoading();
     }
+}
+
+// Update filter buttons with category data
+function updateFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-btn[data-filter]:not([data-filter="all"])');
+    filterButtons.forEach(button => {
+        const category = button.dataset.filter;
+        if (categories[category]) {
+            const icon = button.querySelector('i');
+            const text = button.querySelector('.filter-text') || button;
+            
+            if (icon) {
+                icon.className = categories[category].icon;
+            }
+            if (text) {
+                text.textContent = categories[category].name;
+            }
+            
+            // Add tooltip
+            button.title = categories[category].description;
+        }
+    });
 }
 
 // Render memories to grid
@@ -64,7 +89,7 @@ function renderMemories() {
     if (paginatedMemories.length === 0) {
         memoriesGrid.innerHTML = `
             <div class="no-memories">
-                <i class="fas fa-heart-broken"></i>
+                <i class="fas fa-heart"></i>
                 <p>Chưa có kỷ niệm nào trong danh mục này</p>
             </div>
         `;
@@ -308,10 +333,11 @@ function formatDate(dateString) {
 // Get category icon
 function getCategoryIcon(category) {
     const icons = {
-        'special': 'fas fa-star',
+        'milestone': 'fas fa-star',
+        'dating': 'fas fa-heart',
         'daily': 'fas fa-calendar-day',
-        'travel': 'fas fa-plane',
-        'celebration': 'fas fa-birthday-cake'
+        'quotes': 'fas fa-quote-left',
+        'funny': 'fas fa-laugh'
     };
     return icons[category] || 'fas fa-heart';
 }
@@ -319,10 +345,11 @@ function getCategoryIcon(category) {
 // Get category display name
 function getCategoryName(category) {
     const names = {
-        'special': 'Đặc biệt',
+        'milestone': 'Cột mốc quan trọng',
+        'dating': 'Hẹn hò',
         'daily': 'Hàng ngày',
-        'travel': 'Du lịch',
-        'celebration': 'Kỷ niệm'
+        'quotes': 'Lời yêu thương',
+        'funny': 'Hài hước'
     };
     return names[category] || 'Khác';
 }
@@ -336,7 +363,12 @@ function getMoodIcon(mood) {
         'excited': 'fas fa-star',
         'peaceful': 'fas fa-leaf',
         'joyful': 'fas fa-laugh',
-        'content': 'fas fa-smile'
+        'content': 'fas fa-smile',
+        'important': 'fas fa-exclamation-circle',
+        'poetic': 'fas fa-feather-alt',
+        'promise': 'fas fa-ring',
+        'caring': 'fas fa-heart-pulse',
+        'funny': 'fas fa-laugh-squint'
     };
     return icons[mood] || 'fas fa-heart';
 }
