@@ -11,11 +11,10 @@
         document.documentElement.style.opacity = '0';
     </script>
     <!-- Authentication Guard - Load first -->
-    <script src="auth-guard.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="auth-guard.js"></script>    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Satisfy&family=Great+Vibes&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Sacramento&family=Alex+Brush&family=Pacifico&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="gallery.css">
@@ -27,53 +26,56 @@
         <div class="floating-hearts"></div>
         <div class="tech-particles"></div>
         <div class="gradient-orbs"></div>
-    </div>
+    </div>    <!-- Fixed Navigation -->
+    <nav class="fixed-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-heart heartbeat"></i>
+                <span class="brand-text">Bằng & Duyên</span>
+            </div>
+            <div class="nav-menu">
+                <a href="memories.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Kỷ niệm</span>
+                </a>
+                <a href="timeline.html" class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Đếm Ngày</span>
+                </a>
+                <a href="gallery.html" class="nav-item active">
+                    <i class="fas fa-images"></i>
+                    <span>Gallery</span>
+                </a>
+                <a href="starmap.html" class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Bản Đồ Sao</span>
+                </a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container"> <!-- Header -->
+    <div class="container">
+        <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1 class="logo">
-                    <i class="fas fa-heart heartbeat"></i>
-                    <span class="logo-text">Bằng & Duyên Memories</span>
-                    <div class="logo-sparkles">
-                        <i class="fas fa-sparkles"></i>
-                        <i class="fas fa-sparkles"></i>
-                        <i class="fas fa-sparkles"></i>
-                    </div>
+                <h1 class="page-title">
+                    <span class="title-main">Gallery</span>
+                    <span class="title-sub">Bộ sưu tập kỷ niệm</span>
                 </h1>
-                <nav class="nav">
-                    <a href="memories.html" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <span>Kỷ niệm</span>
-                        <div class="nav-glow"></div>
-                    </a>
-                    <a href="timeline.html" class="nav-link">
-                        <i class="fas fa-clock"></i>
-                        <span>Đếm Ngày</span>
-                        <div class="nav-glow"></div>
-                    </a>
-                    <a href="starmap.html" class="nav-link">
-                        <i class="fas fa-star"></i>
-                        <span>Bản Đồ Sao</span>
-                        <div class="nav-glow"></div>
-                    </a>
-                </nav>
             </div>
         </header>
 
         <!-- Main Content -->
-        <main class="main">
+        <main class="main">            <!-- Hero Section -->
             <section class="hero">
                 <div class="hero-content">
-                    <div class="hero-decoration">
-                        <div class="floating-ring"></div>
-                        <div class="floating-ring"></div>
-                        <div class="floating-ring"></div>
-                    </div>
                     <h2 class="hero-title">
-                        <span class="title-line">Bộ sưu tập</span>
-                        <span class="title-line highlight">kỷ niệm</span>
-                        <div class="title-underline"></div>
+                        Bộ sưu tập kỷ niệm
                     </h2>
                     <p class="hero-subtitle">
                         <i class="fas fa-infinity"></i>
@@ -85,43 +87,73 @@
                             <span class="stat-number" id="totalImages">0</span>
                             <span class="stat-label">Hình ảnh</span>
                         </div>
-                        <div class="stat-divider"></div>
                         <div class="stat-item">
                             <span class="stat-number" id="totalVideos">0</span>
                             <span class="stat-label">Video</span>
                         </div>
-                        <div class="stat-divider"></div>
                         <div class="stat-item">
                             <span class="stat-number" id="totalMemories">0</span>
                             <span class="stat-label">Kỷ niệm</span>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Gallery Controls -->
+            </section><!-- Gallery Controls -->
             <section class="gallery-controls">
-                <div class="controls">
-                    <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-th"></i>
-                        Tất cả
-                    </button>
-                    <button class="filter-btn" data-filter="images">
-                        <i class="fas fa-image"></i>
-                        Hình ảnh
-                    </button>
-                    <button class="filter-btn" data-filter="videos">
-                        <i class="fas fa-video"></i>
-                        Video
-                    </button>
-                </div>
-                <div class="view-options">
-                    <button class="view-btn active" data-view="grid">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button class="view-btn" data-view="masonry">
-                        <i class="fas fa-th-large"></i>
-                    </button>
+                <div class="controls-container">
+                    <div class="filter-controls">
+                        <h3>Lọc theo loại</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">
+                                <i class="fas fa-th"></i>
+                                <span>Tất cả</span>
+                            </button>
+                            <button class="filter-btn" data-filter="images">
+                                <i class="fas fa-image"></i>
+                                <span>Hình ảnh</span>
+                            </button>
+                            <button class="filter-btn" data-filter="videos">
+                                <i class="fas fa-video"></i>
+                                <span>Video</span>
+                            </button>
+                        </div>
+                    </div>
+                      <div class="view-controls">
+                        <h3>Chế độ xem</h3>
+                        <div class="view-buttons">                            <button class="view-btn" data-view="grid-large" title="Lưới lớn (Phím 1)">
+                                <i class="fas fa-th-large"></i>
+                                <span>Lớn</span>
+                            </button>
+                            <button class="view-btn active" data-view="grid-2" title="2 cột (Phím 2)">
+                                <i class="fas fa-th"></i>
+                                <span>2 cột</span>
+                            </button>
+                            <button class="view-btn" data-view="grid-3" title="3 cột (Phím 3)">
+                                <i class="fas fa-border-all"></i>
+                                <span>3 cột</span>
+                            </button>
+                            <button class="view-btn" data-view="grid-4" title="4 cột (Phím 4)">
+                                <i class="fas fa-grip-horizontal"></i>
+                                <span>4 cột</span>
+                            </button>
+                            <button class="view-btn" data-view="grid-compact" title="Thu gọn (Phím 5)">
+                                <i class="fas fa-grip-lines"></i>
+                                <span>Thu gọn</span>
+                            </button>
+                            <button class="view-btn" data-view="masonry" title="Masonry (Phím 6)">
+                                <i class="fas fa-grip-vertical"></i>
+                                <span>Masonry</span>
+                            </button><button class="view-btn" data-view="list" title="Danh sách (Phím 7)">
+                                <i class="fas fa-list"></i>
+                                <span>Danh sách</span>
+                            </button>
+                        </div>
+                        <div class="keyboard-shortcuts">
+                            <small>
+                                <i class="fas fa-keyboard"></i>
+                                Phím tắt: 1-7 cho chế độ xem, Space để chuyển lưới/danh sách
+                            </small>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -135,28 +167,59 @@
                 <div class="spinner"></div>
                 <p>Đang tải những kỷ niệm ...</p>
             </div>
-        </main>
-
-        <!-- Lightbox Modal -->
-        <div class="lightbox" id="lightbox">
-            <div class="lightbox-overlay" onclick="closeLightbox()"></div>
-            <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox()">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="lightbox-media" id="lightboxMedia">
-                    <!-- Media content will be inserted here -->
-                </div>
-                <div class="lightbox-info" id="lightboxInfo">
-                    <!-- Media info will be inserted here -->
-                </div>
-                <div class="lightbox-nav">
-                    <button class="lightbox-prev" onclick="prevMedia()">
-                        <i class="fas fa-chevron-left"></i>
+        </main>        <!-- Enhanced Lightbox Modal -->
+        <div class="lightbox-modal" id="lightboxModal">
+            <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+            <div class="lightbox-container">
+                <div class="lightbox-header">
+                    <div class="lightbox-title" id="lightboxTitle">
+                        <h3></h3>
+                        <p class="lightbox-date"></p>
+                    </div>
+                    <button class="lightbox-close" onclick="closeLightbox()">
+                        <i class="fas fa-times"></i>
                     </button>
-                    <button class="lightbox-next" onclick="nextMedia()">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                </div>
+                
+                <div class="lightbox-content">
+                    <div class="lightbox-media-container">
+                        <div class="lightbox-media" id="lightboxMedia">
+                            <!-- Media content will be inserted here -->
+                        </div>
+                        
+                        <div class="lightbox-navigation">
+                            <button class="lightbox-nav-btn lightbox-prev" onclick="prevMedia()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="lightbox-nav-btn lightbox-next" onclick="nextMedia()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="lightbox-info" id="lightboxInfo">
+                        <div class="lightbox-description">
+                            <p></p>
+                        </div>
+                        <div class="lightbox-actions">
+                            <button class="action-btn" onclick="downloadImage()">
+                                <i class="fas fa-download"></i>
+                                <span>Tải xuống</span>
+                            </button>
+                            <button class="action-btn" onclick="shareImage()">
+                                <i class="fas fa-share"></i>
+                                <span>Chia sẻ</span>
+                            </button>
+                            <button class="action-btn" onclick="toggleFavorite()">
+                                <i class="fas fa-heart"></i>
+                                <span>Yêu thích</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lightbox-thumbnails" id="lightboxThumbnails">
+                    <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
         </div>

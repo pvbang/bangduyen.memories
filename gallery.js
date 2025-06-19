@@ -1,26 +1,79 @@
-// Enhanced Modern Romantic Tech Gallery JavaScript
-class Gallery {
-  constructor() {
+// Modern Gallery JavaScript
+class ModernGallery {  constructor() {
     this.mediaItems = [];
     this.filteredItems = [];
     this.currentFilter = "all";
-    this.currentView = "grid";
+    this.currentView = this.getSavedViewMode() || "grid-2";
     this.currentLightboxIndex = 0;
     this.isSlideshow = false;
     this.slideshowInterval = null;
 
     this.init();
-    this.initAnimatedBackground();
-  }  async init() {
+    this.initNavigation();
+  }
+
+  getSavedViewMode() {
+    try {
+      return localStorage.getItem('galleryViewMode');
+    } catch (error) {
+      console.log('LocalStorage not available');
+      return null;
+    }
+  }
+
+  saveViewMode(viewMode) {
+    try {
+      localStorage.setItem('galleryViewMode', viewMode);
+    } catch (error) {
+      console.log('Unable to save view mode to localStorage');
+    }
+  }
+  async init() {
     this.showLoading();
     await this.loadMediaItems();
     this.bindEvents();
+    this.initViewMode(); // Initialize saved view mode
     this.renderGallery();
     this.updateStats();
     this.hideLoading();
+  }
+
+  initViewMode() {
+    // Set the active button for the current view mode
+    document.querySelectorAll(".view-btn").forEach((btn) => {
+      btn.classList.remove("active");
+    });
     
-    // Initialize masonry layout after images load
-    this.initMasonryLayout();
+    const activeViewBtn = document.querySelector(`[data-view="${this.currentView}"]`);
+    if (activeViewBtn) {
+      activeViewBtn.classList.add("active");
+    }
+    
+    // Set the gallery grid class
+    const galleryGrid = document.getElementById("galleryGrid");
+    if (galleryGrid) {
+      galleryGrid.className = `gallery-grid ${this.currentView}`;
+    }
+  }
+
+  initNavigation() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+          navToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+    }
   }
 
   async loadMediaItems() {
@@ -524,31 +577,44 @@ class Gallery {
     );
     return date.toISOString().split("T")[0];
   }
-
   bindEvents() {
     // Filter buttons
     document.querySelectorAll(".filter-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        this.setFilter(e.target.dataset.filter);
+        this.setFilter(e.target.closest('.filter-btn').dataset.filter);
       });
     });
 
     // View buttons
     document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        this.setView(e.target.dataset.view);
+        this.setView(e.target.closest('.view-btn').dataset.view);
       });
-    });
-
-    // Keyboard navigation for lightbox
+    });    // Keyboard navigation for lightbox and view modes
     document.addEventListener("keydown", (e) => {
-      if (document.getElementById("lightbox").classList.contains("active")) {
+      if (document.getElementById("lightboxModal").classList.contains("active")) {
         if (e.key === "Escape") {
           this.closeLightbox();
         } else if (e.key === "ArrowLeft") {
           this.prevMedia();
         } else if (e.key === "ArrowRight") {
           this.nextMedia();
+        }
+      } else {
+        // View mode shortcuts (when not in lightbox)
+        if (e.key >= '1' && e.key <= '7') {
+          e.preventDefault();
+          const viewModes = ['grid-large', 'grid-2', 'grid-3', 'grid-4', 'grid-compact', 'masonry', 'list'];
+          const index = parseInt(e.key) - 1;
+          if (index < viewModes.length) {
+            this.setView(viewModes[index]);
+          }
+        }
+        // Toggle between grid and list with spacebar
+        else if (e.key === ' ' && !e.target.matches('input, textarea, button')) {
+          e.preventDefault();
+          const isListView = this.currentView === 'list';
+          this.setView(isListView ? 'grid-2' : 'list');
         }
       }
     });
@@ -575,26 +641,70 @@ class Gallery {
     }
 
     this.renderGallery();
-  }
-  setView(view) {
+  }  setView(view) {
     this.currentView = view;
+    this.saveViewMode(view); // Save user preference
 
-    // Update button states
+    // Update button states  
     document.querySelectorAll(".view-btn").forEach((btn) => {
       btn.classList.remove("active");
     });
     document.querySelector(`[data-view="${view}"]`).classList.add("active");
 
-    // Handle slideshow
-    if (view === "slideshow") {
-      this.startSlideshow();
-    } else {
-      this.stopSlideshow();
-      // Update grid class
-      const grid = document.getElementById("galleryGrid");
-      grid.className = `gallery-grid ${view === "masonry" ? "masonry" : ""}`;
+    // Show view mode indicator
+    this.showViewModeIndicator(view);
+
+    // Add loading state for smooth transition
+    const galleryGrid = document.getElementById("galleryGrid");
+    galleryGrid.classList.add('transitioning');
+
+    // Update gallery grid class with delay for smooth transition
+    setTimeout(() => {
+      galleryGrid.className = `gallery-grid ${view}`;
       this.renderGallery();
+      
+      // Remove transitioning state
+      setTimeout(() => {
+        galleryGrid.classList.remove('transitioning');
+      }, 100);
+    }, 200);
+  }
+
+  showViewModeIndicator(view) {
+    // Create indicator if it doesn't exist
+    let indicator = document.getElementById('viewModeIndicator');
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'viewModeIndicator';
+      indicator.className = 'view-mode-indicator';
+      document.body.appendChild(indicator);
     }
+
+    // View mode names and icons
+    const viewModes = {
+      'grid-large': { name: 'Lưới lớn', icon: 'fas fa-th-large' },
+      'grid-2': { name: '2 cột', icon: 'fas fa-th' },
+      'grid-3': { name: '3 cột', icon: 'fas fa-border-all' },
+      'grid-4': { name: '4 cột', icon: 'fas fa-grip-horizontal' },
+      'grid-compact': { name: 'Thu gọn', icon: 'fas fa-grip-lines' },
+      'masonry': { name: 'Masonry', icon: 'fas fa-grip-vertical' },
+      'list': { name: 'Danh sách', icon: 'fas fa-list' }
+    };
+
+    const viewMode = viewModes[view] || { name: 'Không xác định', icon: 'fas fa-th' };
+    
+    indicator.innerHTML = `
+      <i class="${viewMode.icon}"></i>
+      <span>${viewMode.name}</span>
+    `;
+
+    // Show indicator
+    indicator.classList.add('show');
+
+    // Hide after 2 seconds
+    setTimeout(() => {
+      indicator.classList.remove('show');
+    }, 2000);
   }
 
   startSlideshow() {
@@ -888,142 +998,225 @@ class Gallery {
         }
       `;
       document.head.appendChild(style);
-    }
-  }
+    }  }  
+
   createGalleryItem(item, index) {
     const div = document.createElement("div");
-    div.className = "gallery-item";
+    div.className = "gallery-item fade-in";
     div.dataset.type = item.type;
-    div.addEventListener("click", () => this.openLightbox(index));
-
-    // Create media container with dynamic height
+    
+    // Check if current view is list mode
+    const isListView = this.currentView === 'list';
+    
+    // Create media container
     const mediaContainer = document.createElement("div");
-    mediaContainer.className = "item-media";
+    mediaContainer.className = "gallery-item-media";
+    
+    // Create content container for list view
+    let contentContainer = null;
+    if (isListView) {
+      contentContainer = document.createElement("div");
+      contentContainer.className = "gallery-item-content";
+    }
+    
+    // Create overlay
+    const overlay = document.createElement("div");
+    overlay.className = "gallery-item-overlay";
+    
+    // Create info section
+    const infoSection = document.createElement("div");
+    infoSection.className = "gallery-item-info";
+    
+    const title = document.createElement("div");
+    title.className = "gallery-item-title";
+    title.textContent = item.title;
+    
+    const date = document.createElement("div");
+    date.className = "gallery-item-date";
+    date.textContent = new Date(item.date).toLocaleDateString('vi-VN');
+    
+    infoSection.appendChild(title);
+    infoSection.appendChild(date);
+    
+    // Add description for list view
+    if (isListView && item.description) {
+      const description = document.createElement("div");
+      description.className = "gallery-item-description";
+      description.textContent = item.description;
+      infoSection.appendChild(description);
+    }
+    
+    overlay.appendChild(infoSection);
     
     // Create type indicator
     const typeIndicator = document.createElement("div");
-    typeIndicator.className = "item-type";
+    typeIndicator.className = "gallery-item-type";
+    
+    // Create action buttons
+    const actionsContainer = document.createElement("div");
+    actionsContainer.className = "gallery-item-actions";
+    
+    const favoriteBtn = document.createElement("button");
+    favoriteBtn.className = "action-icon";
+    favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
+    favoriteBtn.onclick = (e) => {
+      e.stopPropagation();
+      this.toggleFavorite(item.id);
+    };
+    
+    const shareBtn = document.createElement("button");
+    shareBtn.className = "action-icon";
+    shareBtn.innerHTML = '<i class="fas fa-share"></i>';
+    shareBtn.onclick = (e) => {
+      e.stopPropagation();
+      this.shareItem(item);
+    };
+    
+    actionsContainer.appendChild(favoriteBtn);
+    actionsContainer.appendChild(shareBtn);
     
     if (item.type === "image") {
       const img = document.createElement("img");
       img.src = item.path;
       img.alt = item.title;
-      
-      // Set random height for masonry effect
-      const heights = [250, 300, 350, 400, 320, 280];
-      const randomHeight = heights[Math.floor(Math.random() * heights.length)];
-      
-      img.style.height = `${randomHeight}px`;
-      img.style.objectFit = 'cover';
+      img.loading = "lazy";
       
       img.onerror = () => {
         img.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlNGUxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0cHgiIGZpbGw9IiNmZjkxYTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7EkOG7g25nIMSRYW5nIHThuqNpPC90ZXh0Pjwvc3ZnPg==";
       };
       
       mediaContainer.appendChild(img);
-      typeIndicator.innerHTML = '<i class="fas fa-image"></i>';
+      typeIndicator.innerHTML = '<i class="fas fa-image"></i> Ảnh';
       
     } else if (item.type === "video") {
       const video = document.createElement("video");
       video.src = item.path;
       video.preload = "metadata";
-      video.style.height = '300px';
-      video.style.objectFit = 'cover';
-      mediaContainer.appendChild(video);
-
-      const playButton = document.createElement("button");
-      playButton.className = "play-button";
-      playButton.innerHTML = '<i class="fas fa-play"></i>';
-      mediaContainer.appendChild(playButton);
+      video.muted = true;
       
-      typeIndicator.innerHTML = '<i class="fas fa-video"></i>';
+      const playIcon = document.createElement("div");
+      playIcon.className = "play-overlay";
+      playIcon.innerHTML = '<i class="fas fa-play-circle"></i>';
+      
+      mediaContainer.appendChild(video);
+      mediaContainer.appendChild(playIcon);
+      typeIndicator.innerHTML = '<i class="fas fa-video"></i> Video';
     }
-
-    // Create overlay with info
-    const overlay = document.createElement("div");
-    overlay.className = "item-overlay";
-
-    const info = document.createElement("div");
-    info.className = "item-info";
-
-    const title = document.createElement("div");
-    title.className = "item-title";
-    title.textContent = item.title;
-
-    const date = document.createElement("div");
-    date.className = "item-date";
-    date.innerHTML = `<i class="fas fa-calendar"></i> ${this.formatDate(item.date)}`;
-
-    info.appendChild(title);
-    info.appendChild(date);
-    overlay.appendChild(info);
-
-    // Assemble the item
-    div.appendChild(mediaContainer);
-    div.appendChild(overlay);
-    div.appendChild(typeIndicator);
-
+    
+    // Assemble the item based on view mode
+    if (isListView) {
+      // List view structure
+      mediaContainer.appendChild(actionsContainer);
+      contentContainer.appendChild(overlay);
+      contentContainer.appendChild(typeIndicator);
+      
+      div.appendChild(mediaContainer);
+      div.appendChild(contentContainer);
+    } else {
+      // Grid view structure
+      mediaContainer.appendChild(overlay);
+      mediaContainer.appendChild(actionsContainer);
+      div.appendChild(mediaContainer);
+      div.appendChild(typeIndicator);
+    }
+      // Add click handler for lightbox
+    div.addEventListener("click", () => {
+      const itemIndex = this.filteredItems.findIndex(filteredItem => filteredItem.id === item.id);
+      this.openLightbox(itemIndex >= 0 ? itemIndex : 0);
+    });
+    
     return div;
   }
+  // Helper methods
+  toggleFavorite(itemId) {
+    // Implementation for toggling favorite
+    console.log('Toggle favorite for item:', itemId);
+  }
+
+  shareItem(item) {
+    // Implementation for sharing item
+    if (navigator.share) {
+      navigator.share({
+        title: item.title,
+        text: item.description,
+        url: window.location.href
+      });
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link đã được sao chép vào clipboard!');
+    }
+  }
+
   openLightbox(index) {
     this.currentLightboxIndex = index;
     const item = this.filteredItems[index];
 
-    const lightbox = document.getElementById("lightbox");
+    const lightboxModal = document.getElementById("lightboxModal");
     const mediaContainer = document.getElementById("lightboxMedia");
-    const infoContainer = document.getElementById("lightboxInfo");
+    const titleElement = document.querySelector("#lightboxTitle h3");
+    const dateElement = document.querySelector("#lightboxTitle .lightbox-date");
+    const descriptionElement = document.querySelector("#lightboxInfo .lightbox-description p");    // Clear previous content
+    mediaContainer.innerHTML = "";    // Update title and info
+    if (titleElement) titleElement.textContent = item.title;
+    if (dateElement) dateElement.textContent = new Date(item.date).toLocaleDateString('vi-VN');
+    if (descriptionElement) descriptionElement.textContent = item.description;
 
-    // Clear previous content
-    mediaContainer.innerHTML = "";
-
+    // Create media element
     if (item.type === "image") {
       const img = document.createElement("img");
       img.src = item.path;
       img.alt = item.title;
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '70vh';
-      img.style.objectFit = 'contain';
-      img.style.borderRadius = '12px';
+      img.style.maxWidth = "100%";
+      img.style.maxHeight = "100%";
+      img.style.objectFit = "contain";
       mediaContainer.appendChild(img);
+      
     } else if (item.type === "video") {
       const video = document.createElement("video");
       video.src = item.path;
       video.controls = true;
-      video.autoplay = true;
-      video.style.maxWidth = '100%';
-      video.style.maxHeight = '70vh';
-      video.style.borderRadius = '12px';
+      video.style.maxWidth = "100%";
+      video.style.maxHeight = "100%";
       mediaContainer.appendChild(video);
-    }
+    }    // Generate thumbnails
+    this.generateThumbnails();
 
-    // Update info with beautiful design
-    infoContainer.innerHTML = `
-      <div class="lightbox-title">${item.title}</div>
-      <div class="lightbox-description">${item.description}</div>
-      <div class="lightbox-meta">
-        <div class="meta-item">
-          <i class="fas fa-calendar"></i>
-          <span>${this.formatDate(item.date)}</span>
-        </div>
-        <div class="meta-item">
-          <i class="fas fa-${item.type === 'image' ? 'image' : 'video'}"></i>
-          <span>${item.type === 'image' ? 'Hình ảnh' : 'Video'}</span>
-        </div>
-        <div class="meta-item">
-          <i class="fas fa-heart"></i>
-          <span>Kỷ niệm đẹp</span>
-        </div>
-      </div>
-    `;
-
-    lightbox.classList.add("active");
+    // Show lightbox
+    lightboxModal.classList.add("active");
     document.body.style.overflow = "hidden";
+  }
+
+  generateThumbnails() {
+    const thumbnailsContainer = document.getElementById("lightboxThumbnails");
+    if (!thumbnailsContainer) return;
+
+    thumbnailsContainer.innerHTML = "";
     
-    // Add keyboard navigation
-    this.addKeyboardNavigation();
-  }  closeLightbox() {
-    const lightbox = document.getElementById("lightbox");
-    lightbox.classList.remove("active");
+    this.filteredItems.forEach((item, index) => {
+      const thumb = document.createElement("div");
+      thumb.className = `lightbox-thumbnail ${index === this.currentLightboxIndex ? 'active' : ''}`;
+      
+      if (item.type === "image") {
+        const img = document.createElement("img");
+        img.src = item.path;
+        img.alt = item.title;
+        thumb.appendChild(img);
+      } else {
+        const video = document.createElement("video");
+        video.src = item.path;
+        video.muted = true;
+        thumb.appendChild(video);
+      }
+      
+      thumb.addEventListener("click", () => this.openLightbox(index));
+      thumbnailsContainer.appendChild(thumb);
+    });
+  }
+
+  closeLightbox() {
+    const lightboxModal = document.getElementById("lightboxModal");
+    lightboxModal.classList.remove("active");
     document.body.style.overflow = "";
 
     // Remove keyboard event listener
@@ -1035,10 +1228,10 @@ class Gallery {
     // Stop slideshow if active
     if (this.isSlideshow) {
       this.stopSlideshow();
-      // Reset view to grid
-      this.setView('grid');
-    }    // Stop any playing videos
-    const video = lightbox.querySelector("video");
+    }
+
+    // Stop any playing videos
+    const video = lightboxModal.querySelector("video");
     if (video) {
       video.pause();
     }
@@ -1265,7 +1458,56 @@ function addMediaItem(type, filename, title, description) {
     description:
       description || "Một khoảnh khắc đẹp trong kỷ niệm của chúng ta",
   };
-
   gallery.mediaItems.unshift(item);
   gallery.setFilter(gallery.currentFilter); // Refresh the current view
 }
+
+// Global functions for lightbox
+function closeLightbox() {
+  if (window.gallery) {
+    window.gallery.closeLightbox();
+  }
+}
+
+function prevMedia() {
+  if (window.gallery) {
+    window.gallery.prevMedia();
+  }
+}
+
+function nextMedia() {
+  if (window.gallery) {
+    window.gallery.nextMedia();
+  }
+}
+
+function downloadImage() {
+  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
+    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
+    const link = document.createElement('a');
+    link.href = item.path;
+    link.download = item.filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+function shareImage() {
+  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
+    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
+    window.gallery.shareItem(item);
+  }
+}
+
+function toggleFavorite() {
+  if (window.gallery && window.gallery.filteredItems[window.gallery.currentLightboxIndex]) {
+    const item = window.gallery.filteredItems[window.gallery.currentLightboxIndex];
+    window.gallery.toggleFavorite(item.id);
+  }
+}
+
+// Initialize gallery when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  window.gallery = new ModernGallery();
+});
