@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeInteractiveStars();
     initializeScrollAnimations();
     createDynamicStars();
+    initializeMobileMenu();
 });
 
 // Initialize starmap effects
@@ -329,3 +330,51 @@ window.addEventListener('load', function() {
         document.querySelector('.couple-info-section').classList.add('animate-in');
     }, 600);
 });
+
+// Mobile menu functionality
+function initializeMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const headerActions = document.getElementById('headerActions');
+    
+    if (mobileMenuToggle && headerActions) {
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            headerActions.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (headerActions.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenuToggle.contains(e.target) && !headerActions.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                headerActions.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const menuLinks = headerActions.querySelectorAll('.back-btn');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                headerActions.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                mobileMenuToggle.classList.remove('active');
+                headerActions.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
