@@ -397,6 +397,28 @@
                     sparkle.remove();
                 }, 2000);
             }, 300);
+        }        // Check if user is already authenticated
+        function checkAuthentication() {
+            const authData = localStorage.getItem('authData');
+            if (authData) {
+                try {
+                    const data = JSON.parse(authData);
+                    const currentTime = new Date().getTime();
+                    
+                    // Check if authentication is still valid (30 minutes = 1800000 ms)
+                    if (currentTime - data.timestamp < 1800000) {
+                        // User is still authenticated, redirect to memories
+                        window.location.href = 'memories.html';
+                        return;
+                    } else {
+                        // Authentication expired, remove old data
+                        localStorage.removeItem('authData');
+                    }
+                } catch (e) {
+                    // Invalid data, remove it
+                    localStorage.removeItem('authData');
+                }
+            }
         }
 
         // Form handling
@@ -413,8 +435,12 @@
             // Simulate authentication delay
             setTimeout(() => {
                 if (password === '23032025') {
-                    // Success - redirect to memories page
-                    localStorage.setItem('authenticated', 'true');
+                    // Success - save authentication with timestamp
+                    const authData = {
+                        authenticated: true,
+                        timestamp: new Date().getTime()
+                    };
+                    localStorage.setItem('authData', JSON.stringify(authData));
                     window.location.href = 'memories.html';
                 } else {
                     // Error - show error message
@@ -443,10 +469,11 @@
         
         const style = document.createElement('style');
         style.textContent = shakeKeyframes;
-        document.head.appendChild(style);
-
-        // Initialize sparkles
+        document.head.appendChild(style);        // Initialize sparkles
         createSparkles();
+
+        // Check authentication when page loads
+        checkAuthentication();
 
         // Add focus effects
         const passwordInput = document.getElementById('password');
