@@ -453,7 +453,7 @@ class Gallery {
       "Êy nha êy nha.png": "Êy nha êy nha 😘",
       "Ô ô ô ô.jpg": "Ô ô ô ô 😮",
       "Ú òa, bác sĩ Bằng đem xoài cho ăn.jpeg":
-        "Ú òa, bác sĩ Bằng đem xoài cho ăn 🥭👨‍⚕️",
+      "Ú òa, bác sĩ Bằng đem xoài cho ăn 🥭👨‍⚕️",
       "Đã quó đã quó.jpg": "Đã quá đã quá 😍",
       "Đứng im chụp méng coi.jpg": "Đứng im chụp mình coi 📸",
       "Đứng im đứng im.jpg": "Đứng im đứng im 🤳",
@@ -493,6 +493,7 @@ class Gallery {
       "Yêu thương ngọt ngào 💖",
       "Kỷ niệm đẹp ✨",
       "Tình yêu đẹp nhất 💝",
+      "Iuuuu emmmmm 🥰",
     ];
 
     // Sử dụng hash của filename để chọn title nhất quán
@@ -1020,29 +1021,26 @@ class Gallery {
     
     // Add keyboard navigation
     this.addKeyboardNavigation();
-  }
-  closeLightbox() {
+  }  closeLightbox() {
     const lightbox = document.getElementById("lightbox");
     lightbox.classList.remove("active");
     document.body.style.overflow = "";
+
+    // Remove keyboard event listener
+    if (this.keyboardHandler) {
+      document.removeEventListener('keydown', this.keyboardHandler);
+      this.keyboardHandler = null;
+    }
 
     // Stop slideshow if active
     if (this.isSlideshow) {
       this.stopSlideshow();
       // Reset view to grid
       this.setView('grid');
-    }
-
-    // Stop any playing videos
+    }    // Stop any playing videos
     const video = lightbox.querySelector("video");
     if (video) {
       video.pause();
-    }
-    
-    // Remove slideshow indicator
-    const indicator = document.querySelector('.slideshow-indicator');
-    if (indicator) {
-      indicator.remove();
     }
   }
   prevMedia() {
@@ -1087,6 +1085,135 @@ class Gallery {
 
   hideLoading() {
     document.getElementById("loading").classList.remove("show");
+  }
+
+  // Initialize masonry layout after images load
+  initMasonryLayout() {
+    const galleryGrid = document.getElementById("galleryGrid");
+    if (!galleryGrid) return;
+    
+    // Wait for images to load before applying masonry
+    const images = galleryGrid.querySelectorAll('img');
+    let loadedImages = 0;
+    
+    const checkAllImagesLoaded = () => {
+      loadedImages++;
+      if (loadedImages === images.length) {
+        this.applyMasonryLayout();
+      }
+    };
+    
+    images.forEach(img => {
+      if (img.complete) {
+        checkAllImagesLoaded();
+      } else {
+        img.addEventListener('load', checkAllImagesLoaded);
+        img.addEventListener('error', checkAllImagesLoaded);
+      }
+    });
+    
+    // Apply layout immediately if no images
+    if (images.length === 0) {
+      this.applyMasonryLayout();
+    }
+  }
+  
+  applyMasonryLayout() {
+    const galleryGrid = document.getElementById("galleryGrid");
+    if (!galleryGrid || !galleryGrid.classList.contains('masonry')) return;
+    
+    // Reset any existing masonry styles
+    const items = galleryGrid.querySelectorAll('.gallery-item');
+    items.forEach(item => {
+      item.style.position = '';
+      item.style.top = '';
+      item.style.left = '';
+    });
+  }
+  
+  // Add keyboard navigation for lightbox
+  addKeyboardNavigation() {
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case 'Escape':
+          this.closeLightbox();
+          break;
+        case 'ArrowLeft':
+          this.prevMedia();
+          break;
+        case 'ArrowRight':
+          this.nextMedia();
+          break;
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    
+    // Store reference to remove later
+    this.keyboardHandler = handleKeyDown;
+  }
+  
+  // Enhanced animated background
+  initAnimatedBackground() {
+    this.createFloatingHearts();
+    this.createTechParticles();
+    this.createGradientOrbs();
+    this.createCircuitLines();
+  }
+  
+  createCircuitLines() {
+    const background = document.querySelector('.animated-background');
+    if (!background) return;
+    
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0'; 
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.opacity = '0.1';
+    canvas.style.zIndex = '-1';
+    
+    const ctx = canvas.getContext('2d');
+    
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    
+    const drawCircuits = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#FF91A4';
+      ctx.lineWidth = 1;
+      
+      // Draw some animated circuit lines
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        const startX = Math.random() * canvas.width;
+        const startY = Math.random() * canvas.height;
+        const endX = startX + (Math.random() - 0.5) * 200;
+        const endY = startY + (Math.random() - 0.5) * 200;
+        
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        
+        // Add small circles at connection points
+        ctx.beginPath();
+        ctx.arc(startX, startY, 2, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFB6C1';
+        ctx.fill();
+      }
+    };
+    
+    resizeCanvas();
+    drawCircuits();
+    
+    window.addEventListener('resize', resizeCanvas);
+    setInterval(drawCircuits, 3000);
+    
+    background.appendChild(canvas);
   }
 }
 
