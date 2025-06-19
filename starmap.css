@@ -1523,6 +1523,10 @@
   position: relative;
   z-index: 20;
   clear: both;
+  isolation: isolate;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 50px 0;
+  border-radius: 30px;
 }
 
 .relationship-timeline h3 {
@@ -1666,6 +1670,7 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  z-index: 16;
 }
 
 .timeline-content::before {
@@ -2041,10 +2046,10 @@
 }
 
 /* Improved timeline animations */
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(1) { animation-delay: 0.2s !important; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s !important; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s !important; }
+.timeline-item:nth-child(4) { animation-delay: 0.8s !important; }
 
 /* Planet cards hover effects */
 .planet-card:hover .planet-icon {
