@@ -454,7 +454,7 @@ body {
     50% { background-position: 100% 50%; }
 }
 
-.page-title::after {
+/* .page-title::after {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -465,7 +465,7 @@ body {
     background: var(--gradient-accent);
     border-radius: 2px;
     animation: underlineGrow 2s ease-in-out infinite;
-}
+} */
 
 @keyframes underlineGrow {
     0%, 100% { width: 0; }
