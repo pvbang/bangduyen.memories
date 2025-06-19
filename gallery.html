@@ -13,20 +13,45 @@
     <!-- Authentication Guard - Load first -->
     <script src="auth-guard.js"></script>    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Sacramento&family=Alex+Brush&family=Pacifico&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Sacramento&family=Abril+Fatface&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="gallery.css">
 </head>
 
-<body>
-    <!-- Animated Background -->
+<body>    <!-- Animated Background -->
     <div class="animated-background">
-        <div class="floating-hearts"></div>
-        <div class="tech-particles"></div>
-        <div class="gradient-orbs"></div>
-    </div>    <!-- Fixed Navigation -->
+        <div class="floating-hearts">
+            <div class="heart heart-1">💕</div>
+            <div class="heart heart-2">💖</div>
+            <div class="heart heart-3">💗</div>
+            <div class="heart heart-4">💝</div>
+            <div class="heart heart-5">💘</div>
+            <div class="heart heart-6">💓</div>
+            <div class="heart heart-7">💞</div>
+            <div class="heart heart-8">💟</div>
+        </div>
+        <div class="floating-petals">
+            <div class="petal petal-1">🌸</div>
+            <div class="petal petal-2">🌺</div>
+            <div class="petal petal-3">🌸</div>
+            <div class="petal petal-4">🌺</div>
+            <div class="petal petal-5">🌸</div>
+            <div class="petal petal-6">🌺</div>
+        </div>
+        <div class="gradient-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
+        </div>
+        <div class="sparkles">
+            <div class="sparkle sparkle-1">✨</div>
+            <div class="sparkle sparkle-2">⭐</div>
+            <div class="sparkle sparkle-3">✨</div>
+            <div class="sparkle sparkle-4">⭐</div>
+            <div class="sparkle sparkle-5">✨</div>
+        </div>
+    </div><!-- Fixed Navigation -->
     <nav class="fixed-nav">
         <div class="nav-container">
             <div class="nav-brand">
@@ -59,14 +84,22 @@
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Header -->
+    <div class="container">        <!-- Header -->
         <header class="header">
             <div class="header-content">
+                <div class="header-decoration">
+                    <div class="deco-line left"></div>
+                    <div class="deco-heart">💖</div>
+                    <div class="deco-line right"></div>
+                </div>
                 <h1 class="page-title">
                     <span class="title-main">Gallery</span>
-                    <span class="title-sub">Bộ sưu tập kỷ niệm</span>
+                    <span class="title-sub">Bộ sưu tập kỷ niệm ngọt ngào</span>
                 </h1>
+                <div class="header-quote">
+                    <p>"Mỗi bức ảnh là một câu chuyện, mỗi khoảnh khắc là một kỷ niệm"</p>
+                    <div class="quote-hearts">💕 💗 💕</div>
+                </div>
             </div>
         </header>
 
@@ -125,15 +158,15 @@
                             </button>
                             <button class="view-btn active" data-view="grid-2" title="2 cột (Phím 2)">
                                 <i class="fas fa-th"></i>
-                                <span>2 cột</span>
+                                <span>3 cột</span>
                             </button>
                             <button class="view-btn" data-view="grid-3" title="3 cột (Phím 3)">
                                 <i class="fas fa-border-all"></i>
-                                <span>3 cột</span>
+                                <span>4 cột</span>
                             </button>
                             <button class="view-btn" data-view="grid-4" title="4 cột (Phím 4)">
                                 <i class="fas fa-grip-horizontal"></i>
-                                <span>4 cột</span>
+                                <span>6 cột</span>
                             </button>
                             <button class="view-btn" data-view="grid-compact" title="Thu gọn (Phím 5)">
                                 <i class="fas fa-grip-lines"></i>
