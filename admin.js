@@ -76,14 +76,12 @@ function showLoginSuccess() {
 // Memories Page Functions
 function initMemoriesPage() {
   loadMemories();
-  setupFilters();
-  setupLoadMore();
+  setupFilters();  setupLoadMore();
   setupHeaderToggle();
   initScrollToTop();
   initSearchBox();
 
-  // Check authentication
-  if (!checkAuthentication()) return;
+  // Auth-guard.js đã xử lý việc kiểm tra xác thực
 
   // Initialize enhanced features after a short delay
   setTimeout(() => {
@@ -95,17 +93,6 @@ function initMemoriesPage() {
   setTimeout(() => {
     showToast("Chào mừng bạn đến với kho kỷ niệm! 💕", "success");
   }, 1000);
-}
-
-function checkAuthentication() {
-  // Check if user is authenticated
-  const isAuthenticated = sessionStorage.getItem("authenticated");
-  if (!isAuthenticated || isAuthenticated !== "true") {
-    // Redirect to login page
-    window.location.href = "index.html";
-    return false;
-  }
-  return true;
 }
 
 function loadMemories() {

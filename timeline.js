@@ -1,6 +1,6 @@
 // Timeline page functionality - Tính toán thời gian chính xác
 document.addEventListener("DOMContentLoaded", function () {
-    checkAuthentication();
+    // Auth-guard.js đã xử lý việc kiểm tra xác thực
     initializeTimeline();
     updateAllCounters();
     loadTimelineEvents();
@@ -10,16 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update counters every second
     setInterval(updateAllCounters, 1000);
 });
-
-// Check authentication
-function checkAuthentication() {
-    const isAuthenticated = sessionStorage.getItem("authenticated");
-    if (!isAuthenticated || isAuthenticated !== "true") {
-        window.location.href = "index.html";
-        return false;
-    }
-    return true;
-}
 
 // Initialize timeline functionality
 function initializeTimeline() {
