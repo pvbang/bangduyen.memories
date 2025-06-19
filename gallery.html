@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Bang & Duyen Memories ♥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-heart"></i>
+                    Bang & Duyen Gallery
+                </h1>
+                <nav class="nav">
+                    <a href="memories.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        Kỷ niệm
+                    </a>
+                    <a href="timeline.html" class="nav-link">
+                        <i class="fas fa-clock"></i>
+                        Đếm Ngày
+                    </a>
+                    <a href="starmap.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        Bản Đồ Sao
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <section class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Bộ sưu tập kỷ niệm</h2>
+                    <p class="hero-subtitle">Những khoảnh khắc đẹp nhất của chúng ta</p>
+                </div>
+            </section>
+
+            <!-- Gallery Controls -->
+            <section class="gallery-controls">
+                <div class="controls">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i>
+                        Tất cả
+                    </button>
+                    <button class="filter-btn" data-filter="images">
+                        <i class="fas fa-image"></i>
+                        Hình ảnh
+                    </button>
+                    <button class="filter-btn" data-filter="videos">
+                        <i class="fas fa-video"></i>
+                        Video
+                    </button>
+                </div>
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="masonry">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Gallery Grid -->
+            <section class="gallery">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Đang tải nội dung...</p>
+            </div>
+        </main>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-overlay" onclick="closeLightbox()"></div>
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="lightbox-media" id="lightboxMedia">
+                    <!-- Media content will be inserted here -->
+                </div>
+                <div class="lightbox-info" id="lightboxInfo">
+                    <!-- Media info will be inserted here -->
+                </div>
+                <div class="lightbox-nav">
+                    <button class="lightbox-prev" onclick="prevMedia()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="lightbox-next" onclick="nextMedia()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">
+                    Made with <i class="fas fa-heart"></i> by Bang for Duyen
+                </p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="gallery.js"></script>
+</body>
+
+</html>
