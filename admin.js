@@ -6,6 +6,7 @@ let currentFilter = "all";
 
 // Password for login
 const CORRECT_PASSWORD = "23032025";
+const CORRECT_PASSWORD_2 = "2332025";
 
 // Templates for different card layouts
 const cardTemplates = [
@@ -48,7 +49,7 @@ function initLoginPage() {
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const password = document.getElementById("password").value;
-      if (password === CORRECT_PASSWORD) {
+      if (password === CORRECT_PASSWORD || password === CORRECT_PASSWORD_2) {
         // Set authentication session
         sessionStorage.setItem("authenticated", "true");
         // Show success animation

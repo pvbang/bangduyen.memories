@@ -2,11 +2,15 @@
 class ModernGallery {  constructor() {
     this.mediaItems = [];
     this.filteredItems = [];
+    this.displayedItems = [];
     this.currentFilter = "all";
     this.currentView = this.getSavedViewMode() || "grid-2";
     this.currentLightboxIndex = 0;
     this.isSlideshow = false;
     this.slideshowInterval = null;
+    this.itemsPerLoad = 30;
+    this.currentPage = 0;
+    this.isLoading = false;
 
     this.init();
     this.initNavigation();
@@ -27,13 +31,12 @@ class ModernGallery {  constructor() {
     } catch (error) {
       console.log('Unable to save view mode to localStorage');
     }
-  }
-  async init() {
+  }  async init() {
     this.showLoading();
     await this.loadMediaItems();
     this.bindEvents();
     this.initViewMode(); // Initialize saved view mode
-    this.renderGallery();
+    this.loadMoreItems(); // Load first batch
     this.updateStats();
     this.hideLoading();
   }
@@ -55,13 +58,14 @@ class ModernGallery {  constructor() {
       galleryGrid.className = `gallery-grid ${this.currentView}`;
     }
   }
-
   initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
     if (navToggle && navMenu) {
-      navToggle.addEventListener('click', () => {
+      navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
       });
@@ -72,6 +76,14 @@ class ModernGallery {  constructor() {
           navToggle.classList.remove('active');
           navMenu.classList.remove('active');
         }
+      });
+      
+      // Close menu when clicking nav items
+      navMenu.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+          navToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
       });
     }
   }
@@ -619,7 +631,6 @@ class ModernGallery {  constructor() {
       }
     });
   }
-
   setFilter(filter) {
     this.currentFilter = filter;
 
@@ -640,8 +651,11 @@ class ModernGallery {  constructor() {
       });
     }
 
-    this.renderGallery();
-  }  setView(view) {
+    // Reset pagination
+    this.currentPage = 0;
+    this.displayedItems = [];
+    this.loadMoreItems();
+  }setView(view) {
     this.currentView = view;
     this.saveViewMode(view); // Save user preference
 
@@ -764,7 +778,6 @@ class ModernGallery {  constructor() {
       document.querySelector('.slideshow-toggle i').className = 'fas fa-pause';
     }
   }
-
   // Enhanced render gallery with better animations
   renderGallery() {
     const galleryGrid = document.getElementById("galleryGrid");
@@ -777,12 +790,15 @@ class ModernGallery {  constructor() {
     galleryGrid.className = `gallery-grid ${this.currentView}`;
 
     // Create gallery items with staggered animation
-    this.filteredItems.forEach((item, index) => {
+    this.displayedItems.forEach((item, index) => {
       const galleryItem = this.createGalleryItem(item);
       galleryItem.style.animationDelay = `${index * 0.1}s`;
       galleryItem.classList.add('gallery-item-entrance');
       galleryGrid.appendChild(galleryItem);
     });
+
+    // Add load more button if there are more items
+    this.addLoadMoreButton();
 
     // Update stats after rendering
     this.updateStats();
@@ -806,6 +822,52 @@ class ModernGallery {  constructor() {
         }
       `;
       document.head.appendChild(style);
+    }
+  }
+
+  loadMoreItems() {
+    if (this.isLoading) return;
+    
+    this.isLoading = true;
+    this.showLoading();
+
+    const startIndex = this.currentPage * this.itemsPerLoad;
+    const endIndex = startIndex + this.itemsPerLoad;
+    const newItems = this.filteredItems.slice(startIndex, endIndex);
+
+    // Add new items to displayed items
+    this.displayedItems = [...this.displayedItems, ...newItems];
+    this.currentPage++;
+
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      this.renderGallery();
+      this.hideLoading();
+      this.isLoading = false;
+    }, 500);
+  }
+
+  addLoadMoreButton() {
+    const hasMoreItems = this.displayedItems.length < this.filteredItems.length;
+    const existingButton = document.getElementById('loadMoreButton');
+    
+    if (existingButton) {
+      existingButton.remove();
+    }
+
+    if (hasMoreItems) {
+      const galleryGrid = document.getElementById("galleryGrid");
+      const loadMoreButton = document.createElement('div');
+      loadMoreButton.id = 'loadMoreButton';
+      loadMoreButton.className = 'load-more-container';
+      loadMoreButton.innerHTML = `
+        <button class="load-more-btn" onclick="gallery.loadMoreItems()">
+          <i class="fas fa-images"></i>
+          <span>Xem thêm ảnh</span>
+          <small>(${this.filteredItems.length - this.displayedItems.length} ảnh còn lại)</small>
+        </button>
+      `;
+      galleryGrid.parentNode.insertBefore(loadMoreButton, galleryGrid.nextSibling);
     }
   }
 
@@ -1145,8 +1207,7 @@ class ModernGallery {  constructor() {
       navigator.clipboard.writeText(window.location.href);
       alert('Link đã được sao chép vào clipboard!');
     }
-  }
-  openLightbox(index) {
+  }  openLightbox(index) {
     this.currentLightboxIndex = index;
     const item = this.filteredItems[index];
 
@@ -1166,15 +1227,105 @@ class ModernGallery {  constructor() {
     if (dateElement) dateElement.textContent = new Date(item.date).toLocaleDateString('vi-VN');
     if (descriptionElement) descriptionElement.textContent = item.description;
 
-    // Create media element
+    // Create media element with zoom functionality
     if (item.type === "image") {
+      const imgContainer = document.createElement("div");
+      imgContainer.className = "lightbox-image-container";
+      imgContainer.style.cssText = `
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        cursor: zoom-in;
+      `;
+
       const img = document.createElement("img");
       img.src = item.path;
       img.alt = item.title;
-      img.style.maxWidth = "100%";
-      img.style.maxHeight = "100%";
-      img.style.objectFit = "contain";
-      mediaContainer.appendChild(img);
+      img.style.cssText = `
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+        transform-origin: center;
+      `;
+
+      let isZoomed = false;
+      let scale = 1;
+      let startX = 0, startY = 0;
+      let translateX = 0, translateY = 0;
+      let isDragging = false;
+
+      // Click to zoom
+      imgContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!isZoomed) {
+          scale = 2;
+          isZoomed = true;
+          imgContainer.style.cursor = 'zoom-out';
+        } else {
+          scale = 1;
+          translateX = 0;
+          translateY = 0;
+          isZoomed = false;
+          imgContainer.style.cursor = 'zoom-in';
+        }
+        img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      });
+
+      // Mouse drag for zoomed image
+      imgContainer.addEventListener('mousedown', (e) => {
+        if (isZoomed) {
+          isDragging = true;
+          startX = e.clientX - translateX;
+          startY = e.clientY - translateY;
+          imgContainer.style.cursor = 'grabbing';
+          e.preventDefault();
+        }
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging && isZoomed) {
+          translateX = e.clientX - startX;
+          translateY = e.clientY - startY;
+          img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          imgContainer.style.cursor = isZoomed ? 'zoom-out' : 'zoom-in';
+        }
+      });
+
+      // Wheel zoom
+      imgContainer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const rect = imgContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        const newScale = Math.min(Math.max(0.5, scale * delta), 4);
+        
+        if (newScale !== scale) {
+          const scaleChange = newScale / scale;
+          translateX = mouseX - scaleChange * (mouseX - translateX);
+          translateY = mouseY - scaleChange * (mouseY - translateY);
+          scale = newScale;
+          
+          isZoomed = scale > 1;
+          imgContainer.style.cursor = isZoomed ? 'zoom-out' : 'zoom-in';
+          img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+      });
+
+      imgContainer.appendChild(img);
+      mediaContainer.appendChild(imgContainer);
       
     } else if (item.type === "video") {
       const video = document.createElement("video");
@@ -1185,8 +1336,8 @@ class ModernGallery {  constructor() {
       mediaContainer.appendChild(video);
     }
 
-    // Generate thumbnails
-    this.generateThumbnails();
+    // Update navigation button states
+    this.updateNavigationButtons();
 
     // Show lightbox
     lightboxModal.classList.add("active");
