@@ -401,7 +401,7 @@
       "title": "Funny: Con ma em quế",
       "date": "Ký ức",
       "category": "quotes",
-      "content": "'có con ma, ma em quế :)))' - Trò chơi chữ đáng yêu với tên của em.",
+      "content": "'có con ma, ma em quế :)))'",
       "mood": "Hài :)))",
       "template": "modern",
       "showImages": false,
@@ -451,17 +451,7 @@
       "showImages": false,
       "images": []
     },
-    {
-      "id": 46,
-      "title": "Thơ tình: Em đã lớn anh trưởng thành",
-      "date": "Ký ức",
-      "category": "quotes",
-      "content": "'e đã lớn, a cũng trưởng thành, hai cũng hợp nên thành một đôi, chữ duyên chữ phận dễ trôi, muốn luôn hạnh phúc để tôi cạnh nàng, ví tình như biển bạt ngàn, bao la rộng lớn ngập tràn tình iuuu' - Bài thơ về tình yêu bao la như biển cả.",
-      "mood": "Thơ của aiuu",
-      "template": "Lãng mạn",
-      "showImages": false,
-      "images": []
-    },
+
     {
       "id": 47,
       "title": "Thơ tình: Trai Việt Nam viết thơ",
@@ -473,28 +463,7 @@
       "showImages": false,
       "images": []
     },
-    {
-      "id": 48,
-      "title": "Thơ tình: Hạ sang cảm xúc ngập tràn",
-      "date": "Ký ức",
-      "category": "quotes",
-      "content": "'hạ sang cảm xúc ngập tràn, lần đầu cứ ngỡ gặp nàng từ lâu, chữ duyên chữ phận đâmm sâu, mới gặp khom lẽ nói câu trọn đời? trăng ơi sao mãi trên trời, người ơi có muốn bên đời có ta, ngoài đường có lá có hoa, trong nhà chỉ ước cạnh ta có nàng' - Thơ về tình yêu từ cái nhìn đầu tiên.",
-      "mood": "Thơ của aiuu",
-      "template": "Lãng mạn",
-      "showImages": false,
-      "images": []
-    },
-    {
-      "id": 49,
-      "title": "Thơ tình: Lá chuối xanh",
-      "date": "Ký ức",
-      "category": "quotes",
-      "content": "'lá chuối xanh gói đòn bánh tét :))) người thương mình bảo ghét vẫn iuuu, hoàng hôn làm nắng thêm chiềuuu, lời e hay mắng bao điều chẳng sai 🙂‍↔️ e thì có một không hai, e xinh e đẹp không ai sánh bằng 🥰 có khi đôi lúc cọc cằn, để cho a biết e iuu anh bằng :))))) để cho anh biết được rằng e thương ❤️' - Thơ về tình yêu đặc biệt của em.",
-      "mood": "Thơ của aiuu",
-      "template": "Lãng mạn",
-      "showImages": false,
-      "images": []
-    },
+
     {
       "id": 50,
       "title": "Quan tâm: Thời tiết và ăn uống",
@@ -528,17 +497,7 @@
       "showImages": false,
       "images": []
     },
-    {
-      "id": 53,
-      "title": "Lời chúc ngủ ngon",
-      "date": "Ký ức",
-      "category": "daily",
-      "content": "'mong nỗi buồn duy nhất của eiu là buồn ngủ, thứ e say là say giấc' - Lời chúc ngủ ngon đầy yêu thương, chỉ mong em luôn bình an hạnh phúc.",
-      "mood": "Chăm lo cho eiuuu",
-      "template": "minimalist",
-      "showImages": false,
-      "images": []
-    },
+
     {
       "id": 54,
       "title": "Thơ tình: Iuu là phải sống cả đời",
@@ -567,6 +526,54 @@
       "date": "Ký ức",
       "category": "daily",
       "content": "'chúc công chúa iuu của a ngủ ngoannnn, iuuu e nhiềuu hơn ngày hquaa, iuuu vợ iuu của a nhiều lắm, ngoann xinh iuu của a ngủ ngoann mơ aiu qua ôm hun chụt chụt, moaz moazz moazzzzzz' - Lời chúc ngủ ngon ngọt ngào mỗi đêm.",
+      "mood": "Chăm lo cho eiuuu",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    }
+  ],
+  "tmp": [
+    {
+      "id": 46,
+      "title": "Thơ tình: Em đã lớn anh trưởng thành",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'e đã lớn, a cũng trưởng thành, hai cũng hợp nên thành một đôi, chữ duyên chữ phận dễ trôi, muốn luôn hạnh phúc để tôi cạnh nàng, ví tình như biển bạt ngàn, bao la rộng lớn ngập tràn tình iuuu' - Bài thơ về tình yêu bao la như biển cả.",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 48,
+      "title": "Thơ tình: Hạ sang cảm xúc ngập tràn",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'hạ sang cảm xúc ngập tràn, lần đầu cứ ngỡ gặp nàng từ lâu, chữ duyên chữ phận đâmm sâu, mới gặp khom lẽ nói câu trọn đời? trăng ơi sao mãi trên trời, người ơi có muốn bên đời có ta, ngoài đường có lá có hoa, trong nhà chỉ ước cạnh ta có nàng' - Thơ về tình yêu từ cái nhìn đầu tiên.",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+
+    {
+      "id": 49,
+      "title": "Thơ tình: Lá chuối xanh",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'lá chuối xanh gói đòn bánh tét :))) người thương mình bảo ghét vẫn iuuu, hoàng hôn làm nắng thêm chiềuuu, lời e hay mắng bao điều chẳng sai 🙂‍↔️ e thì có một không hai, e xinh e đẹp không ai sánh bằng 🥰 có khi đôi lúc cọc cằn, để cho a biết e iuu anh bằng :))))) để cho anh biết được rằng e thương ❤️' - Thơ về tình yêu đặc biệt của em.",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+
+    {
+      "id": 53,
+      "title": "Lời chúc ngủ ngon",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'mong nỗi buồn duy nhất của eiu là buồn ngủ, thứ e say là say giấc' - Lời chúc ngủ ngon đầy yêu thương, chỉ mong em luôn bình an hạnh phúc.",
       "mood": "Chăm lo cho eiuuu",
       "template": "minimalist",
       "showImages": false,
