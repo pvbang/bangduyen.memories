@@ -8,51 +8,67 @@
     <link rel="stylesheet" href="memories.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="memories-page">
+    <!-- Background Animation -->
     <div class="background-animation">
         <div class="floating-hearts">
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
+            <div class="heart heart-1"></div>
+            <div class="heart heart-2"></div>
+            <div class="heart heart-3"></div>
+            <div class="heart heart-4"></div>
+            <div class="heart heart-5"></div>
+            <div class="heart heart-6"></div>
+            <div class="heart heart-7"></div>
+            <div class="heart heart-8"></div>
+        </div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </div>
-    <header class="memories-header" id="memoriesHeader">
-        <button class="header-toggle" id="headerToggle">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-        <div class="header-content">
-            <h1 class="page-title">
-                <i class="fas fa-heart"></i>
-                Kỷ niệm của chúng mình
-                <i class="fas fa-heart"></i>
-            </h1>
+
+    <!-- Header -->
+    <header class="memories-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <span class="heart-icon">💖</span>
+                    Kỷ niệm của chúng mình
+                    <span class="heart-icon">💖</span>
+                </h1>
+                <p class="subtitle">Những khoảnh khắc đẹp nhất bên nhau</p>
+            </div>
+            <nav class="nav-actions">
+                <a href="memories.html" class="nav-btn active">
+                    <i class="fas fa-heart"></i>
+                    <span>Kỷ Niệm</span>
+                </a>
+                <a href="timeline.html" class="nav-btn">
+                    <i class="fas fa-clock"></i>
+                    <span>Đếm Ngày</span>
+                </a>
+                <a href="starmap.html" class="nav-btn">
+                    <i class="fas fa-star"></i>
+                    <span>Bản Đồ Sao</span>
+                </a>
+                <a href="admin.html" class="nav-btn">
+                    <i class="fas fa-cog"></i>
+                    <span>Quản Lý</span>
+                </a>
+            </nav>
         </div>
-        <div class="nav-actions">
-            <a href="memories.html" class="nav-btn">
-                <i class="fas fa-photo-video"></i> Kỷ Niệm
-            </a>
-            <a href="timeline.html" class="nav-btn">
-                <i class="fas fa-clock"></i> Đếm Ngày
-            </a>
-            <a href="starmap.html" class="nav-btn">
-                <i class="fas fa-star"></i> Bản Đồ Sao
-            </a>
-            <a href="admin.html" class="nav-btn">
-                <i class="fas fa-cog"></i> Quản Lý
-            </a>
     </header>
 
     <!-- Filters Section -->

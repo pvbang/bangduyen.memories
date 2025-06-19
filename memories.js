@@ -1,44 +1,51 @@
-// Global variables
+// ==========================================
+// MEMORIES PAGE - OPTIMIZED JAVASCRIPT
+// Modern, Clean & Efficient Code
+// ==========================================
+
+// Global State
 let memories = [];
 let currentPage = 1;
 const memoriesPerPage = 6;
 let currentFilter = "all";
 
-// Initialize the application
+// Initialize Application
 document.addEventListener("DOMContentLoaded", function () {
-    initMemoriesPage();
+    initializeMemoriesPage();
 });
 
-// Memories Page Functions
-function initMemoriesPage() {
+// Main Initialization Function
+function initializeMemoriesPage() {
     loadMemories();
-    setupFilters();
-    setupLoadMore();
-    setupHeaderToggle();
-    initScrollToTop();
+    setupEventListeners();
+    initializeScrollToTop();
 }
 
-// Load memories from JSON file
+// Load memories from JSON
 async function loadMemories() {
     try {
+        showLoading();
         const response = await fetch('data/memories.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         const data = await response.json();
         memories = data.memories || [];
+        
         renderMemories();
+        hideLoading();
     } catch (error) {
         console.error('Error loading memories:', error);
-        showError('Không thể tải kỷ niệm. Vui lòng thử lại sau.');
+        showError('Không thể tải kỷ niệm. Vui lòng kiểm tra kết nối mạng.');
+        hideLoading();
     }
 }
 
-// Render memories to the grid
+// Render memories to grid
 function renderMemories() {
     const memoriesGrid = document.getElementById('memoriesGrid');
     if (!memoriesGrid) return;
 
-    memoriesGrid.innerHTML = '';
-    
-    // Filter memories based on current filter
+    // Filter memories
     const filteredMemories = currentFilter === 'all' 
         ? memories 
         : memories.filter(memory => memory.category === currentFilter);
@@ -48,27 +55,38 @@ function renderMemories() {
     const endIndex = startIndex + memoriesPerPage;
     const paginatedMemories = filteredMemories.slice(0, endIndex);
 
+    // Clear grid if first page or filter changed
+    if (currentPage === 1) {
+        memoriesGrid.innerHTML = '';
+    }
+
+    // Show no memories message
     if (paginatedMemories.length === 0) {
-        memoriesGrid.innerHTML = '<div class="no-memories">Chưa có kỷ niệm nào trong danh mục này</div>';
+        memoriesGrid.innerHTML = `
+            <div class="no-memories">
+                <i class="fas fa-heart-broken"></i>
+                <p>Chưa có kỷ niệm nào trong danh mục này</p>
+            </div>
+        `;
         return;
     }
 
-    paginatedMemories.forEach((memory, index) => {
+    // Create and append memory cards
+    paginatedMemories.slice(memoriesGrid.children.length).forEach((memory, index) => {
         const card = createMemoryCard(memory);
         card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('fade-in');
         memoriesGrid.appendChild(card);
     });
 
     // Update load more button
-    updateLoadMoreButton(filteredMemories.length, endIndex);
+    updateLoadMoreButton(filteredMemories.length, paginatedMemories.length);
 }
 
 // Create memory card element
 function createMemoryCard(memory) {
     const card = document.createElement('div');
-    card.className = `memory-card ${memory.mood || ''}`;
-    card.onclick = () => openModal(memory);
+    card.className = `memory-card ${memory.mood || 'default'}`;
+    card.addEventListener('click', () => openModal(memory));
 
     const formattedDate = formatDate(memory.date);
     const categoryIcon = getCategoryIcon(memory.category);
@@ -77,10 +95,10 @@ function createMemoryCard(memory) {
     card.innerHTML = `
         <div class="card-header">
             <div class="card-date">${formattedDate}</div>
-            <h3 class="card-title">${memory.title}</h3>
+            <h3 class="card-title">${escapeHtml(memory.title)}</h3>
         </div>
         <div class="card-body">
-            <p class="card-content">${memory.content}</p>
+            <p class="card-content">${escapeHtml(memory.content)}</p>
         </div>
         <div class="card-footer">
             <span class="card-category">
@@ -97,6 +115,66 @@ function createMemoryCard(memory) {
     return card;
 }
 
+// Setup all event listeners
+function setupEventListeners() {
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', handleFilterClick);
+    });
+
+    // Load more button
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', handleLoadMore);
+    }
+
+    // Modal events
+    setupModalEvents();
+}
+
+// Handle filter button clicks
+function handleFilterClick(event) {
+    const button = event.currentTarget;
+    
+    // Update active state
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    
+    // Update filter and reset pagination
+    currentFilter = button.dataset.filter;
+    currentPage = 1;
+    
+    // Re-render memories
+    renderMemories();
+}
+
+// Handle load more button click
+function handleLoadMore() {
+    currentPage++;
+    renderMemories();
+}
+
+// Setup modal event listeners
+function setupModalEvents() {
+    const modal = document.getElementById('memoryModal');
+    if (!modal) return;
+
+    // Close modal events
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // Close button
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+}
+
 // Open modal with memory details
 function openModal(memory) {
     const modal = document.getElementById('memoryModal');
@@ -110,10 +188,10 @@ function openModal(memory) {
 
     modalBody.innerHTML = `
         <div class="modal-header">
-            <h2 class="modal-title">${memory.title}</h2>
+            <h2 class="modal-title">${escapeHtml(memory.title)}</h2>
             <div class="modal-date">${formattedDate}</div>
         </div>
-        <div class="modal-content-text">${memory.content}</div>
+        <div class="modal-content-text">${escapeHtml(memory.content)}</div>
         <div class="modal-meta">
             <span class="card-category">
                 <i class="${categoryIcon}"></i>
@@ -126,6 +204,7 @@ function openModal(memory) {
         </div>
     `;
 
+    modal.classList.add('show');
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
@@ -134,106 +213,99 @@ function openModal(memory) {
 function closeModal() {
     const modal = document.getElementById('memoryModal');
     if (modal) {
+        modal.classList.remove('show');
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 }
 
-// Setup filter buttons
-function setupFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
-            
-            // Update current filter
-            currentFilter = button.dataset.filter;
-            currentPage = 1; // Reset to first page
-            
-            // Re-render memories
-            renderMemories();
-        });
-    });
-}
-
-// Setup load more button
-function setupLoadMore() {
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-            currentPage++;
-            renderMemories();
-        });
-    }
-}
-
-// Update load more button visibility
+// Update load more button state
 function updateLoadMoreButton(totalMemories, currentCount) {
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
     const loadMoreContainer = document.querySelector('.load-more-container');
     
-    if (loadMoreBtn && loadMoreContainer) {
-        if (currentCount >= totalMemories) {
-            loadMoreContainer.style.display = 'none';
-        } else {
-            loadMoreContainer.style.display = 'block';
-        }
+    if (loadMoreContainer) {
+        loadMoreContainer.style.display = currentCount >= totalMemories ? 'none' : 'block';
     }
 }
 
-// Setup header toggle for mobile
-function setupHeaderToggle() {
-    const headerToggle = document.getElementById('headerToggle');
-    const header = document.getElementById('memoriesHeader');
-    
-    if (headerToggle && header) {
-        headerToggle.addEventListener('click', () => {
-            header.classList.toggle('collapsed');
-            const icon = headerToggle.querySelector('i');
-            if (header.classList.contains('collapsed')) {
-                icon.className = 'fas fa-chevron-down';
-            } else {
-                icon.className = 'fas fa-chevron-up';
-            }
-        });
-    }
-}
-
-// Initialize scroll to top button
-function initScrollToTop() {
-    // Create scroll to top button
+// Initialize scroll to top functionality
+function initializeScrollToTop() {
     const scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-to-top';
     scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    scrollBtn.onclick = () => {
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    
+    scrollBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    });
+    
     document.body.appendChild(scrollBtn);
 
-    // Show/hide scroll button based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
+    // Throttled scroll handler for better performance
+    let ticking = false;
+    const handleScroll = () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const shouldShow = window.pageYOffset > 300;
+                scrollBtn.classList.toggle('visible', shouldShow);
+                ticking = false;
+            });
+            ticking = true;
         }
-    });
-}
-
-// Utility functions
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
     };
-    return date.toLocaleDateString('vi-VN', options);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 }
 
+// Show loading state
+function showLoading() {
+    const memoriesGrid = document.getElementById('memoriesGrid');
+    if (memoriesGrid) {
+        memoriesGrid.innerHTML = '<div class="loading"></div>';
+    }
+}
+
+// Hide loading state
+function hideLoading() {
+    const loading = document.querySelector('.loading');
+    if (loading) {
+        loading.remove();
+    }
+}
+
+// Show error message
+function showError(message) {
+    const memoriesGrid = document.getElementById('memoriesGrid');
+    if (memoriesGrid) {
+        memoriesGrid.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>${message}</p>
+            </div>
+        `;
+    }
+}
+
+// ==========================================
+// UTILITY FUNCTIONS
+// ==========================================
+
+// Format date to Vietnamese locale
+function formatDate(dateString) {
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('vi-VN', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return dateString;
+    }
+}
+
+// Get category icon
 function getCategoryIcon(category) {
     const icons = {
         'special': 'fas fa-star',
@@ -244,6 +316,7 @@ function getCategoryIcon(category) {
     return icons[category] || 'fas fa-heart';
 }
 
+// Get category display name
 function getCategoryName(category) {
     const names = {
         'special': 'Đặc biệt',
@@ -254,35 +327,27 @@ function getCategoryName(category) {
     return names[category] || 'Khác';
 }
 
+// Get mood icon
 function getMoodIcon(mood) {
     const icons = {
         'romantic': 'fas fa-heart',
         'sweet': 'fas fa-candy-cane',
-        'happy': 'fas fa-smile',
+        'happy': 'fas fa-smile-beam',
         'excited': 'fas fa-star',
-        'peaceful': 'fas fa-leaf'
+        'peaceful': 'fas fa-leaf',
+        'joyful': 'fas fa-laugh',
+        'content': 'fas fa-smile'
     };
     return icons[mood] || 'fas fa-heart';
 }
 
-function showError(message) {
-    const memoriesGrid = document.getElementById('memoriesGrid');
-    if (memoriesGrid) {
-        memoriesGrid.innerHTML = `<div class="error-message">${message}</div>`;
-    }
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
 }
-
-// Close modal when clicking outside
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('memoryModal');
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-});
