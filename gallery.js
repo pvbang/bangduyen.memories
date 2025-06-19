@@ -1,4 +1,4 @@
-// Gallery JavaScript
+// Enhanced Modern Romantic Tech Gallery JavaScript
 class Gallery {
   constructor() {
     this.mediaItems = [];
@@ -6,16 +6,21 @@ class Gallery {
     this.currentFilter = "all";
     this.currentView = "grid";
     this.currentLightboxIndex = 0;
+    this.isSlideshow = false;
+    this.slideshowInterval = null;
 
     this.init();
-  }
-
-  async init() {
+    this.initAnimatedBackground();
+  }  async init() {
     this.showLoading();
     await this.loadMediaItems();
     this.bindEvents();
     this.renderGallery();
+    this.updateStats();
     this.hideLoading();
+    
+    // Initialize masonry layout after images load
+    this.initMasonryLayout();
   }
 
   async loadMediaItems() {
@@ -570,7 +575,6 @@ class Gallery {
 
     this.renderGallery();
   }
-
   setView(view) {
     this.currentView = view;
 
@@ -580,75 +584,386 @@ class Gallery {
     });
     document.querySelector(`[data-view="${view}"]`).classList.add("active");
 
-    // Update grid class
-    const grid = document.getElementById("galleryGrid");
-    grid.className = `gallery-grid ${view === "masonry" ? "masonry" : ""}`;
+    // Handle slideshow
+    if (view === "slideshow") {
+      this.startSlideshow();
+    } else {
+      this.stopSlideshow();
+      // Update grid class
+      const grid = document.getElementById("galleryGrid");
+      grid.className = `gallery-grid ${view === "masonry" ? "masonry" : ""}`;
+      this.renderGallery();
+    }
   }
 
+  startSlideshow() {
+    if (this.filteredItems.length === 0) return;
+    
+    this.isSlideshow = true;
+    this.currentLightboxIndex = 0;
+    this.openLightbox(this.filteredItems[0]);
+    
+    // Auto-advance slideshow
+    this.slideshowInterval = setInterval(() => {
+      this.nextMedia();
+    }, 4000);
+    
+    // Add slideshow indicator
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox && !lightbox.querySelector('.slideshow-indicator')) {
+      const indicator = document.createElement('div');
+      indicator.className = 'slideshow-indicator';
+      indicator.innerHTML = `
+        <div class="slideshow-controls">
+          <button onclick="gallery.toggleSlideshow()" class="slideshow-toggle">
+            <i class="fas fa-pause"></i>
+          </button>
+          <span class="slideshow-counter">1 / ${this.filteredItems.length}</span>
+        </div>
+      `;
+      lightbox.querySelector('.lightbox-content').appendChild(indicator);
+    }
+  }
+
+  stopSlideshow() {
+    this.isSlideshow = false;
+    if (this.slideshowInterval) {
+      clearInterval(this.slideshowInterval);
+      this.slideshowInterval = null;
+    }
+    
+    // Remove slideshow indicator
+    const indicator = document.querySelector('.slideshow-indicator');
+    if (indicator) {
+      indicator.remove();
+    }
+    
+    this.closeLightbox();
+  }
+
+  toggleSlideshow() {
+    if (this.slideshowInterval) {
+      clearInterval(this.slideshowInterval);
+      this.slideshowInterval = null;
+      document.querySelector('.slideshow-toggle i').className = 'fas fa-play';
+    } else {
+      this.slideshowInterval = setInterval(() => {
+        this.nextMedia();
+      }, 4000);
+      document.querySelector('.slideshow-toggle i').className = 'fas fa-pause';
+    }
+  }
+
+  // Enhanced render gallery with better animations
   renderGallery() {
-    const grid = document.getElementById("galleryGrid");
-    grid.innerHTML = "";
+    const galleryGrid = document.getElementById("galleryGrid");
+    if (!galleryGrid) return;
 
+    // Clear existing content
+    galleryGrid.innerHTML = "";
+
+    // Apply view class
+    galleryGrid.className = `gallery-grid ${this.currentView}`;
+
+    // Create gallery items with staggered animation
     this.filteredItems.forEach((item, index) => {
-      const galleryItem = this.createGalleryItem(item, index);
-      grid.appendChild(galleryItem);
+      const galleryItem = this.createGalleryItem(item);
+      galleryItem.style.animationDelay = `${index * 0.1}s`;
+      galleryItem.classList.add('gallery-item-entrance');
+      galleryGrid.appendChild(galleryItem);
     });
+
+    // Update stats after rendering
+    this.updateStats();
+
+    // Add entrance animation styles if not exists
+    if (!document.getElementById('gallery-entrance-style')) {
+      const style = document.createElement('style');
+      style.id = 'gallery-entrance-style';
+      style.textContent = `
+        .gallery-item-entrance {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
+          animation: galleryItemEntrance 0.6s ease-out forwards;
+        }
+        
+        @keyframes galleryItemEntrance {
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
   }
 
+  updateStats() {
+    const totalImages = this.mediaItems.filter(item => item.type === 'image').length;
+    const totalVideos = this.mediaItems.filter(item => item.type === 'video').length;
+    const totalMemories = this.mediaItems.length;
+
+    this.animateNumber('totalImages', totalImages);
+    this.animateNumber('totalVideos', totalVideos);  
+    this.animateNumber('totalMemories', totalMemories);
+  }
+
+  animateNumber(elementId, targetNumber) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    let current = 0;
+    const increment = Math.ceil(targetNumber / 30);
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetNumber) {
+        current = targetNumber;
+        clearInterval(timer);
+      }
+      element.textContent = current;
+    }, 50);
+  }
+
+  // Initialize dynamic background animations
+  initDynamicBackground() {
+    this.createFloatingHearts();
+    this.createTechParticles();
+    this.createGradientOrbs();
+  }
+
+  createFloatingHearts() {
+    const heartsContainer = document.querySelector('.floating-hearts');
+    if (!heartsContainer) return;
+
+    const heartSymbols = ['💖', '💕', '💗', '💝', '💓', '💘'];
+    
+    setInterval(() => {
+      if(Math.random() < 0.7) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart-element';
+        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.cssText = `
+          position: absolute;
+          left: ${Math.random() * 100}%;
+          top: 100%;
+          font-size: ${20 + Math.random() * 15}px;
+          opacity: 0;
+          pointer-events: none;
+          z-index: 1;
+          animation: floatUp ${8 + Math.random() * 7}s linear forwards;
+        `;
+        heartsContainer.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 15000);
+      }
+    }, 3000);
+
+    // Add CSS for floating hearts animation
+    if (!document.getElementById('floating-hearts-style')) {
+      const style = document.createElement('style');
+      style.id = 'floating-hearts-style';
+      style.textContent = `
+        @keyframes floatUp {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.8;
+          }
+          90% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  createTechParticles() {
+    const particlesContainer = document.querySelector('.tech-particles');
+    if (!particlesContainer) return;
+
+    setInterval(() => {
+      if(Math.random() < 0.4) {
+        const particle = document.createElement('div');
+        particle.className = 'tech-particle-element';
+        particle.style.cssText = `
+          position: absolute;
+          left: ${Math.random() * 100}%;
+          top: 100%;
+          width: ${2 + Math.random() * 3}px;
+          height: ${2 + Math.random() * 3}px;
+          background: #4a90e2;
+          border-radius: 50%;
+          box-shadow: 0 0 6px #4a90e2;
+          opacity: 0;
+          pointer-events: none;
+          animation: techFloatUp ${15 + Math.random() * 10}s linear forwards;
+        `;
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 25000);
+      }
+    }, 2000);
+
+    // Add CSS for tech particles animation
+    if (!document.getElementById('tech-particles-style')) {
+      const style = document.createElement('style');
+      style.id = 'tech-particles-style';
+      style.textContent = `
+        @keyframes techFloatUp {
+          0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  createGradientOrbs() {
+    const orbsContainer = document.querySelector('.gradient-orbs');
+    if (!orbsContainer) return;
+
+    // Create additional floating orbs periodically
+    setInterval(() => {
+      if(Math.random() < 0.1) {
+        const orb = document.createElement('div');
+        orb.className = 'gradient-orb-element';
+        orb.style.cssText = `
+          position: absolute;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          width: ${100 + Math.random() * 100}px;
+          height: ${100 + Math.random() * 100}px;
+          background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          animation: orbFloatAround ${20 + Math.random() * 15}s ease-in-out forwards;
+        `;
+        orbsContainer.appendChild(orb);
+
+        setTimeout(() => orb.remove(), 35000);
+      }
+    }, 8000);
+
+    // Add CSS for gradient orbs animation
+    if (!document.getElementById('gradient-orbs-style')) {
+      const style = document.createElement('style');
+      style.id = 'gradient-orbs-style';
+      style.textContent = `
+        @keyframes orbFloatAround {
+          0% {
+            transform: translate(0, 0) scale(0);
+            opacity: 0;
+          }
+          20% {
+            opacity: 0.6;
+            transform: translate(0, 0) scale(1);
+          }
+          80% {
+            opacity: 0.6;
+          }
+          100% {
+            transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(0);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
   createGalleryItem(item, index) {
     const div = document.createElement("div");
     div.className = "gallery-item";
     div.dataset.type = item.type;
     div.addEventListener("click", () => this.openLightbox(index));
 
+    // Create media container with dynamic height
     const mediaContainer = document.createElement("div");
-    mediaContainer.className = "media-container";
-
+    mediaContainer.className = "item-media";
+    
+    // Create type indicator
+    const typeIndicator = document.createElement("div");
+    typeIndicator.className = "item-type";
+    
     if (item.type === "image") {
       const img = document.createElement("img");
       img.src = item.path;
       img.alt = item.title;
+      
+      // Set random height for masonry effect
+      const heights = [250, 300, 350, 400, 320, 280];
+      const randomHeight = heights[Math.floor(Math.random() * heights.length)];
+      
+      img.style.height = `${randomHeight}px`;
+      img.style.objectFit = 'cover';
+      
       img.onerror = () => {
-        img.src =
-          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNHB4IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+ScOvbmggxJFhbmcgxJHGsOG7o2MgdOG6o2k8L3RleHQ+PC9zdmc+";
+        img.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZlNGUxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0cHgiIGZpbGw9IiNmZjkxYTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7EkOG7g25nIMSRYW5nIHThuqNpPC90ZXh0Pjwvc3ZnPg==";
       };
+      
       mediaContainer.appendChild(img);
+      typeIndicator.innerHTML = '<i class="fas fa-image"></i>';
+      
     } else if (item.type === "video") {
       const video = document.createElement("video");
       video.src = item.path;
       video.preload = "metadata";
+      video.style.height = '300px';
+      video.style.objectFit = 'cover';
       mediaContainer.appendChild(video);
 
       const playButton = document.createElement("button");
       playButton.className = "play-button";
       playButton.innerHTML = '<i class="fas fa-play"></i>';
       mediaContainer.appendChild(playButton);
+      
+      typeIndicator.innerHTML = '<i class="fas fa-video"></i>';
     }
 
+    // Create overlay with info
     const overlay = document.createElement("div");
-    overlay.className = "media-overlay";
+    overlay.className = "item-overlay";
 
     const info = document.createElement("div");
-    info.className = "media-info";
+    info.className = "item-info";
 
     const title = document.createElement("div");
-    title.className = "media-title";
+    title.className = "item-title";
     title.textContent = item.title;
 
     const date = document.createElement("div");
-    date.className = "media-date";
-    date.textContent = this.formatDate(item.date);
+    date.className = "item-date";
+    date.innerHTML = `<i class="fas fa-calendar"></i> ${this.formatDate(item.date)}`;
 
     info.appendChild(title);
     info.appendChild(date);
     overlay.appendChild(info);
-    mediaContainer.appendChild(overlay);
 
+    // Assemble the item
     div.appendChild(mediaContainer);
+    div.appendChild(overlay);
+    div.appendChild(typeIndicator);
 
     return div;
   }
-
   openLightbox(index) {
     this.currentLightboxIndex = index;
     const item = this.filteredItems[index];
@@ -664,47 +979,96 @@ class Gallery {
       const img = document.createElement("img");
       img.src = item.path;
       img.alt = item.title;
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '70vh';
+      img.style.objectFit = 'contain';
+      img.style.borderRadius = '12px';
       mediaContainer.appendChild(img);
     } else if (item.type === "video") {
       const video = document.createElement("video");
       video.src = item.path;
       video.controls = true;
       video.autoplay = true;
+      video.style.maxWidth = '100%';
+      video.style.maxHeight = '70vh';
+      video.style.borderRadius = '12px';
       mediaContainer.appendChild(video);
     }
 
-    // Update info
+    // Update info with beautiful design
     infoContainer.innerHTML = `
-            <div class="lightbox-title">${item.title}</div>
-            <div class="lightbox-date">${this.formatDate(item.date)}</div>
-            <div class="lightbox-description">${item.description}</div>
-        `;
+      <div class="lightbox-title">${item.title}</div>
+      <div class="lightbox-description">${item.description}</div>
+      <div class="lightbox-meta">
+        <div class="meta-item">
+          <i class="fas fa-calendar"></i>
+          <span>${this.formatDate(item.date)}</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-${item.type === 'image' ? 'image' : 'video'}"></i>
+          <span>${item.type === 'image' ? 'Hình ảnh' : 'Video'}</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-heart"></i>
+          <span>Kỷ niệm đẹp</span>
+        </div>
+      </div>
+    `;
 
     lightbox.classList.add("active");
     document.body.style.overflow = "hidden";
+    
+    // Add keyboard navigation
+    this.addKeyboardNavigation();
   }
-
   closeLightbox() {
     const lightbox = document.getElementById("lightbox");
     lightbox.classList.remove("active");
     document.body.style.overflow = "";
+
+    // Stop slideshow if active
+    if (this.isSlideshow) {
+      this.stopSlideshow();
+      // Reset view to grid
+      this.setView('grid');
+    }
 
     // Stop any playing videos
     const video = lightbox.querySelector("video");
     if (video) {
       video.pause();
     }
+    
+    // Remove slideshow indicator
+    const indicator = document.querySelector('.slideshow-indicator');
+    if (indicator) {
+      indicator.remove();
+    }
   }
-
   prevMedia() {
     if (this.currentLightboxIndex > 0) {
       this.openLightbox(this.currentLightboxIndex - 1);
+    } else if (this.isSlideshow) {
+      // Loop to last image in slideshow
+      this.openLightbox(this.filteredItems.length - 1);
     }
+    this.updateSlideshowCounter();
   }
 
   nextMedia() {
     if (this.currentLightboxIndex < this.filteredItems.length - 1) {
       this.openLightbox(this.currentLightboxIndex + 1);
+    } else if (this.isSlideshow) {
+      // Loop back to first image in slideshow
+      this.openLightbox(0);
+    }
+    this.updateSlideshowCounter();
+  }
+
+  updateSlideshowCounter() {
+    const counter = document.querySelector('.slideshow-counter');
+    if (counter) {
+      counter.textContent = `${this.currentLightboxIndex + 1} / ${this.filteredItems.length}`;
     }
   }
 
