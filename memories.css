@@ -48,11 +48,19 @@
 
 body {
     font-family: var(--font-body);
-    background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 30%, #FFFFFF 70%, #F0F8FF 100%);
+    background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 20%, #E6E6FA 40%, #F0F8FF 60%, #FFFFFF 80%, #FFF8DC 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     min-height: 100vh;
     color: var(--text-dark);
     overflow-x: hidden;
     position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -62,7 +70,7 @@ body {
 }
 
 /* ==========================================
-   BACKGROUND ANIMATIONS
+   ENHANCED BACKGROUND ANIMATIONS
    ========================================== */
 
 .background-animation {
@@ -76,7 +84,25 @@ body {
     overflow: hidden;
 }
 
-/* Floating Hearts Animation */
+/* Animated Gradient Background */
+.gradient-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 105, 180, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(221, 160, 221, 0.15) 0%, transparent 50%);
+    animation: gradientPulse 8s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Enhanced Floating Hearts Animation */
 .floating-hearts {
     position: absolute;
     width: 100%;
@@ -85,65 +111,189 @@ body {
 
 .heart {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background: var(--soft-pink);
     border-radius: 50% 50% 0 50%;
     transform: rotate(-45deg);
-    animation: floatHeart 12s ease-in-out infinite;
-    opacity: 0.4;
+    animation: enhancedFloatHeart 10s ease-in-out infinite;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(255, 182, 193, 0.4));
 }
 
 .heart::before,
 .heart::after {
     content: '';
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background: inherit;
     border-radius: 50%;
 }
 
 .heart::before {
-    top: -7.5px;
+    top: -10px;
     left: 0;
 }
 
 .heart::after {
-    left: 7.5px;
+    left: 10px;
     top: 0;
 }
 
-@keyframes floatHeart {
+@keyframes enhancedFloatHeart {
     0%, 100% { 
         transform: translateY(0px) translateX(0px) rotate(-45deg) scale(1);
-        opacity: 0.3;
+        opacity: 0.4;
+        filter: drop-shadow(0 0 8px rgba(255, 182, 193, 0.4));
     }
     25% { 
-        transform: translateY(-30px) translateX(10px) rotate(-45deg) scale(1.1);
-        opacity: 0.6;
+        transform: translateY(-40px) translateX(20px) rotate(-45deg) scale(1.3);
+        opacity: 0.8;
+        filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.6));
     }
     50% { 
-        transform: translateY(-15px) translateX(-10px) rotate(-45deg) scale(1);
-        opacity: 0.4;
+        transform: translateY(-20px) translateX(-15px) rotate(-45deg) scale(1.1);
+        opacity: 0.6;
+        filter: drop-shadow(0 0 12px rgba(255, 182, 193, 0.5));
     }
     75% { 
-        transform: translateY(-45px) translateX(15px) rotate(-45deg) scale(0.9);
-        opacity: 0.7;
+        transform: translateY(-60px) translateX(25px) rotate(-45deg) scale(0.8);
+        opacity: 0.9;
+        filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.7));
     }
 }
 
-/* Individual heart positioning and timing */
-.heart-1 { left: 5%; top: 20%; animation-delay: 0s; }
-.heart-2 { left: 15%; top: 60%; animation-delay: 1.5s; }
-.heart-3 { left: 25%; top: 80%; animation-delay: 3s; }
-.heart-4 { left: 45%; top: 10%; animation-delay: 4.5s; }
-.heart-5 { left: 65%; top: 70%; animation-delay: 6s; }
-.heart-6 { left: 75%; top: 30%; animation-delay: 7.5s; }
-.heart-7 { left: 85%; top: 90%; animation-delay: 9s; }
-.heart-8 { left: 95%; top: 50%; animation-delay: 10.5s; }
+/* Enhanced heart positioning and timing */
+.heart-1 { left: 5%; top: 20%; animation-delay: 0s; background: #FFB6C1; }
+.heart-2 { left: 15%; top: 60%; animation-delay: 0.5s; background: #FFC0CB; }
+.heart-3 { left: 25%; top: 80%; animation-delay: 1s; background: #FF91A4; }
+.heart-4 { left: 35%; top: 10%; animation-delay: 1.5s; background: #FF69B4; }
+.heart-5 { left: 45%; top: 70%; animation-delay: 2s; background: #FFB6C1; }
+.heart-6 { left: 55%; top: 30%; animation-delay: 2.5s; background: #FFC0CB; }
+.heart-7 { left: 65%; top: 90%; animation-delay: 3s; background: #FF91A4; }
+.heart-8 { left: 75%; top: 50%; animation-delay: 3.5s; background: #FF69B4; }
+.heart-9 { left: 85%; top: 15%; animation-delay: 4s; background: #FFB6C1; }
+.heart-10 { left: 95%; top: 75%; animation-delay: 4.5s; background: #FFC0CB; }
+.heart-11 { left: 10%; top: 45%; animation-delay: 5s; background: #FF91A4; }
+.heart-12 { left: 30%; top: 55%; animation-delay: 5.5s; background: #FF69B4; }
+.heart-13 { left: 50%; top: 25%; animation-delay: 6s; background: #FFB6C1; }
+.heart-14 { left: 70%; top: 65%; animation-delay: 6.5s; background: #FFC0CB; }
+.heart-15 { left: 90%; top: 35%; animation-delay: 7s; background: #FF91A4; }
+.heart-16 { left: 20%; top: 85%; animation-delay: 7.5s; background: #FF69B4; }
+.heart-17 { left: 40%; top: 5%; animation-delay: 8s; background: #FFB6C1; }
+.heart-18 { left: 60%; top: 95%; animation-delay: 8.5s; background: #FFC0CB; }
+.heart-19 { left: 80%; top: 40%; animation-delay: 9s; background: #FF91A4; }
+.heart-20 { left: 12%; top: 75%; animation-delay: 9.5s; background: #FF69B4; }
 
-/* Floating Particles */
+/* Tech Elements */
+.tech-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Circuit Lines */
+.circuit-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.circuit-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #FF69B4, transparent);
+    opacity: 0.3;
+    animation: circuitFlow 8s linear infinite;
+}
+
+.line-1 {
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    top: 0;
+    left: 30%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, #FF91A4, transparent);
+    animation-delay: 2s;
+}
+
+.line-3 {
+    top: 60%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    animation-delay: 4s;
+}
+
+.line-4 {
+    top: 0;
+    left: 70%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, #FFB6C1, transparent);
+    animation-delay: 6s;
+}
+
+.line-5 {
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    animation-delay: 1s;
+}
+
+@keyframes circuitFlow {
+    0% { opacity: 0; transform: scaleX(0); }
+    50% { opacity: 0.3; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0); }
+}
+
+/* Floating Tech Icons */
+.floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.tech-icon {
+    position: absolute;
+    font-size: 24px;
+    color: #FF69B4;
+    opacity: 0.4;
+    animation: floatTechIcon 12s ease-in-out infinite;
+    left: var(--x);
+    top: var(--y);
+    animation-delay: var(--delay);
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.3));
+}
+
+@keyframes floatTechIcon {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.4;
+    }
+    25% { 
+        transform: translateY(-30px) rotate(90deg) scale(1.2);
+        opacity: 0.7;
+    }
+    50% { 
+        transform: translateY(-15px) rotate(180deg) scale(1.1);
+        opacity: 0.5;
+    }
+    75% { 
+        transform: translateY(-45px) rotate(270deg) scale(0.9);
+        opacity: 0.8;
+    }
+}
+
+/* Enhanced Floating Particles */
 .floating-particles {
     position: absolute;
     width: 100%;
@@ -152,56 +302,120 @@ body {
 
 .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background: linear-gradient(45deg, var(--rose-pink), var(--deep-pink));
     border-radius: 50%;
-    animation: floatParticle 8s linear infinite;
-    opacity: 0.5;
+    animation: enhancedFloatParticle 12s linear infinite;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 4px rgba(255, 105, 180, 0.4));
 }
 
-@keyframes floatParticle {
+@keyframes enhancedFloatParticle {
     0% {
-        transform: translateY(100vh) translateX(0px) scale(0);
+        transform: translateY(100vh) translateX(0px) scale(0) rotate(0deg);
         opacity: 0;
     }
     10% {
-        opacity: 0.5;
-        transform: scale(1);
+        opacity: 0.6;
+        transform: scale(1) rotate(90deg);
+    }
+    50% {
+        transform: translateY(50vh) translateX(50px) scale(1.2) rotate(180deg);
+        opacity: 0.8;
     }
     90% {
-        opacity: 0.5;
+        opacity: 0.4;
+        transform: scale(0.8) rotate(270deg);
     }
     100% {
-        transform: translateY(-100px) translateX(100px) scale(0);
+        transform: translateY(-100px) translateX(100px) scale(0) rotate(360deg);
         opacity: 0;
     }
 }
 
-.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-.particle:nth-child(2) { left: 20%; animation-delay: 1s; }
-.particle:nth-child(3) { left: 30%; animation-delay: 2s; }
-.particle:nth-child(4) { left: 40%; animation-delay: 3s; }
-.particle:nth-child(5) { left: 50%; animation-delay: 4s; }
-.particle:nth-child(6) { left: 60%; animation-delay: 5s; }
-.particle:nth-child(7) { left: 70%; animation-delay: 6s; }
-.particle:nth-child(8) { left: 80%; animation-delay: 7s; }
-.particle:nth-child(9) { left: 90%; animation-delay: 8s; }
-.particle:nth-child(10) { left: 95%; animation-delay: 9s; }
+.particle:nth-child(1) { left: 5%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 15%; animation-delay: 0.8s; }
+.particle:nth-child(3) { left: 25%; animation-delay: 1.6s; }
+.particle:nth-child(4) { left: 35%; animation-delay: 2.4s; }
+.particle:nth-child(5) { left: 45%; animation-delay: 3.2s; }
+.particle:nth-child(6) { left: 55%; animation-delay: 4s; }
+.particle:nth-child(7) { left: 65%; animation-delay: 4.8s; }
+.particle:nth-child(8) { left: 75%; animation-delay: 5.6s; }
+.particle:nth-child(9) { left: 85%; animation-delay: 6.4s; }
+.particle:nth-child(10) { left: 95%; animation-delay: 7.2s; }
+.particle:nth-child(11) { left: 10%; animation-delay: 8s; }
+.particle:nth-child(12) { left: 20%; animation-delay: 8.8s; }
+.particle:nth-child(13) { left: 30%; animation-delay: 9.6s; }
+.particle:nth-child(14) { left: 40%; animation-delay: 10.4s; }
+.particle:nth-child(15) { left: 50%; animation-delay: 11.2s; }
+
+/* Love Sparkles */
+.love-sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: sparkleFloat 6s ease-in-out infinite;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes sparkleFloat {
+    0%, 100% { 
+        transform: translateY(0px) scale(1) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% { 
+        transform: translateY(-30px) scale(1.3) rotate(180deg);
+        opacity: 0.9;
+    }
+}
+
+.sparkle-1 { left: 10%; top: 15%; animation-delay: 0s; }
+.sparkle-2 { left: 80%; top: 25%; animation-delay: 0.7s; }
+.sparkle-3 { left: 20%; top: 70%; animation-delay: 1.4s; }
+.sparkle-4 { left: 70%; top: 80%; animation-delay: 2.1s; }
+.sparkle-5 { left: 50%; top: 10%; animation-delay: 2.8s; }
+.sparkle-6 { left: 90%; top: 60%; animation-delay: 3.5s; }
+.sparkle-7 { left: 30%; top: 90%; animation-delay: 4.2s; }
+.sparkle-8 { left: 60%; top: 40%; animation-delay: 4.9s; }
 
 /* ==========================================
    HEADER SECTION
    ========================================== */
 
 .memories-header {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 245, 0.9) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 182, 193, 0.2);
-    padding: 32px 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.9) 50%, rgba(230, 230, 250, 0.85) 100%);
+    backdrop-filter: blur(25px);
+    border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+    padding: 40px 0;
     position: sticky;
     top: 0;
     z-index: 100;
     animation: slideDown 1s ease-out;
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.15);
+    overflow: hidden;
+}
+
+.memories-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.1), transparent);
+    animation: headerShimmer 3s ease-in-out infinite;
+}
+
+@keyframes headerShimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 @keyframes slideDown {
@@ -222,14 +436,40 @@ body {
 
 .page-title {
     font-family: var(--font-script);
-    font-size: 3.2rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    background: var(--gradient-accent);
+    background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4, #FFC0CB);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
-    animation: titlePulse 3s ease-in-out infinite;
+    margin-bottom: 12px;
+    animation: titlePulse 3s ease-in-out infinite, gradientFlow 4s ease-in-out infinite;
+    position: relative;
+    text-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+}
+
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    animation: underlineGrow 2s ease-in-out infinite;
+}
+
+@keyframes underlineGrow {
+    0%, 100% { width: 0; }
+    50% { width: 60%; }
 }
 
 @keyframes titlePulse {
@@ -413,14 +653,14 @@ body {
 
 /* Memory Card */
 .memory-card {
-    background: var(--pure-white);
+    background: linear-gradient(145deg, var(--pure-white) 0%, rgba(255, 248, 250, 0.9) 100%);
     border-radius: var(--radius-large);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
-    border: 1px solid rgba(255, 182, 193, 0.1);
+    border: 2px solid rgba(255, 182, 193, 0.15);
     animation: cardSlideIn 0.8s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
@@ -439,39 +679,73 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--gradient-accent);
+    height: 6px;
+    background: linear-gradient(90deg, var(--deep-pink), var(--rose-pink), var(--primary-pink), var(--soft-pink));
+    background-size: 300% 100%;
     transform: scaleX(0);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: rainbowFlow 3s linear infinite;
+}
+
+@keyframes rainbowFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.memory-card::after {
+    content: '💖';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    opacity: 0;
+    transform: scale(0) rotate(45deg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: heartBeatCard 2s ease-in-out infinite;
+}
+
+@keyframes heartBeatCard {
+    0%, 50%, 100% { transform: scale(0) rotate(45deg); opacity: 0; }
+    25%, 75% { transform: scale(1.1) rotate(0deg); opacity: 0.8; }
 }
 
 .memory-card:hover::before {
     transform: scaleX(1);
 }
 
+.memory-card:hover::after {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
 .memory-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-strong);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.25);
+    border-color: var(--rose-pink);
 }
 
 .card-header {
-    padding: 32px 28px 24px;
-    background: var(--gradient-secondary);
+    padding: 36px 32px 28px;
+    background: linear-gradient(135deg, var(--gradient-secondary) 0%, rgba(255, 240, 245, 0.8) 100%);
     text-align: center;
     position: relative;
+    overflow: hidden;
 }
 
-.card-date {
-    display: inline-block;
-    background: var(--gradient-primary);
-    color: white;
-    padding: 8px 16px;
-    border-radius: var(--radius-full);
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    box-shadow: var(--shadow-soft);
-    animation: shimmer 2s ease-in-out infinite;
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
+    animation: headerPulse 4s ease-in-out infinite;
+}
+
+@keyframes headerPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
 }
 
 @keyframes shimmer {
@@ -479,18 +753,42 @@ body {
     50% { opacity: 0.8; }
 }
 
+.card-date {
+    display: inline-block;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft);
+    animation: shimmer 2s ease-in-out infinite, floatDate 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes floatDate {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
 .card-title {
     font-family: var(--font-script);
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--text-dark);
     margin: 0;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(255, 182, 193, 0.2);
 }
 
 .memory-card:hover .card-title {
     color: var(--deep-pink);
-    transform: scale(1.02);
+    transform: scale(1.05);
+    text-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
 }
 
 .card-body {
