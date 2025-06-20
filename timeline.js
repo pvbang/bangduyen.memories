@@ -161,11 +161,31 @@ function updateDaysCounters() {
     
     // Days since first meet
     const daysSinceFirstMeet = Math.floor((now - IMPORTANT_DATES.firstMeet) / (1000 * 60 * 60 * 24));
-    document.getElementById("daysSinceFirstMeet").textContent = Math.max(0, daysSinceFirstMeet);
+    const firstMeetElement = document.getElementById("daysSinceFirstMeet");
+    if (firstMeetElement) {
+        animateCounter("daysSinceFirstMeet", Math.max(0, daysSinceFirstMeet));
+    }
     
     // Days since first message
     const daysSinceFirstMessage = Math.floor((now - IMPORTANT_DATES.firstMessage) / (1000 * 60 * 60 * 24));
-    document.getElementById("daysSinceFirstMessage").textContent = Math.max(0, daysSinceFirstMessage);
+    const firstMessageElement = document.getElementById("daysSinceFirstMessage");
+    if (firstMessageElement) {
+        animateCounter("daysSinceFirstMessage", Math.max(0, daysSinceFirstMessage));
+    }
+    
+    // Days since color change
+    const daysSinceColorChange = Math.floor((now - IMPORTANT_DATES.changeMessColor) / (1000 * 60 * 60 * 24));
+    const colorChangeElement = document.getElementById("daysSinceColorChange");
+    if (colorChangeElement) {
+        animateCounter("daysSinceColorChange", Math.max(0, daysSinceColorChange));
+    }
+    
+    // Days since official couple
+    const daysSinceOfficial = Math.floor((now - IMPORTANT_DATES.officialCouple) / (1000 * 60 * 60 * 24));
+    const officialElement = document.getElementById("daysSinceOfficial");
+    if (officialElement) {
+        animateCounter("daysSinceOfficial", Math.max(0, daysSinceOfficial));
+    }
 }
 
 // Enhanced milestone countdowns with multiple milestones
