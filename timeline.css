@@ -590,10 +590,10 @@ body {
     top: 0;
     bottom: 0;
     width: 4px;
-    background: linear-gradient(180deg, #667eea, #764ba2, #f5576c);
+    background: linear-gradient(180deg, #ff69b4, #ffc0cb, #ff1493);
     transform: translateX(-50%);
     border-radius: 2px;
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
 }
 
 .timeline-events {
@@ -628,14 +628,14 @@ body {
 .event-marker {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ff69b4, #ffc0cb, #ff1493);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     color: white;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
     cursor: pointer;
     transition: all 0.4s ease;
     position: relative;
@@ -649,7 +649,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ff69b4, #ffc0cb);
     animation: pulse 2s infinite;
 }
 
@@ -666,28 +666,28 @@ body {
 
 .event-marker:hover {
     transform: scale(1.1);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.7);
 }
 
 .special .event-marker {
-    background: linear-gradient(135deg, #f5576c, #f093fb);
+    background: linear-gradient(135deg, #ff1493, #da70d6, #ffc0cb);
     animation: specialGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes specialGlow {
-    from { box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4); }
-    to { box-shadow: 0 15px 40px rgba(245, 87, 108, 0.7); }
+    from { box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5); }
+    to { box-shadow: 0 15px 40px rgba(255, 20, 147, 0.8); }
 }
 
 .event-content {
     flex: 1;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(25px);
     padding: 30px;
     border-radius: 25px;
     margin: 0 40px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(255, 182, 193, 0.3);
+    border: 1px solid rgba(255, 192, 203, 0.4);
     cursor: pointer;
     transition: all 0.4s ease;
     position: relative;
@@ -712,11 +712,11 @@ body {
 
 .event-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 60px rgba(255, 182, 193, 0.4);
 }
 
 .event-date {
-    color: #667eea;
+    color: #ff69b4;
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -745,7 +745,7 @@ body {
 
 .milestones-section h2 {
     font-size: 2.5rem;
-    background: linear-gradient(135deg, #f093fb, #f5576c, #667eea);
+    background: linear-gradient(135deg, #ffc0cb, #ff1493, #ff69b4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -762,13 +762,13 @@ body {
 }
 
 .milestone-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(25px);
     border-radius: 30px;
     padding: 35px;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(255, 182, 193, 0.3);
+    border: 1px solid rgba(255, 192, 203, 0.4);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -792,7 +792,7 @@ body {
 
 .milestone-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 30px 70px rgba(255, 182, 193, 0.4);
 }
 
 .milestone-icon {
@@ -824,14 +824,14 @@ body {
 }
 
 .milestone-countdown {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ff69b4, #ffc0cb, #ff1493);
     color: white;
     padding: 15px 25px;
     border-radius: 20px;
     font-weight: 700;
     display: inline-block;
     font-size: 1.1rem;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
     animation: countdownPulse 2s ease-in-out infinite alternate;
 }
 
@@ -853,12 +853,12 @@ body {
 }
 
 .milestone-card.upcoming {
-    border-left: 5px solid #667eea;
+    border-left: 5px solid #ff69b4;
 }
 
 .milestone-card.dream {
-    border-left: 5px solid #f5576c;
-    background: linear-gradient(135deg, rgba(245, 87, 108, 0.1), rgba(255, 255, 255, 0.95));
+    border-left: 5px solid #ff1493;
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(255, 255, 255, 0.85));
 }
 
 .date-info {
