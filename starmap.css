@@ -1822,20 +1822,40 @@
 /* Enhanced Responsive Design */
 @media (max-width: 1200px) {
   .constellation-container {
-    padding: 40px 30px;
+    padding: 40px 25px;
   }
   
   .constellation-canvas {
     padding: 30px 20px;
+    min-height: 450px;
+  }
+  
+  .couple-info-section {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .person-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .love-connection {
+    order: 2;
+    margin: 20px 0;
   }
 }
 
 @media (max-width: 1024px) {
+  .starmap-container {
+    padding: 40px 25px;
+  }
+  
   .constellation-canvas {
     flex-direction: column;
-    min-height: 700px;
-    gap: 50px;
-    padding: 30px 20px;
+    min-height: 650px;
+    gap: 40px;
+    padding: 25px 20px;
   }
   
   .constellation {
@@ -1846,21 +1866,48 @@
   .cosmic-connection {
     position: relative;
     transform: none;
-    margin: 30px 0;
+    margin: 25px 0;
+    order: 0;
   }
   
   .cosmic-line {
-    width: 100px;
+    width: 80px;
   }
   
-  .starmap-container {
-    padding: 50px 30px;
+  .couple-info-section {
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .person-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .love-connection {
+    width: 100%;
+    max-width: 300px;
+    margin: 25px 0;
+  }
+  
+  .compatibility-analysis {
+    margin-top: 40px;
+  }
+  
+  .analysis-card {
+    padding: 25px 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .starmap-page {
+    overflow-x: hidden;
+  }
+  
   .starmap-header {
-    padding: 25px 0;
+    padding: 20px 0;
     position: relative;
   }
   
@@ -1911,162 +1958,56 @@
   }
   
   .starmap-container {
-    padding: 40px 15px;
+    padding: 30px 15px;
   }
   
   .page-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.2;
     margin-bottom: 5px;
   }
   
   .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
   }
   
   .constellation-container {
-    padding: 30px 20px;
+    padding: 25px 15px;
     border-radius: 20px;
   }
   
   .constellation-canvas {
-    min-height: 600px;
-    padding: 25px 15px;
-    border-radius: 15px;
-  }
-  
-  .constellation-name {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .stars-container {
-    height: 250px;
-  }
-  
-  .constellation .star {
-    font-size: 1rem;
-  }
-  
-  .constellation .major-star {
-    font-size: 1.5rem;
-  }
-  
-  .constellation-info {
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 15px;
-  }
-  
-  .constellation-info p {
-    font-size: 0.9rem;
-    margin: 8px 0;
-  }
-  
-  .person-card {
-    padding: 25px 20px;
-  }
-  
-  .person-avatar {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
-  
-  .compatibility-aspect {
-    padding: 20px;
-  }
-  
-  .aspect-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .aspect-score {
-    align-self: flex-end;
-  }
-  
-  .quote-card p {
-    font-size: 1.1rem;
-  }
-  
-  .location-card {
-    padding: 25px 20px;
-  }
-  
-  .location-info {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .starmap-header {
-    padding: 20px 0;
-  }
-  
-  .mobile-menu-toggle {
-    right: 15px;
-  }
-  
-  .header-actions {
-    padding: 15px;
-  }
-  
-  .back-btn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    min-width: auto;
-  }
-  
-  .starmap-container {
-    padding: 30px 10px;
-  }
-  
-  .constellation-container {
-    padding: 20px 15px;
-    border-radius: 18px;
-  }
-  
-  .page-title {
-    font-size: 1.6rem;
-    line-height: 1.1;
-  }
-  
-  .section-title {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-  }
-  
-  .constellation-canvas {
-    padding: 20px 15px;
     min-height: 550px;
-    border-radius: 12px;
+    padding: 20px 15px;
+    border-radius: 15px;
+    gap: 30px;
   }
   
   .constellation-name {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 15px;
   }
   
   .stars-container {
     height: 220px;
+    margin-bottom: 15px;
   }
   
   .constellation .star {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    padding: 4px;
+    margin: -4px;
   }
   
   .constellation .major-star {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
   
   .constellation-info {
     padding: 18px 15px;
-    border-radius: 12px;
+    border-radius: 15px;
+    margin-top: 15px;
   }
   
   .constellation-info p {
@@ -2079,443 +2020,160 @@
   }
   
   .cosmic-line {
-    width: 80px;
-    height: 1.5px;
+    width: 70px;
+    height: 2px;
   }
   
   .connection-heart {
+    font-size: 1.3rem;
+  }
+  
+  /* Couple Info Section */
+  .couple-info-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  .person-card {
+    padding: 20px 15px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
+  .person-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+  
+  .person-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .birthday-info p {
+    font-size: 0.85rem;
+  }
+  
+  .zodiac-sign {
+    font-size: 0.9rem;
+  }
+  
+  .love-connection {
+    width: 100%;
+    max-width: 250px;
+    margin: 25px 0;
+  }
+  
+  .connection-line {
+    width: 2px;
+    height: 40px;
+  }
+  
+  .love-heart {
     font-size: 1.5rem;
   }
   
-  .analysis-card {
-    padding: 20px 15px;
+  .score-circle {
+    width: 80px;
+    height: 80px;
   }
   
+  .score-number {
+    font-size: 1.3rem;
+  }
+  
+  .score-label {
+    font-size: 0.7rem;
+  }
+  
+  /* Compatibility Analysis */
+  .analysis-card {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+  
+  .analysis-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  .compatibility-aspect {
+    padding: 18px 15px;
+    margin-bottom:   15px;
+    border-radius: 15px;
+  }
+  
+  .aspect-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .aspect-header h4 {
+    font-size: 1.1rem;
+  }
+  
+  .aspect-score {
+    align-self: flex-end;
+    font-size: 1rem;
+  }
+  
+  .compatibility-aspect p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .detail-item {
+    font-size: 0.8rem;
+    padding: 8px 0;
+  }
+  
+  /* Stars Background */
+  .stars-background .star {
+    width: 2px;
+    height: 2px;
+  }
+  
+  /* Floating Hearts */
+  .floating-hearts .heart {
+    width: 6px;
+    height: 6px;
+  }
+  
+  /* Quotes and other sections */
   .quote-card {
     padding: 20px 15px;
+    border-radius: 18px;
   }
   
   .quote-card p {
     font-size: 1rem;
     line-height: 1.5;
   }
-  
-  .timeline-content {
-    padding: 20px 15px;
-  }
-  
-  .love-connection {
-    margin: 15px  0;
+    .timeline-content {
+    padding: 18px 15px;
   }
 }
 
-/* Extra small devices (phones in portrait mode) */
-@media (max-width: 360px) {
-  .starmap-container {
-    padding: 25px 8px;
-  }
-  
-  .constellation-container {
-    padding: 15px 10px;
-  }
-  
-  .constellation-canvas {
-    padding: 15px 10px;
-    min-height: 500px;
-  }
-  
-  .page-title {
-    font-size: 1.4rem;
-  }
-  
-  .section-title {
-    font-size: 1.3rem;
-  }
-  
-  .constellation-name {
-    font-size: 1.1rem;
-  }
-  
-  .stars-container {
-    height: 200px;
-  }
-  
-  .back-btn {
-    padding: 8px 12px;
-    font-size: 0.75rem;
-    min-width: auto;
-  }
-  
-  .constellation-info {
-    padding: 15px 12px;
-  }
-  
-  .constellation-info p {
-    font-size: 0.8rem;
-  }
-  
-  .mobile-menu-toggle {
-    right: 10px;
-  }
-  
-  .header-actions {
-    padding: 15px 10px;
-  }
-  
-  /* Optimize star positions for very small screens */
-  .constellation .star {
-    font-size: 0.8rem;
-    padding: 8px;
-    margin: -8px;
-  }
-  
-  .constellation .major-star {
-    font-size: 1.1rem;
-  }
-  
-  /* Reduce cosmic connection size */
-  .cosmic-line {
-    width: 60px;
-  }
-  
-  .connection-heart {
-    font-size: 1.2rem;
-  }
-}
-
-/* Landscape orientation for mobile devices */
-@media (max-width: 768px) and (orientation: landscape) {
-  .starmap-header {
-    padding: 15px 0;
-  }
-  
-  .page-title {
-    font-size: 1.8rem;
-  }
-  
-  .constellation-canvas {
-    flex-direction: row;
-    min-height: 400px;
-    gap: 30px;
-    padding: 20px 15px;
-  }
-  
-  .constellation {
-    max-width: 45%;
-    margin: 0 10px;
-  }
-  
-  .cosmic-connection {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-  }
-  
-  .stars-container {
-    height: 200px;
-  }
-  
-  .constellation-container {
-    padding: 25px 20px;
-  }
-  
-  .starmap-container {
-    padding: 30px 15px;
-  }
-  
-  /* Adjust mobile menu for landscape */
-  .header-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 15px 20px;
-  }
-  
-  .back-btn {
-    flex: 0 1 auto;
-    min-width: 120px;
-  }
-}
-
-/* Portrait orientation optimizations */
-@media (max-width: 768px) and (orientation: portrait) {
-  .constellation-canvas {
-    min-height: 600px;
-  }
-  
-  .stars-container {
-    height: 250px;
-  }
-  
-  /* Stack navigation vertically in portrait */
-  .header-actions {
-    flex-direction: column;
-  }
-  
-  .back-btn {
-    width: 100%;
-  }
-}
-
-/* Touch-friendly improvements */
-@media (hover: none) and (pointer: coarse) {
-  .constellation .star {
-    padding: 8px;
-    margin: -8px;
-  }
-  
-  .back-btn {
-    padding: 12px 18px;
-    min-height: 44px;
-  }
-  
-  .constellation .star:active {
-    transform: scale(1.2);
-  }
-  
-  .back-btn:active {
-    transform: translateY(0);
-    background: 
-      linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%),
-      var(--glass-bg);
-  }
-}
-
-/* Print styles */
-@media print {
-  .floating-hearts,
-  .stars-background,
-  .carousel-controls {
-    display: none;
-  }
-  
-  .starmap-page {
-    background: white;
-    color: black;
-  }
-  
-  .starmap-header {
-    background: none;
-    box-shadow: none;
-  }
-  
-  .page-title {
-    color: black;
-  }
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .floating-hearts,
-  .stars-background {
-    display: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .starmap-page {
-    background: #000;
-    color: #fff;
-  }
-  
-  .person-card,
-  .compatibility-aspect,
-  .location-card {
-    border: 2px solid #fff;
-  }
-}
-
-/* Additional animations and improvements */
-.starmap-page.loaded .starmap-header {
-  animation: slideInFromTop 1s ease-out;
-}
-
-.starmap-page.loaded .constellation-container {
-  animation: fadeInScale 1.2s ease-out 0.3s both;
-}
-
-.starmap-page.loaded .couple-info-section {
-  animation: slideInFromBottom 1s ease-out 0.6s both;
-}
-
-@keyframes slideInFromTop {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Improved hover effects */
-.person-card:hover .person-avatar {
-  animation: avatarPulse 1s ease-in-out;
-}
-
-@keyframes avatarPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* Enhanced compatibility aspects */
-.compatibility-aspect:nth-child(odd) {
-  animation-delay: 0.1s;
-}
-
-.compatibility-aspect:nth-child(even) {
-  animation-delay: 0.2s;
-}
-
-/* Improved timeline animations */
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
-
-/* Planet cards hover effects */
-.planet-card:hover .planet-icon {
-  animation: planetSpin 2s ease-in-out;
-}
-
-@keyframes planetSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Enhanced cosmic connection */
-.cosmic-connection {
-  animation: cosmicGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes cosmicGlow {
-  0% {
-    filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.5));
-  }
-  100% {
-    filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.8));
-  }
-}
-
-/* Enhanced constellation styling */
-.constellation .star.bright {
-  color: #ffd700;
-  font-size: 1.4rem;
-  text-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.4);
-}
-
-.scorpio-constellation .star.bright {
-  color: #ff1493;
-  text-shadow: 0 0 25px rgba(255, 20, 147, 0.8), 0 0 50px rgba(255, 20, 147, 0.4);
-}
-
-.libra-constellation .star.bright {
-  color: #00bfff;
-  text-shadow: 0 0 25px rgba(0, 191, 255, 0.8), 0 0 50px rgba(0, 191, 255, 0.4);
-}
-
-/* Improved constellation canvas for better star visibility */
-.constellation-canvas {
-  position: relative;
-  min-height: 500px;
-  background: 
-    radial-gradient(ellipse at 30% 30%, rgba(25, 25, 112, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 70%, rgba(72, 61, 139, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
-  border-radius: 20px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px;
-  box-shadow: 
-    inset 0 0 50px rgba(0, 0, 0, 0.8),
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 0 100px rgba(102, 126, 234, 0.1);
-}
-
-/* Fix for constellation positioning */
-.constellation {
-  flex: 1;
-  position: relative;
-  text-align: center;
-  max-width: 45%;
-  margin: 0 20px;
-}
-
-.cosmic-connection {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Enhanced star tooltips */
-#star-tooltip {
-  background: rgba(0, 0, 0, 0.95) !important;
-  border: 1px solid rgba(102, 126, 234, 0.5) !important;
-  border-radius: 8px !important;
-  padding: 8px 12px !important;
-  font-size: 0.85rem !important;
-  font-weight: 500 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle Styles */
 .mobile-menu-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
   position: absolute;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
   z-index: 1001;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
@@ -2524,8 +2182,8 @@
 }
 
 .hamburger-line {
-  width: 24px;
-  height: 2px;
+  width: 25px;
+  height: 3px;
   background: white;
   margin: 3px 0;
   transition: all 0.3s ease;
@@ -2544,172 +2202,252 @@
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Enhanced touch and responsive improvements */
-@media (max-width: 768px) {
-  /* Increase tap targets for better touch interaction */
+/* Improved constellation positioning for responsive design */
+.constellation .star[style*="top: 15%"] { top: 15% !important; }
+.constellation .star[style*="top: 20%"] { top: 20% !important; }
+.constellation .star[style*="top: 25%"] { top: 25% !important; }
+.constellation .star[style*="top: 30%"] { top: 30% !important; }
+.constellation .star[style*="top: 35%"] { top: 35% !important; }
+.constellation .star[style*="top: 40%"] { top: 40% !important; }
+.constellation .star[style*="top: 45%"] { top: 45% !important; }
+.constellation .star[style*="top: 50%"] { top: 50% !important; }
+.constellation .star[style*="top: 55%"] { top: 55% !important; }
+.constellation .star[style*="top: 60%"] { top: 60% !important; }
+.constellation .star[style*="top: 65%"] { top: 65% !important; }
+.constellation .star[style*="top: 70%"] { top: 70% !important; }
+
+/* Responsive star positioning adjustments */
+@media (max-width: 480px) {
   .constellation .star {
-    padding: 10px;
-    margin: -10px;
+    position: absolute;
+    font-size: 0.8rem;
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
-  /* Smooth scrolling for mobile */
-  html {
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Prevent zoom on input focus */
-  input, button, select, textarea {
-    font-size: 16px;
-  }
-  
-  /* Optimize animations for mobile */
-  .constellation-lines path {
-    animation-duration: 4s;
-  }
-  
-  .floating-hearts .heart {
-    animation-duration: 15s;
+  .constellation .star:active {
+    transform: scale(1.2);
   }
 }
 
-/* Prevent horizontal scroll on mobile */
+@media (max-width: 360px) {
+  .constellation .star {
+    font-size: 0.7rem;
+  }
+  
+  .constellation .major-star {
+    font-size: 1rem;
+  }
+}
+
+/* Improve touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  .constellation .star {
+    padding: 10px;
+    margin: -10px;
+    font-size: 1.1rem;
+  }
+  
+  .constellation .star:hover {
+    transform: none;
+  }
+  
+  .constellation .star:active {
+    transform: scale(1.15);
+    transition: transform 0.1s ease;
+  }
+  
+  .back-btn:hover {
+    transform: none;
+  }
+  
+  .back-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Improve visibility on small screens */
+@media (max-width: 480px) {
+  .constellation-lines svg {
+    opacity: 0.6;
+  }
+  
+  .constellation-lines path {
+    stroke-width: 1.5;
+  }
+}
+
+@media (max-width: 360px) {
+  .constellation-lines svg {
+    opacity: 0.5;
+  }
+  
+  .constellation-lines path {
+    stroke-width: 1;
+  }
+}
+
+/* Additional responsive fixes for better constellation display */
 @media (max-width: 768px) {
-  body {
+  .constellation-canvas {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .constellation-canvas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+    z-index: 0;
+  }
+  
+  .constellation {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Fix for constellation info readability */
+@media (max-width: 480px) {
+  .constellation-info {
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%),
+      rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .constellation-info strong {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Improve aspect details visibility on mobile */
+@media (max-width: 768px) {
+  .aspect-details {
+    gap: 8px;
+  }
+  
+  .detail-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .detail-item i {
+    color: #ff6b9d;
+    margin-right: 8px;
+  }
+}
+
+/* Better spacing for mobile compatibility scores */
+@media (max-width: 480px) {
+  .compatibility-details {
+    gap: 12px;
+  }
+  
+  .aspect-header {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .aspect-header i {
+    color: #ff6b9d;
+    margin-right: 8px;
+  }
+}
+
+/* Improve quote cards for mobile */
+@media (max-width: 768px) {
+  .quote-card {
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .quote-card::before {
+    font-size: 2rem;
+    top: 10px;
+    left: 15px;
+  }
+  
+  .quote-card p {
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+/* Mobile-specific optimizations for better performance */
+@media (max-width: 768px) {
+  .starmap-page::before {
+    animation-duration: 30s; /* Slower animation for mobile */
+  }
+  
+  .floating-hearts .heart {
+    animation-duration: 8s; /* Slower heart animation */
+  }
+  
+  .constellation .star {
+    animation-duration: 3s; /* Slower star twinkle */
+  }
+}
+
+/* Accessibility improvements for small screens */
+@media (max-width: 480px) {
+  .back-btn {
+    min-height: 44px; /* Minimum touch target size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .constellation .star {
+    min-width: 24px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Prevent horizontal scroll on very small screens */
+@media (max-width: 320px) {
+  .starmap-page {
     overflow-x: hidden;
   }
   
   .starmap-container {
-    width: 100%;
-    max-width: 100vw;
+    padding: 15px 5px;
   }
   
   .constellation-container {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
+    padding: 12px 5px;
   }
   
   .constellation-canvas {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-/* Optimize text rendering for mobile */
-@media (max-width: 768px) {
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    padding: 12px 5px;
   }
   
-  /* Reduce motion for better performance on mobile */
-  .starmap-page::before {
-    animation-duration: 30s;
+  .page-title {
+    font-size: 1.2rem;
+    word-break: break-word;
   }
   
-  .background-animation {
-    opacity: 0.5;
-  }
-}
-
-/* Additional mobile improvements for content readability */
-@media (max-width: 768px) {
-  /* Improve text contrast and readability */
-  .constellation-info {
-    background: 
-      linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
-      rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(20px);
-  }
-  
-  .constellation-info p {
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.95);
-  }
-  
-  /* Better spacing for compatibility aspects */
-  .compatibility-aspect {
-    margin-bottom: 25px;
-  }
-  
-  .compatibility-aspect:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Optimize quote cards for mobile */
-  .quote-card {
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .quote-card p {
-    line-height: 1.7;
-    margin-bottom: 15px;
-  }
-  
-  /* Better timeline layout on mobile */
-  .timeline-item {
-    margin-bottom: 30px;
-  }
-  
-  .timeline-content {
-    border-radius: 18px;
-  }
-  
-  /* Location cards optimization */
-  .location-card {
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .location-card:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Planet cards for mobile */
-  .planets-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .planet-card {
-    padding: 25px 20px;
-    border-radius: 20px;
-    text-align: center;
-  }
-  
-  .planet-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-  }
-}
-
-/* Specific improvements for extra small screens */
-@media (max-width: 480px) {
-  .compatibility-aspect {
-    margin-bottom: 20px;
-  }
-  
-  .quote-card {
-    margin-bottom: 15px;
-  }
-  
-  .timeline-item {
-    margin-bottom: 25px;
-  }
-  
-  .location-card {
-    margin-bottom: 15px;
-  }
-  
-  .planet-card {
-    padding: 20px 15px;
-  }
-  
-  .planet-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  .constellation-name {
+    font-size: 1rem;
+    word-break: break-word;
   }
 }
