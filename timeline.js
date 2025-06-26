@@ -277,7 +277,7 @@ const timelineEvents = [
         title: "First Date #1 💝",
         description: "Cuộc hẹn hò đầu tiên của chúng ta",
         icon: "💝",
-        story: "Buổi hẹn đầu tiên đầy ắp những cảm xúc mới mẻ và hồi hộp. Anh dắt e đi ăn món Thái dở ẹc :))). Xong dắt e đi bắn cung,..."
+        story: "Buổi hẹn đầu tiên đầy ắp những cảm xúc mới mẻ và hồi hộp. Anh dắt e đi ăn món Hàn Quắc dở ẹc :))). Xong dắt e đi bắn cung,..."
     },
     {
         id: 5,
