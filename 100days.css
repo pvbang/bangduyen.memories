@@ -365,8 +365,8 @@ body {
 }
 
 .celebration-gif {
-    width: 180px;
-    height: 180px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 12px 48px rgba(255, 182, 193, 0.4);
@@ -1043,13 +1043,13 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-gif .celebration-gif {
-        width: 80px;
-        height: 80px;
+        width: 300px;
+        height: 300px;
     }
     
     .message-gif .love-gif {
-        width: 60px;
-        height: 60px;
+        width: 300px;
+        height: 300px;
     }
     
     .timeline::before {
@@ -1161,8 +1161,8 @@ section {
     }
     
     .hero-gif .celebration-gif {
-        width: 60px;
-        height: 60px;
+        width: 300px;
+        height: 300px;
     }
 }
 
@@ -1180,8 +1180,8 @@ section {
     }
     
     .celebration-gif {
-        width: 150px;
-        height: 150px;
+        width: 300px;
+        height: 300px;
     }
 }
 
@@ -1247,13 +1247,13 @@ img::before {
 /* Enhanced responsive design */
 @media (max-width: 768px) {
     .hero-gif .celebration-gif {
-        width: 80px;
-        height: 80px;
+        width: 300px;
+        height: 300px;
     }
     
     .message-gif .love-gif {
-        width: 60px;
-        height: 60px;
+        width: 300px;
+        height: 300px;
     }
     
     .timeline::before {
@@ -1365,8 +1365,8 @@ img::before {
     }
     
     .hero-gif .celebration-gif {
-        width: 60px;
-        height: 60px;
+        width: 300px;
+        height: 300px;
     }
 }
 
