@@ -354,7 +354,7 @@ function initInteractiveElements() {
 // Heart rain effect
 function initHeartRain() {
     const heartRainButton = document.createElement('button');
-    heartRainButton.innerHTML = '💖 Mưa chái tymmm';
+    heartRainButton.innerHTML = '💖 Mưa chái tym';
     heartRainButton.style.cssText = `
         position: fixed;
         bottom: 30px;
