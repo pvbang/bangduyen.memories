@@ -364,6 +364,12 @@ body {
     justify-content: center;
 }
 
+.message-gif {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
 .celebration-gif {
     width: 300px;
     height: 300px;
