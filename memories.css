@@ -574,6 +574,38 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Special button for 100 days celebration */
+.nav-btn.special-btn {
+    background: linear-gradient(135deg, #FFD700 0%, #FF91A4 50%, #FF69B4 100%);
+    color: white;
+    font-weight: 600;
+    border: 2px solid #FFD700;
+    animation: specialGlow 3s ease-in-out infinite;
+}
+
+.nav-btn.special-btn::before {
+    background: linear-gradient(135deg, #FF69B4 0%, #FFD700 50%, #FF91A4 100%);
+}
+
+.nav-btn.special-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.nav-btn.special-btn i {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes specialGlow {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+    }
+}
+
 /* ==========================================
    FILTERS SECTION
    ========================================== */
