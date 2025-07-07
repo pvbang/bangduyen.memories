@@ -58,9 +58,12 @@ function updateLoveCounter() {
     const now = new Date();
     const loveStart = IMPORTANT_DATES.officialCouple;
     
-    if (now < loveStart) {
+    // Tạo ngày bắt đầu chỉ tính theo ngày (không tính giờ)
+    const loveStartDate = new Date("2025-03-23"); // Chỉ lấy ngày, bỏ giờ
+    
+    if (now < loveStartDate) {
         // Nếu chưa tới ngày yêu
-        const timeDiff = loveStart - now;
+        const timeDiff = loveStartDate - now;
         const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
@@ -69,6 +72,7 @@ function updateLoveCounter() {
         animateCounter("totalYears", 0);
         animateCounter("totalMonths", 0);
         animateCounter("totalDays", days);
+        animateCounter("totalDaysOverall", 0); // Thêm counter tổng số ngày
         animateCounter("totalHours", hours);
         animateCounter("totalMinutes", minutes);
         animateCounter("totalSeconds", seconds);
@@ -78,6 +82,7 @@ function updateLoveCounter() {
         return;
     }
     
+    // Tính toán với giờ phút giây cho counters thông thường
     const timeDiff = now - loveStart;
     
     // Tính toán chi tiết hơn
@@ -87,6 +92,9 @@ function updateLoveCounter() {
     const totalDays = Math.floor(totalHours / 24);
     const totalMonths = Math.floor(totalDays / 30.44); // Average days per month
     const totalYears = Math.floor(totalDays / 365.25); // Account for leap years
+    
+    // Tính tổng số ngày chỉ theo ngày (không tính giờ)
+    const totalDaysOverall = Math.floor((now - loveStartDate) / (1000 * 60 * 60 * 24));
     
     // Phần dư để hiển thị
     const years = totalYears;
@@ -99,13 +107,20 @@ function updateLoveCounter() {
     animateCounter("totalYears", years);
     animateCounter("totalMonths", months);
     animateCounter("totalDays", days);
+    animateCounter("totalDaysOverall", Math.max(0, totalDaysOverall)); // Sử dụng totalDaysOverall riêng biệt
     animateCounter("totalHours", hours);
     animateCounter("totalMinutes", minutes);
     animateCounter("totalSeconds", seconds);
     
-    // Progress towards 1000 days
-    const progressPercent = Math.min((totalDays / 1000) * 100, 100);
+    // Progress towards 1000 days - sử dụng totalDaysOverall
+    const progressPercent = Math.min((totalDaysOverall / 1000) * 100, 100);
     document.getElementById("progressFill").style.width = progressPercent + "%";
+    
+    // Cập nhật progress text với tổng số ngày
+    const progressText = document.querySelector(".progress-text");
+    if (progressText) {
+        progressText.textContent = `Hành trình tới 1000 ngày yêu nhau ❤️ (Hiện tại: ${Math.max(0, totalDaysOverall)} ngày)`;
+    }
 }
 
 // Animate counter numbers

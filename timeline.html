@@ -13,7 +13,8 @@
     <!-- Authentication Guard - Load first -->
     <script src="auth-guard.js"></script>
     <link rel="stylesheet" href="timeline.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">    <link
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap"
         rel="stylesheet">
 </head>
@@ -41,7 +42,8 @@
             <div class="header-content">
                 <h1><i class="fas fa-heart"></i> Timeline Tình Yêu</h1>
                 <p>Hành trình tình yêu của Bằng & Duyên</p>
-            </div>            <div class="nav-actions">
+            </div>
+            <div class="nav-actions">
                 <a href="memories.html" class="nav-btn">
                     <i class="fas fa-photo-video"></i> Kỷ Niệm
                 </a>
@@ -67,7 +69,14 @@
                     <div class="counter-header">
                         <h2><i class="fas fa-heartbeat"></i> Chúng Mình Đã Yêu Nhau Được</h2>
                         <p class="counter-subtitle">Kể từ ngày 23/03/2025 - Ngày chính thức thành người yêu</p>
-                    </div>                    <div class="counter-display">
+                    </div>
+                    <div class="counter-display">
+                        <div class="counter-item total-days-counter">
+                            <span class="counter-number" id="totalDaysOverall">0</span>
+                            <span class="counter-label">Tổng Ngày Iuuuu 🥰</span>
+                        </div>
+                    </div>
+                    <div class="counter-display">
                         <div class="counter-item">
                             <span class="counter-number" id="totalYears">0</span>
                             <span class="counter-label">Năm</span>
@@ -104,7 +113,8 @@
 
             <!-- Important Dates Counter -->
             <section class="important-dates">
-                <h2><i class="fas fa-calendar-heart"></i> Những Ngày Đặc Biệt</h2>                <div class="dates-grid">
+                <h2><i class="fas fa-calendar-heart"></i> Những Ngày Đặc Biệt</h2>
+                <div class="dates-grid">
                     <div class="date-card birthday-bang">
                         <div class="date-icon">🎂</div>
                         <h3>Sinh Nhật Anh</h3>
@@ -162,7 +172,16 @@
                         <h3>Chính Thức Yêu Nhau</h3>
                         <p class="date-info">23/03/2025 - 19h30</p>
                         <div class="days-counter">
-                            Đã <span id="daysSinceOfficial">0</span> ngày
+                            Aiuuu đếm phía trên gòi nè kk :)))
+                        </div>
+                    </div>
+
+                    <div class="date-card official-love">
+                        <div class="date-icon">❤️</div>
+                        <h3>100 Ngày Yêu Nhau</h3>
+                        <p class="date-info">01/07/2025</p>
+                        <div class="days-counter">
+                            Đã <span id="daysSince100Days">nhiều</span> ngày
                         </div>
                     </div>
                 </div>
@@ -181,7 +200,8 @@
 
             <!-- Milestones -->
             <section class="milestones-section">
-                <h2><i class="fas fa-trophy"></i> Những Cột Mốc Quan Trọng</h2>                <div class="milestones-grid">
+                <h2><i class="fas fa-trophy"></i> Những Cột Mốc Quan Trọng</h2>
+                <div class="milestones-grid">
                     <div class="milestone-card achieved">
                         <div class="milestone-icon">❤️</div>
                         <h3>Chính Thức Yêu Nhau</h3>

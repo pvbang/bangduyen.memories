@@ -41,9 +41,9 @@
     --radius-full: 50px;
     
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Dancing Script', cursive;
     --font-script: 'Dancing Script', cursive;
-    --font-body: 'Poppins', sans-serif;
+    --font-body: 'Lora', serif;
 }
 
 body {
