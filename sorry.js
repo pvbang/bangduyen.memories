@@ -25,14 +25,6 @@ class SorryGame {
     async loadMediaFiles() {
         // List of possible image/gif files
         const imageFiles = [
-            'data/images/01.jpg',
-            'data/images/02.jpg',
-            'data/images/03.jpg',
-            'data/images/04.jpg',
-            'data/images/05.jpg',
-            'data/images/06.jpg',
-            'data/images/07.jpg',
-            'data/gif/gif01.gif',
             'data/gif/gif01-v2.gif',
             'data/gif/gif02.gif'
         ];
@@ -62,7 +54,7 @@ class SorryGame {
 
     displayRandomMedia() {
         const mediaElement = document.getElementById('randomMedia');
-        if (this.mediaFiles.length > 0) {
+        if (mediaElement && this.mediaFiles.length > 0) {
             const randomFile = this.mediaFiles[Math.floor(Math.random() * this.mediaFiles.length)];
             mediaElement.src = randomFile;
             mediaElement.style.opacity = '0';
@@ -496,6 +488,7 @@ class SorryGame {
     }
 
     endMiniGame() {
+        console.log('Mini game ended with score:', this.gameScore);
         const miniGame = document.getElementById('miniGame');
         if (miniGame) {
             const endMessage = document.createElement('div');
@@ -622,14 +615,19 @@ function setupGameCardListeners() {
     });
 }
 
+let activeGameIntervals = [];
+let activeGameCleanUp = null;
+
 function startGame(gameType) {
+    // First, ensure any previous game is fully cleaned up.
+    closeGame();
+
     const gameArena = document.getElementById('gameArena');
     const gameTitle = document.getElementById('currentGameTitle');
     const gameContent = document.getElementById('gameContent');
-    
+
     if (!gameArena || !gameTitle || !gameContent) return;
-    
-    // Game titles
+
     const gameTitles = {
         'heart-collector': '🎯 Hái Trái Tim Cho Em',
         'memory-match': '💞 Ghép Đôi Kỷ Niệm',
@@ -640,43 +638,44 @@ function startGame(gameType) {
         'love-chat': '💬 Chat Tình Yêu',
         'love-garden': '🌸 Vườn Hoa Tình Yêu'
     };
-    
+
     gameTitle.textContent = gameTitles[gameType] || 'Mini Game';
-    gameArena.style.display = 'flex';
-    
-    // Clear previous game content
     gameContent.innerHTML = '';
-    
-    // Initialize specific game
-    switch(gameType) {
-        case 'heart-collector':
-            initHeartCollectorGame(gameContent);
-            break;
-        case 'memory-match':
-            initMemoryMatchGame(gameContent);
-            break;
-        case 'hidden-hearts':
-            initHiddenHeartsGame(gameContent);
-            break;
-        case 'love-letter':
-            initLoveLetterGame(gameContent);
-            break;
-        case 'emotion-guess':
-            initEmotionGuessGame(gameContent);
-            break;
-        case 'heart-puzzle':
-            initHeartPuzzleGame(gameContent);
-            break;
-        case 'love-chat':
-            initLoveChatGame(gameContent);
-            break;
-        case 'love-garden':
-            initLoveGardenGame(gameContent);
-            break;
+    gameArena.style.display = 'flex';
+
+    const gameInitializers = {
+        'heart-collector': initHeartCollectorGame,
+        'memory-match': initMemoryMatchGame,
+        'hidden-hearts': initHiddenHeartsGame,
+        'love-letter': initLoveLetterGame,
+        'emotion-guess': initEmotionGuessGame,
+        'heart-puzzle': initHeartPuzzleGame,
+        'love-chat': initLoveChatGame,
+        'love-garden': initLoveGardenGame
+    };
+
+    const initializer = gameInitializers[gameType];
+    if (initializer) {
+        // Use requestAnimationFrame to ensure the DOM is fully rendered and sized
+        requestAnimationFrame(() => {
+            setTimeout(() => { // A small timeout can still help with complex layouts
+                initializer(gameContent);
+            }, 50);
+        });
     }
 }
 
 function closeGame() {
+    // Clear all registered intervals for the active game
+    activeGameIntervals.forEach(intervalId => clearInterval(intervalId));
+    activeGameIntervals = []; // Reset the array
+
+    // Execute any game-specific cleanup logic
+    if (typeof activeGameCleanUp === 'function') {
+        activeGameCleanUp();
+        activeGameCleanUp = null;
+    }
+
     const gameArena = document.getElementById('gameArena');
     if (gameArena) {
         gameArena.style.display = 'none';
@@ -684,10 +683,8 @@ function closeGame() {
 }
 
 function exitGame() {
-    // Show confirmation dialog
-    if (confirm('Bạn có chắc muốn thoát game không? 🥺')) {
+    if (confirm('Eiuu có chắc muốn thoát game không? 🥺')) {
         closeGame();
-        // Show love games section again
         const loveGames = document.getElementById('loveGames');
         if (loveGames) {
             loveGames.style.display = 'block';
@@ -705,123 +702,208 @@ function initHeartCollectorGame(container) {
                 <div class="progress-fill" id="heartProgress"></div>
             </div>
         </div>
-        <div class="game-area" style="height: 400px; position: relative; background: linear-gradient(135deg, rgba(255, 240, 245, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%); border-radius: 20px; overflow: hidden;">
-            <div class="heart-collector" id="heartCollector" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; background: linear-gradient(135deg, #FF69B4, #FFD700); border-radius: 50%; cursor: move; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);">💕</div>
+        <div class="game-area" id="heartGameArea" style="height: 400px; position: relative; background: linear-gradient(135deg, rgba(255, 240, 245, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%); border-radius: 20px; overflow: hidden; user-select: none;">
+            <div class="heart-collector" id="heartCollector" style="position: absolute; bottom: 20px; width: 80px; height: 80px; background: linear-gradient(135deg, #FF69B4, #FFD700); border-radius: 50%; cursor: move; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4); transform: translateX(-50%);">💕</div>
         </div>
         <div style="text-align: center; margin-top: 20px; color: #666;">
             <p>🎯 Di chuyển để hứng những trái tim rơi từ trên cao!</p>
             <p>💝 Mỗi trái tim là một lời yêu thương anh gửi đến em!</p>
         </div>
     `;
-    
-    // Start the heart collector game
-    startHeartCollectorLogic();
+
+    // Use requestAnimationFrame to ensure correct dimensions are available
+    requestAnimationFrame(() => {
+        startHeartCollectorLogic();
+    });
 }
 
 function startHeartCollectorLogic() {
-    const gameArea = document.querySelector('.game-area');
+    const gameArea = document.getElementById('heartGameArea');
     const collector = document.getElementById('heartCollector');
     const scoreEl = document.getElementById('heartScore');
     const timerEl = document.getElementById('heartTimer');
     const progressEl = document.getElementById('heartProgress');
-    
+
+    if (!gameArea || !collector || !scoreEl || !timerEl || !progressEl) {
+        console.error("Heart Collector game elements not found!");
+        return;
+    }
+
+    // Center the collector initially
+    collector.style.left = `${gameArea.offsetWidth / 2}px`;
+
     let score = 0;
     let timeLeft = 30;
     let gameActive = true;
-    let isDragging = false;
-    
-    // Collector movement
-    collector.addEventListener('mousedown', (e) => {
-        isDragging = true;
+
+    const loveMessages = [
+        "Yêu em nhất!", "Công chúa của anh!", "Mãi bên nhau nhé!", "Em là tất cả!",
+        "Nhớ em nhiều!", "Hun em một cái!", "Tim anh thuộc về em!", "Em là định mệnh!"
+    ];
+
+    const handleDragMove = (e) => {
+        if (!gameActive) return;
         e.preventDefault();
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging && gameActive) {
-            const gameRect = gameArea.getBoundingClientRect();
-            const newX = Math.max(40, Math.min(gameRect.width - 40, e.clientX - gameRect.left));
-            collector.style.left = newX + 'px';
-        }
-    });
-    
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-    
-    // Game timer
+
+        const gameRect = gameArea.getBoundingClientRect();
+        const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+        
+        let targetX = clientX - gameRect.left;
+        
+        // The 'left' style is relative to the transform's center, so we don't need to halve the width
+        const minX = 0;
+        const maxX = gameArea.offsetWidth;
+
+        const clampedX = Math.max(minX, Math.min(maxX, targetX));
+        
+        collector.style.left = clampedX + 'px';
+    };
+
+    const handleDragEnd = (e) => {
+        if (e) e.preventDefault();
+        document.removeEventListener('mousemove', handleDragMove);
+        document.removeEventListener('mouseup', handleDragEnd);
+        document.removeEventListener('touchmove', handleDragMove);
+        document.removeEventListener('touchend', handleDragEnd);
+    };
+
+    const handleDragStart = (e) => {
+        e.preventDefault();
+        document.addEventListener('mousemove', handleDragMove);
+        document.addEventListener('mouseup', handleDragEnd);
+        document.addEventListener('touchmove', handleDragMove, { passive: false });
+        document.addEventListener('touchend', handleDragEnd);
+    };
+
+    collector.addEventListener('mousedown', handleDragStart);
+    collector.addEventListener('touchstart', handleDragStart, { passive: false });
+
     const timer = setInterval(() => {
+        if (!gameActive) return;
         timeLeft--;
         timerEl.textContent = timeLeft;
         progressEl.style.width = ((30 - timeLeft) / 30 * 100) + '%';
         
         if (timeLeft <= 0) {
             gameActive = false;
-            clearInterval(timer);
-            clearInterval(heartSpawner);
+            // First, perform cleanup that removes event listeners
+            if (typeof activeGameCleanUp === 'function') {
+                activeGameCleanUp();
+                activeGameCleanUp = null;
+            }
+            // Then, stop all game intervals
+            activeGameIntervals.forEach(intervalId => clearInterval(intervalId));
+            activeGameIntervals = [];
+            // Finally, display the end screen
             endHeartCollectorGame(score);
         }
     }, 1000);
-    
-    // Spawn falling hearts
+    activeGameIntervals.push(timer);
+
     const heartSpawner = setInterval(() => {
-        if (!gameActive) return;
-        createFallingHeart();
+        if (gameActive) {
+            createFallingHeart();
+        }
     }, 800);
-    
+    activeGameIntervals.push(heartSpawner);
+
     function createFallingHeart() {
         const heart = document.createElement('div');
-        const heartEmojis = ['💖', '💕', '❤️', '💝', '💗', '💘'];
-        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        heart.textContent = '💖';
         heart.style.cssText = `
             position: absolute;
-            top: -30px;
-            left: ${Math.random() * (gameArea.offsetWidth - 40)}px;
+            top: -40px;
+            left: ${Math.random() * (gameArea.offsetWidth - 30)}px;
             font-size: 28px;
             pointer-events: none;
-            animation: heartFall 3s linear forwards;
             z-index: 10;
+            text-shadow: 0 0 10px rgba(255,255,255,0.7);
         `;
-        
         gameArea.appendChild(heart);
-        
-        // Collision detection
-        const checkCollision = setInterval(() => {
-            const heartRect = heart.getBoundingClientRect();
-            const collectorRect = collector.getBoundingClientRect();
-            
-            if (heartRect.bottom >= collectorRect.top &&
-                heartRect.left < collectorRect.right &&
-                heartRect.right > collectorRect.left &&
-                heartRect.top < collectorRect.bottom) {
-                score += 10;
-                scoreEl.textContent = score;
-                heart.remove();
-                clearInterval(checkCollision);
-                
-                // Create celebration effect
-                createHeartBurst(collector);
-                playSuccessSound();
-            } else if (heart.offsetTop > gameArea.offsetHeight) {
-                heart.remove();
-                clearInterval(checkCollision);
+
+        let fallSpeed = 1.5 + Math.random() * 2;
+        let animationFrameId;
+
+        function fall() {
+            if (!gameActive) {
+                if(heart.parentNode) heart.remove();
+                cancelAnimationFrame(animationFrameId);
+                return;
             }
-        }, 16);
-        
-        setTimeout(() => {
-            if (heart.parentNode) heart.remove();
-            clearInterval(checkCollision);
-        }, 3000);
+
+            const heartTop = heart.offsetTop;
+            heart.style.top = (heartTop + fallSpeed) + 'px';
+
+            const collectorRect = collector.getBoundingClientRect();
+            const heartRect = heart.getBoundingClientRect();
+            const gameAreaRect = gameArea.getBoundingClientRect();
+
+            if (heartRect.bottom > gameAreaRect.bottom) {
+                if (heart.parentNode) heart.remove();
+                cancelAnimationFrame(animationFrameId);
+                return;
+            }
+
+            if (heartRect.bottom > collectorRect.top && heartRect.right > collectorRect.left && heartRect.left < collectorRect.right) {
+                if (heart.parentNode) heart.remove();
+                cancelAnimationFrame(animationFrameId);
+                
+                score++;
+                scoreEl.textContent = score;
+                
+                const msg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+                showFloatingMessage(msg, collector);
+                return;
+            }
+            
+            animationFrameId = requestAnimationFrame(fall);
+        }
+        animationFrameId = requestAnimationFrame(fall);
     }
+
+    function showFloatingMessage(text, element) {
+        const message = document.createElement('div');
+        message.textContent = text;
+        message.style.cssText = `
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FF69B4, #FFD700);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 20;
+            animation: floatUpAndFade 2s ease-out forwards;
+        `;
+        collector.appendChild(message);
+        setTimeout(() => message.remove(), 2000);
+    }
+
+    activeGameCleanUp = () => {
+        gameActive = false; // Stop all game logic
+        collector.removeEventListener('mousedown', handleDragStart);
+        collector.removeEventListener('touchstart', handleDragStart);
+        handleDragEnd(); // Clean up document listeners just in case
+    };
 }
 
 function endHeartCollectorGame(score) {
     const gameContent = document.getElementById('gameContent');
+    if (!gameContent) return;
+    
+    // Clear the game area before showing the end message
+    gameContent.innerHTML = '';
+
     const endMessage = document.createElement('div');
     endMessage.innerHTML = `
-        <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #FFB6C1, #FF69B4); color: white; border-radius: 20px; margin: 20px 0;">
+        <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #FFB6C1, #FF69B4); color: white; border-radius: 20px; margin: 20px 0; animation: bounce-in 0.8s ease-out;">
             <h3 style="font-size: 2rem; margin-bottom: 16px;">🎉 Tuyệt vời!</h3>
             <p style="font-size: 1.3rem; margin-bottom: 12px;">Em đã hứng được ${score} trái tim! 💖</p>
-            <p style="font-size: 1.1rem;">Anh yêu em ${score * 10}% mỗi ngày! 💕</p>
+            <p style="font-size: 1.1rem;">Anh yêu em ${(score + 100) * 10}% mỗi ngày! 💕</p>
             <button onclick="closeGame()" style="background: white; color: #FF69B4; border: none; padding: 12px 24px; border-radius: 25px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 20px; transition: all 0.3s ease;">
                 Đóng game ❤️
             </button>
@@ -1010,9 +1092,9 @@ Anh muốn nói với em rằng em là <span class="letter-blank" data-word="án
 Mỗi ngày thức dậy, điều đầu tiên anh nghĩ đến là <span class="letter-blank" data-word="nụ cười">_____</span> của em.
 Em làm cho trái tim anh <span class="letter-blank" data-word="rung động">_____</span> mỗi khi nhìn thấy em.
 Anh hứa sẽ <span class="letter-blank" data-word="yêu thương">_____</span> em mãi mãi.
-Và sẽ <span class="letter-blank" data-word="bảo vệ">_____</span> em khỏi mọi buồn phiền.
+Và sẽ <span class="letter-blank" data-word="bảo vệ">_____</span> em khỏi mọi buồn phiền. Iuuuu iemm bié của a nhiềuuu lắmmm ❤️
 
-Anh yêu em nhiều lắm!
+Anhh yêu em nhiều lắm!
 ❤️ Người yêu em ❤️`;
 
     container.innerHTML = `
@@ -1255,14 +1337,16 @@ function endHeartPuzzleGame(moves) {
 // Love Chat Game
 function initLoveChatGame(container) {
     const chatMessages = [
-        { type: 'bot', text: 'Xin chào em yêu! Anh có điều muốn nói với em 💕' },
-        { type: 'options', options: ['Anh muốn nói gì? 😊', 'Em đang nghe đây ❤️'] },
+        { type: 'bot', text: 'Xin chào em iuuu của a! Anh có điều muốn nói với em 💕' },
+        { type: 'options', options: ['Anh muốn nói chi? 😊', 'Em đang nghe đây ❤️'] },
         { type: 'bot', text: 'Anh muốn nói rằng anh yêu em nhiều lắm! Em có tin không? 🥰' },
         { type: 'options', options: ['Tin! ❤️', 'Có bằng chứng không? 🤔'] },
-        { type: 'bot', text: 'Bằng chứng là anh viết cả trang web này cho em đó! 😘' },
-        { type: 'options', options: ['Anh ngọt quá! 😍', 'Anh thật lãng mạn! 💕'] },
+        { type: 'bot', text: 'Bằng chứng là anh viết cả trang web này cho em đóa! 😘' },
+        { type: 'options', options: ['Anh ngọt quó, sến quó sến! 😍', 'Anh iuu thiệt là lãng mạn hẹ hẹ! 💕'] },
         { type: 'bot', text: 'Vậy em tha lỗi cho anh chưa? 🙏' },
-        { type: 'options', options: ['Tha lỗi rồi! ❤️', 'Em yêu anh! 💖'] }
+        { type: 'options', options: ['Tha lỗi rồi! ❤️', 'Em yêu anh! 💖'] },
+        { type: 'bot', text: 'Anh cũng iuuu e nhiềuuu lắmmmm 🥰' },
+        { type: 'bot', text: 'Moaa moazz moazzzzz 😘😘' },
     ];
     
     container.innerHTML = `
@@ -1489,7 +1573,7 @@ function playSuccessSound() {
 }
 
 function goHome() {
-    window.location.href = 'index.html';
+    window.location.href = 'memories.html';
 }
 
 function skipGame() {
