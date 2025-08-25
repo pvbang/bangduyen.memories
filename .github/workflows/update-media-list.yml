@@ -18,89 +18,82 @@ jobs:
       
     - name: Create media files list
       run: |
+        #!/bin/bash
+        
         echo "🔄 Generating media files list..."
         
         # Create output directory
         mkdir -p api
         
-        # Initialize counters
-        image_count=0
-        video_count=0
-        images_json=""
-        videos_json=""
+        # Initialize JSON structure
+        cat > api/media-files.json << 'EOF'
+        {
+          "success": true,
+          "generated_at": "",
+          "data": {
+            "images": [],
+            "videos": []
+          },
+          "total_images": 0,
+          "total_videos": 0
+        }
+        EOF
+        
+        # Function to get file info
+        get_file_info() {
+          local file_path=$1
+          local relative_path=$2
+          
+          if [ -f "$file_path" ]; then
+            local filename=$(basename "$file_path")
+            local extension="${filename##*.}"
+            local size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null || echo "0")
+            local modified=$(stat -f%m "$file_path" 2>/dev/null || stat -c%Y "$file_path" 2>/dev/null || echo "0")
+            
+            echo "    {
+              \"filename\": \"$filename\",
+              \"path\": \"$relative_path/$filename\",
+              \"size\": $size,
+              \"modified\": $modified,
+              \"extension\": \"$extension\"
+            }"
+          fi
+        }
         
         # Process images
         echo "📸 Processing images..."
+        images_json=""
+        image_count=0
+        
         if [ -d "data/images" ]; then
-          for img_file in data/images/*; do
+          for img_file in data/images/*.{jpg,jpeg,png,gif,webp,bmp,svg,JPG,JPEG,PNG,GIF,WEBP,BMP,SVG}; do
             if [ -f "$img_file" ]; then
-              filename=$(basename "$img_file")
-              extension="${filename##*.}"
-              extension_lower=$(echo "$extension" | tr '[:upper:]' '[:lower:]')
-              
-              # Check if it's an image file
-              case "$extension_lower" in
-                jpg|jpeg|png|gif|webp|bmp|svg)
-                  size=$(stat -c%s "$img_file" 2>/dev/null || echo "0")
-                  modified=$(stat -c%Y "$img_file" 2>/dev/null || echo "0")
-                  
-                  if [ $image_count -gt 0 ]; then
-                    images_json="$images_json,"
-                  fi
-                  
-                  images_json="$images_json
-            {
-              \"filename\": \"$filename\",
-              \"path\": \"data/images/$filename\",
-              \"size\": $size,
-              \"modified\": $modified,
-              \"extension\": \"$extension_lower\"
-            }"
-                  image_count=$((image_count + 1))
-                  echo "  Found image: $filename"
-                  ;;
-              esac
+              if [ $image_count -gt 0 ]; then
+                images_json="$images_json,"
+              fi
+              images_json="$images_json
+        $(get_file_info "$img_file" "data/images")"
+              ((image_count++))
             fi
           done
-        else
-          echo "  � data/images directory not found"
         fi
         
         # Process videos
         echo "🎬 Processing videos..."
+        videos_json=""
+        video_count=0
+        
         if [ -d "data/videos" ]; then
-          for vid_file in data/videos/*; do
+          for vid_file in data/videos/*.{mp4,webm,ogg,mov,avi,mkv,MP4,WEBM,OGG,MOV,AVI,MKV}; do
             if [ -f "$vid_file" ]; then
-              filename=$(basename "$vid_file")
-              extension="${filename##*.}"
-              extension_lower=$(echo "$extension" | tr '[:upper:]' '[:lower:]')
-              
-              # Check if it's a video file
-              case "$extension_lower" in
-                mp4|webm|ogg|mov|avi|mkv)
-                  size=$(stat -c%s "$vid_file" 2>/dev/null || echo "0")
-                  modified=$(stat -c%Y "$vid_file" 2>/dev/null || echo "0")
-                  
-                  if [ $video_count -gt 0 ]; then
-                    videos_json="$videos_json,"
-                  fi
-                  
-                  videos_json="$videos_json
-            {
-              \"filename\": \"$filename\",
-              \"path\": \"data/videos/$filename\",
-              \"size\": $size,
-              \"modified\": $modified,
-              \"extension\": \"$extension_lower\"
-            }"
-                  video_count=$((video_count + 1))
-                  echo "  Found video: $filename"
-                  ;;
-              esac
+              if [ $video_count -gt 0 ]; then
+                videos_json="$videos_json,"
+              fi
+              videos_json="$videos_json
+        $(get_file_info "$vid_file" "data/videos")"
+              ((video_count++))
             fi
           done
-        else
-          echo "  📁 data/videos directory not found"
         fi
         
         # Generate final JSON
@@ -126,22 +119,16 @@ jobs:
         echo "   🎬 Videos: $video_count"
         echo "   📄 Output: api/media-files.json"
         
-        # Show generated JSON content for debugging
-        echo "📄 Generated JSON content:"
-        cat api/media-files.json
-        
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Check if there are any changes
-        if ! git diff --quiet api/media-files.json 2>/dev/null; then
-          echo "📝 Changes detected in media-files.json"
+        if [ -n "$(git status --porcelain)" ]; then
           git add api/media-files.json
           git commit -m "🤖 Auto-update media files list [$(date +'%Y-%m-%d %H:%M:%S')]"
           git push
           echo "✅ Changes committed and pushed"
         else
-          echo "ℹ️ No changes to commit - media-files.json is up to date"
+          echo "ℹ️ No changes to commit"
         fi
