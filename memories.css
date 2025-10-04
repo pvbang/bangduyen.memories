@@ -1546,3 +1546,15 @@ body {
 .memory-modal.show {
     display: block;
 }
+
+/* Moon Glow Animation for Trung Thu Button */
+@keyframes moonGlow {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.8);
+        transform: scale(1.05);
+    }
+}
