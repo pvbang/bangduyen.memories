@@ -210,7 +210,7 @@ const loveMessages = [
 
 let messageGame = {
     messagesReceived: 0,
-    maxMessages: 33,
+    maxMessages: 2332025,
     
     init() {
         const moonClick = document.getElementById('moon-click');
@@ -291,8 +291,12 @@ function initLoveMessages() {
 
 let lanternGame = {
     wishesCount: 0,
+    wishesData: [],
     
     init() {
+        // Load saved wishes
+        this.loadWishesFromStorage();
+        
         const releaseBtn = document.getElementById('release-lantern');
         const wishInput = document.getElementById('wish-input');
         
@@ -304,6 +308,84 @@ let lanternGame = {
                 }
             });
         }
+        
+        // Initialize data management controls
+        this.initDataControls();
+    },
+    
+    initDataControls() {
+        const viewBtn = document.getElementById('view-wishes');
+        const exportBtn = document.getElementById('export-wishes');
+        const importBtn = document.getElementById('import-wishes');
+        const importFile = document.getElementById('import-file');
+        const clearBtn = document.getElementById('clear-wishes');
+        const closeModal = document.getElementById('close-modal');
+        const modal = document.getElementById('wishes-modal');
+        
+        if (viewBtn) {
+            viewBtn.addEventListener('click', () => this.showWishesModal());
+        }
+        
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => this.exportWishes());
+        }
+        
+        if (importBtn) {
+            importBtn.addEventListener('click', () => importFile.click());
+        }
+        
+        if (importFile) {
+            importFile.addEventListener('change', (e) => this.importWishes(e));
+        }
+        
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearAllWishes());
+        }
+        
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+        
+        // Close modal when clicking outside
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    },
+    
+    loadWishesFromStorage() {
+        try {
+            const savedWishes = localStorage.getItem('trungThuWishes');
+            if (savedWishes) {
+                this.wishesData = JSON.parse(savedWishes);
+                this.wishesCount = this.wishesData.length;
+                this.updateWishesCount();
+            }
+        } catch (error) {
+            console.error('Error loading wishes from storage:', error);
+            this.wishesData = [];
+            this.wishesCount = 0;
+        }
+    },
+    
+    saveWishesToStorage() {
+        try {
+            localStorage.setItem('trungThuWishes', JSON.stringify(this.wishesData));
+        } catch (error) {
+            console.error('Error saving wishes to storage:', error);
+        }
+    },
+    
+    updateWishesCount() {
+        const wishesCountEl = document.getElementById('wishes-count');
+        if (wishesCountEl) {
+            wishesCountEl.textContent = this.wishesCount;
+        }
     },
     
     releaseLantern() {
@@ -314,6 +396,23 @@ let lanternGame = {
             alert('Công chúa hãy viết điều ước của mình trước khi thả đèn nhié! 🏮');
             return;
         }
+        
+        // Save wish data
+        const wishData = {
+            id: Date.now(),
+            content: wish,
+            timestamp: new Date().toISOString(),
+            date: new Date().toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+        };
+        
+        this.wishesData.push(wishData);
+        this.saveWishesToStorage();
         
         const sky = document.getElementById('lanterns-sky');
         const lantern = document.createElement('div');
@@ -335,10 +434,7 @@ let lanternGame = {
         }, 8000);
         
         this.wishesCount++;
-        const wishesCountEl = document.getElementById('wishes-count');
-        if(wishesCountEl) {
-            wishesCountEl.textContent = this.wishesCount;
-        }
+        this.updateWishesCount();
         
         wishInput.value = '';
         
@@ -371,6 +467,177 @@ let lanternGame = {
             <div style="margin-bottom: 10px;">🌙 Điều ước của công chúa đã bay lên trời! 🌙</div>
             <div style="font-style: italic; font-size: 0.95rem;">"${wish}"</div>
             <div style="margin-top: 10px; font-size: 0.9rem;">Anh hy vọng điều ước ni sẽ thành hiện thực! 💖</div>
+        `;
+        
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            if (message.parentNode) {
+                message.remove();
+            }
+        }, 3000);
+    },
+    
+    showWishesModal() {
+        const modal = document.getElementById('wishes-modal');
+        const wishesListEl = document.getElementById('wishes-list');
+        
+        if (!modal || !wishesListEl) return;
+        
+        if (this.wishesData.length === 0) {
+            wishesListEl.innerHTML = `
+                <div class="no-wishes">
+                    <p>🌙 Chưa có điều ước nào được thả...</p>
+                    <p>Hãy viết điều ước đầu tiên của em nhé! 💖</p>
+                </div>
+            `;
+        } else {
+            wishesListEl.innerHTML = this.wishesData
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .map((wish, index) => `
+                    <div class="wish-item" data-id="${wish.id}">
+                        <div class="wish-header">
+                            <span class="wish-number">#${this.wishesData.length - index}</span>
+                            <span class="wish-date">${wish.date}</span>
+                            <button class="delete-wish-btn" onclick="lanternGame.deleteWish(${wish.id})" title="Xóa điều ước">🗑️</button>
+                        </div>
+                        <div class="wish-content">"${wish.content}"</div>
+                    </div>
+                `).join('');
+        }
+        
+        modal.style.display = 'flex';
+    },
+    
+    deleteWish(wishId) {
+        if (confirm('Bạn có chắc muốn xóa điều ước này không?')) {
+            this.wishesData = this.wishesData.filter(wish => wish.id !== wishId);
+            this.wishesCount = this.wishesData.length;
+            this.saveWishesToStorage();
+            this.updateWishesCount();
+            this.showWishesModal(); // Refresh modal
+        }
+    },
+    
+    exportWishes() {
+        if (this.wishesData.length === 0) {
+            alert('Chưa có điều ước nào để xuất! 🌙');
+            return;
+        }
+        
+        const exportData = {
+            exportDate: new Date().toISOString(),
+            totalWishes: this.wishesData.length,
+            wishes: this.wishesData
+        };
+        
+        const dataStr = JSON.stringify(exportData, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `trung-thu-wishes-${new Date().toISOString().split('T')[0]}.json`;
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Show success message
+        this.showExportMessage();
+    },
+    
+    importWishes(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const importData = JSON.parse(e.target.result);
+                
+                if (!importData.wishes || !Array.isArray(importData.wishes)) {
+                    throw new Error('Invalid file format');
+                }
+                
+                const confirmMsg = `Bạn có muốn thêm ${importData.wishes.length} điều ước từ file không?\n(Dữ liệu hiện tại sẽ được giữ lại)`;
+                
+                if (confirm(confirmMsg)) {
+                    // Add imported wishes to existing data
+                    importData.wishes.forEach(wish => {
+                        // Ensure each wish has required fields
+                        if (wish.content) {
+                            const newWish = {
+                                id: wish.id || Date.now() + Math.random(),
+                                content: wish.content,
+                                timestamp: wish.timestamp || new Date().toISOString(),
+                                date: wish.date || new Date().toLocaleDateString('vi-VN')
+                            };
+                            this.wishesData.push(newWish);
+                        }
+                    });
+                    
+                    this.wishesCount = this.wishesData.length;
+                    this.saveWishesToStorage();
+                    this.updateWishesCount();
+                    
+                    alert(`Đã thêm thành công ${importData.wishes.length} điều ước! 🌙💖`);
+                }
+            } catch (error) {
+                console.error('Import error:', error);
+                alert('Lỗi khi đọc file! Vui lòng kiểm tra định dạng file.');
+            }
+        };
+        
+        reader.readAsText(file);
+        event.target.value = ''; // Reset file input
+    },
+    
+    clearAllWishes() {
+        if (this.wishesData.length === 0) {
+            alert('Không có điều ước nào để xóa! 🌙');
+            return;
+        }
+        
+        const confirmMsg = `Bạn có chắc muốn xóa tất cả ${this.wishesData.length} điều ước không?\nHành động này không thể hoàn tác!`;
+        
+        if (confirm(confirmMsg)) {
+            this.wishesData = [];
+            this.wishesCount = 0;
+            localStorage.removeItem('trungThuWishes');
+            this.updateWishesCount();
+            
+            const modal = document.getElementById('wishes-modal');
+            if (modal && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            }
+            
+            alert('Đã xóa tất cả điều ước! 🌙');
+        }
+    },
+    
+    showExportMessage() {
+        const message = document.createElement('div');
+        message.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, rgba(34, 193, 195, 0.9), rgba(253, 187, 45, 0.9));
+            color: white;
+            padding: 20px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            text-align: center;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(34, 193, 195, 0.5);
+        `;
+        
+        message.innerHTML = `
+            <div style="margin-bottom: 10px;">📦 Đã tải xuống file điều ước! 📦</div>
+            <div style="font-size: 0.9rem;">File đã được lưu vào thư mục Downloads</div>
+            <div style="margin-top: 10px; font-size: 0.9rem;">Bây giờ em có thể backup được rồi! 💖</div>
         `;
         
         document.body.appendChild(message);
