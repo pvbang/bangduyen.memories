@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Chúc Mừng Sinh Nhật Công Chúa Của Anh! 🎉</title>
+    <link rel="stylesheet" href="birthday.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="birthday-page">
+    <!-- Background Magic -->
+    <div class="magic-background">
+        <div class="universe-particles"></div>
+        <div class="floating-hearts-container" id="floatingHearts"></div>
+        <div class="stars-field" id="starsField"></div>
+        <canvas id="fireworksCanvas"></canvas>
+    </div>
+
+    <!-- Audio Background -->
+    <audio id="birthdayMusic" loop>
+        <source src="data/videos/birthday-music.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-toggle" id="musicToggle">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Intro Screen with Gift Box -->
+    <div class="intro-screen active" id="introScreen">
+        <div class="intro-content">
+            <h1 class="intro-title">
+                <span class="gradient-text">Một Món Quà Đặc Biệt</span>
+                <div class="subtitle">Dành Cho Công Chúa Của Anh 👑</div>
+            </h1>
+            
+            <!-- Animated Gift Box -->
+            <div class="gift-box-container" id="giftBox">
+                <div class="gift-box">
+                    <div class="gift-lid">
+                        <div class="bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                            <div class="bow-center"></div>
+                        </div>
+                    </div>
+                    <div class="gift-body">
+                        <div class="gift-ribbon vertical"></div>
+                        <div class="gift-ribbon horizontal"></div>
+                    </div>
+                    <div class="gift-glow"></div>
+                </div>
+                <div class="sparkles" id="giftSparkles"></div>
+            </div>
+
+            <p class="hint-text">
+                <i class="fas fa-hand-pointer"></i>
+                Nhấp vào hộp quà để mở nhé! 🎁
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Birthday Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="birthday-header">
+            <nav class="nav-menu">
+                <a href="#universe" class="nav-item active">
+                    <i class="fas fa-star"></i>
+                    <span>Vũ Trụ Tình Yêu</span>
+                </a>
+                <a href="#wishes" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Lời Chúc</span>
+                </a>
+                <a href="#memories" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    <span>Kỷ Niệm</span>
+                </a>
+                <a href="#timeline" class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Timeline</span>
+                </a>
+                <a href="memories.html" class="nav-item">
+                    <i class="fas fa-book-heart"></i>
+                    <span>Tất Cả Kỷ Niệm</span>
+                </a>
+            </nav>
+        </header>
+
+        <!-- Birthday Wishes Rain Section -->
+        <section id="wishes" class="wishes-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-cloud"></i>
+                    Cơn Mưa Lời Chúc
+                    <i class="fas fa-birthday-cake"></i>
+                </h2>
+                <p class="section-subtitle">
+                    Những lời yêu thương anh muốn gửi đến em - Rơi không ngừng như tình yêu của anh dành cho em 💕
+                </p>
+            </div>
+
+            <div class="wishes-rain-container" id="wishesRain">
+                <!-- Wishes will rain down here -->
+            </div>
+
+            <div class="rain-controls">
+                <div class="rain-stats">
+                    <i class="fas fa-heart"></i>
+                    <span>Lời chúc đã rơi: <strong id="rainCounter">0</strong></span>
+                    <i class="fas fa-infinity"></i>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Universe Section - Rotating 3D Space with Photos & Wishes -->
+        <section id="universe" class="universe-section active">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    Vũ Trụ Tình Yêu Của Chúng Mình
+                    <i class="fas fa-heart"></i>
+                </h2>
+                <p class="section-subtitle">
+                    Kéo để xoay • Cuộn chuột để phóng to/thu nhỏ • Click vào ảnh để xem chi tiết
+                </p>
+            </div>
+
+            <!-- 3D Universe Container -->
+            <div class="universe-container" id="universeContainer">
+                <div class="universe-scene" id="universeScene">
+                    <!-- Central Planet -->
+                    <div class="central-planet" id="centralPlanet">
+                        <div class="planet-surface">
+                            <div class="planet-glow"></div>
+                            <div class="planet-text">
+                                <h3>🎂</h3>
+                                <p>Sinh Nhật</p>
+                                <p class="planet-date">08/10/2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit rings -->
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbit-ring orbit-3"></div>
+                    
+                    <!-- Photos and wishes will be dynamically added here -->
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="universe-controls">
+                    <button class="control-btn" id="rotateBtn" title="Tự động xoay">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Auto</span>
+                    </button>
+                    <button class="control-btn" id="resetBtn" title="Reset vị trí">
+                        <i class="fas fa-undo"></i>
+                        <span>Reset</span>
+                    </button>
+                    <button class="control-btn" id="explodeBtn" title="Phát nổ">
+                        <i class="fas fa-bomb"></i>
+                        <span>Boom</span>
+                    </button>
+                    <button class="control-btn" id="speedUpBtn" title="Tăng tốc">
+                        <i class="fas fa-fast-forward"></i>
+                        <span>+</span>
+                    </button>
+                    <button class="control-btn" id="speedDownBtn" title="Giảm tốc">
+                        <i class="fas fa-backward"></i>
+                        <span>-</span>
+                    </button>
+                </div>
+
+                <!-- Info Display -->
+                <div class="universe-info">
+                    <div class="info-item">
+                        <i class="fas fa-search-plus"></i>
+                        <span id="zoomLevel">100%</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-images"></i>
+                        <span id="photoCount">0</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span id="wishCount">0</span>
+                    </div>
+                </div>
+                
+                <!-- Loading -->
+                <div class="loading-screen" id="loadingScreen">
+                    <div class="loading-spinner"></div>
+                    <p>Đang tải vũ trụ tình yêu...</p>
+                    <span id="loadingProgress">0%</span>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Memories Gallery Section -->
+        <section id="memories" class="memories-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i>
+                    Những Khoảnh Khắc Đáng Nhớ
+                    <i class="fas fa-camera"></i>
+                </h2>
+                <p class="section-subtitle">
+                    Những kỷ niệm tuyệt vời mà chúng ta đã cùng trải qua
+                </p>
+            </div>
+
+            <!-- Gallery Carousel -->
+            <div class="gallery-carousel" id="galleryCarousel">
+                <button class="carousel-btn prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-track-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Images will be dynamically loaded -->
+                    </div>
+                </div>
+
+                <button class="carousel-btn next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+            </div>
+        </section>
+
+        <!-- Love Timeline Section -->
+        <section id="timeline" class="timeline-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-heart-pulse"></i>
+                    Hành Trình Tình Yêu Của Chúng Mình
+                    <i class="fas fa-infinity"></i>
+                </h2>
+                <p class="section-subtitle">
+                    Từ ngày đầu tiên đến mãi mãi về sau...
+                </p>
+            </div>
+
+            <!-- Countdown to Birthday -->
+            <div class="birthday-countdown">
+                <h3 class="countdown-title">
+                    🎂 Ngày Sinh Nhật Của Em 🎂
+                </h3>
+                <div class="countdown-display" id="countdownDisplay">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="daysCount">00</span>
+                        <span class="countdown-label">Ngày</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hoursCount">00</span>
+                        <span class="countdown-label">Giờ</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutesCount">00</span>
+                        <span class="countdown-label">Phút</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="secondsCount">00</span>
+                        <span class="countdown-label">Giây</span>
+                    </div>
+                </div>
+                <p class="countdown-message" id="countdownMessage"></p>
+            </div>
+
+            <!-- Love Timeline -->
+            <div class="love-timeline">
+                <div class="timeline-item" data-date="08/02/2025">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>💝 Lần Gặp Đầu Tiên</h4>
+                        <p>Ngày anh gặp được công chúa của đời mình. Em là cô gái xinh đẹp chiều hôm đó mới qua văn phòng chào mọi người...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="09/02/2025">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>💌 Tin Nhắn Đầu Tiên</h4>
+                        <p>"Anh ơi, e là con bé chiều hôm qua mới qua văn phòng chào mn á..." - Tin nhắn ngọt ngào nhất anh từng nhận được.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="06/03/2025">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>🌹 First Date</h4>
+                        <p>Buổi hẹn hò đầu tiên trong đời, tim anh đập thật nhanh khi được ở bên em...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="23/03/2025">
+                    <div class="timeline-marker special"></div>
+                    <div class="timeline-content special">
+                        <h4>💕 Ngày Chính Thức Thành Người Yêu</h4>
+                        <p>Ngày đẹp nhất đời anh! Từ đó, cuộc đời anh có thêm một ý nghĩa tuyệt vời: được yêu và được yêu lại bởi công chúa của anh.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="08/10/2025">
+                    <div class="timeline-marker special"></div>
+                    <div class="timeline-content special">
+                        <h4>🎂 Sinh Nhật Công Chúa</h4>
+                        <p>Ngày hôm nay, anh muốn tặng em một ngày sinh nhật thật đặc biệt. Chúc em sinh nhật vui vẻ, khỏe mạnh, xinh đẹp và hạnh phúc mãi mãi bên anh! ❤️</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item future" data-date="∞">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>💍 Tương Lai Bên Nhau</h4>
+                        <p>Anh muốn đi cùng em tới cuối đời, đó là mong muốn của anh. Anh luôn xem em như là vợ yêu của anh luôn... 💕</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Message Section -->
+        <section class="final-message">
+            <div class="message-card">
+                <div class="message-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2 class="message-title">Gửi Công Chúa Của Anh</h2>
+                <div class="message-content">
+                    <p>
+                        Em yêu, hôm nay là ngày sinh nhật của em, một ngày thật đặc biệt và ý nghĩa. 
+                        Anh muốn tặng em những lời chúc chân thành nhất từ trái tim:
+                    </p>
+                    <p class="highlight">
+                        🎂 Chúc em sinh nhật vui vẻ, luôn xinh đẹp rạng ngời như vậy!<br>
+                        💪 Chúc em luôn khỏe mạnh, tràn đầy năng lượng tích cực!<br>
+                        🌟 Chúc em đạt được tất cả những ước mơ và mục tiêu trong cuộc sống!<br>
+                        💝 Và quan trọng nhất, chúc em luôn hạnh phúc bên anh mãi mãi!
+                    </p>
+                    <p>
+                        Anh biết rằng dù không có anh thì em vẫn làm được mọi thứ... 
+                        Nhưng có một điều anh khẳng định được: <strong class="gradient-text">anh thích cuộc đời anh có em!</strong>
+                    </p>
+                    <p class="poem">
+                        "Vũ trụ trong góc nhìn khoa học là màu đen huyền bí,<br>
+                        Là vật chất tối, năng lượng tối,<br>
+                        Còn vũ trụ trong mắt anh là em."<br>
+                        <span class="signature">- Từ trái tim anh 💕</span>
+                    </p>
+                </div>
+                <div class="message-footer">
+                    <p>Anh yêu em nhiều lắm! ❤️</p>
+                    <p class="date">08/10/2025</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal for Image Detail View -->
+    <div class="modal" id="imageModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="Memory">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="birthday.js"></script>
+</body>
+</html>
