@@ -1480,19 +1480,50 @@ section {
 .message-card {
     max-width: 800px;
     margin: 0 auto;
-    background: var(--gradient-cosmic);
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.3) 0%, 
+        rgba(75, 0, 130, 0.4) 25%, 
+        rgba(139, 0, 139, 0.35) 50%, 
+        rgba(72, 61, 139, 0.3) 100%);
+    backdrop-filter: blur(20px);
     border-radius: 30px;
     padding: 60px;
     text-align: center;
-    box-shadow: var(--shadow-cosmic);
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(138, 43, 226, 0.4),
+        0 0 40px rgba(255, 105, 180, 0.2),
+        inset 0 0 50px rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 192, 203, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.message-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
+    animation: rotateGlow 15s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .message-icon {
     font-size: 4rem;
-    color: var(--romantic-pink);
+    background: linear-gradient(135deg, #FF69B4, #FF1493, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
     animation: heartBeat 1.5s infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.8));
 }
 
 @keyframes heartBeat {
@@ -1506,13 +1537,19 @@ section {
     font-family: var(--font-heading);
     font-size: 2.5rem;
     margin-bottom: 30px;
-    color: white;
+    background: linear-gradient(135deg, #FFD700, #FFC0CB, #FFB6D9, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    filter: drop-shadow(0 2px 10px rgba(255, 192, 203, 0.5));
 }
 
 .message-content {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.95);
+    color: #FFE4E1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .message-content p {
@@ -1520,45 +1557,65 @@ section {
 }
 
 .message-content .highlight {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    border-left: 4px solid var(--romantic-pink);
+    background: linear-gradient(135deg, 
+        rgba(255, 105, 180, 0.15) 0%, 
+        rgba(138, 43, 226, 0.1) 100%);
+    padding: 25px;
+    border-radius: 20px;
+    border-left: 5px solid #FF69B4;
+    border-right: 5px solid rgba(255, 215, 0, 0.5);
     margin: 30px 0;
+    box-shadow: 
+        inset 0 2px 10px rgba(255, 105, 180, 0.1),
+        0 5px 20px rgba(138, 43, 226, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .poem {
     font-family: var(--font-heading);
     font-size: 1.3rem;
     font-style: italic;
-    color: var(--soft-pink);
+    background: linear-gradient(135deg, #FFB6D9, #FFC0CB, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 30px 0;
     line-height: 2;
+    filter: drop-shadow(0 2px 8px rgba(255, 192, 203, 0.4));
 }
 
 .signature {
     display: block;
     margin-top: 15px;
     font-size: 1rem;
-    color: var(--gold);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
 }
 
 .message-footer {
     margin-top: 40px;
     padding-top: 30px;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid rgba(255, 192, 203, 0.3);
 }
 
 .message-footer p:first-child {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--romantic-pink);
+    background: linear-gradient(135deg, #FF69B4, #FF1493, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 10px;
+    filter: drop-shadow(0 2px 8px rgba(255, 105, 180, 0.5));
 }
 
 .date {
     font-size: 1.1rem;
-    color: var(--soft-pink);
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* ==========================================
