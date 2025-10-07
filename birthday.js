@@ -4,15 +4,64 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    initIntroAnimation();
-    initBackgroundEffects();
-    initUniverseScene();
-    initWishesRain();
-    initGalleryCarousel();
-    initTimeline();
-    initMusicPlayer();
-    initFireworks();
-    initModal();
+    console.log('=== Birthday Page Loading ===');
+    
+    try {
+        initIntroAnimation();
+    } catch (e) {
+        console.error('Error in initIntroAnimation:', e);
+    }
+    
+    try {
+        initBackgroundEffects();
+    } catch (e) {
+        console.error('Error in initBackgroundEffects:', e);
+    }
+    
+    try {
+        initUniverseScene();
+    } catch (e) {
+        console.error('Error in initUniverseScene:', e);
+    }
+    
+    try {
+        initWishesRain();
+    } catch (e) {
+        console.error('Error in initWishesRain:', e);
+    }
+    
+    try {
+        initGalleryCarousel();
+    } catch (e) {
+        console.error('Error in initGalleryCarousel:', e);
+    }
+    
+    try {
+        initTimeline();
+    } catch (e) {
+        console.error('Error in initTimeline:', e);
+    }
+    
+    try {
+        initMusicPlayer();
+    } catch (e) {
+        console.error('Error in initMusicPlayer:', e);
+    }
+    
+    try {
+        initFireworks();
+    } catch (e) {
+        console.error('Error in initFireworks:', e);
+    }
+    
+    try {
+        initModal();
+        console.log('Modal initialized successfully');
+    } catch (e) {
+        console.error('Error in initModal:', e);
+    }
+    
+    console.log('=== Birthday Page Loaded ===');
 });
 
 // ==========================================
@@ -1070,22 +1119,36 @@ function startCountdown() {
         const now = new Date();
         const diff = birthday - now;
         
+        const daysCount = document.getElementById('daysCount');
+        const hoursCount = document.getElementById('hoursCount');
+        const minutesCount = document.getElementById('minutesCount');
+        const secondsCount = document.getElementById('secondsCount');
+        const countdownMessage = document.getElementById('countdownMessage');
+        
+        if (!daysCount || !hoursCount || !minutesCount || !secondsCount) {
+            return; // Elements don't exist, skip countdown
+        }
+        
         if (diff > 0) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
             
-            document.getElementById('daysCount').textContent = String(days).padStart(2, '0');
-            document.getElementById('hoursCount').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutesCount').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('secondsCount').textContent = String(seconds).padStart(2, '0');
+            daysCount.textContent = String(days).padStart(2, '0');
+            hoursCount.textContent = String(hours).padStart(2, '0');
+            minutesCount.textContent = String(minutes).padStart(2, '0');
+            secondsCount.textContent = String(seconds).padStart(2, '0');
             
-            document.getElementById('countdownMessage').textContent = 
-                `Còn ${days} ngày nữa là đến sinh nhật công chúa của anh! 🎂`;
+            if (countdownMessage) {
+                countdownMessage.textContent = 
+                    `Còn ${days} ngày nữa là đến sinh nhật công chúa của anh! 🎂`;
+            }
         } else {
-            document.getElementById('countdownMessage').textContent = 
-                '🎉 Hôm nay là sinh nhật của em! Chúc mừng sinh nhật công chúa! 🎉';
+            if (countdownMessage) {
+                countdownMessage.textContent = 
+                    '🎉 Hôm nay là sinh nhật của em! Chúc mừng sinh nhật công chúa! 🎉';
+            }
             
             // Stop countdown
             clearInterval(countdownInterval);
@@ -1146,7 +1209,10 @@ let particles = [];
 
 function initFireworks() {
     fireworksCanvas = document.getElementById('fireworksCanvas');
-    if (!fireworksCanvas) return;
+    if (!fireworksCanvas) {
+        console.log('Fireworks canvas not found');
+        return;
+    }
     
     fireworksCtx = fireworksCanvas.getContext('2d');
     resizeFireworksCanvas();
@@ -1200,6 +1266,7 @@ function createFirework() {
 }
 
 function animateFireworks() {
+    if (!fireworksCtx || !fireworksCanvas) return;
     if (!fireworksActive && particles.length === 0) return;
     
     fireworksCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
@@ -1248,16 +1315,45 @@ function initModal() {
     const modalClose = document.getElementById('modalClose');
     const modalOverlay = document.getElementById('modalOverlay');
     
+    console.log('Init modal - Close button:', modalClose);
+    console.log('Init modal - Overlay:', modalOverlay);
+    
     if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
+        modalClose.addEventListener('click', (e) => {
+            console.log('Close button clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
     }
     
     if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            console.log('Overlay clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+    }
+    
+    // Also close when clicking directly on modal background
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                console.log('Modal background clicked!');
+                closeModal();
+            }
+        });
     }
     
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('imageModal');
+            if (modal && modal.classList.contains('active')) {
+                console.log('ESC pressed - closing modal');
+                closeModal();
+            }
+        }
     });
 }
 
@@ -1265,6 +1361,7 @@ function showImageModal(src, caption) {
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
+    const modalContent = document.querySelector('.modal-content');
     
     if (modal && modalImage) {
         modalImage.src = src;
@@ -1274,6 +1371,13 @@ function showImageModal(src, caption) {
         modalCaption.style.padding = '';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Prevent clicks on content from closing modal
+        if (modalContent) {
+            modalContent.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
     }
 }
 
@@ -1281,6 +1385,7 @@ function showWishModal(wishText) {
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
+    const modalContent = document.querySelector('.modal-content');
     
     if (modal && modalCaption) {
         // Hide image and show only the wish text
@@ -1292,14 +1397,23 @@ function showWishModal(wishText) {
         modalCaption.style.lineHeight = '1.8';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Prevent clicks on content from closing modal
+        if (modalContent) {
+            modalContent.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
     }
 }
 
 function closeModal() {
+    console.log('closeModal called');
     const modal = document.getElementById('imageModal');
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = '';
+        console.log('Modal closed successfully');
     }
 }
 
