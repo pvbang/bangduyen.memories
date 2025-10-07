@@ -211,206 +211,73 @@ function initUniverseScene() {
 async function loadUniverseContent() {
     // 200+ Birthday wishes - comprehensive collection
     const wishes = [
-        '🎂 Chúc em sinh nhật vui vẻ, xinh đẹp mãi mãi!',
-        '💝 Chúc em luôn khỏe mạnh và hạnh phúc!',
-        '🌟 Chúc em đạt được mọi ước mơ và mục tiêu!',
-        '💕 Anh yêu em rất nhiều!',
-        '🎉 Chúc em có một ngày sinh nhật thật đặc biệt!',
-        '✨ Em là điều tuyệt vời nhất trong đời anh!',
-        '💖 Cảm ơn em đã đến bên anh!',
-        '🎈 Chúc em tuổi mới tràn đầy niềm vui!',
-        '🌈 Em là ánh sáng của cuộc đời anh!',
-        '💫 Chúc em luôn rạng rỡ như vầng trăng!',
-        '🎁 Em là món quà quý giá nhất của anh!',
-        '🌹 Chúc em mãi xinh đẹp như hoa hồng!',
-        '💗 Mỗi ngày bên em đều là sinh nhật của anh!',
-        '🎊 Tuổi mới an khang, thịnh vượng!',
-        '💓 Anh sẽ luôn ở bên che chở em!',
-        '🌺 Em như đóa hoa đẹp nhất trong vườn!',
-        '🎀 Chúc em luôn tươi trẻ và rạng rỡ!',
-        '💝 Em là thiên thần của anh!',
-        '🌸 Chúc em hạnh phúc vô bờ bến!',
-        '💕 Yêu em từ ánh mặt trời đến vầng trăng!',
-        '🎂 Sinh nhật em chính là ngày hạnh phúc nhất!',
-        '✨ Ánh mắt em sáng hơn muôn vì sao!',
-        '💖 Em là lý do anh mỉm cười mỗi ngày!',
-        '🌟 Chúc em luôn tỏa sáng như ngôi sao!',
-        '💗 Cuộc đời có em thật tuyệt vời!',
-        '🎉 Chúc em luôn vui vẻ, khỏe mạnh!',
-        '💝 Em là nữ hoàng trong trái tim anh!',
-        '🌹 Mỗi ngày yêu em nhiều hơn ngày hôm qua!',
-        '💕 Em là vũ trụ của anh!',
-        '🎈 Chúc em có thật nhiều niềm vui!',
-        '✨ Em làm cuộc sống anh thêm ý nghĩa!',
-        '💖 Chúc em luôn được hạnh phúc như mơ ước!',
-        '🌟 Em là công chúa duy nhất của anh!',
-        '💗 Anh muốn ở bên em đến cuối đời!',
-        '🎂 Sinh nhật vui vẻ người anh yêu!',
-        '💝 Em xứng đáng có tất cả điều tốt đẹp nhất!',
-        '🌹 Hương thơm của em ngát hơn cả hoa hồng!',
-        '💕 Yêu em không cần lý do!',
-        '🎉 Chúc em tuổi mới thật nhiều may mắn!',
-        '✨ Nụ cười em làm anh quên đi mọi buồn phiền!',
-        '💖 Em là ánh sáng dẫn đường cho anh!',
-        '🌟 Chúc em luôn tỏa sáng rực rỡ!',
-        '💗 Tình yêu dành cho em vô tận!',
-        '🎂 Mong em luôn hạnh phúc bên anh!',
-        '💝 Em là người phụ nữ tuyệt vời nhất!',
-        '🌹 Anh tự hào vì có em!',
-        '💕 Em làm anh tin vào tình yêu đích thực!',
-        '🎈 Chúc em luôn giữ được nụ cười xinh đẹp!',
-        '✨ Mỗi khoảnh khắc với em đều đáng trân quý!',
-        '💖 Em là định mệnh của anh!',
-        '🌟 Chúc em thành công trong mọi lĩnh vực!',
-        '💗 Anh sẽ yêu em đến hơi thở cuối cùng!',
-        '🎉 Sinh nhật em, anh cũng hạnh phúc!',
-        '💝 Em là điều kỳ diệu trong đời anh!',
-        '🌹 Tình yêu của anh dành cho em là vĩnh cửu!',
-        '💕 Em khiến trái tim anh luôn rộn ràng!',
-        '🎂 Chúc em tuổi mới thật nhiều thành công!',
-        '✨ Em là nguồn cảm hứng của anh!',
-        '💖 Mỗi ngày với em là một món quà!',
-        '🌟 Chúc em luôn xinh đẹp như hôm nay!',
-        '💗 Anh may mắn vì được yêu em!',
-        '🎈 Hy vọng ước mơ của em sẽ thành hiện thực!',
-        '💝 Em là điểm sáng nhất trong cuộc đời anh!',
-        '🌹 Yêu em nhiều hơn cả vạn từ ngữ!',
-        '💕 Em là bản nhạc ngọt ngào nhất!',
-        '🎉 Chúc em sinh nhật thật ý nghĩa!',
-        '✨ Em là thiên đường trên trái đất!',
-        '💖 Anh không thể tưởng tượng cuộc sống không có em!',
-        '🌟 Chúc em luôn tràn đầy năng lượng tích cực!',
-        '💗 Tình yêu của anh dành cho em là vô hạn!',
-        '🎂 Mong em luôn giữ được sự thuần khiết!',
-        '💝 Em là báu vật quý giá nhất của anh!',
-        '🌹 Anh sẽ luôn bên em trong mọi hoàn cảnh!',
-        '💕 Em làm anh tin vào điều kỳ diệu!',
-        '🎈 Chúc em luôn tự tin và mạnh mẽ!',
-        '✨ Em là lý do anh tỉnh dậy mỗi sáng!',
-        '💖 Yêu em là quyết định đúng đắn nhất!',
-        '🌟 Chúc em luôn gặp may mắn và thuận lợi!',
-        '💗 Anh muốn tạo nên ký ức đẹp cùng em!',
-        '🎉 Sinh nhật em, anh cũng vui như hội!',
-        '💝 Em là người phụ nữ anh muốn cưới!',
-        '🌹 Tình yêu của anh dành cho em không bao giờ phai!',
-        '💕 Em khiến anh tin vào hạnh phúc!',
-        '🎂 Chúc em tuổi mới nhiều niềm vui!',
-        '✨ Em là câu trả lời cho mọi câu hỏi của anh!',
-        '💖 Mỗi giây phút với em đều quý giá!',
-        '🌟 Chúc em luôn rạng ngời như mặt trời!',
-        '💗 Anh muốn đi cùng em đến tận cùng thế giới!',
-        '🎈 Hy vọng tuổi mới sẽ thật tuyệt vời!',
-        '💝 Em là điểm đến cuối cùng của anh!',
-        '🌹 Yêu em không chỉ là cảm xúc mà là cam kết!',
-        '💕 Em làm trái tim anh đập mạnh hơn!',
-        '🎉 Chúc em có thật nhiều kỷ niệm đẹp!',
-        '✨ Em là giấc mơ trở thành hiện thực!',
-        '💖 Anh biết ơn vì có em trong đời!',
-        '🌟 Chúc em luôn được yêu thương và trân trọng!',
-        '💗 Tình yêu của anh dành cho em là chân thành!',
-        '🎂 Mong em luôn khỏe mạnh và hạnh phúc!',
-        '💝 Em là người duy nhất anh muốn ở bên!',
-        '🌹 Anh sẽ yêu em mãi mãi!',
-        '💕 Em khiến anh muốn trở thành người tốt hơn!',
-        '🎈 Chúc em luôn giữ được sự trong sáng!',
-        '✨ Em là phép màu trong cuộc đời anh!',
-        '💖 Yêu em là điều tuyệt vời nhất anh làm!',
-        '🌟 Chúc em đạt được mọi điều mình mong muốn!',
-        '💗 Anh muốn làm em hạnh phúc mỗi ngày!',
-        '🎉 Sinh nhật vui vẻ công chúa của anh!',
-        '💝 Em là tất cả những gì anh cần!',
-        '🌹 Tình yêu của anh dành cho em là bất diệt!',
-        '💕 Em làm cuộc sống anh thêm màu sắc!',
-        '🎂 Chúc em tuổi mới thật nhiều điều tốt lành!',
-        '✨ Em là thiên sứ được gửi đến cho anh!',
-        '💖 Mỗi ngày yêu em là một ngày hạnh phúc!',
-        '🌟 Chúc em luôn tự tin và xinh đẹp!',
-        '💗 Anh sẽ luôn ở đây vì em!',
-        '🎈 Hy vọng em sẽ luôn mỉm cười!',
-        '💝 Em là kho báu quý giá nhất!',
-        '🌹 Yêu em nhiều hơn cả cuộc đời này!',
-        '💕 Em khiến anh tin vào tương lai tươi sáng!',
-        '🎉 Chúc em sinh nhật thật ý nghĩa và đặc biệt!',
-        '✨ Em là lý do anh tồn tại!',
-        '💖 Anh không thể thiếu em được!',
-        '🌟 Chúc em luôn được bình an và hạnh phúc!',
-        '💗 Tình yêu của anh dành cho em là mãnh liệt!',
-        '🎂 Mong em luôn giữ được nét đẹp tâm hồn!',
-        '💝 Em là điểm tựa vững chắc của anh!',
-        '🌹 Anh sẽ bảo vệ em suốt đời!',
-        '💕 Em làm anh tin vào tình yêu đích thực!',
-        '🎈 Chúc em tuổi mới thật nhiều niềm vui!',
-        '✨ Em là món quà trời ban cho anh!',
-        '💖 Yêu em là hạnh phúc lớn nhất của anh!',
-        '🌟 Chúc em luôn rạng rỡ như ngày hôm nay!',
-        '💗 Anh muốn tạo nên câu chuyện tình đẹp cùng em!',
-        '🎉 Sinh nhật em, anh cũng hạnh phúc!',
-        '💝 Em là người phụ nữ anh yêu nhất!',
-        '🌹 Tình yêu của anh dành cho em là vĩnh hằng!',
-        '💕 Em khiến trái tim anh luôn ấm áp!',
-        '🎂 Chúc em tuổi mới thật nhiều may mắn!',
-        '✨ Em là ánh sáng dẫn lối cho anh!',
-        '💖 Mỗi khoảnh khắc với em đều đáng nhớ!',
-        '🌟 Chúc em luôn xinh đẹp và duyên dáng!',
-        '💗 Anh may mắn vì được yêu em!',
-        '🎈 Hy vọng ước mơ của em sẽ thành sự thật!',
-        '💝 Em là niềm vui lớn nhất của anh!',
-        '🌹 Yêu em không có điểm dừng!',
-        '💕 Em là bản tình ca ngọt ngào nhất!',
-        '🎉 Chúc em sinh nhật thật ý nghĩa!',
-        '✨ Em là thiên đường của anh!',
-        '💖 Anh không thể sống thiếu em!',
-        '🌟 Chúc em luôn tràn đầy sức sống!',
-        '💗 Tình yêu của anh dành cho em là bất tận!',
-        '🎂 Mong em luôn hạnh phúc và xinh đẹp!',
-        '💝 Em là kỳ tích trong cuộc đời anh!',
-        '🌹 Anh sẽ yêu em đến trọn đời!',
-        '💕 Em làm anh tin vào phép màu tình yêu!',
-        '🎈 Chúc em luôn tự tin và mạnh mẽ!',
-        '✨ Em là nguồn động lực của anh!',
-        '💖 Yêu em là quyết định tốt nhất!',
-        '🌟 Chúc em luôn gặp nhiều điều may mắn!',
-        '💗 Anh muốn tạo nên hạnh phúc cho em!',
-        '🎉 Sinh nhật vui vẻ người anh thương!',
-        '💝 Em là tất cả ý nghĩa cuộc đời anh!',
-        '🌹 Tình yêu của anh dành cho em là thiêng liêng!',
-        '💕 Em khiến anh tin vào điều kỳ diệu!',
-        '🎂 Chúc em tuổi mới nhiều thành công!',
-        '✨ Em là phép nhiệm màu của cuộc đời!',
-        '💖 Mỗi ngày với em đều là quà tặng!',
-        '🌟 Chúc em luôn rạng ngời và tươi trẻ!',
-        '💗 Anh muốn đi bên em suốt cuộc đời!',
-        '🎈 Hy vọng tuổi mới sẽ thật tuyệt vời!',
-        '💝 Em là viên kim cương quý giá nhất!',
-        '🌹 Yêu em hết lòng, hết sức!',
-        '💕 Em là giai điệu ngọt ngào của anh!',
-        '🎉 Chúc em có sinh nhật thật đặc biệt!',
-        '✨ Em là giấc mơ đẹp nhất của anh!',
-        '💖 Anh biết ơn số phận đã cho anh gặp em!',
-        '🌟 Chúc em luôn được yêu thương!',
-        '💗 Tình yêu của anh dành cho em là vô điều kiện!',
-        '🎂 Mong em luôn khỏe mạnh và bình an!',
-        '💝 Em là người duy nhất trong trái tim anh!',
-        '🌹 Anh sẽ yêu em đến muôn đời!',
-        '💕 Em khiến anh muốn trở thành phiên bản tốt hơn!',
-        '🎈 Chúc em luôn giữ được nụ cười rạng rỡ!',
-        '✨ Em là điều kỳ diệu nhất anh có!',
-        '💖 Yêu em là hạnh phúc của anh!',
-        '🌟 Chúc em đạt được mọi ước mơ!',
-        '💗 Anh muốn làm em hạnh phúc mỗi ngày!',
-        '🎉 Sinh nhật vui vẻ thiên thần của anh!',
-        '💝 Em là tất cả những gì anh mơ ước!',
-        '🌹 Tình yêu của anh là mãi mãi!',
-        '💕 Em làm cuộc đời anh thêm ý nghĩa!',
-        '🎂 Chúc em tuổi mới thật nhiều điều tốt đẹp!',
-        '✨ Em là thiên thần giữ hộ của anh!',
-        '💖 Mỗi giây phút yêu em đều quý giá!',
-        '🌟 Chúc em luôn tự tin và xinh đẹp!',
-        '💗 Anh sẽ luôn ở bên em!',
-        '🎈 Hy vọng em sẽ luôn hạnh phúc!',
-        '💝 Em là kho báu của cuộc đời anh!',
-        '🌹 Yêu em hết cả cuộc đời này!',
-        '💕 Em khiến anh tin vào tình yêu vĩnh cửu!'
+        // Lời chúc lãng mạn và chân thành
+        'Chúc mừng sinh nhật công chúa của anh! Mỗi ngày có em đều là một món quà, nhưng hôm nay là ngày để cả thế giới biết em đặc biệt đến nhường nào.',
+        'Tuổi mới chúc em luôn xinh đẹp, không chỉ ở vẻ ngoài mà còn ở tâm hồn tuyệt vời của em. Yêu em rất nhiều!',
+        'Cảm ơn em đã đến và biến cuộc sống của anh từ một bản nhạc đơn điệu thành một bản giao hưởng đầy màu sắc. Sinh nhật vui vẻ nhé, tình yêu của anh.',
+        'Chúc em một ngày sinh nhật thật an yên và hạnh phúc. Anh sẽ luôn ở đây, là điểm tựa vững chắc cho em.',
+        'Em là ngôi sao sáng nhất trong vũ trụ của anh. Chúc em tuổi mới sẽ càng rực rỡ hơn nữa.',
+        'Anh không hứa sẽ cho em mọi thứ trên đời, nhưng anh hứa sẽ cho em cả trái tim này. Sinh nhật vui vẻ, người con gái anh thương.',
+        'Mỗi khoảnh khắc bên em đều là kỷ niệm quý giá. Chúc cho chúng ta sẽ có thêm thật nhiều, thật nhiều kỷ niệm đẹp nữa. Happy Birthday, em yêu!',
+        'Chúc em tuổi mới luôn mỉm cười, vì nụ cười của em là ánh nắng sưởi ấm trái tim anh.',
+        'Thế giới có hơn 8 tỷ người, nhưng đối với anh, em là duy nhất. Chúc mừng sinh nhật, định mệnh của đời anh.',
+        'Chúc em một bầu trời sức khỏe, một biển cả tình yêu và một đại dương hạnh phúc. Anh yêu em!',
+        'Gửi em, cô gái tuyệt vời nhất mà anh từng gặp. Chúc em một sinh nhật thật ý nghĩa. Anh mong rằng tuổi mới sẽ mang đến cho em thật nhiều cơ hội, thật nhiều niềm vui và cả những thử thách để em trở nên mạnh mẽ hơn. Đừng lo, vì dù có chuyện gì xảy ra, anh vẫn sẽ nắm tay em đi qua tất cả.',
+        'Hôm nay là một ngày đặc biệt, ngày mà một thiên thần đã ra đời. Cảm ơn ba mẹ đã sinh ra em và cảm ơn số phận đã mang em đến bên anh. Chúc em tất cả những gì tốt đẹp nhất, không chỉ trong hôm nay mà trong suốt cuộc đời.',
+        'Anh từng nghĩ hạnh phúc là điều gì đó xa vời, cho đến khi anh gặp em. Em chính là hạnh phúc, là bình yên, là tất cả những gì anh tìm kiếm. Sinh nhật vui vẻ, người yêu bé nhỏ của anh.',
+        'Chúc em tuổi mới trưởng thành hơn, mạnh mẽ hơn, nhưng hãy luôn giữ lại sự ngây thơ và đáng yêu trong tâm hồn nhé. Vì đó là điều khiến anh yêu em nhất.',
+        'Mỗi ngày trôi qua, anh lại yêu em nhiều hơn một chút. Chúc cho tình yêu của chúng ta sẽ luôn nồng nàn và bền chặt theo năm tháng. Happy Birthday, my love!',
+
+        // Lời chúc hài hước và đáng yêu
+        'Chúc mừng sinh nhật "bà cụ non" của anh! Thêm một tuổi rồi, bớt khó tính lại một chút để anh được nhờ nhé. Yêu thương!',
+        'Happy Birthday! Tuổi mới chúc em ăn mau chóng lớn, tiền đầy túi, tình đầy tim (tình của anh thôi nhé).',
+        'Ting ting! Tài khoản "nhan sắc" của bạn đã được cộng thêm một năm kinh nghiệm. Chúc mừng sinh nhật em!',
+        'Chúc em sinh nhật vui vẻ, bớt "báo" anh lại một chút. Nhưng nếu có "báo" thì anh vẫn tình nguyện "gánh" cả đời.',
+        'Hôm nay là ngày gì mà một thiên thần lại hạ phàm nhỉ? À, là sinh nhật em. Chúc công chúa của anh tất cả những điều tốt đẹp nhất.',
+        'Chúc em tuổi mới bớt suy nghĩ lung tung, bớt lo âu, và nhớ rằng đã có anh ở đây lo cho em rồi.',
+        'Sinh nhật vui vẻ! Quà thì từ từ anh tặng, còn tình yêu thì lúc nào cũng có sẵn cho em 24/7.',
+        'Chúc em tuổi mới ngày càng xinh đẹp, thông minh, và giàu có... hơn anh một chút cũng được.',
+        'Cảnh báo: Một cô gái cực kỳ đáng yêu đang già đi một tuổi. Chúc mừng sinh nhật em!',
+        'Chúc em sinh nhật zui zẻ, hông quạu nha. Yêu em 3000... lần.',
+        'Chúc mừng ngày em "chín" thêm một chút. Mong em tuổi mới sẽ luôn "ngon" như thế này và hơn thế nữa. Yêu!',
+        'Chúc em sinh nhật vui vẻ. Anh đã chuẩn bị một món quà siêu to khổng lồ, đó là tình yêu của anh đây. Nhận đi nè!',
+        'Tuổi mới chúc em bớt "nghiện" trà sữa, nhưng nếu không được thì hãy nhớ rủ anh đi uống cùng nhé.',
+        'Chúc em sinh nhật hạnh phúc. Nếu có điều ước nào, hãy ước đi, biết đâu anh lại biến nó thành hiện thực được thì sao.',
+        'Chúc mừng sinh nhật! Anh không có gì ngoài một tấm thân trong trắng và một trái tim chung thủy để tặng em. Lấy không?',
+
+        // Lời chúc ngắn gọn, ngọt ngào
+        'Sinh nhật vui vẻ, tình yêu của anh!',
+        'Yêu em, hôm nay và mãi mãi.',
+        'Chúc mừng sinh nhật, cô gái của tôi.',
+        'Tuổi mới, niềm vui mới, yêu em!',
+        'Em là tất cả của anh. Sinh nhật vui vẻ!',
+        'Chúc em một ngày thật đặc biệt.',
+        'Mãi yêu công chúa của anh.',
+        'Happy Birthday, my everything.',
+        'Chúc em luôn hạnh phúc bên anh.',
+        'Sinh nhật an lành nhé, bé yêu.',
+        'Tuổi mới rực rỡ nhé em!',
+        'Cảm ơn vì đã ở đây. Sinh nhật vui vẻ.',
+        'Chúc em luôn là em, luôn tuyệt vời.',
+        'Yêu em không cần lý do. Sinh nhật vui vẻ!',
+        'Chúc mừng sinh nhật, người làm anh hạnh phúc.',
+
+        // Thêm nhiều lời chúc khác
+        'Chúc em tuổi mới có thêm nhiều trải nghiệm đáng nhớ và những chuyến đi thú vị cùng anh.',
+        'Mong rằng mỗi ngày của em đều tràn ngập tiếng cười và niềm vui, không chỉ riêng ngày sinh nhật.',
+        'Chúc em luôn giữ được ngọn lửa đam mê trong công việc và cuộc sống.',
+        'Tuổi mới, chúc em có thêm nhiều bạn tốt và những mối quan hệ chất lượng.',
+        'Chúc em luôn khỏe mạnh để chúng ta có thể cùng nhau đi đến cuối con đường.',
+        'Anh mong rằng mọi dự định của em trong tuổi mới đều sẽ thành công rực rỡ.',
+        'Chúc em có một ngày sinh nhật ấm áp bên gia đình, bạn bè và... anh.',
+        'Hãy luôn là chính mình, vì em là phiên bản tuyệt vời nhất rồi.',
+        'Chúc em tuổi mới học được nhiều điều mới, khám phá nhiều nơi mới.',
+        'Anh sẽ luôn là người ủng hộ em trên mọi con đường em chọn. Sinh nhật vui vẻ!',
+        'Chúc em có một ngày sinh nhật không thể nào quên!',
+        'Tuổi mới, hãy để những điều phiền muộn lại phía sau và chỉ mang theo niềm vui thôi nhé.',
+        'Chúc em luôn tìm thấy niềm vui trong những điều nhỏ nhặt nhất của cuộc sống.',
+        'Anh yêu cách em cười, cách em nói, yêu tất cả mọi thứ thuộc về em. Sinh nhật vui vẻ!',
+        'Chúc em một tuổi mới với thật nhiều may mắn và thành công đang chờ đón phía trước.'
     ];
     
     // Load ALL images from data/images folder
@@ -479,40 +346,50 @@ async function loadUniverseContent() {
     setTimeout(() => hideLoading(), 500);
 }
 
-// Load all images from data/images folder
+// Load all images from data/images/secret folder
 async function loadAllImages() {
-    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     const imageFiles = [];
     
-    // List of all image files found in the folder
+    // List of all image files in the secret folder
     const allFiles = [
-        '01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '1.jpg',
+        '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg',
         '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg',
-        '1746200909303.jpeg', '1747067123386.jpeg', '1747067180800.jpeg', '1747067233550.jpeg',
-        '1747067377216.jpeg', '1747067566732.jpeg', '1747099503744.jpeg', '1747099524839.jpeg',
-        '1747099551492.jpeg', '1747235274333.jpeg', '1747238412990.jpeg', '1747239265754.jpeg',
-        '1747239328966.jpeg', '1747239447440.jpeg', '1747239480929.jpeg', '1747239539239.jpeg',
-        '1747240525084.jpeg', '1747240648734.jpeg', '1747240670827.jpeg', '1747240686586.jpeg',
-        '1747412046797.jpeg', '1747412078362.jpeg', '1747412179832.jpeg', '1747412197264.jpeg',
-        '1747412229986.jpeg', '1747412248449.jpeg', '1747752182072.jpg', '1748167005387.jpg',
-        '1748167021792.jpg', '1748167045099.jpg', '1748167130901.jpg', '1748167239073.jpg',
-        '1748167250999.jpg', '1748167269854.jpg', '1748167285383.jpg', '1748167297102.jpg',
-        '1748167325416.jpg', '1748447472848.jpeg', '1748447539697.jpeg', '1748447865723.jpeg',
-        '1748447902717.jpeg'
+        '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg'
     ];
     
-    // Add sample captions
+    // Add romantic captions for our special memories
     const captions = [
-        'Khoảnh khắc đẹp nhất', 'Nụ cười ngọt ngào', 'Bên nhau hạnh phúc',
-        'Yêu em nhiều lắm', 'Kỷ niệm đáng nhớ', 'Tình yêu của chúng mình',
-        'Mãi mãi bên nhau', 'Em là cả thế giới', 'Những ngày tuyệt vời',
-        'Hạnh phúc giản đơn', 'Kỷ niệm không phai', 'Cùng nhau mỗi ngày',
-        'Em xinh đẹp nhất', 'Tình yêu vĩnh cửu', 'Chúng mình bên nhau'
+        '💕 Khoảnh khắc đẹp nhất của đời anh',
+        '🌟 Nụ cười tỏa nắng của em',
+        '💝 Bên nhau mãi mãi hạnh phúc',
+        '❤️ Yêu em đến tận cùng vũ trụ',
+        '🎀 Kỷ niệm đáng nhớ nhất',
+        '💖 Tình yêu của chúng mình',
+        '🌹 Mãi mãi bên em không rời',
+        '✨ Em là cả thế giới của anh',
+        '💗 Những ngày tuyệt vời bên nhau',
+        '🎂 Hạnh phúc giản đơn mỗi ngày',
+        '💫 Kỷ niệm không bao giờ phai',
+        '🌈 Cùng nhau vượt qua mọi khó khăn',
+        '💕 Em xinh đẹp nhất trên đời',
+        '🎁 Tình yêu vĩnh cửu của anh',
+        '💝 Chúng mình mãi bên nhau',
+        '🌟 Những phút giây ngọt ngào',
+        '❤️ Anh yêu em nhiều lắm',
+        '💖 Khoảnh khắc đáng trân trọng',
+        '🌹 Em là thiên thần của anh',
+        '✨ Hạnh phúc là được yêu em',
+        '💗 Cùng nhau viết nên câu chuyện',
+        '🎀 Tình yêu đẹp như mơ',
+        '💫 Em là điều tuyệt vời nhất',
+        'Aiuuuu công chúa của anh',
+        'Thương emmm nhất trên đời',
+        'Iuuuu e nhiều lắm lắm'
     ];
     
     allFiles.forEach((file, index) => {
         imageFiles.push({
-            src: `data/images/${file}`,
+            src: `data/images/secret/${file}`,
             caption: captions[index % captions.length]
         });
     });
@@ -575,6 +452,12 @@ function createUniverseItem(type, content, index, total, radius) {
         wishCard.className = 'wish-card';
         wishCard.textContent = content;
         inner.appendChild(wishCard);
+        
+        // Click to view wish in modal
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showWishModal(content);
+        });
     } else if (type === 'photo') {
         const photoCard = document.createElement('div');
         photoCard.className = 'photo-card';
@@ -806,27 +689,32 @@ function updateZoomDisplay() {
 // ==========================================
 
 let wishesRainActive = false;
-let rainSpeed = 3; // Giảm tốc độ mặc định cho chậm hơn
-let rainDensity = 10;
+let rainSpeed = 3;
+let rainDensity = 2; // Start with the slider's default value
 let rainCounter = 0;
+let rainIntervals = []; // To hold our rain stream intervals
 
 function initWishesRain() {
-    // Mưa sẽ tự động bắt đầu sau khi mở hộp quà
-    
-    // Set optimal values for continuous rain
-    rainSpeed = 3; // Chậm hơn để dễ đọc
-    rainDensity = 10;
-    
-    // Setup slider controls
     const speedSlider = document.getElementById('speedSlider');
     const densitySlider = document.getElementById('densitySlider');
     const speedValue = document.getElementById('speedValue');
     const densityValue = document.getElementById('densityValue');
-    
+
+    // Set initial values from sliders
+    if (speedSlider) {
+        rainSpeed = parseInt(speedSlider.value);
+        speedValue.textContent = rainSpeed;
+    }
+    if (densitySlider) {
+        rainDensity = parseInt(densitySlider.value);
+        densityValue.textContent = rainDensity;
+    }
+
     if (speedSlider) {
         speedSlider.addEventListener('input', (e) => {
             rainSpeed = parseInt(e.target.value);
             speedValue.textContent = rainSpeed;
+            // No need to restart rain for speed, it's applied dynamically
         });
     }
     
@@ -834,111 +722,173 @@ function initWishesRain() {
         densitySlider.addEventListener('input', (e) => {
             rainDensity = parseInt(e.target.value);
             densityValue.textContent = rainDensity;
+            if (wishesRainActive) {
+                updateWishesRainDensity();
+            }
         });
     }
 }
 
+function updateWishesRainDensity() {
+    // Clear existing rain streams
+    rainIntervals.forEach(clearInterval);
+    rainIntervals = [];
+
+    // Start new streams with the updated density
+    const streams = rainDensity;
+    for (let i = 0; i < streams; i++) {
+        // Stagger the start times for a more natural effect
+        setTimeout(() => {
+            const interval = setInterval(createWish, 2000); // Create a wish every 2 seconds per stream
+            rainIntervals.push(interval);
+        }, i * (2000 / streams));
+    }
+}
+
 function startWishesRain() {
-    const container = document.getElementById('wishesRain');
-    
-    // All 200+ wishes are already loaded in loadUniverseContent()
-    // Let's use a comprehensive wish list
-    const allWishes = [
-        '🎂 Sinh nhật vui vẻ công chúa của anh!',
-        '💝 Chúc em luôn xinh đẹp rạng ngời!',
-        '🌟 Chúc em đạt được mọi ước mơ!',
-        '💕 Anh yêu em rất nhiều!',
-        '🎉 Chúc em có một ngày tuyệt vời!',
-        '✨ Em là điều tuyệt vời nhất!',
-        '💖 Cảm ơn em đã đến bên anh!',
-        '🎈 Tuổi mới an khang, hạnh phúc!',
-        '🌈 Em là ánh sáng của đời anh!',
-        '💫 Luôn yêu thương và che chở em!',
-        '🎁 Món quà lớn nhất là có em!',
-        '🌹 Em mãi là nàng công chúa của anh!',
-        '💗 Hạnh phúc là được ở bên em!',
-        '🎊 Chúc em ngày càng xinh đẹp!',
-        '💓 Anh sẽ luôn bên em mãi mãi!',
-        '🎂 Em là vũ trụ của anh!',
-        '💝 Chúc em luôn khỏe mạnh!',
-        '🌟 Em là ngôi sao sáng nhất!',
-        '💕 Yêu em hết cả trái tim!',
-        '🎉 Sinh nhật em là ngày hạnh phúc!',
-        '✨ Em làm anh tin vào tình yêu!',
-        '💖 Mỗi ngày với em đều tuyệt vời!',
-        '🎈 Chúc em luôn mỉm cười!',
-        '🌈 Em là cầu vồng sau mưa!',
-        '💫 Anh muốn ở bên em mãi mãi!',
-        '🎁 Em xứng đáng mọi điều tốt đẹp!',
-        '🌹 Hoa hồng cũng không đẹp bằng em!',
-        '💗 Tình yêu anh dành cho em vô tận!',
-        '🎊 Chúc em tuổi mới thật nhiều niềm vui!',
-        '💓 Em là tất cả của anh!',
-        '🎂 Chúc em sinh nhật thật ý nghĩa!',
-        '💝 Em là thiên thần của anh!',
-        '🌟 Chúc em luôn tỏa sáng!',
-        '💕 Anh không thể thiếu em!',
-        '🎉 Mong em luôn hạnh phúc!',
-        '✨ Em là phép màu của đời anh!',
-        '💖 Yêu em nhiều hơn ngày hôm qua!',
-        '🎈 Chúc em mọi điều may mắn!',
-        '🌈 Em là màu sắc cuộc đời anh!',
-        '💫 Chúc em luôn được yêu thương!',
-        // Add more variations...
-        '🎁 Em là kho báu của anh!',
-        '🌹 Tình yêu của anh là vĩnh cửu!',
-        '💗 Anh sẽ yêu em đến hơi thở cuối!',
-        '🎊 Chúc em thành công trong mọi việc!',
-        '💓 Em là lý do anh sống!',
-        '🎂 Tuổi mới nhiều điều tốt lành!',
-        '💝 Em là giấc mơ thành hiện thực!',
-        '🌟 Chúc em luôn rực rỡ!',
-        '💕 Yêu em đến tận cùng vũ trụ!',
-        '🎉 Sinh nhật vui vẻ người yêu!'
-    ];
-    
+    if (wishesRainActive) return;
     wishesRainActive = true;
     rainCounter = 0;
     updateRainCounter();
+    updateWishesRainDensity(); // Initial start of rain
+}
+
+function stopWishesRain() {
+    wishesRainActive = false;
+    rainIntervals.forEach(clearInterval);
+    rainIntervals = [];
+}
+
+function createWish() {
+    if (!wishesRainActive) return;
+
+    const container = document.getElementById('wishesRain');
+    if (!container) return;
+
+    const allWishes = [
+        'Sinh nhật vui vẻ công chúa của anh!',
+        'Chúc eiuuu của anh luôn xinh đẹp rạng ngời!',
+        'Chúc em đạt được mọi ước mơ!',
+        'Aiuuu em nhiều lắm lắm!',
+        'Chúc em có một ngày tuyệt vời!',
+        'Em là điều tuyệt vời nhất!',
+        'Cảm ơn em đã đến bên anh!',
+        'Tuổi mới an khang, hạnh phúc nhé eiuuu!',
+        'Em là ánh sáng của đời anh!',
+        'Luôn yêu thương và che chở em!',
+        'Món quà lớn nhất là có em!',
+        'Em mãi là nàng công chúa của anh!',
+        'Hạnh phúc là được ở bên em!',
+        'Chúc em ngày càng xinh đẹp!',
+        'Anh sẽ luôn bên em mãi mãi!',
+        'Em là vũ trụ của anh!',
+        'Chúc em luôn khỏe mạnh!',
+        'Em là ngôi sao sáng nhất!',
+        'Yêu em hết cả trái tim!',
+        'Sinh nhật em là ngày hạnh phúc!',
+        'Em làm anh tin vào tình yêu!',
+        'Mỗi ngày với em đều tuyệt vời!',
+        'Chúc em luôn mỉm cười!',
+        'Em là cầu vồng sau mưa!',
+        'Anh muốn ở bên em mãi mãi!',
+        'Em xứng đáng mọi điều tốt đẹp!',
+        'Hoa hồng cũng không đẹp bằng em!',
+        'Tình yêu anh dành cho em vô tận!',
+        'Chúc em tuổi mới thật nhiều niềm vui!',
+        'Em là tất cả của anh!',
+        'Chúc em sinh nhật thật ý nghĩa!',
+        'Em là thiên thần của anh!',
+        'Chúc em luôn tỏa sáng!',
+        'Anh không thể thiếu em!',
+        'Mong em luôn hạnh phúc!',
+        'Em là phép màu của đời anh!',
+        'Yêu em nhiều hơn ngày hôm qua!',
+        'Chúc em mọi điều may mắn!',
+        'Em là màu sắc cuộc đời anh!',
+        'Chúc em luôn được yêu thương!',
+        'Em là kho báu của anh!',
+        'Tình yêu của anh là vĩnh cửu!',
+        'Anh sẽ yêu em đến hơi thở cuối!',
+        'Chúc em thành công trong mọi việc!',
+        'Em là lý do anh sống!',
+        'Tuổi mới nhiều điều tốt lành!',
+        'Em là giấc mơ thành hiện thực!',
+        'Chúc em luôn rực rỡ!',
+        'Yêu em đến tận cùng vũ trụ!',
+        'Sinh nhật vui vẻ người yêu!',
+        'Iuuuuu emmm nhìuuu lắmmm!',
+        'Chúc mừng sinh nhật eiuuu!',
+        'Thương em nhất trên đời!',
+        'Chúc bé iu của anh sinh nhật vui vẻ!',
+        'Tuổi mới bớt lo nghĩ, có anh ở đây rồi!',
+        'Chỉ cần em vui là được!',
+        'Yêu công chúa của anh rất nhiều!',
+        'Chúc em một đời an yên!',
+        'Mãi là cô bé đáng yêu của anh nhé!',
+        'Chúc em mọi điều tốt đẹp nhất!',
+        'Anh sẽ luôn là hậu phương vững chắc cho em!',
+        'Cảm ơn vì đã là một phần cuộc sống của anh!',
+        'Chúc em luôn cười tươi như bây giờ!',
+        'Yêu và thương em rất nhiều!',
+        'Chúc em tuổi mới ngày càng thành công!',
+        'Hạnh phúc nhé, tình yêu của anh!',
+        'Chúc em có một ngày sinh nhật thật trọn vẹn!',
+        'Anh luôn tự hào về em!',
+        'Chúc em luôn là chính em, cô gái tuyệt vời!',
+        'Thế giới của anh chỉ có em thôi!',
+        'Chúc em tuổi mới thật nhiều sức khỏe!',
+        'Mong mọi điều tốt lành sẽ đến với em!',
+        'Chúc em luôn được bao bọc bởi tình yêu thương!',
+        'Anh yêu em, hôm nay và mãi mãi!',
+        'Chúc em một sinh nhật đáng nhớ!',
+        'Em là món quà quý giá nhất của anh!',
+        'Chúc em luôn giữ được sự hồn nhiên, đáng yêu!',
+        'Chúc em có những quyết định sáng suốt trong tuổi mới!',
+        'Anh sẽ luôn ủng hộ mọi quyết định của em!',
+        'Chúc em luôn gặp may mắn trong cuộc sống!',
+        'Chúc em có những người bạn thật tốt bên cạnh!',
+        'Chúc em luôn được sống trong sự đủ đầy!',
+        'Chúc em có một tương lai tươi sáng!',
+        'Anh sẽ luôn là người lắng nghe em!',
+        'Chúc em luôn tìm thấy niềm vui trong cuộc sống!',
+        'Chúc em có một ngày thật nhiều quà!',
+        'Chúc em luôn được yêu thương như một công chúa!',
+        'Chúc em luôn là cô gái hạnh phúc nhất!',
+        'Chúc em có một ngày sinh nhật thật bùng nổ!',
+        'Chúc em luôn giữ được nụ cười trên môi!',
+        'Chúc em có một tuổi mới thật nhiều ý nghĩa!',
+        'Anh yêu tất cả những gì thuộc về em!',
+        'Chúc em luôn là cô gái mạnh mẽ và độc lập!',
+        'Chúc em có một ngày sinh nhật thật ấm áp bên gia đình!',
+        'Chúc em luôn là nguồn cảm hứng của anh!',
+        'Chúc em có một tuổi mới thật nhiều trải nghiệm!',
+        'Anh sẽ luôn là người đồng hành cùng em!',
+        'Chúc em luôn là cô gái xinh đẹp nhất trong mắt anh!'
+    ];
+
+    const wish = document.createElement('div');
+    wish.className = 'wish-rain-item';
+    wish.textContent = allWishes[Math.floor(Math.random() * allWishes.length)];
+    wish.style.left = Math.random() * 100 + '%';
+    wish.style.setProperty('--drift', (Math.random() - 0.5) * 150 + 'px');
     
-    function createWish() {
-        // Mưa rơi liên tục không dừng
-        
-        const wish = document.createElement('div');
-        wish.className = 'wish-rain-item';
-        wish.textContent = allWishes[Math.floor(Math.random() * allWishes.length)];
-        wish.style.left = Math.random() * 100 + '%';
-        wish.style.setProperty('--drift', (Math.random() - 0.5) * 150 + 'px');
-        
-        // Adjust speed based on slider
-        const baseDuration = 10 - rainSpeed;
-        wish.style.animationDuration = (baseDuration + Math.random() * 2) + 's';
-        
-        container.appendChild(wish);
-        rainCounter++;
-        updateRainCounter();
-        
-        // Create sparkle effect on click
-        wish.addEventListener('click', () => {
-            createWishSparkle(wish);
+    const baseDuration = 15 - rainSpeed * 1.2;
+    wish.style.animationDuration = (baseDuration + Math.random() * 2) + 's';
+    
+    container.appendChild(wish);
+    rainCounter++;
+    updateRainCounter();
+    
+    wish.addEventListener('click', () => {
+        createWishSparkle(wish);
+        wish.remove();
+    });
+    
+    setTimeout(() => {
+        if (wish.parentElement) {
             wish.remove();
-        });
-        
-        setTimeout(() => {
-            if (wish.parentElement) {
-                wish.remove();
-            }
-        }, (baseDuration + 2) * 1000);
-        
-        // Always create next wish - continuous rain
-        const delay = 1000 / rainDensity + Math.random() * 500;
-        setTimeout(createWish, delay);
-    }
-    
-    // Start multiple streams for higher density
-    for (let i = 0; i < Math.min(rainDensity, 5); i++) {
-        setTimeout(createWish, i * 200);
-    }
+        }
+    }, (baseDuration + 2) * 1000);
 }
 
 function updateRainCounter() {
@@ -1307,7 +1257,28 @@ function showImageModal(src, caption) {
     
     if (modal && modalImage) {
         modalImage.src = src;
+        modalImage.style.display = 'block';
         modalCaption.textContent = caption || '';
+        modalCaption.style.fontSize = '';
+        modalCaption.style.padding = '';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function showWishModal(wishText) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    if (modal && modalCaption) {
+        // Hide image and show only the wish text
+        modalImage.style.display = 'none';
+        modalCaption.textContent = wishText;
+        modalCaption.style.fontSize = '1.8rem';
+        modalCaption.style.padding = '3rem';
+        modalCaption.style.textAlign = 'center';
+        modalCaption.style.lineHeight = '1.8';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
