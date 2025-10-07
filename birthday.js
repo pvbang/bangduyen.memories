@@ -212,9 +212,9 @@ async function loadUniverseContent() {
     // 200+ Birthday wishes - comprehensive collection
     const wishes = [
         // Lời chúc lãng mạn và chân thành
-        'Chúc mừng sinh nhật công chúa của anh! Mỗi ngày có em đều là một món quà, nhưng hôm nay là ngày để cả thế giới biết em đặc biệt đến nhường nào.',
-        'Tuổi mới chúc em luôn xinh đẹp, không chỉ ở vẻ ngoài mà còn ở tâm hồn tuyệt vời của em. Yêu em rất nhiều!',
-        'Cảm ơn em đã đến và biến cuộc sống của anh từ một bản nhạc đơn điệu thành một bản giao hưởng đầy màu sắc. Sinh nhật vui vẻ nhé, tình yêu của anh.',
+        'Chúc mừng sinh nhật công chúa của anh! Mỗi ngày có em đều là một món quà đối với a, tặng choa thế giới của a món quả nhỏ nhỏ này nhié ^^',
+        'Tuổi mới chúc eiuuu của a luôn xinh đẹp, không chỉ ở vẻ ngoài mà còn ở tâm hồn tuyệt vời của em. Yêu em rất nhiều!',
+        'Cảm ơn em đã đến và biến cuộc sống của anh từ một bản nhạc đơn điệu thành một bản giao hưởng đầy màu sắc. Sinh nhật vui vẻ nhié, tình yêu của anh.',
         'Chúc em một ngày sinh nhật thật an yên và hạnh phúc. Anh sẽ luôn ở đây, là điểm tựa vững chắc cho em.',
         'Em là ngôi sao sáng nhất trong vũ trụ của anh. Chúc em tuổi mới sẽ càng rực rỡ hơn nữa.',
         'Anh không hứa sẽ cho em mọi thứ trên đời, nhưng anh hứa sẽ cho em cả trái tim này. Sinh nhật vui vẻ, người con gái anh thương.',
@@ -229,38 +229,27 @@ async function loadUniverseContent() {
         'Mỗi ngày trôi qua, anh lại yêu em nhiều hơn một chút. Chúc cho tình yêu của chúng ta sẽ luôn nồng nàn và bền chặt theo năm tháng. Happy Birthday, my love!',
 
         // Lời chúc hài hước và đáng yêu
-        'Chúc mừng sinh nhật "bà cụ non" của anh! Thêm một tuổi rồi, bớt khó tính lại một chút để anh được nhờ nhé. Yêu thương!',
-        'Happy Birthday! Tuổi mới chúc em ăn mau chóng lớn, tiền đầy túi, tình đầy tim (tình của anh thôi nhé).',
-        'Ting ting! Tài khoản "nhan sắc" của bạn đã được cộng thêm một năm kinh nghiệm. Chúc mừng sinh nhật em!',
-        'Chúc em sinh nhật vui vẻ, bớt "báo" anh lại một chút. Nhưng nếu có "báo" thì anh vẫn tình nguyện "gánh" cả đời.',
-        'Hôm nay là ngày gì mà một thiên thần lại hạ phàm nhỉ? À, là sinh nhật em. Chúc công chúa của anh tất cả những điều tốt đẹp nhất.',
+        'Happy Birthday! Tuổi mới chúc em ăn mau chóng lớn, tiền đầy túi, tình đầy tim (tình của anh thôi nhié hẹ hẹ).',
+        'Hôm nay là ngày gì mà một thiên thần lại hạ phàm zị ta? À, là sinh nhật eiuuu của a. Chúc công chúa của anh tất cả những điều tốt đẹp nhất.',
         'Chúc em tuổi mới bớt suy nghĩ lung tung, bớt lo âu, và nhớ rằng đã có anh ở đây lo cho em rồi.',
         'Sinh nhật vui vẻ! Quà thì từ từ anh tặng, còn tình yêu thì lúc nào cũng có sẵn cho em 24/7.',
         'Chúc em tuổi mới ngày càng xinh đẹp, thông minh, và giàu có... hơn anh một chút cũng được.',
-        'Cảnh báo: Một cô gái cực kỳ đáng yêu đang già đi một tuổi. Chúc mừng sinh nhật em!',
-        'Chúc em sinh nhật zui zẻ, hông quạu nha. Yêu em 3000... lần.',
-        'Chúc mừng ngày em "chín" thêm một chút. Mong em tuổi mới sẽ luôn "ngon" như thế này và hơn thế nữa. Yêu!',
-        'Chúc em sinh nhật vui vẻ. Anh đã chuẩn bị một món quà siêu to khổng lồ, đó là tình yêu của anh đây. Nhận đi nè!',
-        'Tuổi mới chúc em bớt "nghiện" trà sữa, nhưng nếu không được thì hãy nhớ rủ anh đi uống cùng nhé.',
+        'Cảnh báo: Một cô gái cực kỳ đáng yêu đang + lên một tuổi. Chúc mừng sinh nhật em!',
+        'Chúc em sinh nhật vui vẻ. Anh đã chuẩn bị một món quà siêu to khổng lồ, đó là tình yêu của anh đây. Nhận đi niè! chíu chíuuu chíuuuu',
         'Chúc em sinh nhật hạnh phúc. Nếu có điều ước nào, hãy ước đi, biết đâu anh lại biến nó thành hiện thực được thì sao.',
-        'Chúc mừng sinh nhật! Anh không có gì ngoài một tấm thân trong trắng và một trái tim chung thủy để tặng em. Lấy không?',
+        'Chúc mừng sinh nhật! Anh không có gì ngoài một tấm thân trong trắng và một trái tim chung thủy để tặng em. Eiuuu lấy khom :)))',
 
         // Lời chúc ngắn gọn, ngọt ngào
         'Sinh nhật vui vẻ, tình yêu của anh!',
-        'Yêu em, hôm nay và mãi mãi.',
-        'Chúc mừng sinh nhật, cô gái của tôi.',
-        'Tuổi mới, niềm vui mới, yêu em!',
-        'Em là tất cả của anh. Sinh nhật vui vẻ!',
+        'Yêu em, hôm qua, hôm nay và mãi mãi dìa sauu.',
+        'Chúc mừng sinh nhật, công chúaaa iuuu của a.',
+        'Tuổi mới, niềm vui mới, yêuu emmm!',
         'Chúc em một ngày thật đặc biệt.',
         'Mãi yêu công chúa của anh.',
-        'Happy Birthday, my everything.',
         'Chúc em luôn hạnh phúc bên anh.',
-        'Sinh nhật an lành nhé, bé yêu.',
-        'Tuổi mới rực rỡ nhé em!',
-        'Cảm ơn vì đã ở đây. Sinh nhật vui vẻ.',
-        'Chúc em luôn là em, luôn tuyệt vời.',
-        'Yêu em không cần lý do. Sinh nhật vui vẻ!',
-        'Chúc mừng sinh nhật, người làm anh hạnh phúc.',
+        'Sinh nhật an lành nhié, bé yêu của a.',
+        'Yêuuuuu em không cần lý do, eiuuu sinh nhật zui ziẻ!',
+        'Chúc mừng sinh nhật eiuuu của a <3',
 
         // Thêm nhiều lời chúc khác
         'Chúc em tuổi mới có thêm nhiều trải nghiệm đáng nhớ và những chuyến đi thú vị cùng anh.',
@@ -269,12 +258,12 @@ async function loadUniverseContent() {
         'Tuổi mới, chúc em có thêm nhiều bạn tốt và những mối quan hệ chất lượng.',
         'Chúc em luôn khỏe mạnh để chúng ta có thể cùng nhau đi đến cuối con đường.',
         'Anh mong rằng mọi dự định của em trong tuổi mới đều sẽ thành công rực rỡ.',
-        'Chúc em có một ngày sinh nhật ấm áp bên gia đình, bạn bè và... anh.',
+        'Chúc em có một ngày sinh nhật ấm áp bên gia đình, bạn bè zà anh :3',
         'Hãy luôn là chính mình, vì em là phiên bản tuyệt vời nhất rồi.',
         'Chúc em tuổi mới học được nhiều điều mới, khám phá nhiều nơi mới.',
         'Anh sẽ luôn là người ủng hộ em trên mọi con đường em chọn. Sinh nhật vui vẻ!',
         'Chúc em có một ngày sinh nhật không thể nào quên!',
-        'Tuổi mới, hãy để những điều phiền muộn lại phía sau và chỉ mang theo niềm vui thôi nhé.',
+        'Tuổi mới, hãy để những điều phiền muộn lại phía sau và chỉ mang theo niềm vui thôi nhié.',
         'Chúc em luôn tìm thấy niềm vui trong những điều nhỏ nhặt nhất của cuộc sống.',
         'Anh yêu cách em cười, cách em nói, yêu tất cả mọi thứ thuộc về em. Sinh nhật vui vẻ!',
         'Chúc em một tuổi mới với thật nhiều may mắn và thành công đang chờ đón phía trước.'
@@ -359,32 +348,32 @@ async function loadAllImages() {
     
     // Add romantic captions for our special memories
     const captions = [
-        '💕 Khoảnh khắc đẹp nhất của đời anh',
-        '🌟 Nụ cười tỏa nắng của em',
-        '💝 Bên nhau mãi mãi hạnh phúc',
-        '❤️ Yêu em đến tận cùng vũ trụ',
-        '🎀 Kỷ niệm đáng nhớ nhất',
+        '💕 Khoảnh khắc quó đẹp của đời anh',
+        '🌟 Nụ cười tỏa nắng của iemm',
+        '💝 Bên nhau mãi mãi hạnh phúc <3',
+        '❤️ Yêu em đến tận cùng vũ chụ',
+        '🎀 Kỷ niệm đáng nhớ',
         '💖 Tình yêu của chúng mình',
-        '🌹 Mãi mãi bên em không rời',
-        '✨ Em là cả thế giới của anh',
-        '💗 Những ngày tuyệt vời bên nhau',
+        '🌹 Mãi mãi bên em không rờii',
+        '✨ Em là cả thế giới của anhh',
+        '💗 Những ngày tuyệt vời bên nhao :3',
         '🎂 Hạnh phúc giản đơn mỗi ngày',
-        '💫 Kỷ niệm không bao giờ phai',
+        '💫 Kỷ niệm không bao giờ phaii',
         '🌈 Cùng nhau vượt qua mọi khó khăn',
-        '💕 Em xinh đẹp nhất trên đời',
-        '🎁 Tình yêu vĩnh cửu của anh',
-        '💝 Chúng mình mãi bên nhau',
-        '🌟 Những phút giây ngọt ngào',
-        '❤️ Anh yêu em nhiều lắm',
-        '💖 Khoảnh khắc đáng trân trọng',
+        '💕 Emm iuuu của a xinh đẹp nhất trên đời',
+        '🎁 Tình iuuu của anh',
+        '💝 Chúng mình mãi bên nhao',
+        '🌟 Những phút giây ngọt ngào :>',
+        '❤️ Anh yêu em nhiều lắmm',
+        '💖 Khoảnh khắc đáng trân trọngg',
         '🌹 Em là thiên thần của anh',
-        '✨ Hạnh phúc là được yêu em',
-        '💗 Cùng nhau viết nên câu chuyện',
-        '🎀 Tình yêu đẹp như mơ',
+        '✨ Hạnh phúc là được yêu emm',
+        '💗 Cùng nhau viết nên câu chuyện tìn iuuu',
+        '🎀 Tình yêu đẹp như mơ lun :)))',
         '💫 Em là điều tuyệt vời nhất',
-        'Aiuuuu công chúa của anh',
+        'Aiuuuu iuuu công chúa của anh',
         'Thương emmm nhất trên đời',
-        'Iuuuu e nhiều lắm lắm'
+        'Iuuuu e nhiều lắm lắmmm'
     ];
     
     allFiles.forEach((file, index) => {
@@ -860,10 +849,10 @@ function createWish() {
         'Anh yêu tất cả những gì thuộc về em!',
         'Chúc em luôn là cô gái mạnh mẽ và độc lập!',
         'Chúc em có một ngày sinh nhật thật ấm áp bên gia đình!',
-        'Chúc em luôn là nguồn cảm hứng của anh!',
+        'Em luôn là nguồn cảm hứng của anh!',
         'Chúc em có một tuổi mới thật nhiều trải nghiệm!',
         'Anh sẽ luôn là người đồng hành cùng em!',
-        'Chúc em luôn là cô gái xinh đẹp nhất trong mắt anh!'
+        'Emmm luôn là cô gái xinh đẹp nhất trong mắt anh!'
     ];
 
     const wish = document.createElement('div');
