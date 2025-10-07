@@ -28,8 +28,13 @@ function initIntroAnimation() {
     // Create sparkles around gift
     createGiftSparkles(giftSparkles);
     
-    // Gift box click event
-    giftBox.addEventListener('click', function() {
+    // Gift box click/touch event
+    const openGift = function(e) {
+        e.preventDefault(); // Prevent default behavior
+        
+        // Prevent multiple clicks
+        if (giftBox.classList.contains('opening')) return;
+        
         // Open gift animation
         giftBox.classList.add('opening');
         
@@ -58,7 +63,11 @@ function initIntroAnimation() {
                 startWishesRain();
             }, 2000);
         }, 1500);
-    });
+    };
+    
+    // Add both click and touch events for better mobile support
+    giftBox.addEventListener('click', openGift);
+    giftBox.addEventListener('touchend', openGift);
 }
 
 function createGiftSparkles(container) {
