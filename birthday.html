@@ -110,10 +110,24 @@
                     <span>Lời chúc đã rơi: <strong id="rainCounter">0</strong></span>
                     <i class="fas fa-infinity"></i>
                 </div>
+                
+                <div class="rain-settings">
+                    <label>
+                        <i class="fas fa-tachometer-alt"></i>
+                        Tốc độ: <span id="speedValue">1</span>
+                        <input type="range" id="speedSlider" min="1" max="10" value="1" step="1">
+                    </label>
+                    <label>
+                        <i class="fas fa-cloud-rain"></i>
+                        Mật độ: <span id="densityValue">5</span>
+                        <input type="range" id="densitySlider" min="5" max="20" value="5" step="1">
+                    </label>
+                </div>
             </div>
         </section>
 
-        
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <!-- Universe Section - Rotating 3D Space with Photos & Wishes -->
         <section id="universe" class="universe-section active">
             <div class="section-header">
@@ -164,13 +178,21 @@
                         <i class="fas fa-bomb"></i>
                         <span>Boom</span>
                     </button>
+                    <button class="control-btn" id="zoomInBtn" title="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                        <span>Zoom+</span>
+                    </button>
+                    <button class="control-btn" id="zoomOutBtn" title="Thu nhỏ">
+                        <i class="fas fa-search-minus"></i>
+                        <span>Zoom-</span>
+                    </button>
                     <button class="control-btn" id="speedUpBtn" title="Tăng tốc">
                         <i class="fas fa-fast-forward"></i>
-                        <span>+</span>
+                        <span>Speed+</span>
                     </button>
                     <button class="control-btn" id="speedDownBtn" title="Giảm tốc">
                         <i class="fas fa-backward"></i>
-                        <span>-</span>
+                        <span>Speed-</span>
                     </button>
                 </div>
 
@@ -199,7 +221,7 @@
             </div>
         </section>
 
-        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <!-- Memories Gallery Section -->
         <section id="memories" class="memories-section">

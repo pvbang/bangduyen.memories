@@ -201,6 +201,9 @@ function initUniverseScene() {
     setupUniverseZoom();
     setupUniverseControls();
     
+    // Set initial transform
+    updateUniverseTransform();
+    
     // Start auto rotation
     startAutoRotation();
 }
@@ -560,22 +563,18 @@ function createUniverseItem(type, content, index, total, radius) {
     const y = radius * Math.sin(theta) * Math.sin(phi);
     const z = radius * Math.cos(phi);
     
-    // Chỉ di chuyển vị trí, KHÔNG xoay để giữ chữ và ảnh luôn nằm ngang
+    // Set position
     item.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+    
+    // Create inner wrapper để counteract rotation
+    const inner = document.createElement('div');
+    inner.className = 'item-inner';
     
     if (type === 'wish') {
         const wishCard = document.createElement('div');
         wishCard.className = 'wish-card';
         wishCard.textContent = content;
-        item.appendChild(wishCard);
-        
-        // Add hover effect
-        item.addEventListener('mouseenter', () => {
-            wishCard.style.transform = 'scale(1.05)';
-        });
-        item.addEventListener('mouseleave', () => {
-            wishCard.style.transform = 'scale(1)';
-        });
+        inner.appendChild(wishCard);
     } else if (type === 'photo') {
         const photoCard = document.createElement('div');
         photoCard.className = 'photo-card';
@@ -594,23 +593,16 @@ function createUniverseItem(type, content, index, total, radius) {
         
         photoCard.appendChild(img);
         photoCard.appendChild(caption);
-        item.appendChild(photoCard);
+        inner.appendChild(photoCard);
         
         // Click to view full image
         item.addEventListener('click', (e) => {
             e.stopPropagation();
             showImageModal(content.src, content.caption);
         });
-        
-        // Add hover effect
-        item.addEventListener('mouseenter', () => {
-            photoCard.style.transform = 'scale(1.05)';
-        });
-        item.addEventListener('mouseleave', () => {
-            photoCard.style.transform = 'scale(1)';
-        });
     }
     
+    item.appendChild(inner);
     universeState.scene.appendChild(item);
     universeState.items.push(item);
 }
@@ -705,11 +697,11 @@ function setupUniverseControls() {
         updateUniverseTransform();
         updateZoomDisplay();
         
-        // Reset items position if exploded
+        // Reset exploded scale if any
         universeState.items.forEach(item => {
-            const transform = item.style.transform;
-            if (transform.includes('scale')) {
-                item.style.transform = transform.replace(/scale\([^)]+\)/, '');
+            const inner = item.querySelector('.item-inner');
+            if (inner && universeState.exploded) {
+                inner.style.transform = inner.style.transform.replace(/scale\([^)]+\)/, '');
             }
         });
     });
@@ -718,19 +710,35 @@ function setupUniverseControls() {
     document.getElementById('explodeBtn').addEventListener('click', () => {
         universeState.exploded = !universeState.exploded;
         
-        if (universeState.exploded) {
-            // Explode items outward
-            universeState.items.forEach(item => {
-                const currentTransform = item.style.transform;
-                item.style.transform = currentTransform + ' scale(1.5)';
-            });
-        } else {
-            // Reset items
-            universeState.items.forEach(item => {
-                const transform = item.style.transform;
-                item.style.transform = transform.replace(/scale\([^)]+\)/, '');
-            });
-        }
+        universeState.items.forEach(item => {
+            const inner = item.querySelector('.item-inner');
+            if (inner) {
+                if (universeState.exploded) {
+                    // Add scale to inner
+                    const currentTransform = inner.style.transform || '';
+                    if (!currentTransform.includes('scale')) {
+                        inner.style.transform = currentTransform + ' scale(1.5)';
+                    }
+                } else {
+                    // Remove scale from inner
+                    inner.style.transform = inner.style.transform.replace(/scale\([^)]+\)/, '').trim();
+                }
+            }
+        });
+    });
+    
+    // Zoom in button
+    document.getElementById('zoomInBtn').addEventListener('click', () => {
+        universeState.scale = Math.min(3, universeState.scale + 0.15);
+        updateUniverseTransform();
+        updateZoomDisplay();
+    });
+    
+    // Zoom out button
+    document.getElementById('zoomOutBtn').addEventListener('click', () => {
+        universeState.scale = Math.max(0.3, universeState.scale - 0.15);
+        updateUniverseTransform();
+        updateZoomDisplay();
     });
     
     // Speed up button
@@ -771,6 +779,18 @@ function updateUniverseTransform() {
             rotateX(${universeState.rotation.x}deg)
             rotateY(${universeState.rotation.y}deg)
         `;
+        
+        // Apply inverse rotation to all items để giữ chúng luôn đứng thẳng
+        universeState.items.forEach(item => {
+            const inner = item.querySelector('.item-inner');
+            if (inner) {
+                // Counter-rotate để luôn nhìn về phía camera
+                inner.style.transform = `
+                    rotateY(${-universeState.rotation.y}deg)
+                    rotateX(${-universeState.rotation.x}deg)
+                `;
+            }
+        });
     }
 }
 
@@ -786,17 +806,36 @@ function updateZoomDisplay() {
 // ==========================================
 
 let wishesRainActive = false;
-let rainSpeed = 5;
+let rainSpeed = 3; // Giảm tốc độ mặc định cho chậm hơn
 let rainDensity = 10;
 let rainCounter = 0;
 
 function initWishesRain() {
     // Mưa sẽ tự động bắt đầu sau khi mở hộp quà
-    // Không cần button controls nữa
     
     // Set optimal values for continuous rain
-    rainSpeed = 6;
-    rainDensity = 12;
+    rainSpeed = 3; // Chậm hơn để dễ đọc
+    rainDensity = 10;
+    
+    // Setup slider controls
+    const speedSlider = document.getElementById('speedSlider');
+    const densitySlider = document.getElementById('densitySlider');
+    const speedValue = document.getElementById('speedValue');
+    const densityValue = document.getElementById('densityValue');
+    
+    if (speedSlider) {
+        speedSlider.addEventListener('input', (e) => {
+            rainSpeed = parseInt(e.target.value);
+            speedValue.textContent = rainSpeed;
+        });
+    }
+    
+    if (densitySlider) {
+        densitySlider.addEventListener('input', (e) => {
+            rainDensity = parseInt(e.target.value);
+            densityValue.textContent = rainDensity;
+        });
+    }
 }
 
 function startWishesRain() {
