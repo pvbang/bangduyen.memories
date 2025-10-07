@@ -28,13 +28,8 @@ function initIntroAnimation() {
     // Create sparkles around gift
     createGiftSparkles(giftSparkles);
     
-    // Gift box click/touch event
-    const openGift = function(e) {
-        e.preventDefault(); // Prevent default behavior
-        
-        // Prevent multiple clicks
-        if (giftBox.classList.contains('opening')) return;
-        
+    // Gift box click event
+    giftBox.addEventListener('click', function() {
         // Open gift animation
         giftBox.classList.add('opening');
         
@@ -63,11 +58,7 @@ function initIntroAnimation() {
                 startWishesRain();
             }, 2000);
         }, 1500);
-    };
-    
-    // Add both click and touch events for better mobile support
-    giftBox.addEventListener('click', openGift);
-    giftBox.addEventListener('touchend', openGift);
+    });
 }
 
 function createGiftSparkles(container) {
@@ -697,6 +688,7 @@ function initWishesRain() {
     const densitySlider = document.getElementById('densitySlider');
     const speedValue = document.getElementById('speedValue');
     const densityValue = document.getElementById('densityValue');
+    const wishesSection = document.getElementById('wishes');
 
     // Set initial values from sliders
     if (speedSlider) {
@@ -724,6 +716,27 @@ function initWishesRain() {
                 updateWishesRainDensity();
             }
         });
+    }
+
+    // Auto-start rain when wishes section becomes visible
+    if (wishesSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !wishesRainActive) {
+                    startWishesRain();
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        observer.observe(wishesSection);
+    }
+
+    // Also start rain immediately if main content is already visible
+    const mainContent = document.getElementById('mainContent');
+    if (mainContent && mainContent.classList.contains('active')) {
+        setTimeout(() => {
+            startWishesRain();
+        }, 1000);
     }
 }
 

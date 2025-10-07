@@ -10,24 +10,6 @@
     box-sizing: border-box;
 }
 
-/* Remove tap highlight and improve touch on all interactive elements */
-button,
-a,
-[role="button"],
-.nav-item,
-.control-btn,
-.carousel-btn,
-.gift-box-container,
-.wish-rain-item,
-.photo-card,
-.wish-card {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
 :root {
     /* Color Palette */
     --cosmic-purple: #6B46C1;
@@ -62,24 +44,9 @@ body.birthday-page {
     background: linear-gradient(135deg, #000428 0%, #004e92 25%, #8B008B 50%, #4B0082 75%, #191970 100%);
     background-attachment: fixed;
     min-height: 100vh;
-    min-height: -webkit-fill-available; /* Fix cho Safari iOS */
     color: var(--white);
     overflow-x: hidden;
     position: relative;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling trên iOS */
-}
-
-/* Fix cho viewport height trên mobile */
-html {
-    height: -webkit-fill-available;
-    overflow-x: hidden;
-}
-
-@supports (-webkit-touch-callout: none) {
-    /* CSS specific to iOS devices */ 
-    body.birthday-page {
-        min-height: -webkit-fill-available;
-    }
 }
 
 /* Magic Background */
@@ -193,12 +160,9 @@ html {
     box-shadow: var(--shadow-romantic);
     transition: all 0.3s ease;
     pointer-events: all;
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
-.music-toggle:hover,
-.music-toggle:active {
+.music-toggle:hover {
     transform: scale(1.1);
     box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
 }
@@ -222,15 +186,12 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    min-height: -webkit-fill-available; /* Fix cho Safari iOS */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     transition: opacity 1s ease, visibility 1s ease;
-    overflow-y: auto; /* Cho phép scroll nếu cần */
-    padding: 20px 0;
 }
 
 .intro-screen.hidden {
@@ -243,12 +204,7 @@ html {
     padding: 20px;
     width: 100%;
     max-width: 600px;
-    margin: auto; /* Tự động canh giữa cả chiều dọc và ngang */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: min-content; /* Đảm bảo nội dung không bị cắt */
+    margin: 0 auto;
 }
 
 .intro-title {
@@ -257,7 +213,6 @@ html {
     margin-bottom: 20px;
     animation: fadeInDown 1s ease;
     word-wrap: break-word;
-    word-break: break-word; /* Phòng trường hợp text quá dài */
     line-height: 1.2;
 }
 
@@ -268,29 +223,24 @@ html {
     background-clip: text;
     display: inline-block;
     font-weight: 700;
-    max-width: 100%; /* Đảm bảo không bị tràn */
 }
 
 .subtitle {
     font-size: 1.5rem;
     color: var(--soft-pink);
     margin-top: 10px;
-    word-wrap: break-word;
-    max-width: 100%;
 }
 
 /* Gift Box Animation */
 .gift-box-container {
     position: relative;
-    margin: 40px auto 30px;
+    margin: 60px auto;
     cursor: pointer;
     perspective: 1000px;
     width: 100%;
-    max-width: 300px; /* Giới hạn kích thước tối đa */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 220px; /* Đảm bảo chiều cao tối thiểu để hiển thị gift box */
 }
 
 .gift-box {
@@ -300,7 +250,6 @@ html {
     margin: 0 auto;
     animation: floatGift 3s ease-in-out infinite;
     transition: transform 0.5s ease;
-    flex-shrink: 0; /* Không cho phép thu nhỏ */
 }
 
 .gift-box:hover {
@@ -457,10 +406,7 @@ html {
     font-size: 1.2rem;
     color: white;
     animation: bounce 2s infinite;
-    margin-top: 30px;
-    padding: 0 20px;
-    word-wrap: break-word;
-    max-width: 100%;
+    margin-top: 40px;
 }
 
 @keyframes bounce {
@@ -593,8 +539,6 @@ section {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    overflow: hidden; /* Prevent overflow on small screens */
-    touch-action: pan-y pinch-zoom; /* Allow vertical scroll and pinch zoom */
 }
 
 .universe-scene {
@@ -606,7 +550,6 @@ section {
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: none; /* Handle all touch events in JS */
 }
 
 .universe-scene:active {
@@ -1733,40 +1676,20 @@ section {
         font-size: 14px;
     }
     
-    /* Fix Intro Screen cho mobile */
-    .intro-screen {
-        padding: 15px 0;
-        align-items: flex-start; /* Bắt đầu từ trên để tránh bị cắt */
-    }
-    
     .intro-content {
-        padding: 20px 15px;
+        padding: 15px;
         max-width: 90%;
-        margin-top: 30px; /* Thêm khoảng cách từ trên */
     }
     
     .intro-title {
         font-size: 2rem;
         padding: 0 10px;
         line-height: 1.3;
-        margin-bottom: 15px;
-    }
-    
-    .gradient-text {
-        font-size: 1.8rem;
-        display: block; /* Cho phép xuống dòng tốt hơn */
     }
     
     .subtitle {
         font-size: 1rem;
         padding: 0 10px;
-        line-height: 1.4;
-    }
-    
-    .gift-box-container {
-        margin: 30px auto 25px;
-        min-height: 180px;
-        max-width: 90%;
     }
     
     .gift-box {
@@ -1784,41 +1707,9 @@ section {
         height: 45px;
     }
     
-    .bow {
-        width: 70px;
-        height: 35px;
-        top: -25px;
-    }
-    
-    .bow-left, .bow-right {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .bow-center {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .gift-ribbon.vertical {
-        width: 18px;
-        height: 120px;
-    }
-    
-    .gift-ribbon.horizontal {
-        width: 160px;
-        height: 18px;
-    }
-    
-    .sparkles {
-        width: 240px;
-        height: 240px;
-    }
-    
     .hint-text {
-        font-size: 0.95rem;
-        padding: 0 15px;
-        margin-top: 25px;
+        font-size: 1rem;
+        padding: 0 20px;
     }
     
     .nav-menu {
@@ -2078,133 +1969,76 @@ section {
         font-size: 13px;
     }
     
-    /* Fix Intro Screen cho màn hình rất nhỏ */
-    .intro-screen {
-        padding: 10px 0;
-        height: auto;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-    }
-    
     .intro-content {
-        padding: 15px 10px;
+        padding: 10px;
         max-width: 95%;
-        margin-top: 20px;
     }
     
     .intro-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         padding: 0 5px;
         line-height: 1.4;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
     }
     
     .gradient-text {
-        font-size: 1.4rem;
-        display: block;
+        font-size: 1.3rem;
     }
     
     .subtitle {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 0 5px;
-        line-height: 1.5;
+        line-height: 1.4;
     }
     
     .gift-box-container {
-        margin: 25px auto 20px;
-        max-width: 95%;
-        min-height: 160px;
+        margin: 40px auto 30px;
+        max-width: 90%;
     }
     
     .gift-box {
-        width: 130px;
-        height: 130px;
+        width: 140px;
+        height: 140px;
     }
     
     .gift-body {
-        width: 130px;
-        height: 98px;
+        width: 140px;
+        height: 105px;
     }
     
     .gift-lid {
-        width: 150px;
-        height: 38px;
-        top: -8px;
-        left: -10px;
+        width: 160px;
+        height: 40px;
     }
     
     .bow {
-        width: 60px;
-        height: 30px;
-        top: -22px;
+        width: 70px;
+        height: 35px;
     }
     
     .bow-left, .bow-right {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .bow-center {
-        width: 15px;
-        height: 15px;
-    }
-    
-    .gift-ribbon.vertical {
-        width: 15px;
-        height: 98px;
-    }
-    
-    .gift-ribbon.horizontal {
-        width: 130px;
-        height: 15px;
-    }
-    
-    .sparkles {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .sparkle {
-        width: 8px;
-        height: 8px;
+        width: 35px;
+        height: 35px;
     }
     
     .hint-text {
         font-size: 0.85rem;
         padding: 0 10px;
-        margin-top: 20px;
-    }
-    
-    .hint-text i {
-        font-size: 0.9rem;
+        margin-top: 30px;
     }
     
     .nav-menu {
         gap: 6px;
-        padding: 0 10px;
-        overflow-x: auto; /* Cho phép scroll ngang nếu cần */
-        -webkit-overflow-scrolling: touch; /* Smooth scroll trên iOS */
-        scrollbar-width: none; /* Ẩn scrollbar trên Firefox */
-    }
-    
-    .nav-menu::-webkit-scrollbar {
-        display: none; /* Ẩn scrollbar trên Chrome/Safari */
     }
     
     .nav-item {
         padding: 8px 14px;
         font-size: 0.75rem;
         border-radius: 20px;
-        white-space: nowrap; /* Không cho text xuống dòng */
-        flex-shrink: 0; /* Không cho element bị thu nhỏ */
     }
     
     .nav-item i {
         font-size: 12px;
-    }
-    
-    .nav-item span {
-        display: inline; /* Hiển thị text trên mobile */
     }
     
     section {
@@ -2459,162 +2293,6 @@ section {
         font-size: 20px;
         bottom: 20px;
         right: 20px;
-    }
-}
-
-/* Extra Small Devices (< 360px) */
-@media (max-width: 360px) {
-    .intro-title {
-        font-size: 1.3rem;
-    }
-    
-    .gradient-text {
-        font-size: 1.2rem;
-    }
-    
-    .subtitle {
-        font-size: 0.8rem;
-    }
-    
-    .gift-box-container {
-        margin: 20px auto 15px;
-        min-height: 140px;
-    }
-    
-    .gift-box {
-        width: 110px;
-        height: 110px;
-    }
-    
-    .gift-body {
-        width: 110px;
-        height: 83px;
-    }
-    
-    .gift-lid {
-        width: 130px;
-        height: 32px;
-        top: -6px;
-        left: -10px;
-    }
-    
-    .bow {
-        width: 50px;
-        height: 25px;
-        top: -18px;
-    }
-    
-    .bow-left, .bow-right {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .bow-center {
-        width: 12px;
-        height: 12px;
-    }
-    
-    .gift-ribbon.vertical {
-        width: 12px;
-        height: 83px;
-    }
-    
-    .gift-ribbon.horizontal {
-        width: 110px;
-        height: 12px;
-    }
-    
-    .hint-text {
-        font-size: 0.75rem;
-    }
-    
-    .nav-item {
-        padding: 6px 10px;
-        font-size: 0.7rem;
-    }
-    
-    .section-title {
-        font-size: 1.2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 0.75rem;
-    }
-}
-
-/* Landscape Mode cho Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    .intro-screen {
-        height: auto;
-        min-height: 100vh;
-        align-items: flex-start;
-        padding: 10px 0;
-    }
-    
-    .intro-content {
-        margin-top: 10px;
-        padding: 10px;
-    }
-    
-    .intro-title {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-    }
-    
-    .subtitle {
-        font-size: 0.85rem;
-    }
-    
-    .gift-box-container {
-        margin: 15px auto 10px;
-        min-height: 120px;
-    }
-    
-    .gift-box {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .gift-body {
-        width: 100px;
-        height: 75px;
-    }
-    
-    .gift-lid {
-        width: 120px;
-        height: 30px;
-        top: -5px;
-    }
-    
-    .bow {
-        width: 45px;
-        height: 22px;
-        top: -15px;
-    }
-    
-    .bow-left, .bow-right {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .bow-center {
-        width: 10px;
-        height: 10px;
-    }
-    
-    .gift-ribbon.vertical {
-        width: 10px;
-        height: 75px;
-    }
-    
-    .gift-ribbon.horizontal {
-        width: 100px;
-        height: 10px;
-    }
-    
-    .hint-text {
-        font-size: 0.75rem;
-        margin-top: 10px;
     }
 }
 
