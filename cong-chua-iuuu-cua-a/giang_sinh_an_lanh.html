@@ -1306,11 +1306,12 @@
         }
 
         function createPhotos() {
-            const geo = new THREE.PlaneGeometry(8, 8);
-            const borderGeo = new THREE.PlaneGeometry(9, 9);
+            // T\u1ef7 l\u1ec7 \u1ea3nh d\u1ecdc (portrait 3:4) theo \u1ea3nh th\u1ef1c t\u1ebf
+            const geo = new THREE.PlaneGeometry(7, 9);
+            const borderGeo = new THREE.PlaneGeometry(8, 10);
             const borderMat = new THREE.MeshBasicMaterial({ color: 0xFFD700 });
 
-            // Hiển thị tất cả 11 ảnh
+            // Hi\u1ec3n th\u1ecb t\u1ea5t c\u1ea3 11 \u1ea3nh
             for (let i = 0; i < photoFiles.length; i++) {
                 const mat = new THREE.MeshBasicMaterial({ map: photoTextures[i], side: THREE.DoubleSide });
                 const mesh = new THREE.Mesh(geo, mat);
@@ -1461,9 +1462,9 @@
             } else if (state === 'EXPLODE') {
                 titleMesh.visible = false; starMesh.visible = false; loveMesh.visible = false;
 
-                // Tự động xoay chậm khi không có tương tác
+                // Tự động xoay nhanh hơn khi không có tương tác
                 if (!isRotating) {
-                    manualRotation += 0.003;
+                    manualRotation += 0.005;
                 }
 
                 const baseAngle = manualRotation;
