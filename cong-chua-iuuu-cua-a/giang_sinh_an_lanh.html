@@ -999,10 +999,15 @@
             redCount: 300,
             giftCount: 150,
             explodeRadius: 65,
-            photoOrbitRadius: 25,
+            photoOrbitRadius: 55, // Tăng từ 25 lên 55 để ảnh xa nhau hơn
             treeHeight: 70,
             treeBaseRadius: 35
         };
+
+        // Biến để xùay album bằng tay/chuột
+        let manualRotation = 0;
+        let isRotating = false;
+        let lastTouchX = 0;
 
         // ==========================================
         // INTRO & SNOW
@@ -1455,7 +1460,13 @@
                 loveMesh.scale.set(s, s, 1);
             } else if (state === 'EXPLODE') {
                 titleMesh.visible = false; starMesh.visible = false; loveMesh.visible = false;
-                const baseAngle = groupGold.rotation.y;
+
+                // Tự động xoay chậm khi không có tương tác
+                if (!isRotating) {
+                    manualRotation += 0.003;
+                }
+
+                const baseAngle = manualRotation;
                 const angleStep = (Math.PI * 2) / photoMeshes.length;
                 let bestIdx = 0; let maxZ = -999;
                 photoMeshes.forEach((mesh, i) => {
@@ -1576,6 +1587,48 @@
         // Initialize
         createSnowflakes();
         displayWishes();
+
+        // ==========================================
+        // TOUCH/MOUSE HANDLERS cho album ảnh
+        // ==========================================
+        document.addEventListener('mousedown', (e) => {
+            if (state === 'EXPLODE') {
+                isRotating = true;
+                lastTouchX = e.clientX;
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isRotating && state === 'EXPLODE') {
+                const deltaX = e.clientX - lastTouchX;
+                manualRotation += deltaX * 0.005;
+                lastTouchX = e.clientX;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isRotating = false;
+        });
+
+        // Touch events cho điện thoại
+        document.addEventListener('touchstart', (e) => {
+            if (state === 'EXPLODE' && e.touches.length === 1) {
+                isRotating = true;
+                lastTouchX = e.touches[0].clientX;
+            }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isRotating && state === 'EXPLODE' && e.touches.length === 1) {
+                const deltaX = e.touches[0].clientX - lastTouchX;
+                manualRotation += deltaX * 0.008;
+                lastTouchX = e.touches[0].clientX;
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            isRotating = false;
+        });
     </script>
 </body>
 
