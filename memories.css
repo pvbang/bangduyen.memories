@@ -1558,3 +1558,19 @@ body {
         transform: scale(1.05);
     }
 }
+
+/* Christmas Glow Animation for Giáng Sinh Button */
+@keyframes christmasGlow {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+        transform: scale(1);
+    }
+    33% {
+        box-shadow: 0 8px 25px rgba(34, 139, 34, 0.6);
+        transform: scale(1.03);
+    }
+    66% {
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+        transform: scale(1.05);
+    }
+}
