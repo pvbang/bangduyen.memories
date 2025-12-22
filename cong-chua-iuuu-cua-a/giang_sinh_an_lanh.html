@@ -710,9 +710,23 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
+            .intro-title {
+                font-size: 2.2rem;
+            }
+
+            .intro-message {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .intro-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+
             .nav-bar {
                 padding: 8px 15px;
-                gap: 10px;
+                gap: 8px;
             }
 
             .nav-btn {
@@ -721,12 +735,14 @@
             }
 
             .gesture-guide {
-                padding: 15px 20px;
+                padding: 12px 15px;
+                margin: 0 10px 15px;
             }
 
             .gesture-item {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
+                font-size: 0.85rem;
             }
 
             #camera-preview {
@@ -734,6 +750,62 @@
                 height: 75px;
                 top: 80px;
                 right: 10px;
+            }
+
+            .message-card {
+                margin: 10px;
+                padding: 25px;
+            }
+
+            .message-text {
+                font-size: 1rem;
+            }
+
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .camera-modal-content {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .camera-modal-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .camera-modal-content p {
+                font-size: 0.9rem;
+            }
+
+            .start-tree-btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-bar {
+                padding: 6px 10px;
+                gap: 5px;
+            }
+
+            .nav-btn {
+                font-size: 1rem;
+                padding: 5px 8px;
+            }
+
+            .gesture-item span {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -882,7 +954,27 @@
 
     <!-- Hidden Video for Camera -->
     <video class="input_video" style="display:none"></video>
-    <canvas id="camera-preview"></canvas>
+    <canvas id="camera-preview" width="320" height="240"></canvas>
+
+    <!-- Camera Help Modal (khi bị từ chối quyền) -->
+    <div class="camera-modal" id="cameraHelpModal">
+        <div class="camera-modal-content">
+            <h3>📷 Cần Cấp Quyền Camera</h3>
+            <p style="color: var(--romantic-pink);">Eiuu ơi, camera cần được cấp quyền để dùng tính năng này nhee</p>
+            <p><strong>Cách cấp quyền:</strong></p>
+            <p>1️⃣ Click vào biểu tượng 🔒 hoặc ℹ️ trên thanh địa chỉ (góc trái phía trên, ngay bên cạnh link
+                pvbang.github.io/...)</p>
+            <p>2️⃣ Tìm mục "Camera" và chọn "Allow" hoặc "Cho phép"</p>
+            <p>3️⃣ Refresh lại trang (F5) và thử lại nhié</p>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 15px;">
+                💡 Nếu dùng điện thoại, vào Settings > Safari/Chrome > Camera
+            </p>
+            <div class="camera-modal-btns">
+                <button class="modal-btn modal-btn-yes" onclick="closeCameraHelpModal()">Dạaa Eiuuu Hiểu Rồi 💕
+                    :)))</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // ==========================================
@@ -1056,6 +1148,14 @@
             document.getElementById('cameraModal').classList.remove('show');
         }
 
+        function closeCameraHelpModal() {
+            document.getElementById('cameraHelpModal').classList.remove('show');
+        }
+
+        function showCameraHelpModal() {
+            document.getElementById('cameraHelpModal').classList.add('show');
+        }
+
         function startCamera() {
             closeCameraModal();
             startSystem();
@@ -1205,7 +1305,8 @@
             const borderGeo = new THREE.PlaneGeometry(9, 9);
             const borderMat = new THREE.MeshBasicMaterial({ color: 0xFFD700 });
 
-            for (let i = 0; i < 5; i++) {
+            // Hiển thị tất cả 11 ảnh
+            for (let i = 0; i < photoFiles.length; i++) {
                 const mat = new THREE.MeshBasicMaterial({ map: photoTextures[i], side: THREE.DoubleSide });
                 const mesh = new THREE.Mesh(geo, mat);
                 const border = new THREE.Mesh(borderGeo, borderMat);
@@ -1355,7 +1456,7 @@
             } else if (state === 'EXPLODE') {
                 titleMesh.visible = false; starMesh.visible = false; loveMesh.visible = false;
                 const baseAngle = groupGold.rotation.y;
-                const angleStep = (Math.PI * 2) / 5;
+                const angleStep = (Math.PI * 2) / photoMeshes.length;
                 let bestIdx = 0; let maxZ = -999;
                 photoMeshes.forEach((mesh, i) => {
                     mesh.visible = true;
@@ -1445,9 +1546,20 @@
             const cameraUtils = new Camera(video, {
                 onFrame: async () => { await hands.send({ image: video }); },
                 width: 320,
-                height: 240
+                height: 240,
+                facingMode: 'user' // Dùng camera trước trên điện thoại
             });
-            cameraUtils.start();
+
+            // Bắt lỗi camera permission - hiện modal hướng dẫn thân thiện
+            cameraUtils.start().catch(err => {
+                console.log('Camera error:', err);
+                // Không hiện lỗi, hiện modal hướng dẫn thân thiện
+                showCameraHelpModal();
+                // Reset trạng thái để có thể thử lại
+                systemStarted = false;
+                document.getElementById('startTreeBtn').style.display = 'block';
+                document.getElementById('camera-preview').classList.remove('visible');
+            });
         }
 
         // ==========================================
