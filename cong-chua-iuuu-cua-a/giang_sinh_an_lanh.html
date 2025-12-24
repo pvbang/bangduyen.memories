@@ -1388,7 +1388,7 @@
             const loveCanvas = document.createElement('canvas');
             loveCanvas.width = 2048; loveCanvas.height = 400;
             const lCtx = loveCanvas.getContext('2d');
-            lCtx.font = 'bold 90px "Georgia", serif';
+            lCtx.font = 'bold 90px "Times New Roman", serif';
             lCtx.textAlign = 'center';
             lCtx.textBaseline = 'middle';
             // Vẽ viền đậm trước
@@ -1504,8 +1504,8 @@
                 if (!isRotating) {
                     // Tính góc xoay dựa trên vị trí tay (handX: 0-1)
                     // handX = 0.5 là giữa, di chuyển sang trái/phải sẽ xoay album
-                    const handRotation = (handX - 0.5) * Math.PI * 2; // Xoay tối đa 360 độ
-                    manualRotation += (handRotation - manualRotation) * 0.05; // Smooth lerp
+                    const targetRotation = (0.5 - handX) * Math.PI * 4; // Đảo chiều và xoay 720 độ
+                    manualRotation += (targetRotation - manualRotation) * 0.15; // Tăng tốc độ lerp
                 }
 
                 const baseAngle = manualRotation;
