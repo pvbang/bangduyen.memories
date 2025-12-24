@@ -1500,9 +1500,12 @@
             } else if (state === 'EXPLODE') {
                 titleMesh.visible = false; starMesh.visible = false; loveMesh.visible = false;
 
-                // Tự động xoay chậm khi không có tương tác
+                // Xoay theo vị trí bàn tay khi không dùng chuột/touch
                 if (!isRotating) {
-                    manualRotation += 0.0045;
+                    // Tính góc xoay dựa trên vị trí tay (handX: 0-1)
+                    // handX = 0.5 là giữa, di chuyển sang trái/phải sẽ xoay album
+                    const handRotation = (handX - 0.5) * Math.PI * 2; // Xoay tối đa 360 độ
+                    manualRotation += (handRotation - manualRotation) * 0.05; // Smooth lerp
                 }
 
                 const baseAngle = manualRotation;
