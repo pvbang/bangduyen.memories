@@ -1506,6 +1506,8 @@
                     // handX = 0.5 là giữa, di chuyển sang trái/phải sẽ xoay album
                     const targetRotation = (0.5 - handX) * Math.PI * 4; // Đảo chiều và xoay 720 độ
                     manualRotation += (targetRotation - manualRotation) * 0.15; // Tăng tốc độ lerp
+                    // Thêm xoay tự động nhanh hơn
+                    manualRotation += 0.007;
                 }
 
                 const baseAngle = manualRotation;
