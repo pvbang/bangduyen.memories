@@ -1388,9 +1388,17 @@
             const loveCanvas = document.createElement('canvas');
             loveCanvas.width = 2048; loveCanvas.height = 400;
             const lCtx = loveCanvas.getContext('2d');
-            lCtx.font = 'bold 100px "Dancing Script", cursive';
-            lCtx.fillStyle = '#FF69B4'; lCtx.textAlign = 'center';
-            lCtx.shadowColor = "#FF1493"; lCtx.shadowBlur = 50;
+            lCtx.font = 'bold 90px "Georgia", serif';
+            lCtx.textAlign = 'center';
+            lCtx.textBaseline = 'middle';
+            // Vẽ viền đậm trước
+            lCtx.strokeStyle = '#FF1493';
+            lCtx.lineWidth = 8;
+            lCtx.shadowColor = "#FF1493"; lCtx.shadowBlur = 60;
+            lCtx.strokeText("IUUUUU EMMM NHIỀUUU ❤️", 1024, 200);
+            // Vẽ chữ màu hồng
+            lCtx.fillStyle = '#FF69B4';
+            lCtx.shadowBlur = 40;
             lCtx.fillText("IUUUUU EMMM NHIỀUUU ❤️", 1024, 200);
             const loveTex = new THREE.CanvasTexture(loveCanvas);
             const loveMat = new THREE.MeshBasicMaterial({ map: loveTex, transparent: true, blending: THREE.AdditiveBlending });
