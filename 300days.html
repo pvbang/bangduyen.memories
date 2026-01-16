@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300 Ngày Yêu Nhau - Bằng & Duyên 💕</title>
+    <meta name="description"
+        content="Trang kỷ niệm 300 ngày yêu nhau của Bằng và Duyên - Hành trình tình yêu tuyệt vời">
+
+    <!-- Immediate protection -->
+    <script>
+        document.documentElement.style.visibility = 'hidden';
+        document.documentElement.style.opacity = '0';
+    </script>
+
+    <!-- Authentication Guard -->
+    <script src="auth-guard.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="300days.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body class="celebration-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-heart"></div>
+        <p class="loading-text">Đang chuẩn bị điều đặc biệt cho em...</p>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingBar"></div>
+        </div>
+    </div>
+
+    <!-- Three.js Canvas -->
+    <div id="threejs-container">
+        <canvas id="threejs-canvas"></canvas>
+    </div>
+
+    <!-- Navigation Back -->
+    <nav class="back-nav">
+        <a href="memories.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Quay lại kỷ niệm</span>
+        </a>
+    </nav>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Milestone Badge -->
+                <div class="milestone-badge">
+                    <div class="badge-inner">
+                        <span class="number">300</span>
+                        <span class="text">NGÀY</span>
+                    </div>
+                </div>
+
+                <!-- Hero Title -->
+                <h1 class="hero-title">
+                    <span class="line-1">300 Ngày Yêu Nhau</span>
+                    <span class="line-2">Bằng & Duyên</span>
+                </h1>
+
+                <!-- Hero Subtitle -->
+                <p class="hero-subtitle">
+                    Từ ngày 23/03/2025 - 300 ngày hành trình yêu thương,
+                    300 ngày hạnh phúc bên công chúa iuuu của anh 💕
+                </p>
+
+                <!-- Hero Date -->
+                <div class="hero-date">
+                    <i class="fas fa-calendar-heart"></i>
+                    <span>Kỷ niệm 300 ngày - 17/01/2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Cuộn xuống</span>
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         STATS SECTION
+         ========================================== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card reveal stagger-1">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="stat-number" data-target="300">0</div>
+                    <div class="stat-label">Ngày bên nhau</div>
+                </div>
+                <div class="stat-card reveal stagger-2">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number" data-target="7200">0</div>
+                    <div class="stat-label">Giờ hạnh phúc</div>
+                </div>
+                <div class="stat-card reveal stagger-3">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number" data-target="432000">0</div>
+                    <div class="stat-label">Phút nhớ em</div>
+                </div>
+                <div class="stat-card reveal stagger-4">
+                    <div class="stat-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Tình iuuuu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PHOTO GALLERY - THIÊN HÀ KỶ NIỆM 3D
+         ========================================== -->
+    <section class="galaxy-section" id="galaxySection">
+        <div class="galaxy-header">
+            <h2 class="galaxy-title">
+                <i class="fas fa-star"></i>
+                Thiên Hà Kỷ Niệm
+                <i class="fas fa-star"></i>
+            </h2>
+            <p class="galaxy-subtitle">
+                97 khoảnh khắc đẹp bay lơ lửng trong vũ trụ tình yêu
+                <br><span class="galaxy-hint">🖱️ Kéo để xoay • 🔍 Cuộn để zoom • 👆 Click ảnh để xem full</span>
+            </p>
+        </div>
+
+        <!-- Galaxy 3D Canvas Container -->
+        <div class="galaxy-container" id="galaxyContainer">
+            <canvas id="galaxyCanvas"></canvas>
+            
+            <!-- Galaxy Loading -->
+            <div class="galaxy-loading" id="galaxyLoading">
+                <div class="galaxy-loading-spinner"></div>
+                <p>Đang tải thiên hà...</p>
+            </div>
+
+            <!-- Galaxy Controls -->
+            <div class="galaxy-controls">
+                <button class="galaxy-btn" id="galaxyAutoRotate" title="Tự động xoay">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="galaxy-btn" id="galaxyZoomIn" title="Phóng to">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="galaxy-btn" id="galaxyZoomOut" title="Thu nhỏ">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="galaxy-btn" id="galaxyReset" title="Đặt lại vị trí">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="galaxy-btn" id="galaxySlideshow" title="Trình chiếu">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+
+            <!-- Photo Counter -->
+            <div class="galaxy-counter">
+                <i class="fas fa-images"></i>
+                <span id="galaxyPhotoCount">97 kỷ niệm</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Lightbox Modal -->
+    <div class="photo-lightbox" id="photoLightbox">
+        <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Kỷ niệm">
+            <div class="lightbox-counter" id="lightboxCounter">1 / 97</div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-thumbnails" id="lightboxThumbnails">
+            <!-- Thumbnails will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TIMELINE SECTION
+         ========================================== -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i class="fas fa-route"></i>
+                    Hành Trình 300 Ngày
+                </h2>
+                <p class="section-subtitle">
+                    Những cột mốc đáng nhớ trong chuyện tình của đôi mình
+                </p>
+            </div>
+
+            <div class="timeline">
+                <!-- Day 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Ngày 1 - 23/03/2025</div>
+                        <h3 class="timeline-title">Ngày Tỏ Tình 💕</h3>
+                        <div class="timeline-text">
+                            <p><em>"Anh cảm thấy tình cảm của anh dành cho em đủ để anh nói ra lời tỏ tình, anh rất là
+                                    thích em..."</em></p>
+                            <p>Ngày đẹp nhất đời anh, khi anh dũng cảm nói ra những gì đã ấp ủ trong lòng. Từ đó, cuộc
+                                đời anh có thêm một ý nghĩa tuyệt vời: được iuuuu và được yêu lại bởi công chúa của anh!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 100 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Ngày 100 - Tháng 7/2025</div>
+                        <h3 class="timeline-title">100 Ngày Hạnh Phúc 👑</h3>
+                        <div class="timeline-text">
+                            <p><em>"100 ngày qua như một giấc mơ đẹp, nhưng em biết đây không phải giấc mơ, mà là hiện
+                                    thực tuyệt vời nhất"</em></p>
+                            <p>Cột mốc đầu tiên của chúng mình! 100 ngày iuuuu nhau, 100 ngày khám phá những điều tuyệt
+                                vời ở nhau. Anh đã làm hẳn một trang web để kỷ niệm ngày này đó nhen :))</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 200 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Ngày 200 - Tháng 10/2025</div>
+                        <h3 class="timeline-title">Những Kỷ Niệm Đẹp 📸</h3>
+                        <div class="timeline-text">
+                            <p><em>"Có em bên cạnh, mỗi ngày đều là một ngày đáng nhớ"</em></p>
+                            <p>200 ngày bên nhau, biết bao kỷ niệm đẹp đã được tạo ra. Từ những buổi hẹn hò, những lần
+                                chụp photobooth, đến những khoảnh khắc bình dị nhưng đầy ý nghĩa!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 300 -->
+                <div class="timeline-item featured">
+                    <div class="timeline-marker">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Ngày 300 - 17/01/2026</div>
+                        <h3 class="timeline-title">300 Ngày Yêu Thương 💎</h3>
+                        <div class="timeline-text">
+                            <p><em>"300 ngày chỉ là khởi đầu, còn vô vàn ngày hạnh phúc đang chờ đợi chúng mình phía
+                                    trước"</em></p>
+                            <p>Và hôm nay - 300 ngày! Một cột mốc tuyệt vời trong hành trình tình yêu của đôi mình. Cảm
+                                ơn công chúa iuu đã ở bên anh, đã iuu anh, và đã làm cuộc đời anh trở nên hoàn hảo hơn
+                                bao giờ hết! 💕</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         LOVE QUOTES SECTION
+         ========================================== -->
+    <section class="quotes-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i class="fas fa-feather-alt"></i>
+                    Lời Yêu Thương
+                </h2>
+                <p class="section-subtitle">
+                    Những lời tâm tình anh dành cho công chúa iuuu của anh
+                </p>
+            </div>
+
+            <div class="quotes-carousel">
+                <div class="quotes-track" id="quotesTrack">
+                    <!-- Quote 1 -->
+                    <div class="quote-slide">
+                        <div class="quote-card reveal-scale">
+                            <div class="quote-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <p class="quote-text">
+                                "Em là nắng mai soi qua song cửa, em là gió chiều thổi khẽ bên tai,
+                                em là mưa xuân rơi nhẹ trên tóc, em là cả tứ mùa trong đời anh mãi chóc chóc he hee :))"
+                            </p>
+                            <p class="quote-author">- Tứ mùa bên em</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote 2 -->
+                    <div class="quote-slide">
+                        <div class="quote-card">
+                            <div class="quote-icon">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <p class="quote-text">
+                                "Yêu em nhiều như sao đếm không hết, yêu em lâu như nước biển không cạn,
+                                iuuu em sâu như vực thẳm không đáy, iuuuu em mãi như lời thề không phai"
+                            </p>
+                            <p class="quote-author">- Lời thề vĩnh cửu</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote 3 -->
+                    <div class="quote-slide">
+                        <div class="quote-card">
+                            <div class="quote-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <p class="quote-text">
+                                "Công chúa nhỏ của anh ơi, mỗi buổi sáng thức dậy anh đều cảm ơn ông trời
+                                vì đã cho anh gặp em. Em là món quà đẹp nhất mà cuộc đời tặng anh!"
+                            </p>
+                            <p class="quote-author">- Lời cảm ơn từ trái tim</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote 4 -->
+                    <div class="quote-slide">
+                        <div class="quote-card">
+                            <div class="quote-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="quote-text">
+                                "Nếu anh là mặt trời thì em là mặt trăng, nếu anh là đại dương thì em là ánh sáng,
+                                nếu anh là cánh chim thì em là bầu trời, cùng nhau bay xa về phía chân trời ước mơ"
+                            </p>
+                            <p class="quote-author">- Đôi ta hoàn hảo</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote 5 -->
+                    <div class="quote-slide">
+                        <div class="quote-card">
+                            <div class="quote-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <p class="quote-text">
+                                "Tình yêu không chỉ là nói 'anh yêu em', mà là việc anh luôn ở đây khi em cần,
+                                luôn lắng nghe khi em buồn, luôn ôm em khi em mệt. Có gì cứ nói với a nha công chúa iuu
+                                của anhh ❤️"
+                            </p>
+                            <p class="quote-author">- Định nghĩa tình iuuu</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote 6 -->
+                    <div class="quote-slide">
+                        <div class="quote-card">
+                            <div class="quote-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <p class="quote-text">
+                                "300 ngày qua, mỗi ngày anh đều iuu em nhiều hơn ngày hôm qua.
+                                Và anh hứa, 300 ngày tới, tình yêu anh dành cho em sẽ còn lớn hơn nữa!"
+                            </p>
+                            <p class="quote-author">- Lời hứa 300 ngày</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quotes-nav">
+                    <button class="quote-nav-btn" id="prevQuote">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="quote-nav-btn" id="nextQuote">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="quotes-dots" id="quotesDots">
+                    <!-- Dots will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         LOVE LETTER SECTION
+         ========================================== -->
+    <section class="letter-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i class="fas fa-envelope-open-text"></i>
+                    Thư Tình 300 Ngày
+                </h2>
+                <p class="section-subtitle">
+                    Một bức thư đặc biệt dành riêng cho em
+                </p>
+            </div>
+
+            <div class="letter-container reveal">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-back"></div>
+                    <div class="envelope-flap"></div>
+                    <div class="heart-seal">
+                        <i class="fas fa-heart"></i>
+                    </div>
+
+                    <div class="letter-paper">
+                        <div class="letter-header">
+                            <h2>Gửi Công Chúa Iuu Của Anh 👑</h2>
+                            <p class="letter-date">Ngày 17 tháng 1 năm 2026</p>
+                        </div>
+
+                        <div class="letter-body">
+                            <p>Em iuuu ơiiii,</p>
+
+                            <p>300 ngày... Con số này có vẻ nhỏ bé so với cả cuộc đời, nhưng với anh, nó mang ý nghĩa to
+                                lớn vô cùng. 300 ngày được gọi em là "công chúa", được nghe em gọi anh, được thấy em
+                                cười, được ở bên em trong những khoảnh khắc tuyệt vời nhất!</p>
+
+                            <p>300 ngày qua, anh học được nhiều điều. Học được rằng <span class="highlight">iuu em đơn
+                                    giản đến lạ thường</span> - chỉ cần nhìn thấy em cười là tim anh đã tan chảy. Học
+                                được rằng tình yêu không chỉ là những lời ngọt ngào, mà còn là việc nhớ em cần nghỉ ngơi
+                                đúng giờ, nhắc em ăn uống đầy đủ, và sẵn sàng nghe em kể mọi chuyện dù là lần thứ 100
+                                :)))</p>
+
+                            <p>Anh không phải là thi sĩ, nhưng khi iuu em, anh cảm thấy mình có thể viết ra cả thiên
+                                tình sử. Mỗi ngày bên em là một bài thơ, mỗi nụ cười của em là một vần điệu ngọt ngào!
+                            </p>
+
+                            <p>Công chúa nhỏ của anh ơi, cảm ơn em vì đã đến với cuộc đời anh. Cảm ơn em vì đã làm anh
+                                trở thành một người đàn ông tốt hơn. Cảm ơn em vì đã iuu anh, dù anh biết đôi khi anh
+                                cũng khá là... dị :)))</p>
+
+                            <p>300 ngày đã qua, nhưng đây chỉ là <span class="highlight">0.82%</span> trong hành trình
+                                dài của đôi ta thôi! (Anh tính tới 100 tuổi cho tròn nha hehe). Còn 99.18% kia đang chờ
+                                chúng mình khám phá, và anh hứa sẽ làm cho mỗi ngày đều đặc biệt và đầy yêu thương!</p>
+
+                            <p><strong>Iuuu em vô điều kiện, vô lý do, và vô hạnnnnn! 💕</strong></p>
+                        </div>
+
+                        <div class="letter-signature">
+                            <p>Người iuu em nhất trên đời</p>
+                            <p>❤️ Anh Bằng của em ❤️</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="envelope-hint">
+                    <i class="fas fa-hand-pointer"></i>
+                    Click vào phong bì để mở thư nhé công chúa!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         300 PROMISES SECTION
+         ========================================== -->
+    <section class="promises-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    300 Lời Hứa
+                </h2>
+                <p class="section-subtitle">
+                    300 điều anh hứa sẽ làm cho công chúa iuu của anh
+                </p>
+            </div>
+
+            <div class="promises-grid" id="promisesGrid">
+                <!-- Promises will be added dynamically, showing first 9 -->
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="control-btn" id="loadMorePromises">
+                    <i class="fas fa-plus"></i>
+                    <span>Xem thêm lời hứa</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MINI GAMES SECTION
+         ========================================== -->
+    <section class="games-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i class="fas fa-gamepad"></i>
+                    Góc Vui Vẻ
+                </h2>
+                <p class="section-subtitle">
+                    Một số trò chơi nhỏ dành cho công chúa giải trí nè!
+                </p>
+            </div>
+
+            <div class="games-grid">
+                <!-- Heart Catch Game -->
+                <div class="game-card reveal stagger-1" id="heartCatchGame">
+                    <div class="game-icon">💖</div>
+                    <h3 class="game-title">Bắt Trái Tim</h3>
+                    <p class="game-description">
+                        Click để bắt càng nhiều trái tim càng tốt trong 30 giây!
+                    </p>
+                    <button class="game-btn">
+                        <i class="fas fa-play"></i>
+                        Chơi ngay
+                    </button>
+                </div>
+
+                <!-- Memory Match Game -->
+                <div class="game-card reveal stagger-2" id="memoryGame">
+                    <div class="game-icon">🎴</div>
+                    <h3 class="game-title">Ghép Đôi Ký Ức</h3>
+                    <p class="game-description">
+                        Tìm các cặp ảnh giống nhau - thử thách trí nhớ của em!
+                    </p>
+                    <button class="game-btn">
+                        <i class="fas fa-play"></i>
+                        Chơi ngay
+                    </button>
+                </div>
+
+                <!-- Love Quiz -->
+                <div class="game-card reveal stagger-3" id="loveQuiz">
+                    <div class="game-icon">💬</div>
+                    <h3 class="game-title">Quiz Tình Yêu</h3>
+                    <p class="game-description">
+                        Xem em hiểu anh đến mức nào nhé! 10 câu hỏi thú vị!
+                    </p>
+                    <button class="game-btn">
+                        <i class="fas fa-play"></i>
+                        Chơi ngay
+                    </button>
+                </div>
+
+                <!-- Wish Jar -->
+                <div class="game-card reveal stagger-4" id="wishJar">
+                    <div class="game-icon">🫙</div>
+                    <h3 class="game-title">Bình Ước Nguyện</h3>
+                    <p class="game-description">
+                        Viết một điều ước cho tình yêu của chúng mình!
+                    </p>
+                    <button class="game-btn">
+                        <i class="fas fa-plus"></i>
+                        Thêm ước nguyện
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="celebration-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-message">
+                    <h3>300 ngày chỉ là khởi đầu...</h3>
+                    <p>Còn vô vàn ngày hạnh phúc đang chờ đợi chúng mình phía trước 💕</p>
+                </div>
+
+                <div class="footer-nav">
+                    <a href="memories.html" class="footer-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Tất cả kỷ niệm</span>
+                    </a>
+                    <a href="gallery.html" class="footer-btn">
+                        <i class="fas fa-images"></i>
+                        <span>Thư viện ảnh</span>
+                    </a>
+                    <a href="timeline.html" class="footer-btn">
+                        <i class="fas fa-clock"></i>
+                        <span>Đếm ngày yêu</span>
+                    </a>
+                    <a href="100days.html" class="footer-btn">
+                        <i class="fas fa-star"></i>
+                        <span>100 ngày</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025-2026 - Tình yêu vĩnh cửu của Bằng & Duyên 💕</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         FLOATING ACTION BUTTONS
+         ========================================== -->
+    <div class="fab-container">
+        <button class="fab-btn" id="heartRainBtn" title="Mưa trái tim">
+            <i class="fas fa-cloud-rain"></i>
+        </button>
+        <button class="fab-btn" id="fireworksBtn" title="Pháo hoa">
+            <i class="fas fa-fire-alt"></i>
+        </button>
+        <button class="fab-btn" id="confettiBtn" title="Confetti">
+            <i class="fas fa-gift"></i>
+        </button>
+        <button class="fab-btn" id="screenshotBtn" title="Chụp màn hình">
+            <i class="fas fa-camera"></i>
+        </button>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <audio id="bgMusic" loop>
+            <source src="data/audio/romantic-love.mp3" type="audio/mpeg">
+        </audio>
+        <button class="music-toggle" id="musicToggle">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" id="imageModal">
+        <button class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Preview">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="300days.js"></script>
+</body>
+
+</html>
