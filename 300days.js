@@ -2144,6 +2144,90 @@ function initMusicPlayer() {
 }
 
 // ==========================================
+// LYRICS CAROUSEL
+// ==========================================
+
+function initLyricsCarousel() {
+    const track = document.getElementById('lyricsTrack');
+    const dotsContainer = document.getElementById('lyricsDots');
+    const prevBtn = document.getElementById('prevLyrics');
+    const nextBtn = document.getElementById('nextLyrics');
+
+    if (!track || !dotsContainer) return;
+
+    const cards = track.querySelectorAll('.lyrics-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    // Create dots
+    for (let i = 0; i < totalCards; i++) {
+        const dot = document.createElement('div');
+        dot.className = `lyrics-dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    function updateDots() {
+        dotsContainer.querySelectorAll('.lyrics-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        if (currentIndex < 0) currentIndex = totalCards - 1;
+        if (currentIndex >= totalCards) currentIndex = 0;
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+
+    // Navigation
+    prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    // Touch support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(currentIndex - 1);
+            }
+        }
+    });
+
+    // Autoplay
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 6000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Start autoplay
+    startAutoPlay();
+
+    // Pause on hover
+    track.addEventListener('mouseenter', stopAutoPlay);
+    track.addEventListener('mouseleave', startAutoPlay);
+}
+
+// ==========================================
 // FLOATING ACTION BUTTONS
 // ==========================================
 
@@ -2253,6 +2337,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Initialize components
     initGalaxyGallery();
     initQuotesCarousel();
+    initLyricsCarousel();
     initEnvelope();
     initPromises();
     initCounterAnimations();
