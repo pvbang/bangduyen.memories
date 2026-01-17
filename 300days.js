@@ -364,6 +364,28 @@ function initGalaxyGallery() {
     window.addEventListener('resize', onGalaxyResize);
 }
 
+// Create circular texture for particles (instead of squares)
+function createCircleTexture(color = '#ffffff', size = 64) {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    // Create radial gradient for soft glow effect
+    const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    gradient.addColorStop(0, color);
+    gradient.addColorStop(0.3, color);
+    gradient.addColorStop(1, 'transparent');
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    const texture = new THREE.CanvasTexture(canvas);
+    return texture;
+}
+
 // Create star field
 function createStarField() {
     const geometry = new THREE.BufferGeometry();
@@ -403,12 +425,15 @@ function createStarField() {
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
     geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
 
+    const starTexture = createCircleTexture('#ffffff', 32);
     const material = new THREE.PointsMaterial({
-        size: 1.5,
+        size: 2,
+        map: starTexture,
         vertexColors: true,
         transparent: true,
-        opacity: 0.8,
-        sizeAttenuation: true
+        opacity: 0.9,
+        sizeAttenuation: true,
+        depthWrite: false
     });
 
     starParticles = new THREE.Points(geometry, material);
@@ -451,13 +476,16 @@ function createNebula() {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
+    const nebulaTexture = createCircleTexture('#ff88cc', 32);
     const material = new THREE.PointsMaterial({
-        size: 3,
+        size: 4,
+        map: nebulaTexture,
         vertexColors: true,
         transparent: true,
-        opacity: 0.4,
+        opacity: 0.5,
         sizeAttenuation: true,
-        blending: THREE.AdditiveBlending
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
     });
 
     nebulaParticles = new THREE.Points(geometry, material);
