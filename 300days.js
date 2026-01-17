@@ -53,14 +53,6 @@ function hideLoadingScreen() {
     const loadingScreen = document.getElementById('loadingScreen');
     if (loadingScreen) {
         loadingScreen.classList.add('hidden');
-        // Force hide with styles
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
-        loadingScreen.style.pointerEvents = 'none';
-        // Remove after animation
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
     }
 
     // Show page
@@ -363,10 +355,10 @@ function initGalaxyGallery() {
     // Start animation
     animateGalaxy();
 
-    // Hide loading after textures load
+    // Hide loading after textures load (faster now!)
     setTimeout(() => {
         loading?.classList.add('hidden');
-    }, 2000);
+    }, 800);
 
     // Handle resize
     window.addEventListener('resize', onGalaxyResize);
@@ -568,10 +560,10 @@ function createPhotoConstellation() {
             canvasTexture.needsUpdate = true;
         };
 
-        // Stagger loading for performance
+        // Stagger loading for performance (faster!)
         setTimeout(() => {
             img.src = photo.src;
-        }, index * 50);
+        }, index * 20);
     });
 }
 
@@ -2221,10 +2213,10 @@ function activateRainbowMode() {
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', async function () {
-    // Fast loading - reduced delay
-    for (let i = 0; i <= 100; i += 20) {
+    // Super fast loading!
+    for (let i = 0; i <= 100; i += 25) {
         updateLoadingProgress(i);
-        await new Promise(resolve => setTimeout(resolve, 30));
+        await new Promise(resolve => setTimeout(resolve, 10));
     }
 
     // Initialize Three.js
