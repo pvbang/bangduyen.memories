@@ -2123,20 +2123,27 @@ function showQuizResult(score, total) {
 // ==========================================
 
 function initMusicPlayer() {
-    const audio = document.getElementById('bgMusic');
+    const audio1 = document.getElementById('bgMusic1');
+    const audio2 = document.getElementById('bgMusic2');
     const toggleBtn = document.getElementById('musicToggle');
 
-    if (!audio || !toggleBtn) return;
+    if (!audio1 || !audio2 || !toggleBtn) return;
+
+    // Set volume for secondary audio (background music)
+    // audio1.volume = 2.0;
+    // audio2.volume = 0.2;
 
     toggleBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play().catch(() => {
-                console.log('Audio autoplay blocked');
-            });
+        if (audio1.paused) {
+            audio1.play().catch(e => console.log('Audio 1 play failed', e));
+            audio2.play().catch(e => console.log('Audio 2 play failed', e));
+
             toggleBtn.classList.add('playing');
             toggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
         } else {
-            audio.pause();
+            audio1.pause();
+            audio2.pause();
+
             toggleBtn.classList.remove('playing');
             toggleBtn.innerHTML = '<i class="fas fa-music"></i>';
         }
