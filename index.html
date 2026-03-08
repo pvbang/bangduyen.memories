@@ -405,8 +405,8 @@
                     const data = JSON.parse(authData);
                     const currentTime = new Date().getTime();
                     
-                    // Check if authentication is still valid (30 minutes = 1800000 ms)
-                    if (currentTime - data.timestamp < 1800000) {
+                    // Check if authentication is still valid (24 hours = 86400000 ms)
+                    if (currentTime - data.timestamp < 86400000) {
                         // User is still authenticated, redirect to memories
                         window.location.href = 'memories.html';
                         return;

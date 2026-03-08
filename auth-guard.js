@@ -82,8 +82,8 @@
             const data = JSON.parse(authData);
             const currentTime = new Date().getTime();
             
-            // Check if authentication is still valid (30 minutes = 1800000 ms)
-            if (currentTime - data.timestamp < 1800000) {
+            // Check if authentication is still valid (24 hours = 86400000 ms)
+            if (currentTime - data.timestamp < 86400000) {
                 // Authentication is still valid
                 return true;
             } else {
@@ -125,7 +125,7 @@
         try {
             const data = JSON.parse(authData);
             const currentTime = new Date().getTime();
-            const remainingMs = 1800000 - (currentTime - data.timestamp); // 30 minutes in ms
+            const remainingMs = 86400000 - (currentTime - data.timestamp); // 24 hours in ms
             return Math.max(0, Math.ceil(remainingMs / 60000)); // Convert to minutes
         } catch (e) {
             return 0;
@@ -162,7 +162,7 @@
             if (confirm('Bạn có muốn gia hạn phiên đăng nhập không? Nếu không, bạn sẽ bị đăng xuất sau 1 phút nữa.')) {
                 refreshAuthentication();
             }
-        }, 1500000); // 25 minutes (5 minutes before expiry)
+        }, 82800000); // 23 hours (1 hour before expiry)
     }
     
     // Track user activity
