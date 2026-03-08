@@ -388,3 +388,30 @@ function escapeHtml(text) {
     };
     return text.replace(/[&<>"']/g, (m) => map[m]);
 }
+
+// ===== MUSIC =====
+(function(){
+    const playlist=[
+        {src:'data/music/bang-duyen-7.mp3',name:'Duyên Mình Là Mãi Mãi (v7)'},
+        {src:'data/music/bang-duyen-5.mp3',name:'Duyên Mình Là Mãi Mãi (v5)'},
+        {src:'data/music/bang-duyen-8.mp3',name:'Duyên Mình Là Mãi Mãi (v8)'},
+        {src:'data/music/bang-duyen-6.mp3',name:'Duyên Mình Là Mãi Mãi (v6)'},
+        {src:'data/music/bang-duyen-4.mp3',name:'Duyên Mình Là Mãi Mãi (v4)'},
+        {src:'data/music/bang-duyen-1.mp3',name:'Duyên Mình Là Mãi Mãi (v1)'}
+    ];
+    let cur=0;
+    function load(i){
+        cur=((i%playlist.length)+playlist.length)%playlist.length;
+        const a=document.getElementById('bgMusic'),wp=!a.paused;
+        a.src=playlist[cur].src;
+        document.getElementById('musicName').textContent=playlist[cur].name;
+        if(wp)a.play();
+    }
+    document.getElementById('musicToggle').onclick=function(){
+        const a=document.getElementById('bgMusic');
+        if(a.paused){a.play();this.classList.add('playing');}
+        else{a.pause();this.classList.remove('playing');}
+    };
+    document.getElementById('musicPrev').onclick=function(){load(cur-1);};
+    document.getElementById('musicNext').onclick=function(){load(cur+1);};
+})();
