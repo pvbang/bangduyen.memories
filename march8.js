@@ -259,6 +259,7 @@ document.getElementById('envelopeBox').onclick=function(){this.classList.toggle(
 const playlist=[
     {src:'data/music/bang-duyen-7.mp3',name:'Duyên Mình Là Mãi Mãi (v7)'},
     {src:'data/music/bang-duyen-5.mp3',name:'Duyên Mình Là Mãi Mãi (v5)'},
+    {src:'data/music/bang-duyen-8.mp3',name:'Duyên Mình Là Mãi Mãi (v8)'},
     {src:'data/music/bang-duyen-6.mp3',name:'Duyên Mình Là Mãi Mãi (v6)'},
     {src:'data/music/bang-duyen-4.mp3',name:'Duyên Mình Là Mãi Mãi (v4)'},
     {src:'data/music/bang-duyen-1.mp3',name:'Duyên Mình Là Mãi Mãi (v1)'}
