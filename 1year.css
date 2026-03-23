@@ -564,17 +564,13 @@ body.anniversary-page {
 .footer-copy { opacity: 0.6; font-size: 0.85rem; }
 
 /* MUSIC */
-.music-player { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
-
-.music-toggle {
-    width: 50px; height: 50px; border-radius: 50%;
-    background: var(--pink); color: white; border: 2px solid white;
-    font-size: 1.1rem; cursor: pointer; transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(255,105,180,0.4);
-    display: flex; align-items: center; justify-content: center;
-}
-.music-toggle:hover { transform: scale(1.1); }
-.music-toggle.playing { animation: musicBounce 1.5s ease-in-out infinite; }
+.music-box{position:fixed;bottom:16px;right:16px;z-index:100;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);border:1px solid rgba(255,105,180,.2);border-radius:28px;padding:5px 10px;backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(255,105,180,.2);}
+.music-btn,.music-prev,.music-next{width:38px;height:38px;border-radius:50%;border:none;background:transparent;color:var(--pink);cursor:pointer;font-size:.85rem;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+.music-btn{width:42px;height:42px;border:2px solid var(--pink);font-size:1rem;}
+.music-prev:hover,.music-next:hover{background:rgba(255,105,180,.1);}
+.music-btn:hover{background:var(--pink);color:#fff;}
+.music-btn.playing{animation:musicBounce 1.5s ease-in-out infinite;background:var(--pink);color:#fff;}
+.music-name{font-size:.65rem;color:var(--text-light);max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 @keyframes musicBounce {
     0%,100% { transform: scale(1); }

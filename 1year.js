@@ -172,21 +172,38 @@ function animateNumber(el, start, end, duration) {
     requestAnimationFrame(tick);
 }
 
-// MUSIC
+// MUSIC PLAYER WITH PLAYLIST
 function initMusic() {
-    const btn = document.getElementById("musicToggle");
-    const audio = document.getElementById("bgMusic");
+    const playlist = [
+        {src:'data/music/bang-duyen-7.mp3', name:'Duyên Mình Là Mãi Mãi (v7)'},
+        {src:'data/music/bang-duyen-5.mp3', name:'Duyên Mình Là Mãi Mãi (v5)'},
+        {src:'data/music/bang-duyen-8.mp3', name:'Duyên Mình Là Mãi Mãi (v8)'},
+        {src:'data/audio/iuuuuemmmm.aac', name:'Iuuuuu Emmmm'}
+    ];
+    let cur = 0;
+
+    function load(i) {
+        cur = ((i % playlist.length) + playlist.length) % playlist.length;
+        const a = document.getElementById('bgMusic'), wp = !a.paused;
+        a.src = playlist[cur].src;
+        const nameEl = document.getElementById('musicName');
+        if (nameEl) nameEl.textContent = playlist[cur].name;
+        if (wp) a.play();
+    }
+
+    const btn = document.getElementById('musicToggle');
+    const audio = document.getElementById('bgMusic');
     if (!btn || !audio) return;
 
-    btn.addEventListener("click", () => {
-        if (audio.paused) {
-            audio.play();
-            btn.classList.add("playing");
-        } else {
-            audio.pause();
-            btn.classList.remove("playing");
-        }
+    btn.addEventListener('click', function() {
+        if (audio.paused) { audio.play(); this.classList.add('playing'); }
+        else { audio.pause(); this.classList.remove('playing'); }
     });
+
+    const prev = document.getElementById('musicPrev');
+    const next = document.getElementById('musicNext');
+    if (prev) prev.addEventListener('click', function() { load(cur - 1); });
+    if (next) next.addEventListener('click', function() { load(cur + 1); });
 }
 
 // GIF SHOWCASE
