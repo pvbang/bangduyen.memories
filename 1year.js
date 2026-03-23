@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     animateStats();
     initMusic();
     initGifShowcase();
+    initVinylPlayer();
 });
 
 // FLOATING HEARTS
@@ -255,4 +256,82 @@ function initGifShowcase() {
             gifCaption.style.animation = "captionIn 0.6s ease forwards";
         });
     });
+}
+
+// VINYL LYRICS PLAYER
+function initVinylPlayer() {
+    var container = document.getElementById('lyricsContent');
+    var playBtn = document.getElementById('vinylPlayBtn');
+    var disc = document.getElementById('vinylDisc');
+    var arm = document.getElementById('vinylArm');
+    var scroll = document.getElementById('lyricsScroll');
+    if (!container || !playBtn) return;
+
+    var playing = false;
+    var scrollTimer = null;
+    var lineIndex = 0;
+    var lines = [];
+
+    fetch('data/365-ngay-viet-cho-em.txt')
+        .then(function(r) { return r.text(); })
+        .then(function(text) {
+            var rawLines = text.split('\n');
+            var html = '';
+            var sectionPattern = /^\[.+\]$/;
+            var skipPattern = /^[═🎵©]/;
+
+            rawLines.forEach(function(line) {
+                var trimmed = line.trim();
+                if (!trimmed || skipPattern.test(trimmed)) {
+                    if (!trimmed) html += '<div class="lyrics-line empty"></div>';
+                    return;
+                }
+                if (trimmed.startsWith('Sáng tác:') || trimmed.startsWith('Kỷ niệm') || trimmed.startsWith('Ballad') || trimmed.startsWith('"Anh vô tình')) return;
+
+                if (sectionPattern.test(trimmed)) {
+                    html += '<div class="lyrics-line section-label">' + trimmed + '</div>';
+                } else {
+                    html += '<div class="lyrics-line">' + trimmed + '</div>';
+                }
+            });
+
+            container.innerHTML = html;
+            lines = container.querySelectorAll('.lyrics-line:not(.empty):not(.section-label)');
+        });
+
+    playBtn.addEventListener('click', function() {
+        playing = !playing;
+        if (playing) {
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playBtn.classList.add('playing');
+            disc.classList.add('spinning');
+            arm.classList.add('active');
+            startAutoScroll();
+        } else {
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playBtn.classList.remove('playing');
+            disc.classList.remove('spinning');
+            arm.classList.remove('active');
+            clearInterval(scrollTimer);
+        }
+    });
+
+    function startAutoScroll() {
+        clearInterval(scrollTimer);
+        scrollTimer = setInterval(function() {
+            if (lineIndex >= lines.length) {
+                lineIndex = 0;
+                lines.forEach(function(l) { l.classList.remove('active'); });
+                scroll.scrollTop = 0;
+            }
+
+            lines.forEach(function(l) { l.classList.remove('active'); });
+            lines[lineIndex].classList.add('active');
+
+            var lineTop = lines[lineIndex].offsetTop - scroll.offsetTop;
+            scroll.scrollTo({ top: lineTop - 120, behavior: 'smooth' });
+
+            lineIndex++;
+        }, 2800);
+    }
 }

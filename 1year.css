@@ -506,6 +506,138 @@ body.anniversary-page {
 /* PROMISES */
 .promises-section { padding: 80px 0; }
 
+/* VINYL LYRICS PLAYER */
+.vinyl-section { padding: 80px 0; background: linear-gradient(135deg, rgba(255,240,245,0.9), rgba(255,228,225,0.7)); }
+
+.vinyl-player {
+    display: flex; gap: 32px; align-items: flex-start;
+    max-width: 900px; margin: 0 auto;
+}
+
+.vinyl-disc-wrap {
+    position: relative; flex-shrink: 0; width: 220px; height: 220px;
+}
+
+.vinyl-disc {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 0 60px rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; transition: all 0.3s;
+}
+
+.vinyl-disc.spinning { animation: vinylSpin 3s linear infinite; }
+
+@keyframes vinylSpin { to { transform: rotate(360deg); } }
+
+.vinyl-grooves {
+    position: absolute; inset: 15px; border-radius: 50%;
+    background: repeating-radial-gradient(circle at center,
+        transparent 0px, transparent 2px,
+        rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px
+    );
+}
+
+.vinyl-label {
+    width: 80px; height: 80px; border-radius: 50%; z-index: 2;
+    background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.vinyl-title { font-size: 0.55rem; font-weight: 700; color: white; line-height: 1.2; }
+.vinyl-artist { font-size: 0.45rem; color: rgba(255,255,255,0.8); }
+.vinyl-heart { font-size: 0.7rem; margin-top: 2px; }
+
+.vinyl-arm {
+    position: absolute; top: -10px; right: -15px; width: 4px; height: 90px;
+    background: linear-gradient(to bottom, #ccc, #888);
+    border-radius: 2px; transform-origin: top center;
+    transform: rotate(-30deg); transition: transform 0.5s ease;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.vinyl-arm::before {
+    content: ''; position: absolute; top: -6px; left: -5px;
+    width: 14px; height: 14px; border-radius: 50%; background: #aaa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.vinyl-arm::after {
+    content: ''; position: absolute; bottom: -4px; left: -3px;
+    width: 10px; height: 8px; background: #999; border-radius: 0 0 3px 3px;
+}
+
+.vinyl-arm.active { transform: rotate(-5deg); }
+
+.lyrics-panel {
+    flex: 1; background: white; border-radius: 20px;
+    box-shadow: var(--shadow); overflow: hidden;
+    border: 2px solid rgba(255,105,180,0.1);
+}
+
+.lyrics-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+    border-bottom: 1px solid rgba(255,105,180,0.1);
+}
+
+.lyrics-info h3 {
+    font-family: 'Dancing Script', cursive; font-size: 1.3rem;
+    color: var(--deep-pink); margin-bottom: 2px;
+}
+
+.lyrics-info p { font-size: 0.75rem; color: var(--text-light); }
+
+.lyrics-play-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+    color: white; font-size: 1rem; cursor: pointer;
+    transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(255,20,147,0.3);
+}
+
+.lyrics-play-btn:hover { transform: scale(1.1); }
+.lyrics-play-btn.playing { animation: sealPulse 2s ease-in-out infinite; }
+
+.lyrics-scroll {
+    height: 360px; overflow-y: auto; padding: 20px;
+    scroll-behavior: smooth;
+}
+
+.lyrics-scroll::-webkit-scrollbar { width: 4px; }
+.lyrics-scroll::-webkit-scrollbar-track { background: transparent; }
+.lyrics-scroll::-webkit-scrollbar-thumb { background: var(--soft-pink); border-radius: 2px; }
+
+.lyrics-line {
+    padding: 4px 0; font-size: 0.9rem; color: var(--text-light);
+    line-height: 1.7; transition: all 0.3s;
+}
+
+.lyrics-line.section-label {
+    font-weight: 700; color: var(--deep-pink); font-size: 0.8rem;
+    margin-top: 16px; margin-bottom: 4px; letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.lyrics-line.active {
+    color: var(--deep-pink); font-weight: 500;
+    transform: scale(1.02); transform-origin: left;
+}
+
+.lyrics-line.empty { height: 12px; }
+
+@media (max-width: 768px) {
+    .vinyl-player { flex-direction: column; align-items: center; }
+    .vinyl-disc-wrap { width: 160px; height: 160px; }
+    .vinyl-disc { width: 160px; height: 160px; }
+    .vinyl-label { width: 60px; height: 60px; }
+    .vinyl-title { font-size: 0.45rem; }
+    .vinyl-artist { font-size: 0.38rem; }
+    .vinyl-arm { height: 65px; }
+    .lyrics-scroll { height: 300px; }
+}
+
 .promises-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
