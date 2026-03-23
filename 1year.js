@@ -175,6 +175,7 @@ function animateNumber(el, start, end, duration) {
 // MUSIC PLAYER WITH PLAYLIST
 function initMusic() {
     const playlist = [
+        {src:'data/music/365.mp3', name:'365 Ngày Iuuuu Emmmmm'},
         {src:'data/music/bang-duyen-7.mp3', name:'Duyên Mình Là Mãi Mãi (v7)'},
         {src:'data/music/bang-duyen-5.mp3', name:'Duyên Mình Là Mãi Mãi (v5)'},
         {src:'data/music/bang-duyen-8.mp3', name:'Duyên Mình Là Mãi Mãi (v8)'},
