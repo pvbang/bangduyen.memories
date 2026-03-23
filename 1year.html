@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Năm Yêu Nhau - Bằng & Duyên 💕</title>
+    <script src="auth-guard.js"></script>
+    <link rel="stylesheet" href="1year.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="anniversary-page">
+
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Navigation -->
+    <nav class="back-nav">
+        <a href="memories.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Quay lại</span>
+        </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="anniversary-badge">
+                    <div class="badge-ring"></div>
+                    <div class="badge-inner">
+                        <span class="badge-number">1</span>
+                        <span class="badge-text">NĂM</span>
+                    </div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="line-small">Kỷ Niệm</span>
+                    <span class="line-big">1 Năm Yêu Nhau</span>
+                    <span class="line-names">Bằng & Duyên</span>
+                </h1>
+                <p class="hero-subtitle">
+                    23/03/2025 — 23/03/2026
+                </p>
+                <p class="hero-desc">
+                    365 ngày, 8760 giờ, 525600 phút yêu thương<br>
+                    và hành trình vẫn còn dài phía trước...
+                </p>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Cuộn xuống khám phá</span>
+            <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> 365 Ngày Bằng Những Con Số</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-heart"></i></div><div class="stat-number" data-target="365">0</div><div class="stat-label">Ngày yêu nhau</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-number" data-target="8760">0</div><div class="stat-label">Giờ hạnh phúc</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-star"></i></div><div class="stat-number" data-target="525600">0</div><div class="stat-label">Phút nhớ nhau</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-infinity"></i></div><div class="stat-number">∞</div><div class="stat-label">Tình yêu dành em</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY TIMELINE -->
+    <section class="journey-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-route"></i> Hành Trình 365 Ngày</h2>
+            <p class="section-sub">Những cột mốc đáng nhớ trong năm đầu tiên</p>
+            <div class="journey-timeline">
+                <div class="journey-line"></div>
+
+                <div class="journey-item" data-season="spring">
+                    <div class="journey-marker"><span>🌸</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">23/03/2025</div>
+                        <h3>Ngày Bắt Đầu 💕</h3>
+                        <p>Ngày chính thức thành người yêu. Khoảnh khắc anh lấy hết can đảm nói lời tỏ tình, và em đã đồng ý! Từ đây, cuộc đời có thêm một ý nghĩa tuyệt vời.</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="summer">
+                    <div class="journey-marker"><span>☀️</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">01/07/2025</div>
+                        <h3>100 Ngày Yêu 👑</h3>
+                        <p>Tròn 100 ngày! Anh đã tốt nghiệp xuất sắc khóa "chiều chuộng công chúa". 100 ngày tập sự làm người yêu, đạt loại giỏi chưa nhỉ?</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="summer">
+                    <div class="journey-marker"><span>🎂</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">08/10/2025</div>
+                        <h3>Sinh Nhật Công Chúa 🎀</h3>
+                        <p>Sinh nhật đầu tiên của em khi có anh bên cạnh. Chúc công chúa iuuu mãi xinh đẹp, hạnh phúc và luôn được yêu thương!</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="autumn">
+                    <div class="journey-marker"><span>🍂</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">09/10/2025</div>
+                        <h3>200 Ngày Bên Nhau 📸</h3>
+                        <p>200 ngày, album ảnh đã đầy ắp nụ cười. Đi đâu cũng được, ăn gì cũng ngon, miễn là có em đi cùng!</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="autumn">
+                    <div class="journey-marker"><span>🎃</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">28/10/2025</div>
+                        <h3>Sinh Nhật Anh 🎉</h3>
+                        <p>Sinh nhật đầu tiên của anh khi có em. Món quà lớn nhất chính là được ở bên công chúa iuuu của anh!</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="winter">
+                    <div class="journey-marker"><span>💎</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">17/01/2026</div>
+                        <h3>300 Ngày Yêu Thương 🥰</h3>
+                        <p>300 ngày - con số tròn trĩnh, nhưng tình yêu anh dành cho em thì không có điểm dừng. Mình cùng chạy tiếp marathon tình yêu nhé!</p>
+                    </div>
+                </div>
+
+                <div class="journey-item" data-season="winter">
+                    <div class="journey-marker"><span>💕</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">14/02/2026</div>
+                        <h3>Valentine Đầu Tiên 🌹</h3>
+                        <p>Valentine đầu tiên chính thức bên nhau. Ngày lễ tình nhân thêm ý nghĩa khi có người mình yêu thương ở bên cạnh!</p>
+                    </div>
+                </div>
+
+                <div class="journey-item featured" data-season="spring">
+                    <div class="journey-marker"><span>🏆</span></div>
+                    <div class="journey-card">
+                        <div class="journey-date">23/03/2026</div>
+                        <h3>1 NĂM YÊU NHAU! 🎊</h3>
+                        <p>365 ngày! Tròn 1 năm yêu nhau! Cảm ơn em đã luôn ở bên, cảm ơn vì tất cả những kỷ niệm tuyệt vời. Đây chỉ mới là chương đầu tiên thôi, còn nhiều chương đẹp hơn phía trước!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 THÁNG YÊU NHAU -->
+    <section class="months-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> 12 Tháng Yêu Thương</h2>
+            <p class="section-sub">Mỗi tháng mang một sắc màu riêng</p>
+            <div class="months-grid">
+                <div class="month-card" style="--hue: 340"><div class="month-num">01</div><h4>Tháng 3/2025</h4><p>Khởi đầu - Tỏ tình & thành đôi</p></div>
+                <div class="month-card" style="--hue: 330"><div class="month-num">02</div><h4>Tháng 4/2025</h4><p>Tìm hiểu - Học cách yêu nhau</p></div>
+                <div class="month-card" style="--hue: 320"><div class="month-num">03</div><h4>Tháng 5/2025</h4><p>Gắn kết - Ngày càng thân thiết</p></div>
+                <div class="month-card" style="--hue: 310"><div class="month-num">04</div><h4>Tháng 6/2025</h4><p>Ấm áp - Mùa hè yêu thương</p></div>
+                <div class="month-card" style="--hue: 300"><div class="month-num">05</div><h4>Tháng 7/2025</h4><p>100 ngày - Cột mốc đầu tiên</p></div>
+                <div class="month-card" style="--hue: 290"><div class="month-num">06</div><h4>Tháng 8/2025</h4><p>Trưởng thành - Hiểu nhau hơn</p></div>
+                <div class="month-card" style="--hue: 280"><div class="month-num">07</div><h4>Tháng 9/2025</h4><p>Thu sang - Lãng mạn mùa thu</p></div>
+                <div class="month-card" style="--hue: 350"><div class="month-num">08</div><h4>Tháng 10/2025</h4><p>Sinh nhật - Tháng sinh nhật cả hai</p></div>
+                <div class="month-card" style="--hue: 0"><div class="month-num">09</div><h4>Tháng 11/2025</h4><p>Đông đến - Ấm áp bên nhau</p></div>
+                <div class="month-card" style="--hue: 10"><div class="month-num">10</div><h4>Tháng 12/2025</h4><p>Giáng sinh - Noel ngọt ngào</p></div>
+                <div class="month-card" style="--hue: 345"><div class="month-num">11</div><h4>Tháng 1/2026</h4><p>300 ngày - Năm mới bên nhau</p></div>
+                <div class="month-card" style="--hue: 335"><div class="month-num">12</div><h4>Tháng 2-3/2026</h4><p>Valentine & Kỷ niệm 1 năm!</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOVE LETTER -->
+    <section class="letter-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-envelope-open-text"></i> Thư Tình 1 Năm</h2>
+            <div class="letter-container">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="heart-seal"><i class="fas fa-heart"></i></div>
+                    <div class="letter-paper">
+                        <div class="letter-header">
+                            <h2>Gửi Công Chúa Iuu Của Anh 👑</h2>
+                            <p class="letter-date">Ngày 23 tháng 3 năm 2026</p>
+                        </div>
+                        <div class="letter-body">
+                            <p>Eiuuu của anh ơiii,</p>
+                            <p>Vèo cái mà đã tròn 1 năm rồi đó, nhanh thật đấyy! Nhớ lại ngày 23/03 năm ngoái, anh lấy hết can đảm để nói lời tỏ tình. Tim đập, chân run, nhưng ánh mắt em cho anh sự an tâm lạ thường. Và rồi em đồng ý - khoảnh khắc đó anh hạnh phúc nhất đời!</p>
+                            <p>365 ngày qua, mình đã trải qua biết bao điều tuyệt vời cùng nhau. Từ những buổi hẹn hò đầu tiên bỡ ngỡ, đến những lần cãi nhau rồi lại làm hòa, từ 100 ngày, 200 ngày, 300 ngày... mỗi cột mốc đều là một kỷ niệm đáng trân trọng.</p>
+                            <p>Em biết không, 1 năm trước anh chỉ là "ông tướng ngáo ngơ" đi tìm mảnh ghép cuộc đời. Giờ thì anh đã tìm được rồi - <span class="highlight">mảnh ghép hoàn hảo mang tên Duyên</span>. Em chính là điều tuyệt vời nhất mà cuộc đời mang đến cho anh!</p>
+                            <p>Cảm ơn em vì đã chịu đựng sự "nhây" của anh, cảm ơn em vì những lúc dỗ dành, cảm ơn em vì mỗi nụ cười ngọt ngào. 1 năm qua, anh đã học được cách yêu một người bằng cả trái tim, và anh muốn tiếp tục học hỏi bên em suốt cả cuộc đời.</p>
+                            <p>1 năm chỉ là chương mở đầu thôi nhé! Cuốn sách tình yêu của mình còn nhiều nhiều chương nữa. Mình cùng viết tiếp nhé, hứa sẽ ngày càng hạnh phúc hơn!</p>
+                            <p><strong>Iuuu em nhiều hơn cả 365 ngày, thương em hơn cả 525600 phút, nhớ em hơn cả mọi vì sao trên trời! Mãi bên nhau emmm nhié! 💕</strong></p>
+                        </div>
+                        <div class="letter-signature">
+                            <p>Người iuuu em nhất trần đời,</p>
+                            <p>❤️ Quàng tử của emmmm ❤️</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="envelope-hint"><i class="fas fa-hand-pointer"></i> Click vào phong bì để mở thư nhé!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMISES -->
+    <section class="promises-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-hand-holding-heart"></i> Lời Hứa Năm Thứ 2</h2>
+            <p class="section-sub">Những điều anh hứa sẽ làm cho em trong năm tiếp theo</p>
+            <div class="promises-grid">
+                <div class="promise-card"><div class="promise-icon">🛡️</div><h4>Bảo Vệ Em</h4><p>Luôn là bức tường vững chắc che chắn cho công chúa của anh</p></div>
+                <div class="promise-card"><div class="promise-icon">👂</div><h4>Lắng Nghe Em</h4><p>Dù bận đến mấy cũng sẽ dành thời gian lắng nghe em kể chuyện</p></div>
+                <div class="promise-card"><div class="promise-icon">🤗</div><h4>Ôm Em Nhiều Hơn</h4><p>Mỗi ngày ít nhất 1 cái ôm thật chặt để em biết anh luôn ở đây</p></div>
+                <div class="promise-card"><div class="promise-icon">🎯</div><h4>Cố Gắng Hơn</h4><p>Trở thành phiên bản tốt nhất để xứng đáng với em</p></div>
+                <div class="promise-card"><div class="promise-icon">😊</div><h4>Làm Em Cười</h4><p>Dù phải sến súa đến mấy cũng sẽ khiến em cười mỗi ngày</p></div>
+                <div class="promise-card"><div class="promise-icon">🏠</div><h4>Xây Tổ Ấm</h4><p>Từng bước chuẩn bị cho tương lai hạnh phúc của hai đứa mình</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUTURE SECTION -->
+    <section class="future-section reveal-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> Tương Lai Của Chúng Mình</h2>
+            <div class="future-timeline">
+                <div class="future-item"><div class="future-icon">💍</div><div class="future-content"><h4>Đính Hôn</h4><p>Ngày anh chính thức xin em về bên anh</p></div></div>
+                <div class="future-item"><div class="future-icon">👰</div><div class="future-content"><h4>Đám Cưới</h4><p>Em sẽ là cô dâu xinh đẹp nhất thế giới</p></div></div>
+                <div class="future-item"><div class="future-icon">🏡</div><div class="future-content"><h4>Ngôi Nhà Nhỏ</h4><p>Full option tình thương mến thương</p></div></div>
+                <div class="future-item"><div class="future-icon">👶</div><div class="future-content"><h4>Baby Đầu Lòng</h4><p>Gia đình nhỏ hạnh phúc to</p></div></div>
+                <div class="future-item"><div class="future-icon">👴👵</div><div class="future-content"><h4>Già Bên Nhau</h4><p>"Bà ơi, tui thương bà nhất trần đời!"</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="anniversary-footer">
+        <div class="container">
+            <div class="footer-message">
+                <h3>1 năm chỉ là khởi đầu...</h3>
+                <p>Còn cả cuộc đời hạnh phúc đang chờ đợi chúng mình 💕</p>
+            </div>
+            <div class="footer-nav">
+                <a href="memories.html" class="footer-btn"><i class="fas fa-heart"></i> Kỷ niệm</a>
+                <a href="timeline.html" class="footer-btn"><i class="fas fa-clock"></i> Đếm ngày</a>
+                <a href="300days.html" class="footer-btn"><i class="fas fa-gem"></i> 300 ngày</a>
+                <a href="gallery.html" class="footer-btn"><i class="fas fa-images"></i> Thư viện ảnh</a>
+            </div>
+            <p class="footer-copy">© 2025-2026 - Tình yêu vĩnh cửu của Bằng & Duyên 💕</p>
+        </div>
+    </footer>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <audio id="bgMusic" loop><source src="data/audio/iuuuuemmmm.aac" type="audio/aac"></audio>
+        <button class="music-toggle" id="musicToggle"><i class="fas fa-music"></i></button>
+    </div>
+
+    <script src="1year.js"></script>
+</body>
+</html>

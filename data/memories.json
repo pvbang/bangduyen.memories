@@ -551,6 +551,72 @@
       "template": "minimalist",
       "showImages": false,
       "images": []
+    },
+    {
+      "id": 58,
+      "title": "100 Ngày Yêu Nhau",
+      "date": "2025-07-01",
+      "category": "milestone",
+      "content": "Ngày 01/07/2025 - Tròn 100 ngày chính thức yêu nhau! 100 ngày 'tập sự' làm người yêu, anh đã tốt nghiệp xuất sắc khóa 'chiều chuộng công chúa' chưa nhỉ? Chắc là rồi hee :)) Cảm ơn em đã luôn bên anh, mình cùng tiến tới những cột mốc tiếp theo nhé!",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 59,
+      "title": "200 Ngày Bên Nhau",
+      "date": "2025-10-09",
+      "category": "milestone",
+      "content": "Ngày 09/10/2025 - 200 ngày bên nhau! Album ảnh đã đầy ắp nụ cười. Đi đâu cũng được, ăn gì cũng ngon, miễn là có em đi cùng. Hành trình này cứ thế mà dài vô tận nhié!",
+      "mood": "Ngọt ngào :>",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 60,
+      "title": "300 Ngày Yêu Thương",
+      "date": "2026-01-17",
+      "category": "milestone",
+      "content": "Ngày 17/01/2026 - 300 ngày yêu nhau! Con số tròn trĩnh, nhưng tình yêu anh dành cho em thì không có điểm dừng, nó cứ lớn lớn lớn mãi thôi! Cảm ơn em đã chịu đựng sự 'nhây' của anh. 300 ngày chỉ là khởi động, mình cùng nắm tay nhau chạy tiếp marathon tình yêu nhé công chúa!",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 61,
+      "title": "Valentine Đầu Tiên Bên Nhau",
+      "date": "2026-02-14",
+      "category": "milestone",
+      "content": "Ngày 14/02/2026 - Valentine đầu tiên chính thức bên nhau! Ngày lễ tình nhân thêm ý nghĩa biết bao khi có người mình yêu thương ở bên cạnh. Happy Valentine, công chúa iuuu của anh!",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 62,
+      "title": "8/3 - Ngày Của Công Chúa",
+      "date": "2026-03-08",
+      "category": "milestone",
+      "content": "Ngày 08/03/2026 - Ngày Quốc tế Phụ nữ đầu tiên bên nhau! Chúc công chúa iuuu luôn xinh đẹp, tự tin và hạnh phúc. Cảm ơn em vì đã là người phụ nữ tuyệt vời nhất bên anh. Iuuu em nhiềuu!",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 63,
+      "title": "🏆 1 NĂM YÊU NHAU! 🏆",
+      "date": "2026-03-23",
+      "category": "milestone",
+      "content": "Ngày 23/03/2026 - TRÒN 1 NĂM YÊU NHAU! 365 ngày, 8760 giờ, 525600 phút yêu thương! Từ ngày anh lấy hết can đảm tỏ tình đến hôm nay, chúng mình đã trải qua biết bao kỷ niệm tuyệt vời. Cảm ơn em vì tất cả - vì nụ cười, vì sự ấm áp, vì đã luôn ở bên anh. 1 năm chỉ là chương mở đầu, cuốn sách tình yêu của mình còn nhiều chương đẹp hơn phía trước. Iuuu em mãi mãi, công chúa của anh! 💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
     }
   ],
   "tmp": [

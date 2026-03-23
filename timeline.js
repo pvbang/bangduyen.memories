@@ -42,7 +42,17 @@ const IMPORTANT_DATES = {
     // Chính thức thành người yêu - 23/03/2025 19h30
     officialCouple: new Date("2025-03-23T19:30:00"),
     // Ngày chuộc lỗi - 24/04/2025
-    makeUpDay: new Date("2025-04-24")
+    makeUpDay: new Date("2025-04-24"),
+    // 200 days
+    days200: new Date("2025-10-09"),
+    // 300 days
+    days300: new Date("2026-01-17"),
+    // Valentine
+    valentine: new Date("2026-02-14"),
+    // 8/3
+    march8: new Date("2026-03-08"),
+    // 1 year
+    oneYear: new Date("2026-03-23")
 };
 
 // Update all counters with smooth animation
@@ -53,70 +63,69 @@ function updateAllCounters() {
     updateMilestoneCountdowns();
 }
 
+// Tính chính xác năm, tháng, ngày giữa 2 mốc thời gian theo lịch thực
+function calcYMD(startDate, endDate) {
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+    let days = endDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+    return { years, months, days };
+}
+
 // Update love counter with years, months, days, hours, minutes, seconds
 function updateLoveCounter() {
     const now = new Date();
     const loveStart = IMPORTANT_DATES.officialCouple;
-    
-    // Tạo ngày bắt đầu chỉ tính theo ngày (không tính giờ)
-    const loveStartDate = new Date("2025-03-23"); // Chỉ lấy ngày, bỏ giờ
-    
+    const loveStartDate = new Date("2025-03-23");
+
     if (now < loveStartDate) {
-        // Nếu chưa tới ngày yêu
         const timeDiff = loveStartDate - now;
         const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-        
+
         animateCounter("totalYears", 0);
         animateCounter("totalMonths", 0);
         animateCounter("totalDays", days);
-        animateCounter("totalDaysOverall", 0); // Thêm counter tổng số ngày
+        animateCounter("totalDaysOverall", 0);
         animateCounter("totalHours", hours);
         animateCounter("totalMinutes", minutes);
         animateCounter("totalSeconds", seconds);
-        
-        // Progress bar (0% nếu chưa yêu)
+
         document.getElementById("progressFill").style.width = "0%";
         return;
     }
-    
-    // Tính toán với giờ phút giây cho counters thông thường
-    const timeDiff = now - loveStart;
-    
-    // Tính toán chi tiết hơn
-    const totalSeconds = Math.floor(timeDiff / 1000);
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const totalHours = Math.floor(totalMinutes / 60);
-    const totalDays = Math.floor(totalHours / 24);
-    const totalMonths = Math.floor(totalDays / 30.44); // Average days per month
-    const totalYears = Math.floor(totalDays / 365.25); // Account for leap years
-    
-    // Tính tổng số ngày chỉ theo ngày (không tính giờ)
+
+    const ymd = calcYMD(loveStartDate, now);
     const totalDaysOverall = Math.floor((now - loveStartDate) / (1000 * 60 * 60 * 24));
-    
-    // Phần dư để hiển thị
-    const years = totalYears;
-    const months = totalMonths % 12;
-    const days = totalDays % Math.floor(30.44);
-    const hours = totalHours % 24;
-    const minutes = totalMinutes % 60;
-    const seconds = totalSeconds % 60;
-    
-    animateCounter("totalYears", years);
-    animateCounter("totalMonths", months);
-    animateCounter("totalDays", days);
-    animateCounter("totalDaysOverall", Math.max(0, totalDaysOverall)); // Sử dụng totalDaysOverall riêng biệt
+
+    const timeDiff = now - loveStart;
+    const totalSec = Math.floor(timeDiff / 1000);
+    const hours = Math.floor(totalSec / 3600) % 24;
+    const minutes = Math.floor(totalSec / 60) % 60;
+    const seconds = totalSec % 60;
+
+    animateCounter("totalYears", ymd.years);
+    animateCounter("totalMonths", ymd.months);
+    animateCounter("totalDays", ymd.days);
+    animateCounter("totalDaysOverall", Math.max(0, totalDaysOverall));
     animateCounter("totalHours", hours);
     animateCounter("totalMinutes", minutes);
     animateCounter("totalSeconds", seconds);
-    
-    // Progress towards 1000 days - sử dụng totalDaysOverall
+
     const progressPercent = Math.min((totalDaysOverall / 1000) * 100, 100);
     document.getElementById("progressFill").style.width = progressPercent + "%";
-    
-    // Cập nhật progress text với tổng số ngày
+
     const progressText = document.querySelector(".progress-text");
     if (progressText) {
         progressText.textContent = `Hành trình tới 1000 ngày yêu nhau ❤️ (Hiện tại: ${Math.max(0, totalDaysOverall)} ngày)`;
@@ -201,6 +210,26 @@ function updateDaysCounters() {
     if (officialElement) {
         animateCounter("daysSinceOfficial", Math.max(0, daysSinceOfficial));
     }
+
+    // Days since 200 days
+    const daysSince200 = Math.floor((now - IMPORTANT_DATES.days200) / (1000 * 60 * 60 * 24));
+    const el200 = document.getElementById("daysSince200Days");
+    if (el200) animateCounter("daysSince200Days", Math.max(0, daysSince200));
+
+    // Days since 300 days
+    const daysSince300 = Math.floor((now - IMPORTANT_DATES.days300) / (1000 * 60 * 60 * 24));
+    const el300 = document.getElementById("daysSince300Days");
+    if (el300) animateCounter("daysSince300Days", Math.max(0, daysSince300));
+
+    // Days since Valentine
+    const daysSinceVal = Math.floor((now - IMPORTANT_DATES.valentine) / (1000 * 60 * 60 * 24));
+    const elVal = document.getElementById("daysSinceValentine");
+    if (elVal) animateCounter("daysSinceValentine", Math.max(0, daysSinceVal));
+
+    // Days since March 8
+    const daysSinceMar8 = Math.floor((now - IMPORTANT_DATES.march8) / (1000 * 60 * 60 * 24));
+    const elMar8 = document.getElementById("daysSinceMarch8");
+    if (elMar8) animateCounter("daysSinceMarch8", Math.max(0, daysSinceMar8));
 }
 
 // Enhanced milestone countdowns with multiple milestones
@@ -334,6 +363,72 @@ const timelineEvents = [
         description: "Ngày anh thêm vào lịch để chuộc lỗi vì nhầm",
         icon: "🤭",
         story: "\"Bị cáo đề nghị thêm một ngày 24 vào lịch là ngày chuộc lỗi nữa :)))\" Một ngày đặc biệt chỉ có của riêng chúng mình."
+    },
+    {
+        id: 10,
+        date: "2025-07-01",
+        title: "100 Ngày Yêu Nhau 👑",
+        description: "Cột mốc 100 ngày chính thức yêu nhau",
+        icon: "👑",
+        story: "Tròn trăm ngày chung lối! Anh đã tốt nghiệp xuất sắc khóa chiều chuộng công chúa. 100 ngày tập sự làm người yêu, anh đạt loại giỏi chưa nhỉ?"
+    },
+    {
+        id: 11,
+        date: "2025-10-08",
+        title: "Sinh Nhật Công Chúa 🎂",
+        description: "Sinh nhật đầu tiên của em khi có anh bên cạnh",
+        icon: "🎂",
+        story: "Ngày đặc biệt nhất của công chúa! Sinh nhật đầu tiên bên nhau, chúc em luôn xinh đẹp, hạnh phúc và được yêu thương!"
+    },
+    {
+        id: 12,
+        date: "2025-10-09",
+        title: "200 Ngày Bên Nhau 📸",
+        description: "200 ngày album ảnh đầy ắp nụ cười",
+        icon: "📸",
+        story: "200 ngày trôi qua nhanh như chớp mắt. Album ảnh đầy ắp nụ cười. Đi đâu cũng được, ăn gì cũng ngon, miễn là có em đi cùng!"
+    },
+    {
+        id: 13,
+        date: "2025-10-28",
+        title: "Sinh Nhật Anh 🎉",
+        description: "Sinh nhật đầu tiên của anh khi có em",
+        icon: "🎉",
+        story: "Sinh nhật có ý nghĩa nhất từ trước đến giờ vì có công chúa iuuu ở bên!"
+    },
+    {
+        id: 14,
+        date: "2026-01-17",
+        title: "300 Ngày Yêu Thương 💎",
+        description: "300 ngày tình yêu không có điểm dừng",
+        icon: "💎",
+        story: "300 ngày - con số tròn trĩnh, nhưng tình yêu anh dành cho em thì không có điểm dừng, nó cứ lớn lớn lớn mãi thôi!",
+        special: true
+    },
+    {
+        id: 15,
+        date: "2026-02-14",
+        title: "Valentine Đầu Tiên 🌹",
+        description: "Ngày lễ tình nhân đầu tiên bên nhau",
+        icon: "🌹",
+        story: "Valentine đầu tiên chính thức bên nhau! Ngày lễ tình nhân thêm ý nghĩa khi có người mình yêu thương ở bên cạnh."
+    },
+    {
+        id: 16,
+        date: "2026-03-08",
+        title: "8/3 Ngày Của Em 💐",
+        description: "Ngày Quốc tế Phụ nữ - Ngày của công chúa",
+        icon: "💐",
+        story: "Ngày 8/3 đầu tiên bên nhau! Chúc công chúa iuuu luôn xinh đẹp, hạnh phúc. Cảm ơn em vì đã là người phụ nữ tuyệt vời nhất bên anh!"
+    },
+    {
+        id: 17,
+        date: "2026-03-23",
+        title: "1 NĂM YÊU NHAU! 🏆",
+        description: "365 ngày - Tròn 1 năm chính thức yêu nhau!",
+        icon: "🏆",
+        story: "1 năm tròn! 365 ngày yêu nhau! Cảm ơn em vì tất cả. Đây mới chỉ là chương đầu tiên, còn nhiều chương đẹp hơn phía trước!",
+        special: true
     }
 ];
 
