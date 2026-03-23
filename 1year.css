@@ -310,6 +310,138 @@ body.anniversary-page {
 /* LETTER */
 .letter-section { padding: 80px 0; background: rgba(255,255,255,0.5); }
 
+/* GIF SHOWCASE */
+.gif-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(255,240,245,0.8), rgba(255,228,225,0.6));
+}
+
+.gif-showcase {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.gif-player {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.gif-frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(255,105,180,0.25);
+    border: 4px solid white;
+    background: var(--blush);
+    aspect-ratio: 3 / 4;
+}
+
+.gif-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.5s ease;
+}
+
+.gif-image.loading {
+    opacity: 0.4;
+}
+
+.gif-caption {
+    text-align: center;
+    margin-top: 16px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--deep-pink);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: captionIn 0.6s ease forwards;
+}
+
+@keyframes captionIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gif-controls {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.gif-btn {
+    background: white;
+    border: 2px solid rgba(255,105,180,0.15);
+    border-radius: 16px;
+    padding: 16px 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gif-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 14px;
+}
+
+.gif-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(255,105,180,0.2); }
+.gif-btn:hover::before { opacity: 0.08; }
+
+.gif-btn.active {
+    border-color: var(--pink);
+    background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+    box-shadow: 0 4px 20px rgba(255,105,180,0.2);
+}
+
+.gif-btn.active::before { opacity: 0.12; }
+
+.gif-btn-icon {
+    font-size: 1.4rem;
+    color: var(--pink);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.gif-btn.active .gif-btn-icon { transform: scale(1.15); }
+
+.gif-btn-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+}
+
+.gif-btn-range {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .gif-controls { grid-template-columns: repeat(2, 1fr); }
+    .gif-frame { border-radius: 16px; }
+    .gif-caption { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .gif-controls { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .gif-btn { padding: 12px 6px; }
+    .gif-btn-icon { font-size: 1.2rem; }
+}
+
 .letter-container { max-width: 700px; margin: 0 auto; text-align: center; }
 
 .envelope {

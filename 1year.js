@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initJourneyObserver();
     animateStats();
     initMusic();
+    initGifShowcase();
 });
 
 // FLOATING HEARTS
@@ -185,5 +186,55 @@ function initMusic() {
             audio.pause();
             btn.classList.remove("playing");
         }
+    });
+}
+
+// GIF SHOWCASE
+function initGifShowcase() {
+    const gifDisplay = document.getElementById("gifDisplay");
+    const gifCaption = document.getElementById("gifCaption");
+    const buttons = document.querySelectorAll(".gif-btn");
+
+    if (!gifDisplay || !buttons.length) return;
+
+    const preloadedImages = new Map();
+
+    buttons.forEach(btn => {
+        const src = btn.dataset.src;
+        const img = new Image();
+        img.src = src;
+        preloadedImages.set(src, img);
+    });
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const src = btn.dataset.src;
+            const caption = btn.dataset.caption;
+
+            if (btn.classList.contains("active")) return;
+
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            gifDisplay.classList.add("loading");
+
+            const cached = preloadedImages.get(src);
+            if (cached && cached.complete) {
+                gifDisplay.src = src;
+                gifDisplay.classList.remove("loading");
+            } else {
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    gifDisplay.src = src;
+                    gifDisplay.classList.remove("loading");
+                };
+                tempImg.src = src;
+            }
+
+            gifCaption.style.animation = "none";
+            gifCaption.offsetHeight;
+            gifCaption.textContent = caption;
+            gifCaption.style.animation = "captionIn 0.6s ease forwards";
+        });
     });
 }
