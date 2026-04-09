@@ -1,0 +1,313 @@
+/**
+ * Login Page CSS
+ * Chuyển đổi từ inline styles trong index.html
+ */
+
+/* Background Animation - Floating Hearts */
+.backgroundAnimation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floatingHeart {
+  position: absolute;
+  color: rgba(255, 182, 193, 0.3);
+  font-size: 20px;
+  animation: floatHeart 8s infinite linear;
+}
+
+.floatingHeart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.floatingHeart:nth-child(2) { left: 20%; animation-delay: 1s; }
+.floatingHeart:nth-child(3) { left: 30%; animation-delay: 2s; }
+.floatingHeart:nth-child(4) { left: 40%; animation-delay: 3s; }
+.floatingHeart:nth-child(5) { left: 50%; animation-delay: 4s; }
+.floatingHeart:nth-child(6) { left: 60%; animation-delay: 5s; }
+.floatingHeart:nth-child(7) { left: 70%; animation-delay: 6s; }
+.floatingHeart:nth-child(8) { left: 80%; animation-delay: 7s; }
+.floatingHeart:nth-child(9) { left: 90%; animation-delay: 8s; }
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Login Container */
+.loginContainer {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffeef2 0%, #ffe0e6 50%, #ffd1dc 100%);
+  overflow: hidden;
+}
+
+/* Login Card */
+.loginCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow:
+    0 20px 40px rgba(255, 182, 193, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 1s ease-out;
+}
+
+.loginCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Header */
+.loginHeader {
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-family: var(--font-dancing), 'Dancing Script', cursive;
+  font-size: 32px;
+  font-weight: 700;
+  color: #e91e63;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  color: #ff69b4;
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form */
+.loginForm {
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff69b4;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 16px 50px;
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: #ff69b4;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+  transform: translateY(-2px);
+}
+
+.passwordInput::placeholder {
+  color: #999;
+  font-weight: 300;
+}
+
+/* Login Button */
+.loginBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #ff69b4, #e91e63);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.loginBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.loginBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+}
+
+.loginBtn:hover::before {
+  left: 100%;
+}
+
+.loginBtn:active {
+  transform: translateY(0);
+}
+
+.loginBtn:hover .btnArrow {
+  transform: translateX(5px);
+}
+
+.btnArrow {
+  transition: transform 0.3s ease;
+}
+
+/* Error Message */
+.errorMessage {
+  color: #e91e63;
+  font-size: 14px;
+  margin-top: 15px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.errorMessageVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading State */
+.loading .loginBtn {
+  background: linear-gradient(135deg, #ccc, #999);
+  pointer-events: none;
+}
+
+.loading .btnText {
+  opacity: 0;
+}
+
+.loading .loginBtn::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Shake Animation */
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,863 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "title": "Lần gặp đầu tiên",
+      "date": "2025-02-08",
+      "category": "milestone",
+      "content": "Ngày 08/02/2025 - Khoảnh khắc định mệnh khi ông chời sắp đặt để aiuuu gặp eiuuu. Eiuuu là cô gái xinh đẹp chiều hôm đó mới qua văn phòng chào mọi người. Aiuuu trước đó vẫn hay nói với ông chời: ước chi con có được một e ny, con sẽ iu thương chăm lo cho e hết lòng. Gứa là ông chời hiện ra cười khẩy xong kêu là mơ đẹp đoá con :)) nma may quó ông vẫn mang eiuuu đến với cuộc đời aiuuu, ngoan xinh iuuu của aiuuu :))))",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": true,
+      "images": [
+        "sample1.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Tin nhắn đầu tiên",
+      "date": "2025-02-09",
+      "category": "milestone",
+      "content": "Ngày 09/02/2025 - 'Anh ơi, e là con bé chiều hôm qua mới qua văn phòng chào mn á. E hỏi anh cái này xíu' - Tin nhắn đầu tiên của công chúaaa gửi aiuuu. Từ dòng tin nhắn đoá, câu chuyện tình iuuu đẹp nhất đời aiuuu bắt đầu. Aiuuu với eiuuu vô tình gặp nhau, nma aiuuu quyết định dừng lại đưa tay, rồi eiuuu cũng đồng ý nắm nha 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "classic",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 3,
+      "title": "Đổi màu Messenger",
+      "date": "2025-02-28",
+      "category": "daily",
+      "content": "Ngày 28/02/2025 - Tụi mình đổi màu Messenger! Một cử chỉ tưởng nhỏ bé nma lại chứa đựng ý nghĩa gất lớn. Màu sắc mới như lời thầm thì rằng tình cảm của tụi mình đang chuyển mình, đang hướng đến một điều chi đoá đẹp đẽ hơn nhìu nhìu 💗",
+      "mood": "Zui zẻ",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 4,
+      "title": "First Date",
+      "date": "2025-03-06",
+      "category": "dating",
+      "content": "Ngày 06/03/2025 - First Date đời aiuuu! Tim đập thình thịch khi được ở bên eiuuu. Hạnh phúc đôi khi gất đơn giản, chỉ cần được ngồi cạnh người mình thương zà nghe tiếng cười ngọt ngào của eiuuu thoi. Đây là khởi đầu cho những ngày tháng tuyệt vời sắp tới nhóo!",
+      "mood": "Hồi hộp lém",
+      "template": "Lãng mạn",
+      "showImages": true,
+      "images": [
+        "sample2.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Date lần 2",
+      "date": "2025-03-12",
+      "category": "dating",
+      "content": "Ngày 12/03/2025 - Cuộc hẹn thứ hai, tình cảm ngày càng sâu sắc hơn gòi. Mỗi lần gặp eiuuu, aiuuu lại khám phá thêm nhiều điều tuyệt vời. Long lanh xinh đẹp như hoa, nếu đc a qua rước nàng 🙂‍↔️",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": true,
+      "images": [
+        "sample4.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Date lần 3",
+      "date": "2025-03-15",
+      "category": "dating",
+      "content": "Ngày 15/03/2025 - Lần hẹn hò thứ ba, aiuuu ngày càng chắc chắn rằng eiuuu chính là người aiuuu muốn đồng hành cả đời. Hạ sang cảm xúc ngập tràn, lần đầu cứ ngỡ gặp nàng từ lâu, chữ duyên chữ phận đâmm sâu, mới gặp khom lẽ nói câu trọn đời? 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": true,
+      "images": [
+        "sample5.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Date lần 4",
+      "date": "2025-03-22",
+      "category": "dating",
+      "content": "Ngày 22/03/2025 - Buổi hẹn hò cuối cùng trước khi chính thức thành đôi. Aiuuu biết rằng ngày mai sẽ là ngày đặc biệt nhất, khi aiuuu sẽ lấy hết can đảm nói ra những chi đã ấp ủ trong lòng từ lâu gòii 🥰",
+      "mood": "Hồi hộp lém",
+      "template": "modern",
+      "showImages": true,
+      "images": [
+        "sample6.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Lời tỏ tình - Chính thức thành ny",
+      "date": "2025-03-23",
+      "category": "milestone",
+      "content": "Ngày 23/03/2025, 19h30 - Ngày đẹp nhất đời aiuuu! '2 đứa mình quen nhau và tìm hiểu cũng được một khoảng thời gian rồi, anh cảm giác được cả anh với em điều nghiêm túc trong mqh ni... anh cảm thấy tình cảm của anh dành cho em đủ để anh nói ra lời tỏ tình, anh gất là thích em. Anh muốn mối quan hệ của mình tiến lên một bước nữa, để nó cam kết hơn, lâu dài hơn, rõ ràng hơn... mọi thứ nó kiểu ko còn mập mờ mập mờ :))) Anh nghĩ là e cũng đang chờ một lời nói chính thức từ anh, nên là ngày ni mọi thứ ở đây gất là chính thức, biểu hiện cho sự nghiêm túc của anh, em đồng ý là người yêu của anh nha' - Và eiuuu đã đồng ý! Từ đoá, cuộc đời aiuuu có thêm một mặt trời nhỏ mang tên Emmmmm! 💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": true,
+      "images": [
+        "sample3.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Lời nhắn sau tỏ tình của công chúaaa",
+      "date": "2025-03-23",
+      "category": "milestone",
+      "content": "'E cảm ơn anh rất nhiều về ngày hôm nay nha. Thật sự thì e cũng không biết phải nói gì bây giờ, tự nhiên bị bất ngờ quá nên e sợ nói lung tung nhưng mà em cảm ơn anh rất nhiều. Cảm ơn vì những điều nhỏ nhặt luôn làm với em, cảm ơn vì đã lắng nghe em, cảm ơn vì đã hiểu em và cảm ơn vì đã đến bên emmmm (hơi trễ nha, nhưng e mong là không sai người mà e đã chọn). Và em không biết tương lai chúng mình cùng đi tới đâu, nhưng hiện tại em muốn cả 2 sẽ đi cùng nhau thật nhiều nơi, thử thật nhiều món, chơi thật nhiều trò, đi hết các cung đường đà nẵng, cùng trải qua những lần đầu tiên với nhau, kể cho nhau nghe về những điều nhỏ nhặt..v..v..sống thật hết mình với nhau, không phải giấu điều gì cả nhá' - Những lời ngọt ngào nhất mà aiuuu từng được nghe từ công chúaaa iuuu của aiuuu 🥹",
+      "mood": "Ngọt ngào :>",
+      "template": "classic",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 10,
+      "title": "Những quy tắc iuuu thươnnn",
+      "date": "2025-03-25",
+      "category": "daily",
+      "content": "Công chúaaa đã đưa ra những quy tắc để tình iuuu tụi mình bền chặt hơn: '1. Có chuyện gì quan trọng cũng phải kể nhau nghe nhá. 2. Nếu mình có xích mích gì với nhau thì cả 2 cùng ngồi lại nói chuyện nhá, nếu như mất bình tĩnh quá thì em mong là anh sẽ dỗ dành e. 3. Em zất là nhạy cảm nên là khom đc lớn tiếng với e đâu đó. 4. Giác quan thứ 6 của con gái rất nhạy, nên nếu e cảm nhận được một điều gì đó không hay thì e mong rằng e và anh sẽ có cách xử lý đúng đắn chứ ko phải dễ đến ròi dễ đi nhaa. Ai rời đi trc sẽ bị púng 3 cái nơi trán🤭' - Những quy tắc đáng iuuu để tụi mình luôn hạnh phúc bên nhauuu!",
+      "mood": "Lưu ý",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 11,
+      "title": "Ngày nhầm lịch đáng iuuu",
+      "date": "2025-04-24",
+      "category": "daily",
+      "content": "Ngày 24/04/2025 - 'xin chào thẩm phán, bị cáo xin khai tội, bị cáo đã nhầm ngày, bị cáo đã sai lầm khi k tin mình mà tin cái note, bị cáo đã bị cái note che mờ con mắt, ai cũng coá sai lầm, nên bị cáo mong thẩm phán khai ân, nâng cao đánh khẽ, để chuộc lấy lỗi lầm, bị cáo cam kết sửa sai bằng cách iuu thưn thẩm phán đến hết đời dà khom được kháng cáo. Bên cạnh đoá, để chuộc lấy lỗi lầm triệt để hơn, ngoài ngày 23 ra thì bị cáo đề nghị thêm một ngày 24 vào lịch là ngày chuộc lỗi nữa :)))' - Ngày aiuuu nhầm lẫn đáng iuuu (nhầm 23 thành 24 á :))) ) zà xin lỗi công chúaaa một cách hài hước nhất hehe",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 12,
+      "title": "Lời iuuu thươnnn chân thành",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'A biết là dù ko có anh thì e vẫn làm đc mọi thứ, thì lâu chừ vẫn rk mà. Anh cũng rk, a sẽ k nói mấy câu như là, ko có e thì a k sống đc, nma có một điều anh khẳng định được, anh thích cuộc đời anh có em' - Aiuuu ko nói mấy câu hoa mỹ rỗng tuếch đou, chỉ nói sự thật: cuộc đời aiuuu trở nên ý nghĩa hơn gất nhiều khi có eiuuu 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 13,
+      "title": "Lời iuuu đặc biệt",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Nếu anh có thể cho em một khả năng đặc biệt trong cuộc đời này, anh sẽ cho em khả năng nhìn thấy chính mình qua đôi mắt của anh. Sau đó em sẽ nhận ra, em thật đặc biệt thế nào đối với anh.' - Mong eiuuu hiểu được eiuuu quan trọng thế lào đối với aiuuu 🥹",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 14,
+      "title": "Quyết định nắm tay eiuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'a với e vô tình gặp nhau, nma a quyết định dừng lại đưa tay, rồi e cũng đồng ý nắm' - Khoảnh khắc aiuuu quyết định khom để eiuuu đi qua cuộc đời aiuuu như một người qua đường. Tình cảm của tụi mình ko phải tự nhiên tự hình thành, noá là quá trình aiuuu gặp eiuuu, nói chuyện về nhiều thứ, để aiuuu quyết định làm chi đó thì aiuuu đã nghĩ kỹ gòi 💗",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 15,
+      "title": "Quote: Tình iuuu vũ trụ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'iuuu em cao hơn cả núi dài hơn cả sông, rộng hơn cả đất xanh hơn cả trời, bay ra vũ trụ giãn nở cùng vũ trụ, mà tốc độ vũ trụ giãn nở còn nhanh hơn tốc độ ánh sáng và đang giãn nở vô hạnnnnn' - Tình iuuu của aiuuu dành cho eiuuu ko có giới hạn đou, cứ mỗi ngày lại lớn thêm một chút, giãn nở như vũ trụ luon á 🌌",
+      "mood": "Lãng mạn",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 16,
+      "title": "Quote: Nhớ eiuuu không ngừng",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'nếu như nói nỗi nhớ của a như sao trên trời thì thiệt là vô lý, vì sao trên trời còn có bữa quên mọc, còn a thì lúc lào cũng nghĩ dìa e' - Nỗi nhớ của aiuuu khom như sao trời có lúc tắt lúc sáng đou, mà lúc lào cũng nghĩ dìa eiuuu thoi á 💫",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 17,
+      "title": "Quote: Vũ trụ trong mắt aiuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'vũ trụ trong góc nhìn khoa hc là màu đen huyền bí, là vật chất tối, năng lượng tối, còn vũ trụ trong mắt a là e' - Với aiuuu, eiuuu chính là cả vũ trụ. Tất cả những chi aiuuu cần, tất cả những chi aiuuu iuuu thương, đều có trong eiuuu hết gòi 🌌",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 18,
+      "title": "Funny: Anhday",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'t2 là monday, t3 là tuesday, coàn ny của e là anhday :)))' - Một cách đáng iuuu zà hài hước để nói rằng aiuuu thuộc về eiuuu. Mỗi ngày của eiuuu đều có aiuuu, lúc lào cũm là anhday hết á :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 19,
+      "title": "Quote: Giữa cuộc đời",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'giữa cuộc đời hàng hàng câm giỗ, a chỉ cần bêna đổ là tim e' - Giữa cuộc đời đầy cám dỗ, aiuuu chỉ cần bến đỗ là trái tim eiuuu thoi. Eiuuu là bình yên của aiuuu 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 20,
+      "title": "Funny: Ngắm eiuuu cả đời",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'ngắm mây ngắm cả bầu trời, iu e, ngắm cả cuộc đời đc khom :))' - Hài hước nma đầy tình iuuu luon, eiuuu đẹp hơn cả bầu trời rộng lớn á nhóo :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 21,
+      "title": "Quote: Quá khứ zà tương lai",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'nếu quá khứ của e là một chiếc bánh dở tệ thì a sẽ ăn hết rồi đền cho e một chiếc bánh ngon hơn' - Lời hứa chăm sóc eiuuu, xóa đi mọi nỗi buồn trong quá khứ, đền cho eiuuu một tương lai ngọt ngào hơn nhìu nhóo 🍰",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 22,
+      "title": "Funny: Công chúaaa trốn truyện",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'chết gòi hqua đọc truyện cổ tích mà quên gấp lại, để công chúa ra cả đây :))))' - Aiuuu vô tình để công chúaaa trốn ra khỏi truyện cổ tích, may quó công chúaaa chạy thẳng tới bên aiuuu luon hehe :))))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 23,
+      "title": "Wordplay: Iu là động từ hay tính từ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'đố e iu là động từ hay tính từ? tính từ lúc gặp e :))))' - Trò chơi chữ đáng iuuu về tình iuuu. Trc khi gặp eiuuu thì iuuu là động từ, gặp eiuuu rồi thì noá thành tính từ mất gòi :))))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 24,
+      "title": "Funny: Tóc xơ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'bữa ni đầu tóc a cứ xơ xơ, xơ e là nhá :)))' - Giải thích hài hước cho mái tóc rối của aiuuu. Tại xơ eiuuu quá nên tóc cũm xơ theo luon á hehe :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 25,
+      "title": "Funny: Con ma",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'có con ma... ma em quế :)))' - Một câu thả thính siêu cấp đáng iuuu của aiuuu hehe",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 26,
+      "title": "Giấc mơ đuổi theo bóng eiuuu",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'em emm, khi trưa a mơ lạ lắm, a đi lạc trong rừng, xong tự nhiên thấy có bóng ng, xong a chạy theo coi hn là ai :))) ai lớp du :))))))' - Giấc mơ đáng iuuu khi aiuuu đuổi theo bóng dáng eiuuu trong mơ. Ngủ mơ cũm thấy eiuuu luon á hehe 💤",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 27,
+      "title": "Mâu thuẫn đáng iuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'thiệt ra chi a cũng muốn về nhất, nma a lại muốn iuu e mãi mãi về sau' - Mâu thuẫn ngọt ngào giữa muốn về nhất zà muốn iuuu eiuuu mãi mãi. Chi cũm muốn về nhất nma tình iuuu thì khom về đou, cứ lớn mãi thoi :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 28,
+      "title": "Thơ: Bắc thang hỏi ông trời",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'bắc thang lên hỏi ông trời, sao tôi cứ mãi ko thôi nhớ nàng, ông trời cất tiếng khẽ khàng, vì con đã trót để nàng trong tim' - Thơ về nỗi nhớ eiuuu khom bao giờ dừng lại, ông trời cũm phải gật gù luon á :)))",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 29,
+      "title": "Thơ: Sẵn sàng sến súa",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'anh, sẵn sàng sến súa một đời, vì nụ cười công chúa của a, coá đôi mắt biếc long lanh, dáng hình in mãi trong anh chẳng rời, mây bay bay mãi trên trời, tình a nói mãi một lời trăm năm :)))' - Aiuuu sẵn sàng sến cả đời vì nụ cười của eiuuu á nhóo 💕",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 30,
+      "title": "Thơ: Đường đời mênh mông",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'đường đời rộng lớn mênh mông, muốn mình hạnh phúc sao k chung đường, nhớ ai thao thức đêm trường, trong đầu bóng dáng vẫn thường quẩn quanh, chữ tình ta đẹp như tranh, bởi vì trong đó có a có nàng... nàng công chúa iuu của a 🥰' - Tình iuuu của tụi mình đẹp như tranh vẽ luon á!",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 31,
+      "title": "Thơ: Gió về qua ngõ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'gió về qua ngõ chiều xưa, chợ chiều thanh vắng lưa thưa mấy người, bỗng dưng lại thấy e cười, làm tôi sững lại ngẩn người dại ra :)) long lanh xinh đẹp như hoa, thương a!? nếu đc a qua rước nàng 🙂‍↔️ mẹ cha cho bạc cho vàng, hỏi nàng có chịu cưới chàng hay không, nàng công chúaa iuuu của a' - Thơ aiuuu viết về eiuuu, xinh đẹp long lanh lém á 🌸",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 32,
+      "title": "Thơ: Em đã lớn anh trưởng thành",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'e đã lớn, a cũng trưởng thành, hai cũng hợp nên thành một đôi, chữ duyên chữ phận dễ trôi, muốn luôn hạnh phúc để tôi cạnh nàng, ví tình như biển bạt ngàn, bao la rộng lớn ngập tràn tình iuuu' - Tình iuuu bao la như biển cả luon á eiuuu ơiii 🌊",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 33,
+      "title": "Thơ: Trai Việt Nam thở ra thơ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'trai việt nam nghìn năm văn vở, gặp đc nàng a thở ra thơ :))) ngỡ nàng bạch tuyết trong mơ, nên đành viết vội bài thơ gửi nàng, hạ sang mang nắng ngập tràn, ngủ mơ may mắn gặp nàng lại vui :))) a vừa mơ được ôm e ngủ đó :)))' - Gặp eiuuu là aiuuu thở ra thơ luon á, bạch tuyết trong mơ đoá eiuuu ơiii hehe",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 34,
+      "title": "Thơ: Hạ sang cảm xúc",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'hạ sang cảm xúc ngập tràn, lần đầu cứ ngỡ gặp nàng từ lâu, chữ duyên chữ phận đâmm sâu, mới gặp khom lẽ nói câu trọn đời? trăng ơi sao mãi trên trời, người ơi có muốn bên đời có ta, ngoài đường có lá có hoa, trong nhà chỉ ước cạnh ta có nàng' - Mới gặp mà đã muốn nói câu trọn đời gòi, eiuuu biết khom 🌙",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 35,
+      "title": "Thơ: Lá chuối xanh",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'lá chuối xanh gói đòn bánh tét :))) người thương mình bảo ghét vẫn iuuu, hoàng hôn làm nắng thêm chiềuuu, lời e hay nói bao điều chẳng sai 🙂‍↔️ e thì có một không hai, e xinh e đẹp không ai sánh bằng 🥰 có khi đôi lúc cọc cằn, để cho a biết e iuu anh bằng :))))) để cho anh biết được rằng e thương ❤️' - Eiuuu có cọc cằn thì cũm là vì iuuu aiuuu thoi mà hehe",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 36,
+      "title": "Thơ: Lúc bé zà lớn lên",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'lúc bé học bảng cửu chương, lớn lên học cách iuuu thương một người, lúc bé muốn có điểm mười, lớn lên muốn có nụ cười của emmmm' - So sánh đáng iuuu giữa lúc bé zà lúc trưởng thành. Lớn lên rồi chỉ muốn có nụ cười của eiuuu thoi á 😊",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 37,
+      "title": "Thơ: Ngoài kia có mận có đào",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'ngoài kia có mận có đào, có nàng thiếu nữ bước vào tim toi, lời iuu chẳng giống mây trôi, bởi nàng chiếm giữ lòng toi mất ròi :))) gặp nhau tim lại bồi hồi, cả đời chỉ ước đc ngồi cạnh e, lúc bé a bị thèm kem, lớn lên a bị thèm em cạnh mình :)))' - Lúc bé thèm kem, lớn lên thèm eiuuu cạnh mình luon á hehe 🍦",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 38,
+      "title": "Thơ: Iuuu là phải sống cả đời",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'iuuu là phải sống cả đời, mỗi ngày bên cạnh chẳng rời xa nhau, sáng ra bắt cá hái rau, túi về 2 đứa hái sao trên trời, chữ thương chẳng đổi chẳng dời, đôi ta ước hẹn một đời thủy chung, gió mây bay ở không trung, hai ta hạnh phúc ở chung một nhà' - Lời hứa iuuu thương trọn đời, hai ta hạnh phúc ở chung một nhà nhóo 🏠💕",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 39,
+      "title": "Thơ: Sương giăng mờ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Sương giăng mờ trên ngõ tạm thương. Ngõ rất cụt mà lòng xa thẳm. Ngõ bảy thước mà lòng muôn dặm. Thương một đời đâu phải tạm thương ❤️' - Tình iuuu của aiuuu dành cho eiuuu khom phải tạm thương đou, mà là thương trọn đời luon á nhóo!",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 40,
+      "title": "Quote: Vũ trụ tràn đầy năng lượng",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'vũ trụ tràn đầy năng lượng, anh thì đầy ắp tình thương, em đây thì hơi khó cưỡng :))) vậy nên ta có tương đương, em iuu a có a thương một đời' - Eiuuu khó cưỡng quá nên aiuuu đành thương trọn đời thoi gòi :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 41,
+      "title": "Quote: Tình iuuu 1 3 5 7 9",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'gọi tình iuu a dành cho e là 1 3 5 7 9, vì nóa không thể chi đôi' - Tình iuuu aiuuu dành cho eiuuu là số lẻ, vì khom bao giờ có thể chia đôi cho ai khác được đou hehe 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 42,
+      "title": "Quote: Đừng hỏi aiuuu chán chưa",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'đừng hỏi a chán chưa, vì tình cảm a dành choa eiuu của a luôn chứa chan' - Eiuuu khom cần hỏi aiuuu chán chưa đou nhóo, vì tình cảm aiuuu dành cho eiuuu luôn luôn chứa chan, tràn đầy, khom bao giờ vơi á!",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 43,
+      "title": "Quote: Gọi eiuuu là thời gian",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'gọi e là thời gian, vì a iuu e, không bao giờ dừng lại' - Giống như thời gian khom bao giờ dừng, tình iuuu aiuuu dành cho eiuuu cũm khom bao giờ dừng lại đou nhóo ⏰💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 44,
+      "title": "Quote: Quả chanh thần",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'tặng eiuu một quả chanh thần, cắt ra sẽ thấy chân thành của a :)))' - Quà tặng đặc biệt cho eiuuu đóa hehe, cắt ra bên trong toàn chân thành thoi á :))) 🍋",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 45,
+      "title": "Quote: Mắt eiuuu môi eiuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'mắt eiuu màu đen, môi eiuu màu đỏ, tới đây aiuu nói nhỏ... a cực kỳ iuuu e' - Aiuuu nói nhỏ nha: a cực kỳ iuuuuu eiuuu luon á nhóo 🤫💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 46,
+      "title": "Quote: Mượn tym",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'eiuu của a, mượn xe nhớ đổ đầy bình, mượn tym nhớ đổ đầy tình giúp a' - Eiuuu mượn trái tim aiuuu rồi thì nhớ đổ đầy tình iuuu vào giúp aiuuu nha :)))",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 47,
+      "title": "Tự giác iuuuu eiuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'tự giác iuuuu e' - Aiuuu tự giác iuuu eiuuu mà khom cần ai bắt buộc đou nhóo. Ngày lào cũm tự giác, ko cần nhắc nhở chi hết á hehe 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 48,
+      "title": "Lời chúc ngủ ngon mỗi đêm",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'chúc công chúa iuuuu của a ngủ ngoannnn, iuuuu e nhiềuu hơn ngày hquaa, iuuuu vợ iuuu của a nhiều lắm, ngoann xinh iuuu của a ngủ ngoann mơ aiu qua ôm hun chụt chụt, moaz moazz moazzzzzz' - Lời chúc ngủ ngon ngọt ngào mỗi đêm aiuuu gửi eiuuu. Iuuuuu e nhiều hơn ngày hqua nha công chúaaa 🌙💤",
+      "mood": "Chăm lo cho eiuuu",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 49,
+      "title": "Lời chúc ngủ ngon từ eiuuu",
+      "date": "2025-06-25",
+      "category": "daily",
+      "content": "'Em, Nguyễn Thị Mỹ Duyên trịnh trọng gởi đến anh Phan Văn Bằng một lời chúc ngủ ngon và iu em đến hết đời, kể cả trong mơ hay hiện tại, quá khứ hay tương lai đều iu em. Và khi anh ngủ, em iu sẽ đến trong giấc mơ của anh và nói: mấy lần cuộc đời cho em đc hạnh phúc và anh là điều hạnh phúc mà cuộc đời ban cho em, em iu anh' - Lời chúc ngủ ngon trịnh trọng zà ngọt ngào nhất từ công chúaaa iuuu 🥹💕",
+      "mood": "Eiuu iuuu aiuuu nhìu lắmmm :)))",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 50,
+      "title": "Eiuuu cảm nhận tình iuuu aiuuu",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'Cảm ơn a vì luôn để tâm đến những điều nhỏ nhặt nhưng ý nghĩa. E thấy được tình yêu anh dành cho em không chỉ qua lời nói mà còn qua từng hành động chân thành như thế này. Em ko nghĩ trốn ziệc mà làm nên việc lớn lày. Nhưng mà nói chung em thương anh nhiều lắm - không chỉ vì những gì anh làm, mà vì con người a ấm áp, chân thành vì em. hí hí hí' - Eiuuu thương aiuuu nhìu lắm nha, aiuuu hạnh phúc quá gòiii 🥰",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 51,
+      "title": "Quote: Mong eiuuu chỉ buồn ngủ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'mong nỗi buồn duy nhất của eiu là buồn ngủ, thứ e say là say giấc' - Aiuuu chỉ mong eiuuu khom bao giờ buồn, nỗi buồn duy nhất là buồn ngủ thoi nha, zà thứ eiuuu say là say giấc thoi nhóo 💤🌸",
+      "mood": "Chăm lo cho eiuuu",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 52,
+      "title": "Thơ: Quan tâm mỗi ngày",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'thời tiết lúc nắng lúc mưa, e giờ cơm nước gì chưa hỡi nàng :)))' - Quan tâm nhỏ nhặt hàng ngày nhưng chứa đựng tình iuuu bự lắm đoá. Eiuuu ăn uống đầy đủ chưa nhóooo? 🍚",
+      "mood": "Chăm lo cho eiuuu",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 53,
+      "title": "100 Ngày Iuuu Nhauuu",
+      "date": "2025-07-01",
+      "category": "milestone",
+      "content": "Ngày 01/07/2025 - Tròn 100 ngàyyyy! 100 ngày 'tập sự' làm người iuuu, aiuuu đã tốt nghiệp xuất sắc khóa 'chiều chuộng công chúaaa' chưa nhỉ? Chắc là rồi hee :)) 100 ngày trôi qua nhanh như một cái chớp mắt, vì ở bên eiuuu, thời gian dường như cũm muốn chạy đua để được hạnh phúccc 👑",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 54,
+      "title": "Sinh Nhật Công Chúaaa 🎀",
+      "date": "2025-10-08",
+      "category": "milestone",
+      "content": "Ngày 08/10/2025 - Sinh nhật đầu tiên của eiuuu khi có aiuuu ở bên cạnhhh! Nguyễn Thị Mỹ Duyên - công chúaaa xinh đẹp nhất trần đời sinh ngày 08/10/2003. Chúc công chúaaa iuuuu mãi xinh đẹpp, hạnh phúccc zà luôn được iuuu thươnnn nhee! Eiuuu là điều tuyệt vời nhất mà cuộc đời mang đến cho aiuuu đóaaa 🎂💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 55,
+      "title": "200 Ngày Bên Nhauuu",
+      "date": "2025-10-09",
+      "category": "milestone",
+      "content": "Ngày 09/10/2025 - 200 ngày gòiii! Album ảnh đã đầy ắp nụ cười gòi đóa! Đi đâu cũm được, ăn chi cũm ngon, miễn là có eiuuu đi cùng! Mỗi kỷ niệm bên eiuuu đều là những thước phim đẹp nhất mà aiuuu muốn tua đi tua lại mỗi ngày. Hành trình này cứ zậy mà dài vô tận nhié! 📸",
+      "mood": "Ngọt ngào :>",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 56,
+      "title": "Sinh Nhật Aiuuu 🎉",
+      "date": "2025-10-28",
+      "category": "milestone",
+      "content": "Ngày 28/10/2025 - Sinh nhật đầu tiên của aiuuu khi có eiuuu ở bênnn! Phan Văn Bằng - sinh 28/10/2002. Món quà lớn nhất chính là được ở bên công chúaaa iuuu của aiuuu đóaaa! Eiuuu chính là quà sinh nhật đẹp nhất đời aiuuu gòi heheh 🎁💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 57,
+      "title": "300 Ngày Iuuu Thưnnnn",
+      "date": "2026-01-17",
+      "category": "milestone",
+      "content": "Ngày 17/01/2026 - 300 ngày! Con số tròn trĩnh, nma tình iuuu aiuuu dành cho eiuuu thì khom có điểm dừng, nó cứ lớn lớn lớn mãi thoi! Cùng nắm tay chạy tiếp marathon tình iuuu nhóo công chúaaa! 300 ngày chỉ là khởi động thoi, còn hàng ngàn tập phía trước nha hehe 🥰💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 58,
+      "title": "Valentine Đầu Tiên 🌹",
+      "date": "2026-02-14",
+      "category": "milestone",
+      "content": "Ngày 14/02/2026 - Valentine đầu tiên chính thức bên nhauuu! Ngày lễ tình nhân thêm ý nghĩa biết bao khi có eiuuuu ở bên cạnhh! Happy Valentine, công chúaaa iuuuu của aiuuu! Iuuu eiuuuu nhiềuuuu lắmmm! 🌹💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 59,
+      "title": "8/3 - Ngày Của Công Chúaaa",
+      "date": "2026-03-08",
+      "category": "milestone",
+      "content": "Ngày 08/03/2026 - Ngày Quốc tế Phụ nữ đầu tiên bên nhau! Chúc công chúaaa iuuu luôn xinh đẹpp, tự tin zà hạnh phúccc. Eiuuu mạnh mẽ lắm, eiuuu xinh đẹp lắm, là nắng, là hoa, là bốn mùa trong tim aiuuu. Iuuu eiuuu nhiềuuuu! 🌸",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 60,
+      "title": "1 NĂM IUU NHAUUU! 🏆",
+      "date": "2026-03-23",
+      "category": "milestone",
+      "content": "Ngày 23/03/2026 - TRÒN 1 NĂM IUU NHAUUU! 365 ngàyyyy, 8760 giờ, 525600 phút iuuu thươnnn! Từ ngày aiuuu lấy hết can đảm tỏ tình đến hôm nay, tụi mình đã trải qua biết bao kỷ niệm tuyệt vờiii. Cảm ơn eiuuu vì tất cả - vì nụ cười, vì sự ấm áp, vì đã luôn ở bên aiuuu. 1 năm chỉ là chương mở đầu thoi nhóo, cuốn sách tình iuuu của mình còn nhìu nhìu chương đẹp hơn nữa phía trước! Iuuuuu eiuuu mãi mãiii, công chúaaa của aiuuu! heheh 💕🎊",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 61,
+      "title": "Lời hứa về tương lai",
+      "date": "Ký ức",
+      "category": "milestone",
+      "content": "'a đã xác định nghiêm túc dới e ngay từ đầu, thì đã tính tới luôn chiện cưới e. a khom muốn một mqh nửa vời, a muốn đi cùng e tới cuối đời, đó là mong muốn của a ngay từ khi bắt đầu. a luôn xem e như là vợ iuu của a luon zà hành động cũng như gứa' - Aiuuu nghiêm túc zà chắc chắn về tương lai bên eiuuu từ ngày đầu tiên. Eiuuu hỏi aiuuu có iu em khom - tất nhiên là cóa. Nghiêm túc khom - tất nhiên là cóa. Muốn cưới em khom - tất nhiên là cóa 💍💕",
+      "mood": "Lời hứa",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 62,
+      "title": "Hết giai đoạn choáy - Bình yên mãi",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'hết giai đoạn choáy gòi thì đến giai đoạn bình yên. Cảm giác của a luôn là iuuuu e, a coá e trong đời đã là tốt lắm gòi. Chủ yếu là muốn ở bên eiuuu zà có thật nhiều kỹ niệm bên eiuuu nên mới đi đây đó, chớ aiuuu toàn muốn dìa trọ nằm ôm eiuuu thoi mà hẹ hẹ :))) Iuuu mà bình yên ko cãi nhau chi là nhạt nhoà đou, a cảm thấy đoá mới là tình iuu lâu dài' - Tình iuuu khom cần lúc lào cũm cháy bỏng, bình yên bên nhau mới là mãi mãi nhóo eiuuu 🏠💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 63,
+      "title": "Nếu iuuu e là mơ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'nếu iuu e là mơ thì a xin phép đc mơ một giấc mơ trọn vẹn, nơi mà a có thể đi cùng e tới cuối đời' - Nếu iuuu eiuuu là giấc mơ thì aiuuu xin được mơ giấc mơ trọn vẹn nhất, đi cùng eiuuu tới cuối đời nhóo 🌙💕",
+      "mood": "Lãng mạn",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 64,
+      "title": "Những điều aiuuu biết về eiuuu",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Những điều nhỏ nhặt aiuuu ghi nhớ về eiuuu: Eiuuuu thích ăm nem, thích ăm bim bim 🍿, ko thích ăn giá sống, ko thích mấy con ko có chân (lăng quăng bọ gậy á eiuuu sợ lém), ko thích gửa chén :))) Zà eiuuuu muốn aiuuu lên 60 ký nha (aiuuu sẽ cố gắng ăn nhìu hơn nhóo!). Aiuuu nhớ hết mọi thứ về eiuuu á, từ cái nhỏ nhất luon 💕",
+      "mood": "Chăm lo cho eiuuu",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 65,
+      "title": "Lưu ý từ công túaaa",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "'Khôm được bỏ công túa đi trước một mình' - Quy tắc số 1 quan trọng nhất mà aiuuu luôn nhớ nhaa. Đi đâu cũm phải đi cùng eiuuu, khom được bỏ eiuuu một mình đou nhóo! Zà nhớ nha: 'Ai rời đi trc sẽ bị púng 3 cái nơi trán🤭' hehe",
+      "mood": "Lưu ý",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 66,
+      "title": "Quote: Vô tình bước vô cuộc đời",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'a vô tình bước vô cuộc đời e, nma a cố tình ở lại đó chớ :)))' - Gặp nhau là vô tình, nma ở lại bên eiuuu là cố tình luon á nhóo hehe. Aiuuu khom đi đâu hết đou, cứ ở đây bên eiuuu thoi 💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 67,
+      "title": "Quote: Tình iuuu ngoài vũ trụ",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Tình yêu của a ngoài vũ trụ ớ, vì a iu e quá trời rồi :)))' - Tình iuuu quá trời gòi nên phải bay ra ngoài vũ trụ thoi, trái đất chứa khom nổi đou :))) 🚀💕",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 68,
+      "title": "Thơ 300 ngày: Khúc Ca",
+      "date": "2026-01-17",
+      "category": "quotes",
+      "content": "'Ba trăm ngày mộng giấc mơ, gặp em anh hóa kẻ khờ làm thơ. Nắng vàng rực rỡ đợi chờ, tình ta đẹp tựa bài thơ trữ tìnhh. Cảm ơn duyên phận chúng mình, cho anh tìm thấy bóng hình người thương. Dù cho vạn nẻo dặm trường, vẫn xin nguyện mãi vấn vương bên nàng!' - Thơ aiuuu viết riêng cho mốc 300 ngày đóaaa 🌟",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 69,
+      "title": "Thơ 300 ngày: Công Chúaaa Riêng Aiuuu",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Em là công chúa kiêu sa, anh là kỵ sĩ canh nhà choa em. Mặc cho thế giới đi kềm, anh đây chỉ muốn êm đềm bên nương. Tóc mây vương vấn mùi hương, mắt nai ngơ ngác làm anh lạc đường. Đời này chỉ có một phương, là phương em đó, người thương anh à!' - Đời này aiuuu chỉ có một phương thoi, phương eiuuu đóa hehe 🧭💕",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 70,
+      "title": "Thơ: Đêm Tương Tư",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Đêm nằm ngắm ánh sao trời, nhâm nhi nỗi nhớ đầy vơi trong lòng. Hỏi trăng có thấu hay không? Rằng anh nhớ bé càng trông càng sầu. Ước gì có phép nhiệm màu, biến ngay trước mặt để âu yếm nàng. Gửi vào gió, gửi mơ màng, ngủ ngoan em nhé, thiên đàng của anh!' - Những đêm nhớ eiuuu, ước chi biến đến bên eiuuu liền á 🌙✨",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 71,
+      "title": "Thơ 300 ngày: Cùng nhau đi tới",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'Mai này dù nắng hay mưa, thì anh vẫn đón vẫn đưa em về. Trọn đời giữ vẹn câu thề, yêu em chẳng ngại, chẳng nề gian lao. Dù cho sóng gió ba đào, nắm tay anh nhé, bước vào tương lai. Đường đời còn rộng còn dài, có em bên cạnh, chông gai hóa hồng!' - Có eiuuu bên cạnh, chông gai hóa hồng hết luon á nhóo 🌹",
+      "mood": "Thơ của aiuu",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 72,
+      "title": "Thông báo đáng iuuu từ công chúaaa",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Eiuuu zất là nhạy cảm nên aiuuu phải nhẹ nhàng nha, khom được lớn tiếng đou nhóo. Zà nếu giận nhau thì aiuuu phải dỗ dành eiuuu (eiuuu hay mong đợi quó ha :))) ). Aiuuu ghi nhớ hết gòii, sẽ luôn nhẹ nhàng zà dỗ dành eiuuu cho coi nhóo! Eiuuu cứ yên tâm, aiuuu sẽ khom bao giờ làm eiuuu buồn đou 💗",
+      "mood": "Lưu ý",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 73,
+      "title": "Aiuuu thích nhất điệu cười eiuuu",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Aiuuu thích nhất là điệu cười 'trừ lương' của eiuuu. Nói chứ cười lên xinh xỉu, aiuuu nguyện làm khán giả trung thành ngắm eiuuu cười 24/7 luon! Hạnh phúc đôi khi chỉ đơn giản là thấy eiuuu vui thoi đóa. Lúc bé muốn có điểm mười, lớn lên muốn có nụ cười của emmmm 😊💕",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 74,
+      "title": "Aiuuu sợ nhất eiuuu giận",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Điều aiuuu sợ nhất là eiuuu giận aiuuu rồi bơ aiuuu luon. Cảm giác như thế giới sụp đổ, wifi mất kết nối gứa đóa. Nên là có giận thì giận xíu thoi nha, aiuuu sợ lém á! Nma mà có giận nhau thì tụi mình cùng ngồi lại nói chuyện nhaa, như quy tắc eiuuu đã đặt ra đóa 🥺",
+      "mood": "Ngọt ngào :>",
+      "template": "minimalist",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 75,
+      "title": "Aiuuu chờ đợi ngày rước eiuuu về dinh",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Aiuuu chờ đợi ngày được 'rước nàng về dinh'. Mỗi ngày tích cóp một chút nhớ thương, để dành đến ngày đóa bùng nổ. Eiuuu là động lực để aiuuu cày cuốc mỗi ngày đóa, công chúaaa à! Mẹ cha cho bạc cho vàng, hỏi nàng có chịu cưới chàng hay không 🏠💍",
+      "mood": "Lời hứa",
+      "template": "Lãng mạn",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 76,
+      "title": "Flex eiuuu với cả thế giới",
+      "date": "Ký ức",
+      "category": "daily",
+      "content": "Aiuuu tự hào flex eiuuu với cả thế giới luon! Ai hỏi aiuuu cũm vỗ ngực: 'Người yêu tui đó, vợ tương lai tui đó, xịn chưa!'. Tự hào level max luon nha! Eiuuu là niềm tự hào lớn nhất của aiuuu đóa hehe 👑💕",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    },
+    {
+      "id": 77,
+      "title": "Vô cực sinh thái cực",
+      "date": "Ký ức",
+      "category": "quotes",
+      "content": "'vô cực sinh thái cực, thái cực sinh lưỡng nghi, lưỡng nghi sinh tứ tượng, tứ tượng sinh bát quái, bát quái định cát hung, cát hung sinh đại nghiệp' - Aiuuu triết lý sâu sa nhưng tóm lại là: tất cả đều dẫn đến đại nghiệp, mà đại nghiệp lớn nhất đời aiuuu là iuuu eiuuu thoi đóa hehe :)))",
+      "mood": "Hài :)))",
+      "template": "modern",
+      "showImages": false,
+      "images": []
+    }
+  ]
+}

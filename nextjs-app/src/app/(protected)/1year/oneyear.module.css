@@ -1,0 +1,647 @@
+/* 1 YEAR ANNIVERSARY - CSS Module */
+
+.page {
+  --pink: #FF69B4;
+  --rose: #FF91A4;
+  --soft-pink: #FFC0CB;
+  --deep-pink: #FF1493;
+  --blush: #FFE4E1;
+  --gold: #FFD700;
+  --white: #FFFFFF;
+  --text: #2C3E50;
+  --text-light: #6C7B7F;
+  --shadow: 0 8px 32px rgba(255,105,180,0.2);
+  --radius: 24px;
+
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 30%, #FFF8F0 60%, #FFF0F5 100%);
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* FLOATING HEARTS */
+.floatingHearts {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+
+.floatHeart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity:0; }
+  10% { opacity:0.7; }
+  90% { opacity:0.5; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity:0; }
+}
+
+/* FIREWORKS CANVAS */
+.fireworksCanvas {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index: 9999;
+}
+
+/* HERO SECTION */
+.heroSection {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; text-align: center; padding: 40px 20px;
+  background: linear-gradient(135deg, #FF69B4 0%, #FF91A4 25%, #FFB6C1 50%, #FF69B4 75%, #FF1493 100%);
+  background-size: 400% 400%;
+  animation: heroGradient 8s ease infinite;
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+}
+
+@keyframes heroGradient {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.heroContent { position: relative; z-index: 2; }
+
+/* ANNIVERSARY BADGE */
+.anniversaryBadge {
+  width: 180px; height: 180px; margin: 0 auto 40px;
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+
+.badgeRing {
+  position: absolute; width: 100%; height: 100%;
+  border: 4px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+  animation: ringRotate 10s linear infinite;
+  border-top-color: var(--gold);
+  border-right-color: transparent;
+}
+
+@keyframes ringRotate { to { transform: rotate(360deg); } }
+
+.badgeInner {
+  width: 150px; height: 150px;
+  background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+  border-radius: 50%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 3px solid rgba(255,255,255,0.4);
+  animation: badgePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes badgePulse {
+  from { transform: scale(1); box-shadow: 0 0 30px rgba(255,215,0,0.3); }
+  to { transform: scale(1.05); box-shadow: 0 0 60px rgba(255,215,0,0.6); }
+}
+
+.badgeNumber {
+  font-size: 4rem; font-weight: 800; color: white;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-family: 'Playfair Display', serif;
+}
+
+.badgeText {
+  font-size: 1.2rem; font-weight: 700; color: rgba(255,255,255,0.9);
+  letter-spacing: 8px; text-transform: uppercase;
+}
+
+.heroTitle { margin-bottom: 24px; }
+
+.lineSmall {
+  display: block; font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem; color: rgba(255,255,255,0.85);
+  margin-bottom: 8px;
+}
+
+.lineBig {
+  display: block; font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 7vw, 5.5rem); color: white;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  line-height: 1.2;
+}
+
+.lineNames {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--gold);
+  letter-spacing: 6px; margin-top: 12px;
+  text-shadow: 0 2px 10px rgba(255,215,0,0.4);
+}
+
+.heroSubtitle {
+  font-size: 1.2rem; color: rgba(255,255,255,0.85);
+  font-weight: 500; margin-bottom: 12px;
+  background: rgba(255,255,255,0.15); display: inline-block;
+  padding: 8px 24px; border-radius: 50px;
+  backdrop-filter: blur(5px);
+}
+
+.heroDesc {
+  font-size: 1rem; color: rgba(255,255,255,0.75);
+  line-height: 1.8; font-weight: 300;
+}
+
+.scrollHint {
+  position: absolute; bottom: 30px; left:50%;
+  transform: translateX(-50%); text-align: center;
+  color: rgba(255,255,255,0.7); font-size: 0.9rem;
+}
+
+.scrollArrow {
+  margin-top: 8px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* SECTION STYLES */
+.sectionTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem; text-align: center;
+  background: linear-gradient(135deg, var(--deep-pink), var(--rose), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 12px; font-weight: 700;
+}
+
+.sectionSub {
+  text-align: center; color: var(--text-light);
+  font-size: 1.1rem; margin-bottom: 48px;
+}
+
+/* STATS */
+.statsSection { padding: 80px 0; }
+
+.statsGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.statCard {
+  background: white; border-radius: var(--radius);
+  padding: 40px 24px; text-align: center;
+  box-shadow: var(--shadow); transition: all 0.4s;
+  border: 2px solid rgba(255,105,180,0.1);
+  opacity: 0; transform: translateY(30px);
+}
+
+.statCard.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+.statCard:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(255,105,180,0.25); }
+
+.statIcon { font-size: 2rem; color: var(--pink); margin-bottom: 16px; }
+
+.statNumber {
+  font-size: 3rem; font-weight: 800; color: var(--deep-pink);
+  font-family: 'Playfair Display', serif;
+}
+
+.statLabel { font-size: 0.95rem; color: var(--text-light); margin-top: 8px; font-weight: 500; }
+
+/* JOURNEY TIMELINE */
+.journeySection { padding: 80px 0; background: rgba(255,255,255,0.5); }
+
+.journeyTimeline {
+  position: relative; max-width: 900px; margin: 0 auto;
+}
+
+.journeyLine {
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 4px; background: linear-gradient(to bottom, var(--pink), var(--gold), var(--deep-pink));
+  transform: translateX(-50%); border-radius: 2px;
+}
+
+.journeyItem {
+  display: flex; align-items: center; margin-bottom: 48px;
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.journeyItem.visible { opacity:1; transform: translateY(0); }
+
+.journeyItem:nth-child(even) { flex-direction: row-reverse; }
+
+.journeyMarker {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 56px; height: 56px; border-radius: 50%;
+  background: white; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; z-index: 5;
+  box-shadow: 0 4px 20px rgba(255,105,180,0.3);
+  border: 3px solid var(--pink);
+}
+
+.journeyCard {
+  flex: 1; background: white; border-radius: var(--radius);
+  padding: 28px; margin: 0 40px;
+  box-shadow: var(--shadow); transition: all 0.3s;
+  border: 2px solid rgba(255,105,180,0.1);
+}
+
+.journeyCard:hover { transform: translateY(-4px); border-color: var(--pink); }
+
+.journeyDate {
+  display: inline-block; background: linear-gradient(135deg, var(--pink), var(--rose));
+  color: white; padding: 6px 16px; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;
+}
+
+.journeyCard h3 { font-size: 1.3rem; color: var(--text); margin-bottom: 8px; }
+.journeyCard p { color: var(--text-light); line-height: 1.7; font-size: 0.95rem; }
+
+.journeyItemFeatured .journeyCard {
+  background: linear-gradient(135deg, #FFF0F5, #FFE4E1);
+  border: 3px solid var(--gold);
+}
+
+.journeyItemFeatured .journeyMarker {
+  border-color: var(--gold); background: var(--gold);
+  box-shadow: 0 0 30px rgba(255,215,0,0.5);
+}
+
+/* 12 MONTHS */
+.monthsSection { padding: 80px 0; }
+
+.monthsGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.monthCard {
+  background: white; border-radius: 20px;
+  padding: 28px 20px; text-align: center;
+  box-shadow: var(--shadow); transition: all 0.4s;
+  border-top: 4px solid hsl(var(--hue, 340), 80%, 65%);
+  position: relative; overflow: hidden;
+}
+
+.monthCard:hover { transform: translateY(-6px) scale(1.02); }
+
+.monthNum {
+  font-size: 2.5rem; font-weight: 800;
+  color: hsl(var(--hue, 340), 80%, 65%); opacity: 0.3;
+  position: absolute; top: 8px; right: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.monthCard h4 { font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+.monthCard p { font-size: 0.85rem; color: var(--text-light); }
+
+/* GIF SHOWCASE */
+.gifSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, rgba(255,240,245,0.8), rgba(255,228,225,0.6));
+}
+
+.gifShowcase {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.gifPlayer {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.gifFrame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(255,105,180,0.25);
+  border: 4px solid white;
+  background: var(--blush);
+  aspect-ratio: 3 / 4;
+}
+
+.gifImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.gifCaption {
+  text-align: center;
+  margin-top: 16px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--deep-pink);
+}
+
+.gifControls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.gifBtn {
+  background: white;
+  border: 2px solid rgba(255,105,180,0.15);
+  border-radius: 16px;
+  padding: 16px 8px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.gifBtn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(255,105,180,0.2); }
+
+.gifBtnActive {
+  border-color: var(--pink);
+  background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+  box-shadow: 0 4px 20px rgba(255,105,180,0.2);
+}
+
+.gifBtnIcon {
+  font-size: 1.4rem;
+  color: var(--pink);
+}
+
+.gifBtnLabel {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+/* LETTER */
+.letterSection { padding: 80px 0; background: rgba(255,255,255,0.5); }
+
+.letterContainer { max-width: 700px; margin: 0 auto; text-align: center; }
+
+.envelope {
+  position: relative; cursor: pointer;
+  background: linear-gradient(135deg, #f8e8ee, #fff0f5);
+  border-radius: 20px; padding: 60px 40px 40px;
+  box-shadow: 0 15px 50px rgba(255,105,180,0.2);
+  border: 2px solid rgba(255,105,180,0.2);
+  transition: all 0.5s;
+}
+
+.envelope:hover { transform: translateY(-4px); }
+
+.envelopeFlap {
+  position: absolute; top: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(135deg, var(--pink), var(--rose));
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-radius: 20px 20px 0 0;
+  transition: all 0.6s; transform-origin: top;
+}
+
+.envelopeOpened .envelopeFlap { transform: rotateX(180deg); opacity: 0; }
+
+.heartSeal {
+  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  width: 50px; height: 50px; background: var(--deep-pink);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.2rem; z-index: 5;
+  box-shadow: 0 4px 15px rgba(255,20,147,0.4);
+  animation: sealPulse 2s ease-in-out infinite;
+  transition: all 0.5s;
+}
+
+.envelopeOpened .heartSeal { opacity: 0; transform: translateX(-50%) scale(0); }
+
+@keyframes sealPulse {
+  0%,100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+}
+
+.letterPaper {
+  opacity: 0; max-height: 0; overflow: hidden;
+  transition: all 0.8s ease 0.3s;
+  text-align: left;
+}
+
+.envelopeOpened .letterPaper { opacity: 1; max-height: 3000px; }
+
+.letterHeader { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px dashed var(--soft-pink); }
+.letterHeader h2 { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--deep-pink); }
+.letterDate { color: var(--text-light); font-size: 0.9rem; margin-top: 8px; }
+
+.letterBody p { margin-bottom: 16px; line-height: 1.8; color: var(--text); font-size: 0.95rem; }
+.letterBody .highlight { background: linear-gradient(120deg, rgba(255,105,180,0.15), rgba(255,105,180,0.25)); padding: 2px 6px; border-radius: 4px; font-weight: 600; color: var(--deep-pink); }
+
+.letterSignature { text-align: center; margin-top: 24px; padding-top: 16px; border-top: 2px dashed var(--soft-pink); font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: var(--deep-pink); }
+.letterSignature p { margin-bottom: 4px; }
+
+.envelopeHint { margin-top: 16px; color: var(--text-light); font-size: 0.9rem; }
+
+/* PROMISES */
+.promisesSection { padding: 80px 0; }
+
+.promisesGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.promiseCard {
+  background: white; border-radius: var(--radius);
+  padding: 32px; text-align: center;
+  box-shadow: var(--shadow); transition: all 0.4s;
+  border: 2px solid rgba(255,105,180,0.1);
+}
+
+.promiseCard:hover { transform: translateY(-6px); border-color: var(--pink); }
+
+.promiseIcon { font-size: 2.5rem; margin-bottom: 16px; }
+.promiseCard h4 { font-size: 1.15rem; color: var(--text); margin-bottom: 8px; }
+.promiseCard p { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; }
+
+/* VINYL LYRICS PLAYER */
+.vinylSection { padding: 80px 0; background: linear-gradient(135deg, rgba(255,240,245,0.9), rgba(255,228,225,0.7)); }
+
+.vinylPlayer {
+  display: flex; gap: 32px; align-items: flex-start;
+  max-width: 900px; margin: 0 auto;
+}
+
+.vinylDiscWrap {
+  position: relative; flex-shrink: 0; width: 220px; height: 220px;
+}
+
+.vinylDisc {
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 0 60px rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; transition: all 0.3s;
+}
+
+.vinylDiscSpinning { animation: vinylSpin 3s linear infinite; }
+
+@keyframes vinylSpin { to { transform: rotate(360deg); } }
+
+.vinylGrooves {
+  position: absolute; inset: 15px; border-radius: 50%;
+  background: repeating-radial-gradient(circle at center,
+    transparent 0px, transparent 2px,
+    rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px
+  );
+}
+
+.vinylLabel {
+  width: 80px; height: 80px; border-radius: 50%; z-index: 2;
+  background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.vinylTitle { font-size: 0.55rem; font-weight: 700; color: white; line-height: 1.2; }
+.vinylArtist { font-size: 0.45rem; color: rgba(255,255,255,0.8); }
+.vinylHeart { font-size: 0.7rem; margin-top: 2px; }
+
+.vinylArm {
+  position: absolute; top: -10px; right: -15px; width: 4px; height: 90px;
+  background: linear-gradient(to bottom, #ccc, #888);
+  border-radius: 2px; transform-origin: top center;
+  transform: rotate(-30deg); transition: transform 0.5s ease;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.vinylArm::before {
+  content: ''; position: absolute; top: -6px; left: -5px;
+  width: 14px; height: 14px; border-radius: 50%; background: #aaa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.vinylArm::after {
+  content: ''; position: absolute; bottom: -4px; left: -3px;
+  width: 10px; height: 8px; background: #999; border-radius: 0 0 3px 3px;
+}
+
+.vinylArmActive { transform: rotate(-5deg); }
+
+.lyricsPanel {
+  flex: 1; background: white; border-radius: 20px;
+  box-shadow: var(--shadow); overflow: hidden;
+  border: 2px solid rgba(255,105,180,0.1);
+}
+
+.lyricsHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+  border-bottom: 1px solid rgba(255,105,180,0.1);
+}
+
+.lyricsInfo h3 {
+  font-family: 'Dancing Script', cursive; font-size: 1.3rem;
+  color: var(--deep-pink); margin-bottom: 2px;
+}
+
+.lyricsInfo p { font-size: 0.75rem; color: var(--text-light); }
+
+.lyricsPlayBtn {
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+  color: white; font-size: 1rem; cursor: pointer;
+  transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(255,20,147,0.3);
+}
+
+.lyricsPlayBtn:hover { transform: scale(1.1); }
+
+.lyricsScroll {
+  height: 360px; overflow-y: auto; padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.lyricsScroll::-webkit-scrollbar { width: 4px; }
+.lyricsScroll::-webkit-scrollbar-track { background: transparent; }
+.lyricsScroll::-webkit-scrollbar-thumb { background: var(--soft-pink); border-radius: 2px; }
+
+.lyricsLine {
+  padding: 4px 0; font-size: 0.9rem; color: var(--text-light);
+  line-height: 1.7; transition: all 0.3s;
+}
+
+.lyricsLineSection {
+  font-weight: 700; color: var(--deep-pink); font-size: 0.8rem;
+  margin-top: 16px; margin-bottom: 4px; letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.lyricsLineActive {
+  color: var(--deep-pink); font-weight: 500;
+  transform: scale(1.02); transform-origin: left;
+}
+
+.lyricsLineEmpty { height: 12px; }
+
+/* FOOTER */
+.anniversaryFooter {
+  background: linear-gradient(135deg, var(--pink), var(--deep-pink));
+  padding: 60px 0 30px; text-align: center; color: white;
+}
+
+.footerMessage h3 { font-family: 'Dancing Script', cursive; font-size: 2rem; margin-bottom: 8px; }
+.footerMessage p { opacity: 0.85; font-size: 1rem; margin-bottom: 32px; }
+
+.footerNav { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+
+.footerBtn {
+  background: rgba(255,255,255,0.2); color: white;
+  text-decoration: none; padding: 12px 24px; border-radius: 50px;
+  font-weight: 600; transition: all 0.3s; backdrop-filter: blur(5px);
+}
+
+.footerBtn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+
+.footerCopy { opacity: 0.6; font-size: 0.85rem; }
+
+/* REVEAL ANIMATIONS */
+.revealSection {
+  opacity: 0; transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.revealSection.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .journeyLine { left: 24px; }
+  .journeyItem, .journeyItem:nth-child(even) { flex-direction: row !important; }
+  .journeyMarker { left: 24px !important; transform: translateX(-50%) !important; width: 44px; height: 44px; font-size: 1.2rem; }
+  .journeyCard { margin: 0 0 0 60px !important; }
+  .heroSection { padding: 60px 20px; }
+  .lineBig { font-size: 2.8rem; }
+  .anniversaryBadge { width: 140px; height: 140px; }
+  .badgeInner { width: 115px; height: 115px; }
+  .badgeNumber { font-size: 3rem; }
+  .sectionTitle { font-size: 2rem; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .monthsGrid { grid-template-columns: repeat(2, 1fr); }
+  .envelope { padding: 50px 24px 24px; }
+  .promisesGrid { grid-template-columns: 1fr; }
+  .vinylPlayer { flex-direction: column; align-items: center; }
+  .vinylDiscWrap { width: 160px; height: 160px; }
+  .vinylDisc { width: 160px; height: 160px; }
+  .vinylLabel { width: 60px; height: 60px; }
+  .vinylTitle { font-size: 0.45rem; }
+  .vinylArtist { font-size: 0.38rem; }
+  .vinylArm { height: 65px; }
+  .lyricsScroll { height: 300px; }
+  .gifControls { grid-template-columns: repeat(2, 1fr); }
+  .gifFrame { border-radius: 16px; }
+  .gifCaption { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .lineBig { font-size: 2.2rem; }
+  .statsGrid { grid-template-columns: 1fr; }
+  .monthsGrid { grid-template-columns: 1fr; }
+  .footerNav { flex-direction: column; align-items: center; }
+  .gifControls { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}

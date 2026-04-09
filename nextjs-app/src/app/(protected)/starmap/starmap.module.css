@@ -1,0 +1,1615 @@
+/* Starmap CSS Module - Giao diện đẹp cho Bản Đồ Sao */
+
+/* CSS Variables & Page */
+.starmapPage {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #764ba2 75%, #667eea 100%);
+  --cosmic-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  --love-gradient: linear-gradient(135deg, #ff6b9d 0%, #c471ed 25%, #764ba2 50%, #667eea 75%, #ff6b9d 100%);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --cosmic-glow: 0 0 30px rgba(102, 126, 234, 0.4), 0 0 60px rgba(118, 75, 162, 0.2);
+  --love-glow: 0 0 25px rgba(255, 107, 157, 0.5), 0 0 50px rgba(196, 113, 237, 0.3);
+
+  background:
+    radial-gradient(ellipse at top, rgba(102, 126, 234, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse at bottom, rgba(118, 75, 162, 0.1) 0%, transparent 70%),
+    var(--cosmic-gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animated starfield background */
+.starmapPage::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle 20s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+@keyframes sparkle {
+  from { transform: translateX(0); }
+  to { transform: translateX(200px); }
+}
+
+/* Background Animation */
+.backgroundAnimation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floatingHearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.floatingHeart {
+  position: absolute;
+  font-size: 1.5rem;
+  color: rgba(255, 107, 157, 0.6);
+  animation: floatHeart 20s infinite linear;
+}
+
+.floatingHeart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.floatingHeart:nth-child(2) { left: 20%; animation-delay: -2s; }
+.floatingHeart:nth-child(3) { left: 30%; animation-delay: -4s; }
+.floatingHeart:nth-child(4) { left: 40%; animation-delay: -6s; }
+.floatingHeart:nth-child(5) { left: 50%; animation-delay: -8s; }
+.floatingHeart:nth-child(6) { left: 60%; animation-delay: -10s; }
+.floatingHeart:nth-child(7) { left: 70%; animation-delay: -12s; }
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.starsBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.bgStar {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: starTwinkle 3s infinite ease-in-out;
+}
+
+.bgStar:nth-child(odd) { animation-delay: -1s; }
+.bgStar:nth-child(even) { animation-delay: -2s; }
+
+.bgStarBright {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.bgStarDim {
+  opacity: 0.3;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Header */
+.starmapHeader {
+  background:
+    linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%),
+    rgba(12, 12, 12, 0.92);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  padding: 35px 0;
+  box-shadow:
+    0 8px 40px rgba(102, 126, 234, 0.2),
+    0 2px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.headerContent {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pageTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: transparent;
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: var(--cosmic-glow);
+  margin: 0 0 10px 0;
+  animation: gradientShift 4s ease-in-out infinite, titleGlow 3s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes titleGlow {
+  from { filter: brightness(1) drop-shadow(var(--cosmic-glow)); }
+  to { filter: brightness(1.2) drop-shadow(0 0 40px rgba(102, 126, 234, 0.6)); }
+}
+
+.pageTitleIcon {
+  color: #ff6b9d;
+  filter: drop-shadow(var(--love-glow));
+}
+
+.pageTitleStar {
+  margin-right: 15px;
+  animation: starRotate 4s linear infinite;
+  display: inline-block;
+}
+
+.pageTitleHeart {
+  margin-left: 15px;
+  animation: heartbeat 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes starRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Main Container */
+.starmapContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: transparent;
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: var(--cosmic-glow);
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 600;
+}
+
+/* Constellation Map Section */
+.constellationMapSection {
+  margin-bottom: 80px;
+}
+
+.constellationContainer {
+  background:
+    radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%),
+    var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 50px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 8px 30px rgba(102, 126, 234, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.constellationCanvas {
+  position: relative;
+  min-height: 500px;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(25, 25, 112, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(72, 61, 139, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  box-shadow:
+    inset 0 0 50px rgba(0, 0, 0, 0.8),
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(102, 126, 234, 0.1);
+}
+
+.constellation {
+  flex: 1;
+  position: relative;
+  text-align: center;
+  max-width: 45%;
+  margin: 0 20px;
+}
+
+.constellationName {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.scorpioName {
+  color: #ff6b9d;
+  text-shadow: var(--love-glow);
+}
+
+.libraName {
+  color: #87CEEB;
+  text-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+}
+
+.starsContainer {
+  position: relative;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.constellationStar {
+  position: absolute;
+  color: #fff;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: constellationStarTwinkle 2s ease-in-out infinite alternate;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.constellationStar:hover {
+  transform: scale(1.3);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+@keyframes constellationStarTwinkle {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+.majorStar {
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.scorpioMajorStar {
+  color: #ff6b9d;
+  text-shadow: var(--love-glow);
+}
+
+.libraMajorStar {
+  color: #87CEEB;
+  text-shadow: 0 0 20px rgba(135, 206, 235, 0.8);
+}
+
+.constellationLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.constellationLines path {
+  stroke-dasharray: 5, 5;
+  animation: drawLine 3s ease-in-out infinite;
+}
+
+@keyframes drawLine {
+  0%, 100% { stroke-dashoffset: 0; opacity: 0.7; }
+  50% { stroke-dashoffset: -10; opacity: 1; }
+}
+
+.constellationInfo {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
+    rgba(0, 0, 0, 0.4);
+  border-radius: 18px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  margin-top: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.constellationInfo p {
+  margin: 10px 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.constellationInfo strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Cosmic Connection */
+.cosmicConnection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cosmicLine {
+  width: 200px;
+  height: 2px;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite, cosmicPulse 2s ease-in-out infinite;
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+@keyframes cosmicPulse {
+  0%, 100% { opacity: 0.7; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.1); }
+}
+
+.connectionHeart {
+  font-size: 2rem;
+  z-index: 11;
+}
+
+.pulsingHeart {
+  animation: heartPulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(var(--love-glow));
+  display: inline-block;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.connectionText {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Dancing Script", cursive;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Couple Info Section */
+.coupleInfoSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 80px 0;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.personCard {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.05) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 30px;
+  padding: 40px 30px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.15),
+    0 10px 30px rgba(102, 126, 234, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.personCard:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.25),
+    0 20px 50px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.boyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff6b9d 0%, #c471ed 50%, #764ba2 100%);
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 2px 10px rgba(255, 107, 157, 0.5);
+}
+
+.girlCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #87CEEB 0%, #667eea 50%, #764ba2 100%);
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 2px 10px rgba(135, 206, 235, 0.5);
+}
+
+.personAvatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  font-size: 2.5rem;
+  color: white;
+  box-shadow:
+    0 15px 40px rgba(102, 126, 234, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: avatarGlow 4s ease-in-out infinite alternate;
+  transition: all 0.4s ease;
+}
+
+@keyframes avatarGlow {
+  0% {
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-position: 0% 50%;
+  }
+  100% {
+    box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5), 0 0 30px rgba(102, 126, 234, 0.3);
+    background-position: 100% 50%;
+  }
+}
+
+.personName {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 25px;
+  font-weight: 700;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.personName::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--love-gradient);
+  border-radius: 2px;
+}
+
+.birthdayInfo {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.birthdayInfo p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.birthdayInfo i {
+  color: #667eea;
+  font-size: 1.1rem;
+  filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
+}
+
+.zodiacInfo {
+  text-align: center;
+}
+
+.zodiacSign {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%),
+    rgba(255, 255, 255, 0.08);
+  padding: 15px 25px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.zodiacScorpio {
+  color: #ff6b9d;
+  border-color: rgba(255, 107, 157, 0.4);
+  background:
+    linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(255, 107, 157, 0.05) 100%),
+    rgba(255, 107, 157, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+}
+
+.zodiacLibra {
+  color: #87CEEB;
+  border-color: rgba(135, 206, 235, 0.4);
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(135, 206, 235, 0.05) 100%),
+    rgba(135, 206, 235, 0.1);
+  box-shadow: 0 4px 15px rgba(135, 206, 235, 0.2);
+}
+
+.zodiacElement {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Love Connection */
+.loveConnection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  padding: 20px;
+  z-index: 5;
+}
+
+.connectionLine {
+  width: 3px;
+  height: 100px;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite, connectionPulse 2s ease-in-out infinite;
+  border-radius: 3px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+@keyframes connectionPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.8);
+  }
+}
+
+.loveHeart {
+  font-size: 3rem;
+  color: #ff6b9d;
+  animation: heartPulse 1.8s ease-in-out infinite;
+  filter: drop-shadow(var(--love-glow));
+  margin: 25px 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.loveHeart:hover {
+  transform: scale(1.2);
+}
+
+/* Compatibility Score */
+.compatibilityScore {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.scoreCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      #ff6b9d 0% 89%,
+      rgba(255, 255, 255, 0.2) 89% 100%
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow:
+    0 15px 40px rgba(255, 107, 157, 0.4),
+    0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: scoreGlow 3s ease-in-out infinite alternate;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.scoreCircle:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 20px 50px rgba(255, 107, 157, 0.6),
+    0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.scoreCircle::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(12, 12, 12, 0.95) 0%,
+      rgba(26, 26, 46, 0.9) 100%
+    );
+  z-index: 1;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes scoreGlow {
+  0% {
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6), 0 0 30px rgba(255, 107, 157, 0.3);
+  }
+}
+
+.scoreNumber {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ff6b9d;
+  z-index: 2;
+  position: relative;
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
+  animation: numberPulse 2s ease-in-out infinite;
+}
+
+@keyframes numberPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.scoreLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+  position: relative;
+  font-weight: 600;
+  margin-top: -5px;
+}
+
+/* Compatibility Analysis */
+.compatibilityAnalysis {
+  margin: 100px 0;
+}
+
+.analysisCard {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border-radius: 30px;
+  padding: 60px 50px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    0 10px 40px rgba(102, 126, 234, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.analysisTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  color: transparent;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 50px;
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 700;
+}
+
+.compatibilityDetails {
+  display: grid;
+  gap: 40px;
+}
+
+.compatibilityAspect {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
+    rgba(255, 255, 255, 0.05);
+  border-radius: 25px;
+  padding: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.compatibilityAspect:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%),
+    rgba(255, 255, 255, 0.08);
+  border-color: rgba(102, 126, 234, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+}
+
+.aspectHeader {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.aspectIcon {
+  color: #667eea;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.5));
+}
+
+.aspectTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 0;
+  flex: 1;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.aspectScore {
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+.aspectDescription {
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+  text-align: justify;
+  font-weight: 400;
+}
+
+.aspectDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
+    rgba(255, 255, 255, 0.05);
+  padding: 18px 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.detailItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+}
+
+.detailIcon {
+  color: #ff6b9d;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 107, 157, 0.5));
+}
+
+.detailText {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Planetary Analysis */
+.planetaryAnalysis {
+  margin: 80px 0;
+}
+
+.planetaryTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  color: transparent;
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 50px;
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 700;
+}
+
+.planetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 35px;
+}
+
+.planetCard {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 35px;
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.planetCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 25px 25px 0 0;
+}
+
+.planetCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.planetIcon {
+  font-size: 4rem;
+  margin-bottom: 25px;
+  color: #667eea;
+  text-shadow: 0 0 25px rgba(102, 126, 234, 0.6);
+  animation: planetFloat 4s ease-in-out infinite;
+  display: block;
+}
+
+@keyframes planetFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.planetCard h4 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.planetCard p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  font-size: 1rem;
+  text-align: justify;
+  font-weight: 400;
+}
+
+/* Relationship Timeline */
+.relationshipTimeline {
+  margin: 100px 0;
+  position: relative;
+  z-index: 20;
+}
+
+.timelineTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  color: transparent;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 60px;
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 700;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  z-index: 15;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.timelineItem {
+  position: relative;
+  margin: 60px 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  animation: timelineSlideIn 0.8s ease-out forwards;
+  z-index: 2;
+}
+
+.timelineItem:nth-child(1) { animation-delay: 0.2s; }
+.timelineItem:nth-child(2) { animation-delay: 0.4s; }
+.timelineItem:nth-child(3) { animation-delay: 0.6s; }
+.timelineItem:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes timelineSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.timelineItem:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timelineItem:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 0 6px rgba(12, 12, 12, 1),
+    0 0 30px rgba(255, 107, 157, 0.6);
+  z-index: 3;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.timelineDate {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(15px);
+  padding: 15px 25px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  color: #ff6b9d;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 35px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+.timelineContent {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(25px);
+  padding: 30px;
+  border-radius: 25px;
+  border: 1px solid var(--glass-border);
+  flex: 1;
+  margin: 0 35px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timelineContent:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.timelineContent h4 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.timelineContent p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.timelineItemFuture .timelineContent {
+  border-color: rgba(255, 215, 0, 0.4);
+  background:
+    linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%),
+    var(--glass-bg);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.1);
+}
+
+.timelineItemFuture .timelineDate {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.4);
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.timelineItemFuture .timelineContent h4 {
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Location Section */
+.locationSection {
+  padding: 60px 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
+    var(--glass-bg);
+  margin: 80px 0;
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.1),
+    0 8px 30px rgba(102, 126, 234, 0.05);
+}
+
+.locationTitle {
+  color: transparent;
+  background: var(--primary-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 600;
+}
+
+.locationInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  padding: 0 40px;
+}
+
+.locationCard {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
+    var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.locationCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-gradient);
+  border-radius: 25px 25px 0 0;
+}
+
+.locationCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.locationIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.locationCard h4 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-family: "Dancing Script", cursive;
+  font-weight: 600;
+}
+
+.locationCard p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+/* Love Quotes Section */
+.loveQuotesSection {
+  margin: 80px 0;
+  text-align: center;
+}
+
+.quotesTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  color: transparent;
+  background: var(--love-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 50px;
+  animation: gradientShift 4s ease-in-out infinite;
+  font-weight: 600;
+}
+
+.quotesCarousel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quoteCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 40px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.1),
+    0 8px 30px rgba(255, 107, 157, 0.1);
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.5s ease;
+}
+
+.quoteCardActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.quoteText {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.4rem;
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.quoteAuthor {
+  color: #ff6b9d;
+  font-weight: 600;
+  font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.carouselControls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.carouselBtn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  font-size: 1.2rem;
+}
+
+.carouselBtn:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .constellationCanvas {
+    flex-direction: column;
+    min-height: 650px;
+    gap: 40px;
+    padding: 25px 20px;
+  }
+
+  .constellation {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .cosmicConnection {
+    position: relative;
+    transform: none;
+    margin: 25px 0;
+  }
+
+  .cosmicLine {
+    width: 80px;
+  }
+
+  .coupleInfoSection {
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .personCard {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .loveConnection {
+    width: 100%;
+    max-width: 300px;
+    margin: 25px 0;
+  }
+
+  .analysisCard {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .starmapHeader {
+    padding: 20px 0;
+  }
+
+  .headerContent {
+    padding: 0 15px;
+  }
+
+  .starmapContainer {
+    padding: 30px 15px;
+  }
+
+  .pageTitle {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+
+  .constellationContainer {
+    padding: 25px 15px;
+    border-radius: 20px;
+  }
+
+  .constellationCanvas {
+    min-height: 550px;
+    padding: 20px 15px;
+    border-radius: 15px;
+    gap: 30px;
+  }
+
+  .constellationName {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .starsContainer {
+    height: 220px;
+    margin-bottom: 15px;
+  }
+
+  .constellationStar {
+    font-size: 0.95rem;
+    padding: 4px;
+    margin: -4px;
+  }
+
+  .majorStar {
+    font-size: 1.4rem;
+  }
+
+  .constellationInfo {
+    padding: 18px 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+  }
+
+  .constellationInfo p {
+    font-size: 0.85rem;
+    margin: 6px 0;
+  }
+
+  .coupleInfoSection {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .personCard {
+    padding: 20px 15px;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .personAvatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .personName {
+    font-size: 1.2rem;
+  }
+
+  .scoreCircle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .scoreCircle::before {
+    width: 64px;
+    height: 64px;
+  }
+
+  .scoreNumber {
+    font-size: 1.3rem;
+  }
+
+  .scoreLabel {
+    font-size: 0.7rem;
+  }
+
+  .analysisCard {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .analysisTitle {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .compatibilityAspect {
+    padding: 18px 15px;
+    border-radius: 15px;
+  }
+
+  .aspectHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .aspectTitle {
+    font-size: 1.1rem;
+  }
+
+  .aspectDescription {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timelineItem {
+    flex-direction: row !important;
+    padding-left: 70px;
+  }
+
+  .timelineItem::before {
+    left: 30px;
+  }
+
+  .timelineDate {
+    margin: 0 0 0 25px;
+    font-size: 0.9rem;
+  }
+
+  .timelineContent {
+    margin: 0;
+    padding: 18px 15px;
+  }
+
+  .locationInfo {
+    padding: 0 20px;
+  }
+
+  .quoteCard {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .quoteText {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .constellationStar {
+    font-size: 0.8rem;
+  }
+
+  .majorStar {
+    font-size: 1rem;
+  }
+
+  .birthdayInfo p {
+    font-size: 0.85rem;
+  }
+
+  .zodiacSign {
+    font-size: 0.9rem;
+  }
+
+  .connectionLine {
+    width: 2px;
+    height: 40px;
+  }
+
+  .loveHeart {
+    font-size: 1.5rem;
+  }
+
+  .compatibilityDetails {
+    gap: 12px;
+  }
+
+  .detailItem {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  .locationCard {
+    padding: 20px 15px;
+  }
+}

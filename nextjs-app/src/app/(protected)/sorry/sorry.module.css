@@ -1,0 +1,611 @@
+/* ==========================================
+   SORRY PAGE - ROMANTIC APOLOGY DESIGN
+   ========================================== */
+
+.sorryPage {
+  --primary-pink: #FFB6C1;
+  --soft-pink: #FFC0CB;
+  --rose-pink: #FF91A4;
+  --deep-pink: #FF69B4;
+  --blush-pink: #FFE4E1;
+  --text-dark: #2C3E50;
+  --text-light: #6C7B7F;
+  --font-heading: 'Dancing Script', cursive;
+  --font-body: 'Lora', serif;
+
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 20%, #E6E6FA 40%, #F0F8FF 60%, #FFFFFF 80%, #FFF8DC 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================
+   BACKGROUND ANIMATIONS
+   ========================================== */
+
+.backgroundAnimation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gradientBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 105, 180, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(221, 160, 221, 0.15) 0%, transparent 50%);
+  animation: gradientPulse 8s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.floatingHearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: var(--soft-pink);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-45deg);
+  animation: sadFloatHeart 12s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::before { top: -7.5px; left: 0; }
+.heart::after { left: 7.5px; top: 0; }
+
+@keyframes sadFloatHeart {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(-45deg) scale(1); opacity: 0.3; }
+  25% { transform: translateY(-30px) translateX(15px) rotate(-45deg) scale(1.2); opacity: 0.6; }
+  50% { transform: translateY(-15px) translateX(-10px) rotate(-45deg) scale(1.1); opacity: 0.4; }
+  75% { transform: translateY(-45px) translateX(20px) rotate(-45deg) scale(0.9); opacity: 0.7; }
+}
+
+.fallingTears {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.tear {
+  position: absolute;
+  font-size: 24px;
+  animation: fallTear 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes fallTear {
+  0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+.floatingParticles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, var(--rose-pink), var(--deep-pink));
+  border-radius: 50%;
+  animation: floatParticle 15s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) translateX(0px) scale(0); opacity: 0; }
+  10% { opacity: 0.5; transform: scale(1); }
+  50% { transform: translateY(50vh) translateX(50px) scale(1.2); opacity: 0.7; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100px) translateX(100px) scale(0); opacity: 0; }
+}
+
+/* ==========================================
+   MEDIA CONTAINER
+   ========================================== */
+
+.mediaContainer {
+  text-align: center;
+  padding-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.randomMedia {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+  transition: all 0.5s ease;
+  animation: mediaFloat 4s ease-in-out infinite;
+}
+
+@keyframes mediaFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+.randomMedia:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 48px rgba(255, 182, 193, 0.25);
+}
+
+/* ==========================================
+   GAME CONTAINER
+   ========================================== */
+
+.gameContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+  min-height: calc(100vh - 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.questionCard {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 40px 36px;
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15), 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  text-align: center;
+  width: 100%;
+  max-width: 650px;
+  position: relative;
+  overflow: hidden;
+  animation: cardSlideIn 0.6s ease-out;
+}
+
+@keyframes cardSlideIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.questionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 105, 180, 0.05) 100%);
+  pointer-events: none;
+}
+
+.questionTitle {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+  font-weight: 600;
+  animation: questionPulse 3s ease-in-out infinite;
+}
+
+@keyframes questionPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.answerButtons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+
+.yesBtn, .noBtn {
+  padding: 18px 36px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 160px;
+  font-family: var(--font-body);
+  backdrop-filter: blur(10px);
+}
+
+.yesBtn {
+  background: linear-gradient(135deg, #FF1744 0%, #FF69B4 50%, #FF1493 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.3);
+  animation: yesGlow 3s ease-in-out infinite;
+}
+
+@keyframes yesGlow {
+  0%, 100% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.3); transform: scale(1); }
+  50% { box-shadow: 0 12px 40px rgba(255, 23, 68, 0.5); transform: scale(1.03); }
+}
+
+.yesBtn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 15px 50px rgba(255, 23, 68, 0.6);
+}
+
+.noBtn {
+  background: rgba(221, 221, 221, 0.6);
+  color: #666;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.noBtn:hover {
+  transform: translateY(-2px) scale(0.98);
+  background: rgba(200, 200, 200, 0.7);
+}
+
+/* Content sections */
+.sadMessage, .poemText, .apologyText, .loveDeclaration {
+  margin-top: 24px;
+  padding: 24px;
+  background: rgba(255, 240, 245, 0.6);
+  border-radius: 20px;
+  border-left: 4px solid var(--rose-pink);
+}
+
+.poemText p, .apologyText p, .loveDeclaration p {
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   FINAL MESSAGE
+   ========================================== */
+
+.finalTitle {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--deep-pink);
+  margin-bottom: 40px;
+  animation: finalPulse 2s ease-in-out infinite;
+}
+
+@keyframes finalPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.finalContent {
+  display: grid;
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.lovePoem {
+  background: linear-gradient(45deg, var(--blush-pink) 0%, white 100%);
+  padding: 32px;
+  border-radius: 32px;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.15);
+}
+
+.lovePoem h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--deep-pink);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.poemTextStyled {
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.loveStats {
+  background: linear-gradient(145deg, white 0%, rgba(255, 248, 250, 0.9) 100%);
+  padding: 32px;
+  border-radius: 32px;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.15);
+  text-align: center;
+}
+
+.loveStats h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--deep-pink);
+  margin-bottom: 20px;
+}
+
+.loveMeter { margin: 24px 0; }
+
+.loveBar {
+  width: 100%;
+  height: 40px;
+  background: rgba(255, 182, 193, 0.3);
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loveFill {
+  height: 100%;
+  background: linear-gradient(135deg, var(--soft-pink) 0%, var(--primary-pink) 50%, var(--rose-pink) 100%);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 3s ease-out;
+}
+
+.lovePercentage {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.loveDescription {
+  font-size: 1.1rem;
+  color: var(--deep-pink);
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.promiseSection {
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.8) 0%, white 100%);
+  padding: 32px;
+  border-radius: 32px;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.15);
+}
+
+.promiseSection h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--deep-pink);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.promiseList {
+  list-style: none;
+  padding: 0;
+}
+
+.promiseItem {
+  padding: 12px 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInPromise 0.6s ease-out forwards;
+}
+
+.promiseItem:nth-child(1) { animation-delay: 0.2s; }
+.promiseItem:nth-child(2) { animation-delay: 0.4s; }
+.promiseItem:nth-child(3) { animation-delay: 0.6s; }
+.promiseItem:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInPromise {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.finalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.loveBtn, .homeBtn {
+  background: linear-gradient(135deg, #FF1744 0%, #FF69B4 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 18px 36px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+}
+
+.loveBtn {
+  background: linear-gradient(135deg, #FF1744 0%, #FF69B4 50%, #FFD700 100%);
+}
+
+.loveBtn:hover, .homeBtn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 50px rgba(255, 23, 68, 0.5);
+}
+
+/* ==========================================
+   MINI GAMES SECTION
+   ========================================== */
+
+.loveGamesSection {
+  background: linear-gradient(145deg, white 0%, rgba(255, 248, 250, 0.95) 100%);
+  border-radius: 32px;
+  padding: 40px 32px;
+  margin: 40px 0;
+  box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+  border: 2px solid rgba(255, 182, 193, 0.2);
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.gamesTitle {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--deep-pink);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  flex: 1;
+  align-content: start;
+}
+
+.gameCard {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gameCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(255, 105, 180, 0.25);
+  border-color: rgba(255, 105, 180, 0.4);
+}
+
+.gameCard h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--deep-pink);
+  margin-bottom: 8px;
+}
+
+.gameCard p {
+  color: var(--text-light);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.playBtn {
+  background: linear-gradient(135deg, #FF1744 0%, #FF69B4 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--font-body);
+}
+
+.playBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+}
+
+.backBtn {
+  background: rgba(255, 182, 193, 0.3);
+  color: var(--text-dark);
+  border: 2px solid var(--primary-pink);
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px auto 0;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+  background: var(--primary-pink);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .questionTitle { font-size: 1.8rem; }
+  .finalTitle { font-size: 2.2rem; }
+  .answerButtons { gap: 16px; flex-direction: column; align-items: center; }
+  .yesBtn, .noBtn { min-width: 200px; }
+  .questionCard { padding: 32px 24px; }
+  .finalButtons { flex-direction: column; align-items: center; }
+  .gamesGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .questionTitle { font-size: 1.5rem; }
+  .finalTitle { font-size: 1.8rem; }
+  .questionCard { padding: 24px 16px; }
+  .lovePoem, .loveStats, .promiseSection { padding: 24px 16px; }
+}

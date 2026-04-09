@@ -1,0 +1,439 @@
+/* ==========================================
+   GIANG SINH PAGE - CHRISTMAS ROMANTIC DESIGN
+   ========================================== */
+
+.giangSinhPage {
+  --christmas-red: #DC143C;
+  --christmas-gold: #FFD700;
+  --christmas-green: #228B22;
+  --snow-white: #FFFAFA;
+  --midnight-blue: #0a0a1a;
+  --romantic-pink: #FF69B4;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+
+  margin: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a0a 50%, #0a1a0a 100%);
+  font-family: 'Quicksand', sans-serif;
+  color: var(--snow-white);
+  min-height: 100vh;
+}
+
+/* ========== SNOWFLAKES ========== */
+.snowflake {
+  position: fixed;
+  color: white;
+  font-size: 1rem;
+  top: -20px;
+  animation: fall linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(105vh) rotate(360deg);
+  }
+}
+
+/* ========== INTRO SCREEN ========== */
+.introScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0505 50%, #050a0a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.introScreenHidden {
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+.introTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  background: linear-gradient(45deg, var(--christmas-gold), #fff, var(--christmas-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s infinite;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.introSubtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--romantic-pink);
+  margin-top: 15px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.introMessage {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 30px;
+  text-align: center;
+  max-width: 500px;
+  padding: 0 20px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1s forwards;
+}
+
+.introBtn {
+  margin-top: 40px;
+  padding: 18px 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, var(--christmas-red) 0%, #8B0000 100%);
+  color: white;
+  border: 2px solid var(--christmas-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.5s forwards, pulse 2s infinite 2s;
+  box-shadow: 0 10px 40px rgba(220, 20, 60, 0.4);
+}
+
+.introBtn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 50px rgba(220, 20, 60, 0.6);
+}
+
+@keyframes shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ========== MAIN CONTENT ========== */
+.mainContent {
+  min-height: 100vh;
+}
+
+/* ========== SECTIONS ========== */
+.section {
+  min-height: 100vh;
+  padding: 100px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--christmas-gold);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ========== LOVE MESSAGES ========== */
+.messagesSection {
+  background: linear-gradient(180deg, transparent 0%, rgba(220, 20, 60, 0.1) 50%, transparent 100%);
+}
+
+.messageCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+  margin: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.messageCardVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.messageText {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.8;
+  color: var(--snow-white);
+}
+
+.messageEmoji {
+  font-size: 3rem;
+  margin-top: 20px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ========== GIFT BOX ========== */
+.giftSection {
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 100, 0, 0.1) 50%, transparent 100%);
+}
+
+.giftContainer {
+  perspective: 1000px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.giftBox {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  margin: 0 auto;
+}
+
+.giftBox:hover {
+  transform: rotateY(10deg) rotateX(-5deg);
+}
+
+.giftBody {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--christmas-red) 0%, #8B0000 100%);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.giftRibbonV {
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.giftRibbonH {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(180deg, #FFD700, #FFA500, #FFD700);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.giftBow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  animation: wiggle 1s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+  50% { transform: translateX(-50%) rotate(5deg); }
+}
+
+.giftInstruction {
+  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Gift Opened State */
+.giftOpened .giftBody {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px) rotate(-3deg); }
+  75% { transform: translateX(10px) rotate(3deg); }
+}
+
+.giftSurprise {
+  text-align: center;
+  margin-top: 30px;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.surpriseText {
+  font-size: 1.5rem;
+  color: var(--romantic-pink);
+  margin-bottom: 20px;
+}
+
+.surpriseImage {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 15px;
+  border: 3px solid var(--christmas-gold);
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+  margin: 10px;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  z-index: 9999;
+  animation: confettiFall 3s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  text-align: center;
+  padding: 30px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+.footerHeart {
+  color: var(--romantic-pink);
+  display: inline-block;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ========== INNER NAV BAR ========== */
+.navBar {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 10px 30px;
+  z-index: 100;
+  display: flex;
+  gap: 20px;
+}
+
+.innerNavBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.innerNavBtn:hover,
+.innerNavBtnActive {
+  background: rgba(255, 215, 0, 0.2);
+  transform: scale(1.1);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .introTitle {
+    font-size: 2.2rem;
+  }
+
+  .introMessage {
+    font-size: 0.95rem;
+    padding: 0 15px;
+  }
+
+  .introBtn {
+    padding: 14px 35px;
+    font-size: 1rem;
+  }
+
+  .navBar {
+    padding: 8px 15px;
+    gap: 8px;
+  }
+
+  .innerNavBtn {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+  }
+
+  .messageCard {
+    margin: 10px;
+    padding: 25px;
+  }
+
+  .messageText {
+    font-size: 1rem;
+  }
+
+  .giftBox {
+    width: 150px;
+    height: 150px;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .introTitle {
+    font-size: 1.8rem;
+  }
+
+  .navBar {
+    padding: 6px 10px;
+    gap: 5px;
+  }
+
+  .innerNavBtn {
+    font-size: 1rem;
+    padding: 5px 8px;
+  }
+}
