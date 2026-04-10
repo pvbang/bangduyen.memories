@@ -1,19 +1,19 @@
 /* 1 YEAR ANNIVERSARY - CSS Module */
 
 .page {
-  --pink: #FF69B4;
-  --rose: #FF91A4;
-  --soft-pink: #FFC0CB;
+  --pink: var(--color-pink-600);
+  --rose: var(--color-pink-500);
+  --soft-pink: var(--color-pink-400);
   --deep-pink: #FF1493;
-  --blush: #FFE4E1;
-  --gold: #FFD700;
-  --white: #FFFFFF;
-  --text: #2C3E50;
-  --text-light: #6C7B7F;
-  --shadow: 0 8px 32px rgba(255,105,180,0.2);
-  --radius: 24px;
+  --blush: var(--color-rose-100);
+  --gold: var(--color-gold-500);
+  --white: var(--white);
+  --text: var(--text-primary);
+  --text-light: var(--text-muted);
+  --shadow: var(--shadow-medium);
+  --radius: var(--radius-2xl);
 
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-body);
   color: var(--text);
   overflow-x: hidden;
   background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 30%, #FFF8F0 60%, #FFF0F5 100%);

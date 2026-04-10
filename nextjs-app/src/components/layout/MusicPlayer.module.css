@@ -1,13 +1,13 @@
 /**
  * Music Player CSS
- * Chuyển đổi từ .music-box trong memories.css
+ * Uses Design System variables from globals.css
  */
 
 .musicBox {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: var(--z-music-player, 60);
+  bottom: var(--sp-4);
+  right: var(--sp-4);
+  z-index: var(--z-music-player);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -23,13 +23,13 @@
 .musicNext {
   width: 38px;
   height: 38px;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   border: none;
   background: transparent;
   color: #ff6b9d;
   cursor: pointer;
   font-size: 0.85rem;
-  transition: all 0.3s;
+  transition: all var(--transition-normal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@
   width: 42px;
   height: 42px;
   border: 2px solid #ff6b9d;
-  font-size: 1rem;
+  font-size: var(--fs-base);
 }
 
 .musicPrev:hover,
@@ -49,13 +49,13 @@
 
 .musicBtn:hover {
   background: #ff6b9d;
-  color: #fff;
+  color: var(--white);
 }
 
 .musicBtn.playing {
   animation: musicPulse 1.5s ease-in-out infinite;
   background: #ff6b9d;
-  color: #fff;
+  color: var(--white);
 }
 
 .musicName {

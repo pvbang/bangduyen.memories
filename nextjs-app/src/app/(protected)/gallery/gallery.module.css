@@ -8,56 +8,56 @@
    CSS VARIABLES (scoped)
    ========================================== */
 .galleryPage {
-  --primary-pink: #FFB6C1;
-  --soft-pink: #FFC0CB;
-  --rose-pink: #FF91A4;
-  --deep-pink: #FF69B4;
-  --blush-pink: #FFE4E1;
-  --rose-gold: #F7CAC9;
-  --warm-rose: #FFADB7;
+  --primary-pink: var(--color-pink-300);
+  --soft-pink: var(--color-pink-400);
+  --rose-pink: var(--color-pink-500);
+  --deep-pink: var(--color-pink-600);
+  --blush-pink: var(--color-rose-100);
+  --rose-gold: var(--color-rose-200);
+  --warm-rose: var(--color-rose-300);
   --pearl-pink: #FDF2F8;
   --dusty-rose: #D4A4A4;
-  --pure-white: #FFFFFF;
+  --pure-white: var(--white);
   --soft-white: #FEFEFE;
   --cream-white: #FFF8F0;
   --light-gray: #F8F9FA;
-  --text-dark: #2C3E50;
-  --text-light: #6C7B7F;
+  --text-dark: var(--text-primary);
+  --text-light: var(--text-muted);
   --text-muted: #9CA3AF;
 
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 182, 193, 0.3);
-  --backdrop-blur: blur(20px);
+  --glass-bg: var(--glass-bg);
+  --glass-border: var(--glass-border);
+  --backdrop-blur: var(--backdrop-blur);
   --backdrop-saturate: saturate(180%);
 
-  --gradient-primary: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 25%, #FFB6C1 50%, #FF91A4 75%, #FF69B4 100%);
-  --gradient-secondary: linear-gradient(45deg, #FDF2F8 0%, #FFFFFF 50%, #FFE4E1 100%);
-  --gradient-accent: linear-gradient(270deg, #FF69B4, #FF91A4, #F7CAC9);
+  --gradient-primary: linear-gradient(135deg, var(--color-rose-100) 0%, var(--color-pink-400) 25%, var(--color-pink-300) 50%, var(--color-pink-500) 75%, var(--color-pink-600) 100%);
+  --gradient-secondary: linear-gradient(45deg, #FDF2F8 0%, var(--white) 50%, var(--color-rose-100) 100%);
+  --gradient-accent: linear-gradient(270deg, var(--color-pink-600), var(--color-pink-500), var(--color-rose-200));
   --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 182, 193, 0.1));
-  --gradient-warm: linear-gradient(135deg, #F7CAC9 0%, #FFADB7 50%, #FFB6C1 100%);
-  --gradient-sunset: linear-gradient(135deg, #FFE4E1 0%, #F7CAC9 25%, #FFADB7 50%, #FF91A4 75%, #FF69B4 100%);
+  --gradient-warm: linear-gradient(135deg, var(--color-rose-200) 0%, var(--color-rose-300) 50%, var(--color-pink-300) 100%);
+  --gradient-sunset: linear-gradient(135deg, var(--color-rose-100) 0%, var(--color-rose-200) 25%, var(--color-rose-300) 50%, var(--color-pink-500) 75%, var(--color-pink-600) 100%);
 
-  --shadow-soft: 0 4px 20px rgba(255, 182, 193, 0.15);
-  --shadow-medium: 0 8px 32px rgba(255, 182, 193, 0.2);
-  --shadow-strong: 0 16px 48px rgba(255, 182, 193, 0.25);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-medium: var(--shadow-medium);
+  --shadow-strong: var(--shadow-strong);
   --shadow-glass: 0 8px 32px rgba(255, 105, 180, 0.1);
-  --shadow-glow: 0 0 20px rgba(255, 105, 180, 0.3);
-  --shadow-romantic: 0 12px 40px rgba(247, 202, 201, 0.4);
+  --shadow-glow: var(--shadow-glow);
+  --shadow-romantic: var(--shadow-romantic);
 
-  --radius-small: 12px;
-  --radius-medium: 20px;
-  --radius-large: 32px;
-  --radius-full: 50px;
+  --radius-small: var(--radius-md);
+  --radius-medium: var(--radius-xl);
+  --radius-large: var(--radius-3xl);
+  --radius-full: var(--radius-full);
 
-  --font-heading: 'Playfair Display', serif;
-  --font-script: 'Dancing Script', cursive;
-  --font-elegant: 'Great Vibes', cursive;
-  --font-body: 'Poppins', sans-serif;
-  --font-accent: 'Montserrat', sans-serif;
+  --font-heading: var(--font-heading);
+  --font-script: var(--font-script);
+  --font-elegant: var(--font-elegant);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
 
   position: relative;
   min-height: 100vh;
-  padding-bottom: 80px;
+  padding-bottom: var(--sp-20);
 }
 
 /* ==========================================

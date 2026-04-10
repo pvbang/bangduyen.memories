@@ -4,30 +4,30 @@
    ========================================== */
 
 .page {
-  --rose-gold: #B76E79;
+  --rose-gold: var(--color-rose-gold);
   --rose-gold-light: #D4A5A5;
-  --blush-pink: #FFE4E1;
-  --soft-pink: #FFC0CB;
-  --deep-rose: #E75480;
+  --blush-pink: var(--color-rose-100);
+  --soft-pink: var(--color-pink-400);
+  --deep-rose: var(--color-rose-500);
   --champagne: #F7E7CE;
-  --gold: #FFD700;
-  --coral: #FF7F7F;
-  --text-dark: #2C3E50;
-  --text-medium: #5D6D7E;
-  --text-light: #85929E;
-  --gradient-sunset: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #FFB88C 50%, #DE83B3 75%, #C471ED 100%);
+  --gold: var(--color-gold-500);
+  --coral: var(--color-rose-400);
+  --text-dark: var(--text-primary);
+  --text-medium: var(--text-secondary);
+  --text-light: var(--text-light);
+  --gradient-sunset: var(--gradient-sunset);
   --shadow-glow: 0 0 40px rgba(255, 182, 193, 0.4);
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --radius-full: 50px;
-  --font-heading: 'Dancing Script', cursive;
-  --font-body: 'Poppins', sans-serif;
-  --font-accent: 'Playfair Display', serif;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-lg);
+  --radius-lg: var(--radius-2xl);
+  --radius-xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
+  --font-heading: var(--font-script);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-heading);
 
   font-family: var(--font-body);
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, var(--color-dark-800) 0%, var(--color-dark-700) 50%, var(--color-dark-600) 100%);
   min-height: 100vh;
   color: white;
   overflow-x: hidden;

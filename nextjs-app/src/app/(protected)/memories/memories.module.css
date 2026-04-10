@@ -9,12 +9,12 @@
    ========================================== */
 
 .memoriesPage {
-  font-family: 'Lora', serif;
-  background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 20%, #E6E6FA 40%, #F0F8FF 60%, #FFFFFF 80%, #FFF8DC 100%);
+  font-family: var(--font-serif);
+  background: var(--gradient-bg-romantic);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   min-height: 100vh;
-  color: #2C3E50;
+  color: var(--text-primary);
   overflow-x: hidden;
   position: relative;
 }
@@ -26,9 +26,9 @@
 }
 
 .container {
-  max-width: 1400px;
+  max-width: var(--container-xl);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--sp-6);
 }
 
 /* ==========================================
@@ -393,10 +393,10 @@
 }
 
 .pageTitle {
-  font-family: 'Dancing Script', cursive;
-  font-size: 3.5rem;
+  font-family: var(--font-script);
+  font-size: var(--fs-6xl);
   font-weight: 700;
-  background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4, #FFC0CB);
+  background: linear-gradient(45deg, var(--color-pink-600), #FF1493, var(--color-pink-600), var(--color-pink-400));
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -418,7 +418,7 @@
 
 .subtitle {
   font-size: 1.1rem;
-  color: #6C7B7F;
+  color: var(--text-muted);
   font-weight: 400;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.5s forwards;
@@ -691,10 +691,10 @@
 }
 
 .cardTitle {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
+  font-family: var(--font-script);
+  font-size: var(--fs-3xl);
   font-weight: 600;
-  color: #2C3E50;
+  color: var(--text-primary);
   margin: 0;
   transition: all 0.4s ease;
   position: relative;
@@ -713,7 +713,7 @@
 }
 
 .cardContent {
-  color: #6C7B7F;
+  color: var(--text-muted);
   line-height: 1.7;
   font-size: 0.95rem;
   display: -webkit-box;
@@ -859,9 +859,9 @@
 }
 
 .modalTitle {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--font-script);
   font-size: 2.4rem;
-  color: #2C3E50;
+  color: var(--text-primary);
   margin-bottom: 16px;
   font-weight: 600;
 }
@@ -878,8 +878,8 @@
 
 .modalContentText {
   font-size: 1.1rem;
-  line-height: 1.8;
-  color: #6C7B7F;
+  line-height: var(--lh-loose);
+  color: var(--text-muted);
   text-align: justify;
   margin-bottom: 32px;
 }

@@ -3,19 +3,19 @@
    ========================================== */
 
 .giangSinhPage {
-  --christmas-red: #DC143C;
-  --christmas-gold: #FFD700;
-  --christmas-green: #228B22;
+  --christmas-red: var(--color-christmas-red);
+  --christmas-gold: var(--color-gold-500);
+  --christmas-green: var(--color-christmas-green);
   --snow-white: #FFFAFA;
-  --midnight-blue: #0a0a1a;
-  --romantic-pink: #FF69B4;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --midnight-blue: var(--color-dark-900);
+  --romantic-pink: var(--color-pink-600);
+  --glass-bg: var(--glass-bg-dark);
+  --glass-border: var(--glass-border-dark);
 
   margin: 0;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a0a 50%, #0a1a0a 100%);
-  font-family: 'Quicksand', sans-serif;
+  background: var(--gradient-christmas);
+  font-family: var(--font-ui);
   color: var(--snow-white);
   min-height: 100vh;
 }

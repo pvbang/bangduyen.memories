@@ -1,6 +1,7 @@
 /**
  * Global CSS - Bằng & Duyên Memories
- * CSS Reset + CSS Variables + Shared base styles
+ * Design System + CSS Reset + Shared Styles
+ * ==========================================
  */
 
 /* ==========================================
@@ -25,6 +26,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -46,63 +48,237 @@ button {
 }
 
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
 }
 
-/* ==========================================
-   CSS VARIABLES - THEME
-   ========================================== */
-
-:root {
-  /* Primary Pink Palette */
-  --pink-primary: #e91e63;
-  --pink-light: #ff69b4;
-  --pink-lighter: #ffb6c1;
-  --pink-dark: #c2185b;
-
-  /* Background Gradients */
-  --pink-bg: #ffeef2;
-  --pink-bg-mid: #ffe0e6;
-  --pink-bg-dark: #ffd1dc;
-  --gradient-bg: linear-gradient(135deg, var(--pink-bg) 0%, var(--pink-bg-mid) 50%, var(--pink-bg-dark) 100%);
-
-  /* Text Colors */
-  --text-primary: #333;
-  --text-secondary: #666;
-  --text-light: #999;
-
-  /* UI Colors */
-  --white: #ffffff;
-  --white-95: rgba(255, 255, 255, 0.95);
-  --white-80: rgba(255, 255, 255, 0.8);
-  --shadow-pink: rgba(255, 182, 193, 0.3);
-  --shadow-pink-strong: rgba(255, 105, 180, 0.4);
-
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-
-  /* Z-index layers */
-  --z-background: 1;
-  --z-content: 10;
-  --z-navigation: 50;
-  --z-music-player: 60;
-  --z-modal: 100;
-  --z-loading: 9999;
+ul, ol {
+  list-style: none;
 }
 
 /* ==========================================
-   FONT AWESOME CDN
-   Loaded via <link> in layout.tsx
+   DESIGN SYSTEM - CSS VARIABLES
    ========================================== */
+
+:root {
+  /* ── Primary Pink Palette ── */
+  --color-pink-50: #ffeef2;
+  --color-pink-100: #ffe0e6;
+  --color-pink-200: #ffd1dc;
+  --color-pink-300: #ffb6c1;
+  --color-pink-400: #ffc0cb;
+  --color-pink-500: #ff91a4;
+  --color-pink-600: #ff69b4;
+  --color-pink-700: #e91e63;
+  --color-pink-800: #c2185b;
+  --color-pink-900: #ad1457;
+
+  /* ── Rose/Warm Tones ── */
+  --color-rose-100: #ffe4e1;
+  --color-rose-200: #f7cac9;
+  --color-rose-300: #ffadb7;
+  --color-rose-400: #ff7f7f;
+  --color-rose-500: #e75480;
+  --color-rose-gold: #b76e79;
+
+  /* ── Gold/Accent ── */
+  --color-gold-300: #ffe082;
+  --color-gold-400: #ffd54f;
+  --color-gold-500: #ffd700;
+  --color-gold-600: #ffa500;
+  --color-gold-700: #ff8c00;
+
+  /* ── Purple/Cosmic ── */
+  --color-purple-300: #ce93d8;
+  --color-purple-400: #a29bfe;
+  --color-purple-500: #9370db;
+  --color-purple-600: #764ba2;
+  --color-purple-700: #667eea;
+  --color-purple-800: #553c9a;
+  --color-purple-900: #4b0082;
+
+  /* ── Dark Theme ── */
+  --color-dark-900: #0a0a1a;
+  --color-dark-800: #1a1a2e;
+  --color-dark-700: #16213e;
+  --color-dark-600: #0f3460;
+  --color-dark-500: #533483;
+
+  /* ── Christmas ── */
+  --color-christmas-red: #dc143c;
+  --color-christmas-green: #228b22;
+
+  /* ── Text Colors ── */
+  --text-primary: #2c3e50;
+  --text-secondary: #4a5568;
+  --text-muted: #6c7b7f;
+  --text-light: #999;
+  --text-white: #ffffff;
+  --text-white-90: rgba(255, 255, 255, 0.9);
+  --text-white-80: rgba(255, 255, 255, 0.8);
+  --text-white-70: rgba(255, 255, 255, 0.7);
+
+  /* ── Semantic Aliases ── */
+  --pink-primary: var(--color-pink-700);
+  --pink-light: var(--color-pink-600);
+  --pink-lighter: var(--color-pink-300);
+  --pink-dark: var(--color-pink-800);
+  --pink-bg: var(--color-pink-50);
+  --pink-bg-mid: var(--color-pink-100);
+  --pink-bg-dark: var(--color-pink-200);
+  --gold: var(--color-gold-500);
+
+  /* ── Background Gradients ── */
+  --gradient-bg: linear-gradient(135deg, var(--color-pink-50) 0%, var(--color-pink-100) 50%, var(--color-pink-200) 100%);
+  --gradient-bg-romantic: linear-gradient(135deg, #ffe4e1 0%, #fff0f5 20%, #e6e6fa 40%, #f0f8ff 60%, #ffffff 80%, #fff8dc 100%);
+  --gradient-pink: linear-gradient(135deg, var(--color-pink-600), var(--color-pink-700));
+  --gradient-pink-soft: linear-gradient(135deg, var(--color-pink-400) 0%, var(--color-pink-300) 50%, var(--color-pink-500) 100%);
+  --gradient-celebration: linear-gradient(45deg, var(--color-gold-500) 0%, var(--color-pink-500) 50%, var(--color-pink-300) 100%);
+  --gradient-sunset: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 25%, #ffb88c 50%, #de83b3 75%, #c471ed 100%);
+  --gradient-cosmic: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  --gradient-love: linear-gradient(135deg, #ff6b9d 0%, #c471ed 25%, #764ba2 50%, #667eea 75%, #ff6b9d 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-600) 50%, var(--color-gold-700) 100%);
+  --gradient-christmas: linear-gradient(135deg, #0a0a1a 0%, #1a0a0a 50%, #0a1a0a 100%);
+  --gradient-night: linear-gradient(135deg, #000428 0%, #004e92 25%, #8b008b 50%, #4b0082 75%, #191970 100%);
+
+  /* ── UI Colors ── */
+  --white: #ffffff;
+  --white-95: rgba(255, 255, 255, 0.95);
+  --white-90: rgba(255, 255, 255, 0.9);
+  --white-80: rgba(255, 255, 255, 0.8);
+  --white-50: rgba(255, 255, 255, 0.5);
+  --white-25: rgba(255, 255, 255, 0.25);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --black-50: rgba(0, 0, 0, 0.5);
+  --black-80: rgba(0, 0, 0, 0.8);
+
+  /* ── Glass Effects ── */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-bg-dark: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 182, 193, 0.3);
+  --glass-border-dark: rgba(255, 255, 255, 0.18);
+  --backdrop-blur: blur(20px);
+  --backdrop-blur-strong: blur(30px);
+
+  /* ── Shadows ── */
+  --shadow-pink: rgba(255, 182, 193, 0.3);
+  --shadow-pink-strong: rgba(255, 105, 180, 0.4);
+  --shadow-soft: 0 4px 20px rgba(255, 182, 193, 0.15);
+  --shadow-medium: 0 8px 32px rgba(255, 182, 193, 0.2);
+  --shadow-strong: 0 16px 48px rgba(255, 182, 193, 0.25);
+  --shadow-glow: 0 0 20px rgba(255, 105, 180, 0.3);
+  --shadow-celebration: 0 20px 60px rgba(255, 215, 0, 0.3);
+  --shadow-cosmic: 0 0 30px rgba(102, 126, 234, 0.4), 0 0 60px rgba(118, 75, 162, 0.2);
+  --shadow-romantic: 0 12px 40px rgba(247, 202, 201, 0.4);
+
+  /* ── Typography ── */
+  --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-serif: 'Lora', serif;
+  --font-elegant: 'Great Vibes', cursive;
+  --font-accent: 'Montserrat', sans-serif;
+  --font-ui: 'Quicksand', sans-serif;
+
+  /* Font Size Scale */
+  --fs-xs: 0.75rem;    /* 12px */
+  --fs-sm: 0.875rem;   /* 14px */
+  --fs-base: 1rem;     /* 16px */
+  --fs-lg: 1.125rem;   /* 18px */
+  --fs-xl: 1.25rem;    /* 20px */
+  --fs-2xl: 1.5rem;    /* 24px */
+  --fs-3xl: 2rem;      /* 32px */
+  --fs-4xl: 2.5rem;    /* 40px */
+  --fs-5xl: 3rem;      /* 48px */
+  --fs-6xl: 3.5rem;    /* 56px */
+  --fs-hero: clamp(2.5rem, 7vw, 5rem);
+
+  /* Line Heights */
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+  --lh-loose: 1.8;
+
+  /* Letter Spacing */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+  --ls-wider: 0.1em;
+
+  /* ── Spacing Scale ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  /* ── Border Radius ── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 50px;
+  --radius-circle: 50%;
+
+  /* ── Container ── */
+  --container-sm: 800px;
+  --container-md: 1000px;
+  --container-lg: 1200px;
+  --container-xl: 1400px;
+
+  /* ── Transitions ── */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-spring: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ── Z-index Layers ── */
+  --z-background: -1;
+  --z-base: 1;
+  --z-content: 10;
+  --z-sticky: 20;
+  --z-navigation: 50;
+  --z-music-player: 60;
+  --z-overlay: 90;
+  --z-modal: 100;
+  --z-intro: 1000;
+  --z-loading: 9999;
+  --z-lightbox: 10000;
+
+  /* ── Section Padding ── */
+  --section-py: 80px;
+  --section-py-lg: 100px;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS HELPERS
+   ========================================== */
+
+@media (max-width: 480px) {
+  :root {
+    --section-py: 50px;
+    --section-py-lg: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-py: 60px;
+    --section-py-lg: 80px;
+  }
+}
 
 /* ==========================================
    SCROLLBAR STYLING
@@ -113,16 +289,16 @@ textarea {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--pink-bg);
+  background: var(--color-pink-50);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--pink-lighter);
-  border-radius: 4px;
+  background: var(--color-pink-300);
+  border-radius: var(--radius-xs);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--pink-light);
+  background: var(--color-pink-600);
 }
 
 /* ==========================================
@@ -130,6 +306,98 @@ textarea {
    ========================================== */
 
 ::selection {
-  background: var(--pink-lighter);
-  color: var(--pink-dark);
+  background: var(--color-pink-300);
+  color: var(--color-pink-800);
 }
+
+/* ==========================================
+   SHARED KEYFRAME ANIMATIONS
+   ========================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* ==========================================
+   FONT AWESOME CDN
+   Loaded via <link> in layout.tsx
+   ========================================== */

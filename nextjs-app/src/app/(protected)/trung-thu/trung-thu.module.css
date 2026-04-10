@@ -5,26 +5,26 @@
 
 /* CSS Variables scoped to this module */
 .trungThuPage {
-  --moon-yellow: #FFD700;
+  --moon-yellow: var(--color-gold-500);
   --lantern-red: #FF6347;
-  --deep-pink: #FF69B4;
-  --soft-pink: #FFC0CB;
+  --deep-pink: var(--color-pink-600);
+  --soft-pink: var(--color-pink-400);
   --night-blue: #191970;
   --star-white: #FFFAFA;
-  --romantic-purple: #9370DB;
-  --warm-orange: #FF8C00;
-  --gradient-moon: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-  --gradient-night: linear-gradient(135deg, #191970 0%, #4B0082 50%, #8B008B 100%);
-  --gradient-romantic: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4, #FFC0CB);
-  --gradient-lantern: linear-gradient(135deg, #FF6347 0%, #FF4500 50%, #DC143C 100%);
+  --romantic-purple: var(--color-purple-500);
+  --warm-orange: var(--color-gold-700);
+  --gradient-moon: var(--gradient-gold);
+  --gradient-night: linear-gradient(135deg, #191970 0%, var(--color-purple-900) 50%, #8B008B 100%);
+  --gradient-romantic: linear-gradient(45deg, var(--color-pink-600), #FF1493, var(--color-pink-600), var(--color-pink-400));
+  --gradient-lantern: linear-gradient(135deg, #FF6347 0%, #FF4500 50%, var(--color-christmas-red) 100%);
   --shadow-moon: 0 0 30px rgba(255, 215, 0, 0.6);
   --shadow-lantern: 0 8px 32px rgba(255, 99, 71, 0.4);
-  --shadow-romantic: 0 12px 48px rgba(255, 105, 180, 0.3);
-  --font-heading: 'Dancing Script', cursive;
-  --font-body: 'Lora', serif;
+  --shadow-romantic: var(--shadow-romantic);
+  --font-heading: var(--font-script);
+  --font-body: var(--font-serif);
 
   font-family: var(--font-body);
-  background: linear-gradient(135deg, #000428 0%, #004e92 25%, #8B008B 50%, #4B0082 75%, #191970 100%);
+  background: var(--gradient-night);
   background-size: 400% 400%;
   animation: nightSkyShift 20s ease infinite;
   min-height: 100vh;

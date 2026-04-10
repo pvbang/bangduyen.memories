@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Happy Valentine's Day - Công Chúa Iuuu 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="valentine.css">
+</head>
+
+<body>
+    <!-- ========== PIXEL HEART RAIN (Background) ========== -->
+    <canvas id="pixelHeartCanvas"></canvas>
+
+    <!-- ========== SECTION 1: INTRO SCREEN ========== -->
+    <div id="intro-screen" class="section active">
+        <div class="intro-pixel-border"></div>
+        <div class="intro-content">
+            <div class="pixel-heart-big">
+                <div class="pixel-row" data-row="1">
+                    <span class="px"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px"></span><span class="px"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px"></span>
+                </div>
+                <div class="pixel-row" data-row="2">
+                    <span class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span>
+                </div>
+                <div class="pixel-row" data-row="3">
+                    <span class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span>
+                </div>
+                <div class="pixel-row" data-row="4">
+                    <span class="px"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px"></span>
+                </div>
+                <div class="pixel-row" data-row="5">
+                    <span class="px"></span><span class="px"></span><span class="px on"></span><span
+                        class="px on"></span><span class="px on"></span><span class="px on"></span><span
+                        class="px"></span><span class="px"></span>
+                </div>
+                <div class="pixel-row" data-row="6">
+                    <span class="px"></span><span class="px"></span><span class="px"></span><span
+                        class="px on"></span><span class="px on"></span><span class="px"></span><span
+                        class="px"></span><span class="px"></span>
+                </div>
+            </div>
+            <h1 class="intro-title">Happy Valentine's Day</h1>
+            <p class="intro-subtitle">Dành tặng công chúa iuuu của anh 💕</p>
+            <p class="intro-date">14 . 02 . 2026</p>
+            <button class="intro-btn pixel-btn" id="startBtn">
+                <span>❤ Bắt Đầu Nàooo ❤</span>
+            </button>
+        </div>
+        <div class="intro-pixel-border bottom"></div>
+    </div>
+
+    <!-- ========== SECTION 2: LOVE LETTER ========== -->
+    <div id="love-letter-section" class="section">
+        <div class="envelope-container" id="envelope">
+            <div class="envelope-top"></div>
+            <div class="envelope-body">
+                <div class="letter" id="letter">
+                    <div class="letter-content">
+                        <h2 class="letter-title">💌 Valentine 💌</h2>
+                        <div class="typewriter-text" id="typewriterText"></div>
+                        <div class="letter-signature">
+                            <p>Mãi iuuuu em,</p>
+                            <p class="signature-name">Aiuuu của emmm ❤</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="next-btn pixel-btn" id="letterNextBtn" style="display:none;">
+            <span>Tiếp tục ➜</span>
+        </button>
+    </div>
+
+    <!-- ========== SECTION 3: YES/NO QUESTION ========== -->
+    <div id="question-section" class="section">
+        <div class="question-box">
+            <div class="question-pixel-frame">
+                <h2 class="question-title">Emm có iuuu anh không? 🥺</h2>
+                <div class="question-emoji">💕</div>
+                <div class="answer-area" id="answerArea">
+                    <button class="yes-btn pixel-btn" id="yesBtn">
+                        <span>Iuuu aiuuu quá chàiii luôn ❤️</span>
+                    </button>
+                    <button class="no-btn pixel-btn" id="noBtn">
+                        <span>Hông iuuu 💔</span>
+                    </button>
+                </div>
+                <p class="question-hint" id="questionHint"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION 4: PROMISE CARDS ========== -->
+    <div id="promise-section" class="section">
+        <h2 class="section-title pixel-title">💝 Lời Hứa Của Chúng Mình 💝</h2>
+        <div class="promise-grid">
+            <div class="promise-card" data-index="0">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">🤝</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Tha Thứ Cho Nhau</h3>
+                        <p>Tình yêu là luôn tha thứ, bỏ qua những lỗi lầm của nhau, vì không ai hoàn hảo cả... Nhưng anh
+                            sẽ cố
+                            gắng hoàn hảo vì emmm, aiuuu luôn cố gắng mà, chỉ là đôi khi mọi thứ không như mình mong
+                            muốn thuiii 🥺</p>
+                    </div>
+                </div>
+            </div>
+            <div class="promise-card" data-index="1">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">🚶‍♂️🚶‍♀️</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Đồng Hành Bên Nhau</h3>
+                        <p>Dù đường dài hay ngắn, anh luôn muốn có em bên cạnh. Mỗi bước đi đều có ý nghĩa khi có em ❤
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="promise-card" data-index="2">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">💎</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Chấp Nhận Khuyết Điểm</h3>
+                        <p>Em không cần hoàn hảo, vì trong mắt anh em đã là tất cả. Anh yêu cả những điều em nghĩ là
+                            khuyết điểm 🌟 chịu khó yêu thương anh nhóoo 🥺</p>
+                    </div>
+                </div>
+            </div>
+            <div class="promise-card" data-index="3">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">⛰️</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Vượt Qua Khó Khăn</h3>
+                        <p>Bão tố hay nắng mưa, chúng mình sẽ cùng nhau đi qua. Vì có em thì anh không sợ điều gì cả 💪❤
+                            Ngừii ta hay nói gia đình chính là hậu phương vững chãi của một ngừi đàn ông, aiuuu hy vọng
+                            sau những lúc căng thẳng, eiuuu luôn là chốn bình yên a có thể dựa vào, chớ bão tố nữa thì
+                            lúc nào đó aiuuu sẽ không chịu nổi đâuuu 🥺
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="promise-card" data-index="4">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">🆘</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Giúp Đỡ Khi Cần</h3>
+                        <p>Bất cứ lúc nào em cần, anh đều ở đây, em phải nói ra điều em muốn nếu anh không tự hiểu nhié.
+                            Vì aiuuu của e ngơ lắmm, chẳng phải ai cũng tinh tế như e đâuuu 🥺. Còn a, khi nào a cầu cứu
+                            rồi e hãy giúp nhiéee 🥺</p>
+                    </div>
+                </div>
+            </div>
+            <div class="promise-card" data-index="5">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-pixel-icon">♾️</div>
+                        <p>Nhấn để mở</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Yêu Em Mãi Mãi</h3>
+                        <p>Không phải 100 năm, không phải 1000 năm, mà là mãi mãi. Tình yêu anh dành cho em không có hạn
+                            sử dụng! ∞❤</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="next-btn pixel-btn" id="promiseNextBtn" style="display:none;">
+            <span>Tiếp tục ➜</span>
+        </button>
+    </div>
+
+    <!-- ========== SECTION 5: INTERACTIVE ACTIVITIES ========== -->
+    <div id="activities-section" class="section">
+        <h2 class="section-title pixel-title">🎮 Hoạt Động Yêu Thương 🎮</h2>
+        <div class="activities-grid">
+            <!-- Activity 1: Pixel Heart Builder -->
+            <div class="activity-card" id="heartBuilderCard">
+                <div class="activity-icon">🎨</div>
+                <h3>Vẽ Trái Tim Pixel</h3>
+                <p>Cùng nhau vẽ trái tim nào!</p>
+                <button class="activity-btn pixel-btn" onclick="startHeartBuilder()">
+                    <span>Chơi</span>
+                </button>
+            </div>
+            <!-- Activity 2: Love Jar -->
+            <div class="activity-card" id="loveJarCard">
+                <div class="activity-icon">🏺</div>
+                <h3>Lọ Tình Yêu</h3>
+                <p>Lắc để nhận lời yêu thương!</p>
+                <button class="activity-btn pixel-btn" onclick="startLoveJar()">
+                    <span>Mở lọ</span>
+                </button>
+            </div>
+            <!-- Activity 3: Love Counter -->
+            <div class="activity-card" id="loveCounterCard">
+                <div class="activity-icon">📅</div>
+                <h3>Đếm Ngày Yêu</h3>
+                <p>Chúng mình đã bên nhau bao lâu?</p>
+                <button class="activity-btn pixel-btn" onclick="showLoveCounter()">
+                    <span>Xem</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Heart Builder Canvas -->
+        <div class="activity-popup" id="heartBuilderPopup" style="display:none;">
+            <div class="popup-content">
+                <button class="popup-close" onclick="closePopup('heartBuilderPopup')">✕</button>
+                <h3>🎨 Vẽ Trái Tim Pixel</h3>
+                <p>Nhấn vào ô để tô màu, tạo trái tim của riêng mình!</p>
+                <div class="pixel-canvas-container">
+                    <canvas id="pixelCanvas" width="320" height="320"></canvas>
+                </div>
+                <div class="pixel-colors">
+                    <div class="color-btn active" data-color="#ff2d55" style="background:#ff2d55;"></div>
+                    <div class="color-btn" data-color="#ff6b9d" style="background:#ff6b9d;"></div>
+                    <div class="color-btn" data-color="#ffd700" style="background:#ffd700;"></div>
+                    <div class="color-btn" data-color="#e8a0ff" style="background:#e8a0ff;"></div>
+                    <div class="color-btn" data-color="#ff9ed8" style="background:#ff9ed8;"></div>
+                    <div class="color-btn" data-color="#ffffff" style="background:#ffffff;border:1px solid #666;"></div>
+                </div>
+                <button class="pixel-btn small" onclick="clearPixelCanvas()"><span>Xóa hết</span></button>
+            </div>
+        </div>
+
+        <!-- Love Jar Popup -->
+        <div class="activity-popup" id="loveJarPopup" style="display:none;">
+            <div class="popup-content">
+                <button class="popup-close" onclick="closePopup('loveJarPopup')">✕</button>
+                <h3>🏺 Lọ Tình Yêu</h3>
+                <div class="love-jar-container">
+                    <div class="jar" id="jar">
+                        <div class="jar-body">
+                            <div class="jar-hearts" id="jarHearts"></div>
+                        </div>
+                        <div class="jar-lid"></div>
+                    </div>
+                    <div class="love-note-display" id="loveNoteDisplay">
+                        <p id="loveNoteText">Nhấn vào lọ để nhận lời yêu thương!</p>
+                    </div>
+                </div>
+                <button class="pixel-btn" id="shakeJarBtn" onclick="shakeLoveJar()"><span>🔮 Lắc lọ!</span></button>
+            </div>
+        </div>
+
+        <!-- Love Counter Popup -->
+        <div class="activity-popup" id="loveCounterPopup" style="display:none;">
+            <div class="popup-content">
+                <button class="popup-close" onclick="closePopup('loveCounterPopup')">✕</button>
+                <h3>📅 Đếm Ngày Yêu Thương</h3>
+                <div class="love-counter-display">
+                    <div class="counter-item">
+                        <span class="counter-number" id="counterDays">0</span>
+                        <span class="counter-label">Ngày</span>
+                    </div>
+                    <div class="counter-separator">:</div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="counterHours">0</span>
+                        <span class="counter-label">Giờ</span>
+                    </div>
+                    <div class="counter-separator">:</div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="counterMinutes">0</span>
+                        <span class="counter-label">Phút</span>
+                    </div>
+                    <div class="counter-separator">:</div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="counterSeconds">0</span>
+                        <span class="counter-label">Giây</span>
+                    </div>
+                </div>
+                <p class="counter-message">yêu thương bên nhau 💕</p>
+            </div>
+        </div>
+
+        <button class="next-btn pixel-btn" id="activitiesNextBtn">
+            <span>Đến phần cuối ➜</span>
+        </button>
+    </div>
+
+    <!-- ========== SECTION 6: FINAL MESSAGE ========== -->
+    <div id="final-section" class="section">
+        <div class="final-container">
+            <div class="final-pixel-frame">
+                <div class="final-hearts-explosion" id="finalHeartsExplosion"></div>
+                <h1 class="final-title">Anh Yêu Emm</h1>
+                <h2 class="final-subtitle">Mãi Mãi Nhé 💕</h2>
+                <div class="final-message">
+                    <p>Cảm ơn em đã luôn bên anh,</p>
+                    <p>đã tha thứ cho những lỗi lầm,</p>
+                    <p>đã cùng anh đi qua mọi khó khăn,</p>
+                    <p>và đã iuuu anh nhiều đến vậy,</p>
+                    <p>đừng để những sai lầm nhất thời kết thúc tình yêu của chúng mình nhé (aiuuu ngơ lắmm có biết rì
+                        đouu).</p>
+                    <br>
+                    <p class="final-highlight">Em là điều tuyệt vời nhất</p>
+                    <p class="final-highlight">đã đến trong cuộc đời anh ❤️</p>
+                </div>
+                <div class="final-pixel-heart-anim" id="finalPixelHeart"></div>
+            </div>
+        </div>
+        <button class="home-btn pixel-btn" onclick="window.location.href='../memories.html'">
+            <span>🏠 Về trang chủ</span>
+        </button>
+    </div>
+
+    <!-- ========== MUSIC TOGGLE ========== -->
+    <button class="music-toggle" id="musicToggle" title="Bật/Tắt nhạc">
+        <i class="fas fa-volume-mute" id="musicIcon"></i>
+    </button>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="data/audio/iuuuuemmmm.aac" type="audio/aac">
+    </audio>
+
+    <script src="valentine.js"></script>
+</body>
+
+</html>

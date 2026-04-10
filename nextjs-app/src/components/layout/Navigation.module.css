@@ -1,15 +1,15 @@
 /**
  * Navigation CSS
- * Chuyển đổi từ memories.css (.memories-header, .nav-actions, .nav-btn)
+ * Uses Design System variables from globals.css
  */
 
 .header {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.9) 50%, rgba(230, 230, 250, 0.85) 100%);
-  backdrop-filter: blur(20px);
-  padding: 30px 0;
+  background: linear-gradient(135deg, var(--white-95) 0%, rgba(255, 240, 245, 0.9) 50%, rgba(230, 230, 250, 0.85) 100%);
+  backdrop-filter: var(--backdrop-blur);
+  padding: var(--sp-8) 0;
   position: relative;
-  z-index: var(--z-navigation, 50);
-  box-shadow: 0 4px 30px rgba(255, 182, 193, 0.15);
+  z-index: var(--z-navigation);
+  box-shadow: 0 4px 30px var(--shadow-pink);
 }
 
 .header::before {
@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #ff69b4, #e91e63, #ff69b4, #e91e63);
+  background: linear-gradient(90deg, var(--color-pink-600), var(--color-pink-700), var(--color-pink-600), var(--color-pink-700));
   background-size: 300% 100%;
   animation: gradientMove 4s linear infinite;
 }
@@ -30,27 +30,27 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--container-lg);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--sp-5);
 }
 
 .headerContent {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: var(--sp-6);
 }
 
 .pageTitle {
-  font-family: var(--font-dancing), 'Dancing Script', cursive;
-  font-size: 2.5rem;
+  font-family: var(--font-poppins), var(--font-script);
+  font-size: var(--fs-4xl);
   font-weight: 700;
-  background: linear-gradient(135deg, #e91e63, #ff69b4, #e91e63);
+  background: linear-gradient(135deg, var(--color-pink-700), var(--color-pink-600), var(--color-pink-700));
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: textGradient 4s ease infinite;
-  margin-bottom: 8px;
+  margin-bottom: var(--sp-2);
 }
 
 @keyframes textGradient {
@@ -59,8 +59,8 @@
 }
 
 .subtitle {
-  color: #666;
-  font-size: 1rem;
+  color: var(--text-muted);
+  font-size: var(--fs-base);
   font-weight: 300;
 }
 
@@ -68,25 +68,25 @@
 .navActions {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: var(--sp-4);
   flex-wrap: wrap;
 }
 
 .navBtn {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 240, 245, 0.9));
-  color: #333;
+  background: linear-gradient(135deg, var(--white-90), rgba(255, 240, 245, 0.9));
+  color: var(--text-primary);
   text-decoration: none;
-  padding: 14px 24px;
-  border-radius: 50px;
+  padding: 14px var(--sp-6);
+  border-radius: var(--radius-full);
   font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: var(--fs-sm);
+  transition: all var(--transition-spring);
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--sp-2);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   white-space: nowrap;
 }
@@ -98,8 +98,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ff69b4, #e91e63);
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--gradient-pink);
+  transition: left var(--transition-spring);
   z-index: -1;
 }
 
@@ -110,15 +110,15 @@
 
 .navBtn:hover,
 .navBtn.active {
-  color: white;
+  color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
-  border-color: #ff69b4;
+  border-color: var(--color-pink-600);
 }
 
 .navBtn i {
-  font-size: 1rem;
-  transition: transform 0.3s ease;
+  font-size: var(--fs-base);
+  transition: transform var(--transition-normal);
   flex-shrink: 0;
 }
 
@@ -127,20 +127,20 @@
 }
 
 .navBtn span {
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-normal);
 }
 
 /* Special button */
 .specialBtn {
-  background: linear-gradient(135deg, #FFD700 0%, #FF91A4 50%, #FF69B4 100%);
-  color: white;
+  background: var(--gradient-celebration);
+  color: var(--white);
   font-weight: 600;
-  border: 2px solid #FFD700;
+  border: 2px solid var(--color-gold-500);
   animation: specialGlow 3s ease-in-out infinite;
 }
 
 .specialBtn::before {
-  background: linear-gradient(135deg, #FF69B4 0%, #FFD700 50%, #FF91A4 100%);
+  background: linear-gradient(135deg, var(--color-pink-600) 0%, var(--color-gold-500) 50%, var(--color-pink-500) 100%);
 }
 
 .specialBtn:hover {
@@ -149,75 +149,33 @@
 }
 
 .specialBtn i {
-  color: #FFD700;
+  color: var(--color-gold-500);
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 @keyframes specialGlow {
-  0%, 100% {
-    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
-  }
+  0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3); }
+  50% { box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5); }
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .navActions {
-    gap: 8px;
-  }
-
-  .navBtn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-
-  .navBtn i {
-    font-size: 0.95rem;
-  }
+  .navActions { gap: var(--sp-2); }
+  .navBtn { padding: 10px var(--sp-4); font-size: 0.85rem; }
+  .navBtn i { font-size: 0.95rem; }
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 20px 0;
-  }
-
-  .pageTitle {
-    font-size: 2rem;
-  }
-
-  .navBtn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
-
-  .navBtn i {
-    font-size: 0.85rem;
-  }
+  .header { padding: var(--sp-5) 0; }
+  .pageTitle { font-size: var(--fs-3xl); }
+  .navBtn { padding: var(--sp-2) var(--sp-3); font-size: 0.8rem; }
+  .navBtn i { font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {
-  .navActions {
-    gap: 6px;
-  }
-
-  .navBtn {
-    padding: 6px 8px;
-    font-size: 0.7rem;
-    border-radius: 12px;
-  }
-
-  .navBtn span {
-    display: block;
-    font-size: 0.65rem;
-  }
-
-  .navBtn i {
-    font-size: 0.85rem;
-  }
-
-  .pageTitle {
-    font-size: 1.6rem;
-  }
+  .navActions { gap: 6px; }
+  .navBtn { padding: 6px var(--sp-2); font-size: 0.7rem; border-radius: var(--radius-md); }
+  .navBtn span { display: block; font-size: 0.65rem; }
+  .navBtn i { font-size: 0.85rem; }
+  .pageTitle { font-size: 1.6rem; }
 }

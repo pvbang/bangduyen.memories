@@ -1,6 +1,6 @@
 /**
  * AuthGuard Loading Screen CSS
- * Giống style từ auth-guard.js gốc
+ * Uses Design System variables from globals.css
  */
 
 .loadingScreen {
@@ -9,39 +9,30 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ffeef2 0%, #ffe0e6 50%, #ffd1dc 100%);
+  background: var(--gradient-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: var(--z-loading, 99999);
-  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  z-index: var(--z-loading);
+  font-family: var(--font-poppins), var(--font-body);
 }
 
 .loadingContent {
   text-align: center;
-  color: #e91e63;
+  color: var(--pink-primary);
 }
 
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid #ff69b4;
+  border: 3px solid var(--color-pink-600);
   border-top: 3px solid transparent;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
+  margin: 0 auto var(--sp-5);
 }
 
 .loadingText {
   margin: 0;
-  font-size: 16px;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  font-size: var(--fs-base);
 }

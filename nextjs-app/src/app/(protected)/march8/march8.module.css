@@ -7,16 +7,16 @@
   --pk-l: #ffb3d0;
   --pk-d: #e84393;
   --rose: #fd79a8;
-  --gold: #f9ca24;
-  --lav: #a29bfe;
+  --gold: var(--color-gold-500);
+  --lav: var(--color-purple-400);
   --mint: #55efc4;
-  --coral: #ff7675;
-  --bg: #0a0a1a;
-  --card: rgba(255, 255, 255, 0.07);
+  --coral: var(--color-rose-400);
+  --bg: var(--color-dark-900);
+  --card: var(--glass-bg-dark);
   --txt: #f0e6ef;
-  --font-heading: 'Dancing Script', cursive;
-  --font-body: 'Poppins', sans-serif;
-  --font-elegant: 'Playfair Display', serif;
+  --font-heading: var(--font-script);
+  --font-body: var(--font-body);
+  --font-elegant: var(--font-heading);
 
   font-family: var(--font-body);
   background: var(--bg);

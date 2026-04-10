@@ -2,37 +2,37 @@
 
 /* CSS Variables */
 .timelinePage {
-  --primary-pink: #FFB6C1;
-  --soft-pink: #FFC0CB;
-  --rose-pink: #FF91A4;
-  --deep-pink: #FF69B4;
-  --blush-pink: #FFE4E1;
-  --pure-white: #FFFFFF;
+  --primary-pink: var(--color-pink-300);
+  --soft-pink: var(--color-pink-400);
+  --rose-pink: var(--color-pink-500);
+  --deep-pink: var(--color-pink-600);
+  --blush-pink: var(--color-rose-100);
+  --pure-white: var(--white);
   --soft-white: #FEFEFE;
   --cream-white: #FFF8F0;
   --light-gray: #F8F9FA;
-  --text-dark: #2C3E50;
-  --text-medium: #2D3748;
-  --text-light: #6C7B7F;
+  --text-dark: var(--text-primary);
+  --text-medium: var(--text-secondary);
+  --text-light: var(--text-muted);
 
   --gradient-primary: linear-gradient(135deg, var(--soft-pink) 0%, var(--primary-pink) 50%, var(--rose-pink) 100%);
   --gradient-secondary: linear-gradient(45deg, var(--blush-pink) 0%, var(--pure-white) 100%);
   --gradient-accent: linear-gradient(270deg, var(--deep-pink), var(--rose-pink));
   --gradient-button: linear-gradient(135deg, var(--soft-pink) 0%, var(--primary-pink) 50%, var(--rose-pink) 100%);
-  --gradient-background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 20%, #FFE4E1 40%, #FFF0F5 60%, #FFFFFF 80%, #FFF8DC 100%);
+  --gradient-background: var(--gradient-bg-romantic);
 
-  --shadow-soft: 0 4px 20px rgba(255, 182, 193, 0.15);
-  --shadow-medium: 0 8px 32px rgba(255, 182, 193, 0.2);
-  --shadow-strong: 0 16px 48px rgba(255, 182, 193, 0.25);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-medium: var(--shadow-medium);
+  --shadow-strong: var(--shadow-strong);
 
-  --radius-small: 12px;
-  --radius-medium: 20px;
-  --radius-large: 32px;
-  --radius-full: 50px;
+  --radius-small: var(--radius-md);
+  --radius-medium: var(--radius-xl);
+  --radius-large: var(--radius-3xl);
+  --radius-full: var(--radius-full);
 
-  --font-heading: 'Dancing Script', cursive;
-  --font-script: 'Dancing Script', cursive;
-  --font-body: 'Lora', serif;
+  --font-heading: var(--font-script);
+  --font-script: var(--font-script);
+  --font-body: var(--font-serif);
 
   background: var(--gradient-background);
   background-size: 400% 400%;

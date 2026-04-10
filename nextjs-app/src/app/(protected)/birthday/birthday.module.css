@@ -5,22 +5,22 @@
 /* CSS Variables */
 .birthdayPage {
   --cosmic-purple: #6B46C1;
-  --deep-purple: #553C9A;
-  --romantic-pink: #FF69B4;
+  --deep-purple: var(--color-purple-800);
+  --romantic-pink: var(--color-pink-600);
   --soft-pink: #FFB6D9;
-  --gold: #FFD700;
-  --white: #FFFFFF;
+  --gold: var(--color-gold-500);
+  --white: var(--white);
   --black: #0A0A0A;
-  --gradient-cosmic: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 100%);
-  --gradient-romantic: linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #C71585 100%);
-  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-  --shadow-cosmic: 0 10px 50px rgba(102, 126, 234, 0.5);
+  --gradient-cosmic: linear-gradient(135deg, var(--color-purple-700) 0%, var(--color-purple-600) 25%, #f093fb 50%, #4facfe 100%);
+  --gradient-romantic: linear-gradient(135deg, var(--color-pink-600) 0%, #FF1493 50%, #C71585 100%);
+  --gradient-gold: var(--gradient-gold);
+  --shadow-cosmic: var(--shadow-cosmic);
   --shadow-romantic: 0 10px 50px rgba(255, 105, 180, 0.5);
-  --font-heading: 'Dancing Script', cursive;
-  --font-body: 'Poppins', sans-serif;
+  --font-heading: var(--font-script);
+  --font-body: var(--font-body);
 
   font-family: var(--font-body);
-  background: linear-gradient(135deg, #000428 0%, #004e92 25%, #8B008B 50%, #4B0082 75%, #191970 100%);
+  background: var(--gradient-night);
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--white);
