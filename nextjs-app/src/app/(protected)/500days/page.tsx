@@ -3,8 +3,8 @@
 /**
  * 500 Days Celebration Page
  * Route: /500days
- * Theme: Tri Ân - Chân thành, không sến súa
- * Features: Particle System, Interactive Cards, Data Visualization, Modern UI
+ * Theme: "Không Hứa, Chỉ Tri Ân" - Cảm ơn và trân trọng 500 ngày bên nhau
+ * Unique features: Time Capsule, Wishes Tree, Gratitude Counter, Weather of Love
  */
 
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -15,630 +15,425 @@ import styles from './500days.module.css';
 // DATA
 // ==========================================
 
-// Real-time data
-const JOURNEY_STATS = {
-  totalDays: 500,
-  totalHours: 12000,
-  totalMinutes: 720000,
-  coffeeTogether: 156,
-  citiesVisited: 12,
-  photosTogether: 892,
-  lateNightCalls: 234,
-  handHoldings: 1050,
-  insideJokes: 47,
-  songsShared: 89,
-  dreamsTold: 156,
-  hugsGiven: 2340,
-};
-
-// Milestones
-const MILESTONES = [
-  { day: 1, label: 'Bắt đầu', icon: 'fa-seedling' },
-  { day: 100, label: '100 ngày', icon: 'fa-star' },
-  { day: 200, label: '200 ngày', icon: 'fa-heart' },
-  { day: 300, label: '300 ngày', icon: 'fa-gem' },
-  { day: 365, label: '1 năm', icon: 'fa-trophy' },
-  { day: 500, label: '500 ngày', icon: 'fa-infinity' },
+const STATS = [
+  { icon: 'fas fa-heart', target: 500, label: 'Ngày bên nhau' },
+  { icon: 'fas fa-moon', target: 12000, label: 'Giờ ngắm trăng cùng' },
+  { icon: 'fas fa-sun', target: 6000, label: 'Lần nhắn tin goodnight' },
+  { icon: 'fas fa-infinity', target: 0, label: 'Tri ân vô tận', isInfinity: true },
 ];
 
-// Monthly highlights
-const MONTHLY_HIGHLIGHTS = [
-  { month: 'Tháng 3', year: '2025', highlight: 'Ngày đầu tiên', mood: 'excited' },
-  { month: 'Tháng 7', year: '2025', highlight: '100 ngày', mood: 'happy' },
-  { month: 'Tháng 10', year: '2025', highlight: 'Sinh nhật em', mood: 'celebrating' },
-  { month: 'Tháng 1', year: '2026', highlight: '300 ngày', mood: 'grateful' },
-  { month: 'Tháng 2', year: '2026', highlight: 'Valentine', mood: 'loving' },
-  { month: 'Tháng 3', year: '2026', highlight: '500 ngày', mood: 'peaceful' },
+// Memory Capsules - những kỷ niệm được "niêm phong" theo thời gian
+const MEMORY_CAPSULES = [
+  { 
+    id: 1, 
+    month: 'Tháng 3', 
+    year: '2025',
+    title: 'Ngày Định Mệnh', 
+    emoji: '💕',
+    sealed: true,
+    content: 'Khoảnh khắc aiuuuu lấy hết can đảm nói "iuuuu em", và em đã đồng ý. Đó là ngày đẹp nhất của aiuuuu!'
+  },
+  { 
+    id: 2, 
+    month: 'Tháng 7', 
+    year: '2025',
+    title: '100 Ngày Đầu Tiên', 
+    emoji: '👑',
+    sealed: true,
+    content: 'Tròn 100 ngày! Aiuuuu tự hào vì đã tốt nghiệp khóa "yêu em" xuất sắc!'
+  },
+  { 
+    id: 3, 
+    month: 'Tháng 10', 
+    year: '2025',
+    title: 'Sinh Nhật Công Chúa', 
+    emoji: '🎂',
+    sealed: true,
+    content: 'Sinh nhật đầu tiên bên nhau. Chúc em iuuu mãi xinh đẹp và hạnh phúccc!'
+  },
+  { 
+    id: 4, 
+    month: 'Tháng 1', 
+    year: '2026',
+    title: '300 Ngày Kỷ Niệm', 
+    emoji: '💎',
+    sealed: true,
+    content: '300 ngày rồi! Tình iuuu vẫn ngọt ngào như ngày đầu tiên nè!'
+  },
+  { 
+    id: 5, 
+    month: 'Tháng 2', 
+    year: '2026',
+    title: 'Valentine Đầu Tiên', 
+    emoji: '🌹',
+    sealed: true,
+    content: 'Ngày lễ tình nhân đầu tiên chính thức bên nhau. Yêu em nhiều!'
+  },
+  { 
+    id: 6, 
+    month: 'Tháng 3', 
+    year: '2026',
+    title: '500 Ngày - Tri Ân', 
+    emoji: '✨',
+    sealed: false,
+    content: '500 ngày bên nhau! Không hứa hẹn gì lớn lao, chỉ cảm ơn em đã ở đây!'
+  },
 ];
 
-// Gratitude items - ngắn gọn, chân thành
-const GRATITUDES = [
-  { icon: 'fa-heart', text: 'Cảm ơn em đã ở đây', sub: 'Dù ngày tốt hay ngày khó' },
-  { icon: 'fa-hand-holding-heart', text: 'Cảm ơn những lần em dỗ dành', sub: 'Khi anh không biết nói gì' },
-  { icon: 'fa-moon', text: 'Cảm ơn những đêm trò chuyện', sub: 'Từ khuya đến hôm sau' },
-  { icon: 'fa-smile', text: 'Cảm ơn nụ cười của em', sub: 'Làm mọi thứ tươi sáng hơn' },
-  { icon: 'fa-utensils', text: 'Cảm ơn những bữa ăn', sub: 'Dù ở đâu, với ai, miễn có em' },
-  { icon: 'fa-cloud', text: 'Cảm ơn em đã thấu hiểu', sub: 'Hơn cả những gì anh nói ra' },
-];
-
-// Simple wishes - không hứa hẹn, chỉ mong
+// Wishes Tree - Những điều ước được gieo trồng
 const WISHES = [
-  'Mong em bình an',
-  'Mong em vui vẻ',
-  'Mong những ngày khó qua mau',
-  'Mong mình luôn khỏe',
-  'Mong gia đình hai bên bình an',
-  'Mong mọi điều tốt đẹp đến với em',
+  { id: 1, text: 'Mong em luôn bình an và vui vẻ', emoji: '🌸', color: '#FF69B4' },
+  { id: 2, text: 'Ước mỗi ngày đều được gặp em', emoji: '☀️', color: '#FFD700' },
+  { id: 3, text: 'Hy vọng em luôn khỏe mạnh', emoji: '💪', color: '#87CEEB' },
+  { id: 4, text: 'Nguyện em được mỉm cười mỗi ngày', emoji: '🌈', color: '#9370DB' },
+  { id: 5, text: 'Chúc tình mình bền vững', emoji: '💕', color: '#FF6B6B' },
+  { id: 6, text: 'Mong những ngày buồn qua mau', emoji: '🌙', color: '#DDA0DD' },
+  { id: 7, text: 'Ước được ôm em thật lâu', emoji: '🤗', color: '#F0E68C' },
+  { id: 8, text: 'Chúc gia đình hai bên bình an', emoji: '🏠', color: '#98FB98' },
+  { id: 9, text: 'Nguyện những điều tốt đẹp đến với em', emoji: '✨', color: '#FFB6C1' },
+  { id: 10, text: 'Mong em luôn được yêu thương', emoji: '❤️', color: '#FF6347' },
+  { id: 11, text: 'Ước em luôn thành công', emoji: '🌟', color: '#00CED1' },
+  { id: 12, text: 'Chúc mình luôn bên nhau', emoji: '💑', color: '#FF69B4' },
+];
+
+// Gratitude moments - Những khoảnh khắc tri ân
+const GRATITUDES = [
+  { icon: 'fas fa-heart', title: 'Cảm Ơn Em Đã Yêu Aiuuuu', desc: 'Cảm ơn em đã chọn aiuuuu, dù aiuuuu có lúc ngốc nghếch, có lúc không biết nói gì...' },
+  { icon: 'fas fa-hand-holding-heart', title: 'Cảm Ơn Vì Những Lần Dỗ Dành', desc: 'Khi aiuuuu buồn, em luôn ở đó. Cảm ơn em vì đã dỗ dành aiuuuu!' },
+  { icon: 'fas fa-smile', title: 'Cảm Ơn Nụ Cười Của Em', desc: 'Mỗi nụ cười của em làm aiuuuu thấy thế giới đẹp hơn bao giờ hết!' },
+  { icon: 'fas fa-moon', title: 'Cảm Ơn Những Đêm Trò Chuyện', desc: 'Những đêm khuya nói chuyện với em là khoảnh khắc aiuuuu yêu nhất!' },
+  { icon: 'fas fa-coffee', title: 'Cảm Ơn Những Bữa Ăn Cùng Nhau', desc: 'Dù ăn ở đâu, với ai, miễn là có em thì đều ngon hết!' },
+  { icon: 'fas fa-cloud', title: 'Cảm Ơn Vì Đã Thấu Hiểu', desc: 'Em hiểu aiuuuu hơn chính aiuuuu hiểu mình. Cảm ơn em!' },
+];
+
+// Weather of Love - Thời tiết tình yêu theo mùa
+const LOVE_WEATHER = [
+  { season: 'Mùa Xuân', icon: '🌸', temp: '25°C', desc: 'Tình yêu nở hoa như cánh anh đào', color: '#FFB7C5' },
+  { season: 'Mùa Hạ', icon: '☀️', temp: '35°C', desc: 'Nắng vàng rực rỡ như tình mình đam mê', color: '#FFD700' },
+  { season: 'Mùa Thu', icon: '🍂', temp: '20°C', desc: 'Gió thu dịu dàng như lời thì thầm yêu', color: '#D2691E' },
+  { season: 'Mùa Đông', icon: '❄️', temp: '15°C', desc: 'Tay trong tay ấm áp giữa mùa đông lạnh', color: '#E0FFFF' },
+];
+
+// Shared moments countdown
+const SHARED_MOMENTS = [
+  { icon: 'fas fa-utensils', label: 'Bữa ăn cùng nhau', count: 487 },
+  { icon: 'fas fa-video', label: 'Cuộc gọi video', count: 365 },
+  { icon: 'fas fa-walking', label: 'Lần đi chơi cùng', count: 156 },
+  { icon: 'fas fa-bed', label: 'Lần chúc ngủ ngon', count: 500 },
+  { icon: 'fas fa-coffee', label: 'Tách cà phê chung', count: 89 },
+  { icon: 'fas fa-heart', label: 'Lần nói "yêu em"', count: 9999 },
 ];
 
 // ==========================================
 // HOOKS
 // ==========================================
 
-function useScrollProgress() {
-  const [progress, setProgress] = useState(0);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(Math.min((scrollTop / docHeight) * 100, 100));
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  return progress;
-}
-
-function useMousePosition() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-    
-    window.addEventListener('mousemove', handleMouse);
-    return () => window.removeEventListener('mousemove', handleMouse);
-  }, []);
-  
-  return position;
-}
-
-function useCountUp(end: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
+function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
-  
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
-        }
-      },
-      { threshold: 0.5 }
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(el); } },
+      { threshold, rootMargin: '0px 0px -50px 0px' }
     );
-    
     observer.observe(el);
     return () => observer.disconnect();
-  }, [started]);
+  }, [threshold]);
+
+  return { ref, isVisible };
+}
+
+function useCounterAnimation(target: number, isVisible: boolean, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!isVisible || started.current || target === 0) return;
+    started.current = true;
+    const startTime = performance.now();
+    function update(now: number) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(update);
+      else setCount(target);
+    }
+    requestAnimationFrame(update);
+  }, [isVisible, target, duration]);
+
+  return count;
+}
+
+function useTimeTogether() {
+  const [time, setTime] = useState({ days: 500, hours: 0, minutes: 0, seconds: 0 });
   
   useEffect(() => {
-    if (!started) return;
+    const startDate = new Date('2025-03-23T00:00:00');
     
-    const startTime = Date.now();
-    const tick = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(eased * end));
+    function update() {
+      const now = new Date();
+      const diff = now.getTime() - startDate.getTime();
       
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      }
-    };
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      setTime({ days, hours, minutes, seconds });
+    }
     
-    requestAnimationFrame(tick);
-  }, [started, end, duration]);
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, []);
   
-  return { ref, count };
+  return time;
 }
 
 // ==========================================
-// COMPONENTS
+// SUB-COMPONENTS
 // ==========================================
 
-function ParticleCanvas() {
+function FloatingElements() {
+  return (
+    <div className={styles.floatingElements}>
+      {['💕', '✨', '🌸', '💖', '🌙', '⭐', '💝', '🌈'].map((emoji, i) => (
+        <div
+          key={i}
+          className={styles.floatingItem}
+          style={{
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 10}s`,
+            animationDuration: `${8 + Math.random() * 8}s`,
+            fontSize: `${16 + Math.random() * 16}px`,
+          }}
+        >
+          {emoji}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ShootingStars() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
   
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    interface Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      alpha: number;
-      color: string;
+    interface Star {
+      x: number; y: number; length: number; speed: number; opacity: number;
     }
     
-    const particles: Particle[] = [];
-    const colors = ['#FF6B6B', '#FF69B4', '#FFD93D', '#6BCB77', '#4D96FF', '#9B59B6'];
+    const stars: Star[] = [];
     
-    for (let i = 0; i < 100; i++) {
-      particles.push({
+    function createStar() {
+      if (!canvas) return;
+      stars.push({
         x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 3 + 1,
-        alpha: Math.random() * 0.5 + 0.2,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        y: 0,
+        length: Math.random() * 80 + 20,
+        speed: Math.random() * 3 + 2,
+        opacity: 1,
       });
     }
-    
-    const handleMouse = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-    
-    window.addEventListener('mousemove', handleMouse);
     
     let animId: number;
     function animate() {
       if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      ctx.fillStyle = 'rgba(10, 10, 26, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (Math.random() < 0.02) createStar();
       
-      const mouse = mouseRef.current;
-      
-      particles.forEach(p => {
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+      for (let i = stars.length - 1; i >= 0; i--) {
+        const star = stars[i];
+        star.y += star.speed;
+        star.opacity -= 0.01;
         
-        if (dist < 150) {
-          const force = (150 - dist) / 150;
-          p.vx -= (dx / dist) * force * 0.02;
-          p.vy -= (dy / dist) * force * 0.02;
+        if (star.opacity <= 0 || star.y > canvas.height) {
+          stars.splice(i, 1);
+          continue;
         }
         
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.99;
-        p.vy *= 0.99;
-        
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        const gradient = ctx.createLinearGradient(star.x, star.y, star.x + star.length, star.y - star.length);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
         
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        
-        // Connect nearby particles
-        particles.forEach(p2 => {
-          const dx2 = p.x - p2.x;
-          const dy2 = p.y - p2.y;
-          const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-          
-          if (dist2 < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = p.color;
-            ctx.globalAlpha = (100 - dist2) / 500;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-            ctx.globalAlpha = 1;
-          }
-        });
-      });
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(star.x + star.length, star.y - star.length);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
       
       animId = requestAnimationFrame(animate);
     }
     
     animate();
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouse);
-      cancelAnimationFrame(animId);
-    };
+    return () => cancelAnimationFrame(animId);
   }, []);
   
-  return <canvas ref={canvasRef} className={styles.particleCanvas} />;
+  return <canvas ref={canvasRef} className={styles.shootingStarsCanvas} />;
 }
 
-function GradientOrbs() {
-  const mouse = useMousePosition();
-  
-  return (
-    <div className={styles.gradientOrbs}>
-      <div 
-        className={styles.orb1}
-        style={{ 
-          transform: `translate(${mouse.x * 0.02}px, ${mouse.y * 0.02}px)` 
-        }}
-      />
-      <div 
-        className={styles.orb2}
-        style={{ 
-          transform: `translate(${-mouse.x * 0.03}px, ${-mouse.y * 0.03}px)` 
-        }}
-      />
-      <div 
-        className={styles.orb3}
-        style={{ 
-          transform: `translate(${mouse.x * 0.01}px, ${mouse.y * 0.01}px)` 
-        }}
-      />
-    </div>
-  );
-}
+function StatCard({ icon, target, label, isInfinity, delay }: {
+  icon: string; target: number; label: string; isInfinity?: boolean; delay: number;
+}) {
+  const { ref, isVisible } = useScrollReveal(0.5);
+  const count = useCounterAnimation(target, isVisible);
 
-function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-  
   return (
-    <section className={`${styles.heroSection} ${isVisible ? styles.visible : ''}`}>
-      <div className={styles.heroContent}>
-        <div className={styles.badgeContainer}>
-          <div className={styles.badgeRing1} />
-          <div className={styles.badgeRing2} />
-          <div className={styles.badgeRing3} />
-          <div className={styles.badgeCenter}>
-            <span className={styles.badgeNumber}>500</span>
-            <span className={styles.badgeLabel}>NGÀY</span>
-          </div>
-        </div>
-        
-        <h1 className={styles.heroTitle}>
-          <span className={styles.titleLine1}>Tri Ân</span>
-          <span className={styles.titleLine2}>Bên Nhau</span>
-        </h1>
-        
-        <p className={styles.heroDate}>23/03/2025 — 05/08/2026</p>
-      </div>
-      
-      <div className={styles.scrollIndicator}>
-        <div className={styles.mouse}>
-          <div className={styles.wheel} />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StatsSection() {
-  const stats = [
-    { value: JOURNEY_STATS.totalDays, label: 'Ngày', suffix: '' },
-    { value: JOURNEY_STATS.photosTogether, label: 'Bức ảnh', suffix: '+' },
-    { value: JOURNEY_STATS.hugsGiven, label: 'Cái ôm', suffix: '' },
-    { value: JOURNEY_STATS.lateNightCalls, label: 'Đêm muộn', suffix: '' },
-  ];
-  
-  return (
-    <section className={styles.statsSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>500 Ngày</h2>
-        
-        <div className={styles.statsGrid}>
-          {stats.map((stat, i) => (
-            <StatCard key={i} {...stat} delay={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StatCard({ value, label, suffix, delay }: { value: number; label: string; suffix: string; delay: number }) {
-  const { ref, count } = useCountUp(value);
-  
-  return (
-    <div 
-      ref={ref} 
-      className={styles.statCard}
-      style={{ animationDelay: `${delay * 0.1}s` }}
-    >
-      <div className={styles.statValue}>
-        {count.toLocaleString()}{suffix}
-      </div>
+    <div ref={ref} className={`${styles.statCard} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${delay * 100}ms` }}>
+      <div className={styles.statIcon}><i className={icon} /></div>
+      <div className={styles.statNumber}>{isInfinity ? '∞' : count.toLocaleString()}</div>
       <div className={styles.statLabel}>{label}</div>
     </div>
   );
 }
 
-function JourneyTimeline() {
-  const progress = useScrollProgress();
-  
-  return (
-    <section className={styles.timelineSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Hành Trình</h2>
-        
-        <div className={styles.timelineContainer}>
-          <div className={styles.timelineLine}>
-            <div 
-              className={styles.timelineProgress}
-              style={{ height: `${progress}%` }}
-            />
-          </div>
-          
-          <div className={styles.milestones}>
-            {MILESTONES.map((milestone, i) => (
-              <div 
-                key={i} 
-                className={styles.milestone}
-                style={{ top: `${(milestone.day / 500) * 100}%` }}
-              >
-                <div className={styles.milestoneDot}>
-                  <i className={`fas ${milestone.icon}`} />
-                </div>
-                <div className={styles.milestoneContent}>
-                  <span className={styles.milestoneDay}>Ngày {milestone.day}</span>
-                  <span className={styles.milestoneLabel}>{milestone.label}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MonthlyHighlights() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  return (
-    <section className={styles.highlightsSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Những Tháng</h2>
-        
-        <div className={styles.highlightsCarousel}>
-          <div 
-            className={styles.highlightsTrack}
-            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-          >
-            {MONTHLY_HIGHLIGHTS.map((item, i) => (
-              <div key={i} className={styles.highlightSlide}>
-                <div className={styles.highlightCard}>
-                  <div className={styles.highlightPeriod}>
-                    {item.month} {item.year}
-                  </div>
-                  <div className={styles.highlightText}>{item.highlight}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className={styles.highlightsNav}>
-            <button 
-              className={styles.navBtn}
-              onClick={() => setActiveIndex(prev => Math.max(0, prev - 1))}
-              disabled={activeIndex === 0}
-            >
-              <i className="fas fa-chevron-left" />
-            </button>
-            <div className={styles.dots}>
-              {MONTHLY_HIGHLIGHTS.map((_, i) => (
-                <button
-                  key={i}
-                  className={`${styles.dot} ${i === activeIndex ? styles.activeDot : ''}`}
-                  onClick={() => setActiveIndex(i)}
-                />
-              ))}
-            </div>
-            <button 
-              className={styles.navBtn}
-              onClick={() => setActiveIndex(prev => Math.min(MONTHLY_HIGHLIGHTS.length - 1, prev + 1))}
-              disabled={activeIndex === MONTHLY_HIGHLIGHTS.length - 1}
-            >
-              <i className="fas fa-chevron-right" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function GratitudeSection() {
-  return (
-    <section className={styles.gratitudeSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Cảm Ơn</h2>
-        
-        <div className={styles.gratitudeGrid}>
-          {GRATITUDES.map((item, i) => (
-            <div 
-              key={i} 
-              className={styles.gratitudeCard}
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <div className={styles.gratitudeIcon}>
-                <i className={`fas ${item.icon}`} />
-              </div>
-              <h3 className={styles.gratitudeText}>{item.text}</h3>
-              <p className={styles.gratitudeSub}>{item.sub}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WishesSection() {
-  return (
-    <section className={styles.wishesSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Mong Ước</h2>
-        
-        <div className={styles.wishesContainer}>
-          {WISHES.map((wish, i) => (
-            <div 
-              key={i} 
-              className={styles.wishItem}
-              style={{ animationDelay: `${i * 0.15}s` }}
-            >
-              <span className={styles.wishDot} />
-              <span className={styles.wishText}>{wish}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LetterSection() {
+function TimeCapsule({ capsule, onOpen }: { capsule: typeof MEMORY_CAPSULES[0]; onOpen: (id: number) => void }) {
+  const { ref, isVisible } = useScrollReveal(0.2);
   const [isOpened, setIsOpened] = useState(false);
-  
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleOpen = () => {
+    if (!capsule.sealed || isOpened) return;
+    setIsOpened(true);
+    onOpen(capsule.id);
+  };
+
   return (
-    <section className={styles.letterSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Thư</h2>
-        
-        <div className={`${styles.letterContainer} ${isOpened ? styles.opened : ''}`}>
-          <div className={styles.letterEnvelope} onClick={() => setIsOpened(!isOpened)}>
-            <div className={styles.envelopeBack}>
-              <div className={styles.envelopeFront}>
-                <div className={styles.heartSeal}>
-                  <i className="fas fa-heart" />
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {isOpened && (
-            <div className={styles.letterContent}>
-              <div className={styles.letterPaper}>
-                <p className={styles.letterGreeting}>Em ơi,</p>
-                <p className={styles.letterText}>
-                  500 ngày rồi. Ngắn mà dài.
-                </p>
-                <p className={styles.letterText}>
-                  Không cần hứa gì lớn lao. Chỉ cần em biết, mỗi ngày có em, anh thấy mình may mắn.
-                </p>
-                <p className={styles.letterText}>
-                  Cảm ơn em đã đến. Cảm ơn em đã ở lại.
-                </p>
-                <p className={styles.letterText}>
-                  Mong mọi điều tốt đẹp sẽ đến với em.
-                </p>
-                <div className={styles.letterSignature}>
-                  <span>Yêu em,</span>
-                  <span className={styles.signatureName}>Anh</span>
-                </div>
-              </div>
-            </div>
-          )}
-          
-          {!isOpened && (
-            <p className={styles.letterHint}>
-              <i className="fas fa-hand-pointer" />
-              Nhấn để mở thư
-            </p>
-          )}
+    <div
+      ref={ref}
+      className={`${styles.capsuleCard} ${isVisible ? styles.visible : ''} ${isOpened ? styles.capsuleOpened : ''} ${capsule.sealed && !isOpened ? styles.capsuleSealed : ''}`}
+      onClick={handleOpen}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={styles.capsuleEmoji}>{capsule.emoji}</div>
+      <div className={styles.capsuleDate}>{capsule.month} {capsule.year}</div>
+      <h3 className={styles.capsuleTitle}>{capsule.title}</h3>
+      {capsule.sealed && !isOpened && (
+        <div className={styles.capsuleLock}>
+          <i className="fas fa-lock" />
+          <span>Click để mở</span>
         </div>
-      </div>
-    </section>
+      )}
+      {(isOpened || !capsule.sealed) && (
+        <div className={styles.capsuleContent}>
+          <p>{capsule.content}</p>
+        </div>
+      )}
+      {capsule.sealed && !isOpened && isHovered && (
+        <div className={styles.capsuleHint}>
+          <i className="fas fa-hand-pointer" /> Nhấn để khám phá kỷ niệm!
+        </div>
+      )}
+    </div>
   );
 }
 
-function HeartRainEffect() {
-  const triggerRain = useCallback(() => {
-    const hearts = ['💕', '💖', '💗', '💘', '💝', '❤️'];
-    
-    for (let i = 0; i < 40; i++) {
+function WishLeaf({ wish, index }: { wish: typeof WISHES[0]; index: number }) {
+  const [isRevealed, setIsRevealed] = useState(false);
+  const { ref, isVisible } = useScrollReveal(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={`${styles.wishLeaf} ${isVisible ? styles.visible : ''} ${isRevealed ? styles.wishRevealed : ''}`}
+      style={{ 
+        animationDelay: `${index * 0.1}s`,
+        '--leaf-color': wish.color,
+      } as React.CSSProperties}
+      onClick={() => setIsRevealed(!isRevealed)}
+    >
+      <span className={styles.wishEmoji}>{wish.emoji}</span>
+      {isRevealed && <p className={styles.wishText}>{wish.text}</p>}
+    </div>
+  );
+}
+
+function GratitudeCard({ item, delay }: { item: typeof GRATITUDES[0]; delay: number }) {
+  const { ref, isVisible } = useScrollReveal(0.2);
+
+  return (
+    <div ref={ref} className={`${styles.gratitudeCard} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${delay * 100}ms` }}>
+      <div className={styles.gratitudeIcon}><i className={item.icon} /></div>
+      <h3>{item.title}</h3>
+      <p>{item.desc}</p>
+    </div>
+  );
+}
+
+function WeatherCard({ weather }: { weather: typeof LOVE_WEATHER[0] }) {
+  const { ref, isVisible } = useScrollReveal(0.3);
+
+  return (
+    <div ref={ref} className={`${styles.weatherCard} ${isVisible ? styles.visible : ''}`} style={{ '--weather-color': weather.color } as React.CSSProperties}>
+      <div className={styles.weatherIcon}>{weather.icon}</div>
+      <div className={styles.weatherSeason}>{weather.season}</div>
+      <div className={styles.weatherTemp}>{weather.temp}</div>
+      <p className={styles.weatherDesc}>{weather.desc}</p>
+    </div>
+  );
+}
+
+function SharedMomentCounter({ item, delay }: { item: typeof SHARED_MOMENTS[0]; delay: number }) {
+  const { ref, isVisible } = useScrollReveal(0.3);
+  const count = useCounterAnimation(item.count, isVisible, 1500);
+
+  return (
+    <div ref={ref} className={`${styles.momentCard} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${delay * 80}ms` }}>
+      <div className={styles.momentIcon}><i className={item.icon} /></div>
+      <div className={styles.momentCount}>{count.toLocaleString()}</div>
+      <div className={styles.momentLabel}>{item.label}</div>
+    </div>
+  );
+}
+
+function HeartRain() {
+  const createHearts = useCallback(() => {
+    const hearts = ['💕', '💖', '💗', '💘', '💝', '❤️', '💓', '💞'];
+    for (let i = 0; i < 30; i++) {
       setTimeout(() => {
         const heart = document.createElement('div');
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.cssText = `
           position: fixed;
-          top: -30px;
+          top: -50px;
           left: ${Math.random() * 100}%;
-          font-size: ${Math.random() * 15 + 15}px;
+          font-size: ${Math.random() * 20 + 15}px;
           pointer-events: none;
           z-index: 9999;
-          animation: heartFall500 ${Math.random() * 2 + 2}s linear forwards;
+          animation: heartFall500 ${Math.random() * 3 + 3}s linear forwards;
         `;
         document.body.appendChild(heart);
-        setTimeout(() => document.body.removeChild(heart), 4000);
-      }, i * 60);
+        setTimeout(() => document.body.removeChild(heart), 6000);
+      }, i * 80);
+    }
+    
+    if (!document.querySelector('#heartFall500Style')) {
+      const style = document.createElement('style');
+      style.id = 'heartFall500Style';
+      style.textContent = `@keyframes heartFall500 { 0% { transform: translateY(-50px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }`;
+      document.head.appendChild(style);
     }
   }, []);
-  
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes heartFall500 {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  }, []);
-  
-  return (
-    <button className={styles.rainButton} onClick={triggerRain}>
-      <i className="fas fa-heart" />
-      <span>Tạo mưa tim</span>
-    </button>
-  );
-}
 
-function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <p className={styles.footerText}>500 ngày. Không hứa. Chỉ trân trọng.</p>
-        
-        <div className={styles.footerLinks}>
-          <Link href="/memories" className={styles.footerLink}>
-            <i className="fas fa-heart" />
-            <span>Kỷ niệm</span>
-          </Link>
-          <Link href="/timeline" className={styles.footerLink}>
-            <i className="fas fa-clock" />
-            <span>Đếm ngày</span>
-          </Link>
-          <Link href="/300days" className={styles.footerLink}>
-            <i className="fas fa-gem" />
-            <span>300 ngày</span>
-          </Link>
-          <Link href="/1year" className={styles.footerLink}>
-            <i className="fas fa-trophy" />
-            <span>1 năm</span>
-          </Link>
-        </div>
-      </div>
-    </footer>
+    <button className={styles.heartRainBtn} onClick={createHearts}>
+      💖 Tạo mưa tim
+    </button>
   );
 }
 
@@ -647,29 +442,250 @@ function Footer() {
 // ==========================================
 
 export default function FiveHundredDaysPage() {
-  const scrollProgress = useScrollProgress();
-  
+  const [openedCapsules, setOpenedCapsules] = useState<number[]>([]);
+  const timeTogether = useTimeTogether();
+
+  const handleCapsuleOpen = (id: number) => {
+    setOpenedCapsules(prev => [...prev, id]);
+  };
+
   return (
     <div className={styles.page}>
-      {/* Progress Bar */}
-      <div className={styles.progressBar} style={{ width: `${scrollProgress}%` }} />
-      
       {/* Background Effects */}
-      <ParticleCanvas />
-      <GradientOrbs />
-      
-      {/* Content */}
-      <HeroSection />
-      <StatsSection />
-      <JourneyTimeline />
-      <MonthlyHighlights />
-      <GratitudeSection />
-      <WishesSection />
-      <LetterSection />
-      <Footer />
-      
-      {/* Floating Button */}
-      <HeartRainEffect />
+      <ShootingStars />
+      <FloatingElements />
+
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroOverlay} />
+        <div className={styles.container}>
+          <div className={styles.heroContent}>
+            <div className={styles.celebrationBadge}>
+              <div className={styles.badgeOrbit}>
+                <div className={styles.orbitDot} />
+                <div className={styles.orbitDot} />
+                <div className={styles.orbitDot} />
+              </div>
+              <div className={styles.badgeHeart}>💕</div>
+              <div className={styles.badgeNumber}>500</div>
+              <div className={styles.badgeText}>NGÀY TRI ÂN</div>
+            </div>
+            
+            <h1 className={styles.heroTitle}>
+              <span className={styles.lineSmall}>Không Hứa</span>
+              <span className={styles.lineBig}>Chỉ Tri Ân</span>
+              <span className={styles.lineNames}>500 Ngày Bên Nhau</span>
+            </h1>
+            
+            <p className={styles.heroSubtitle}>
+              500 ngày trải qua nhiều chuyện buồn vui<br />
+              Mong bình an và vui vẻ...
+            </p>
+            
+            {/* Real-time clock together */}
+            <div className={styles.togetherClock}>
+              <div className={styles.clockLabel}>Thời gian chúng mình bên nhau</div>
+              <div className={styles.clockDisplay}>
+                <div className={styles.clockUnit}>
+                  <span className={styles.clockValue}>{timeTogether.days}</span>
+                  <span className={styles.clockLabel}>Ngày</span>
+                </div>
+                <span className={styles.clockSeparator}>:</span>
+                <div className={styles.clockUnit}>
+                  <span className={styles.clockValue}>{String(timeTogether.hours).padStart(2, '0')}</span>
+                  <span className={styles.clockLabel}>Giờ</span>
+                </div>
+                <span className={styles.clockSeparator}>:</span>
+                <div className={styles.clockUnit}>
+                  <span className={styles.clockValue}>{String(timeTogether.minutes).padStart(2, '0')}</span>
+                  <span className={styles.clockLabel}>Phút</span>
+                </div>
+                <span className={styles.clockSeparator}>:</span>
+                <div className={styles.clockUnit}>
+                  <span className={styles.clockValue}>{String(timeTogether.seconds).padStart(2, '0')}</span>
+                  <span className={styles.clockLabel}>Giây</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.scrollHint}>
+          <span>Cuộn xuống để khám phá</span>
+          <div className={styles.scrollArrow}><i className="fas fa-chevron-down" /></div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className={styles.statsSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-chart-simple" /> 500 Ngày Bằng Những Con Số
+          </h2>
+          <div className={styles.statsGrid}>
+            {STATS.map((stat, i) => (
+              <StatCard key={i} {...stat} delay={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Shared Moments Counter */}
+      <section className={styles.momentsSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-handshake" /> Những Khoảnh Khắc Chung
+          </h2>
+          <p className={styles.sectionSubtitle}>Đếm ngược những điều đẹp đẽ chúng mình đã cùng nhau</p>
+          <div className={styles.momentsGrid}>
+            {SHARED_MOMENTS.map((item, i) => (
+              <SharedMomentCounter key={i} item={item} delay={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Time Capsule Section */}
+      <section className={styles.capsulesSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-hourglass-half" /> Khoáy Tím Thời Gian
+          </h2>
+          <p className={styles.sectionSubtitle}>Những kỷ niệm được niêm phong theo tháng ngày - Click để mở!</p>
+          <div className={styles.capsulesGrid}>
+            {MEMORY_CAPSULES.map((capsule) => (
+              <TimeCapsule key={capsule.id} capsule={capsule} onOpen={handleCapsuleOpen} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Wishes Tree Section */}
+      <section className={styles.wishesSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-tree" /> Cây Ước Nguyện
+          </h2>
+          <p className={styles.sectionSubtitle}>Những điều ước của aiuuuu dành cho em - Click vào lá để xem!</p>
+          <div className={styles.wishesTree}>
+            <div className={styles.treeTrunk}>
+              <i className="fas fa-heart" />
+            </div>
+            <div className={styles.leavesContainer}>
+              {WISHES.map((wish, i) => (
+                <WishLeaf key={wish.id} wish={wish} index={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Weather of Love Section */}
+      <section className={styles.weatherSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-cloud-sun" /> Thời Tiết Tình Yêu
+          </h2>
+          <p className={styles.sectionSubtitle}>Bốn mùa yêu thương của đôi mình</p>
+          <div className={styles.weatherGrid}>
+            {LOVE_WEATHER.map((weather) => (
+              <WeatherCard key={weather.season} weather={weather} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gratitude Section */}
+      <section className={styles.gratitudeSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-hands-praying" /> Lời Tri Ân
+          </h2>
+          <p className={styles.sectionSubtitle}>Không hứa hẹn gì lớn lao - chỉ cảm ơn em vì đã ở đây</p>
+          <div className={styles.gratitudeGrid}>
+            {GRATITUDES.map((item, i) => (
+              <GratitudeCard key={i} item={item} delay={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Thank You Letter */}
+      <section className={styles.letterSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>
+            <i className="fas fa-envelope-open-text" /> Thư Cảm Ơn
+          </h2>
+          <div className={styles.letterContainer}>
+            <div className={styles.letterPaper}>
+              <div className={styles.letterHeader}>
+                <span className={styles.letterEmoji}>💌</span>
+                <h3>Gửi Công Chúa Iuuu Của Aiuuuu</h3>
+                <p className={styles.letterDate}>Ngày 500 - Tháng 8/2026</p>
+              </div>
+              <div className={styles.letterBody}>
+                <p>Em iuuu của aiuuuu ơiii,</p>
+                <p>
+                  500 ngày rồi... Nghe có vẻ nhiều, nhưng aiuuuu mong nó còn dài hơn nữa. 
+                  Không phải vì aiuuuu sợ mất em, mà vì mỗi ngày có em là một ngày aiuuuu thấy may mắn.
+                </p>
+                <p>
+                  Hôm nay aiuuuu không hứa gì lớn lao đâu. Aiuuuu chỉ muốn nói <strong>CẢM ƠN EM</strong>.
+                </p>
+                <p>
+                  Cảm ơn em đã đến bên aiuuuu khi aiuuuu cần ai đó. 
+                  Cảm ơn em đã dỗ dành aiuuuu khi aiuuuu buồn. 
+                  Cảm ơn em đã cười với aiuuuu khi aiuuuu mệt mỏi. 
+                  Cảm ơn em đã ở đây, vẫn ở đây, và sẽ còn ở đây.
+                </p>
+                <p>
+                  500 ngày qua, có những lúc aiuuuu giận em, có những lúc em giận aiuuuu. 
+                  Nhưng aiuuuu biết, cuối cùng aiuuuu vẫn muốn nắm tay em. 
+                  Vì thế mà <strong>không có gì quan trọng hơn việc chúng mình vẫn còn bên nhau</strong>.
+                </p>
+                <p>
+                  Mong những ngày tiếp theo, em sẽ luôn bình an, vui vẻ. 
+                  Nếu có khó khăn, aiuuuu sẽ cố gắng để em đỡ vất vả hơn. 
+                  Nếu có buồn, aiuuuu sẽ ở đây để ôm em.
+                </p>
+                <p>
+                  Không hứa, chỉ tri ân. Tri ân vì em đã yêu aiuuuu. 
+                  Tri ân vì mỗi sáng aiuuuu thức dậy còn có em. 
+                  Tri ân vì 500 ngày đã qua và aiuuuu vẫn yêu em như ngày đầu tiên.
+                </p>
+                <p className={styles.letterHighlight}>
+                  Cảm ơn em đã đến, đã ở lại, và đã chọn aiuuuu. 💕
+                </p>
+              </div>
+              <div className={styles.letterSignature}>
+                <p>Yêu em và tri ân,</p>
+                <p className={styles.signatureName}>❤️ Aiuuuu của emmmm ❤️</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className={styles.celebrationFooter}>
+        <div className={styles.container}>
+          <div className={styles.footerMessage}>
+            <h3>500 ngày là mãi mãi...</h3>
+            <p>
+              Không hứa, không thề, chỉ mong bình an và vui vẻ bên nhau 💕
+            </p>
+          </div>
+          <div className={styles.footerNav}>
+            <Link href="/memories" className={styles.footerBtn}><i className="fas fa-heart" /> Kỷ niệm</Link>
+            <Link href="/timeline" className={styles.footerBtn}><i className="fas fa-clock" /> Đếm ngày</Link>
+            <Link href="/300days" className={styles.footerBtn}><i className="fas fa-gem" /> 300 ngày</Link>
+            <Link href="/1year" className={styles.footerBtn}><i className="fas fa-trophy" /> 1 Năm</Link>
+          </div>
+          <p className={styles.footerCopy}>&copy; 2025-2026 - Tri ân 500 ngày của Bằng &amp; Duyên 💕</p>
+        </div>
+      </footer>
+
+      {/* Heart Rain Button */}
+      <HeartRain />
     </div>
   );
 }
