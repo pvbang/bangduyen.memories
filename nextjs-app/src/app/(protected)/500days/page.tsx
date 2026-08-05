@@ -472,7 +472,6 @@ export default function FiveHundredDaysPage() {
             </div>
             
             <h1 className={styles.heroTitle}>
-              <span className={styles.lineSmall}>Không Hứa</span>
               <span className={styles.lineBig}>Chỉ Tri Ân</span>
               <span className={styles.lineNames}>500 Ngày Bên Nhau</span>
             </h1>
