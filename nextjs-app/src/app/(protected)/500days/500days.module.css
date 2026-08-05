@@ -1,0 +1,1201 @@
+/* ==========================================
+   500 DAYS CELEBRATION PAGE - CSS Module
+   Theme: "Không Hứa, Chỉ Tri Ân"
+   Features: Time Capsule, Wishes Tree, Real-time Clock
+   ========================================== */
+
+.page {
+  --rose-gold: var(--color-rose-gold);
+  --rose-gold-light: #D4A5A5;
+  --blush-pink: var(--color-rose-100);
+  --soft-pink: var(--color-pink-400);
+  --deep-rose: var(--color-rose-500);
+  --champagne: #F7E7CE;
+  --gold: var(--color-gold-500);
+  --coral: var(--color-rose-400);
+  --text-dark: var(--text-primary);
+  --text-medium: var(--text-secondary);
+  --text-light: var(--text-light);
+  --gradient-sunset: var(--gradient-sunset);
+  --shadow-glow: 0 0 40px rgba(255, 182, 193, 0.4);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-lg);
+  --radius-lg: var(--radius-2xl);
+  --radius-xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
+  --font-heading: var(--font-script);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-heading);
+
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================
+   BACKGROUND EFFECTS
+   ========================================== */
+
+.shootingStarsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floatingElements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floatingItem {
+  position: absolute;
+  animation: floatUpDown var(--duration, 10s) ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  padding: 80px 20px;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.5) 100%);
+  z-index: -1;
+}
+
+.heroContent {
+  max-width: 800px;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Celebration Badge */
+.celebrationBadge {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
+}
+
+.badgeOrbit {
+  position: absolute;
+  inset: -30px;
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  border-radius: 50%;
+  animation: rotateOrbit 20s linear infinite;
+}
+
+@keyframes rotateOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbitDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--gradient-sunset);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbitDot:nth-child(1) { animation: orbitDot1 20s linear infinite; }
+.orbitDot:nth-child(2) { animation: orbitDot2 20s linear infinite; }
+.orbitDot:nth-child(3) { animation: orbitDot3 20s linear infinite; }
+
+@keyframes orbitDot1 {
+  from { transform: rotate(0deg) translateX(115px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(115px) rotate(-360deg); }
+}
+@keyframes orbitDot2 {
+  from { transform: rotate(120deg) translateX(115px) rotate(-120deg); }
+  to { transform: rotate(480deg) translateX(115px) rotate(-480deg); }
+}
+@keyframes orbitDot3 {
+  from { transform: rotate(240deg) translateX(115px) rotate(-240deg); }
+  to { transform: rotate(600deg) translateX(115px) rotate(-600deg); }
+}
+
+.badgeHeart {
+  position: absolute;
+  top: -15px;
+  font-size: 2.5rem;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.badgeNumber {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #FFE4E1 50%, #FFC0CB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.badgeText {
+  position: absolute;
+  bottom: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 4px;
+}
+
+/* Hero Title */
+.heroTitle {
+  margin-bottom: 30px;
+}
+
+.lineSmall {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.lineBig {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #FFE4E1 50%, #FFC0CB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 15px;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.2); }
+}
+
+.lineNames {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 2px;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+/* Together Clock */
+.togetherClock {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 30px 40px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.clockLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.clockDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.clockUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clockValue {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.clockUnit .clockLabel {
+  font-size: 0.7rem;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.clockSeparator {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: rgba(255, 182, 193, 0.8);
+  margin-bottom: 20px;
+}
+
+/* Scroll Hint */
+.scrollHint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scrollHint span {
+  font-size: 0.9rem;
+}
+
+.scrollArrow {
+  font-size: 1.2rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ==========================================
+   SECTION STYLES
+   ========================================== */
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #fff 0%, #FFE4E1 50%, #FFC0CB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionTitle i {
+  -webkit-text-fill-color: #FF6B6B;
+  margin-right: 10px;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   STATS SECTION
+   ========================================== */
+
+.statsSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.statCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.statCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-glow);
+}
+
+.statIcon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: var(--gradient-sunset);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.statNumber {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #fff, #FFE4E1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* ==========================================
+   SHARED MOMENTS SECTION
+   ========================================== */
+
+.momentsSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 182, 193, 0.08) 50%, transparent 100%);
+}
+
+.momentsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.momentCard {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 25px 15px;
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.momentCard.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.momentCard:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.momentIcon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 15px;
+  background: rgba(255, 107, 107, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6B6B;
+  font-size: 1.3rem;
+}
+
+.momentCount {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.momentLabel {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================
+   TIME CAPSULES SECTION
+   ========================================== */
+
+.capsulesSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+}
+
+.capsulesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.capsuleCard {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  padding: 35px 30px;
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.capsuleCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.capsuleCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(255, 105, 180, 0.25);
+}
+
+.capsuleCard.capsuleSealed {
+  border: 2px dashed rgba(255, 182, 193, 0.4);
+}
+
+.capsuleCard.capsuleOpened {
+  border: 2px solid rgba(255, 105, 180, 0.6);
+  animation: capsuleOpen 0.5s ease;
+}
+
+@keyframes capsuleOpen {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.capsuleEmoji {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  animation: floatEmoji 3s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.capsuleDate {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.capsuleTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.capsuleLock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 182, 193, 0.7);
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+.capsuleLock i {
+  font-size: 1.5rem;
+}
+
+.capsuleHint {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: rgba(255, 182, 193, 0.8);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.capsuleContent {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 15px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.capsuleContent p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ==========================================
+   WISHES TREE SECTION
+   ========================================== */
+
+.wishesSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(147, 112, 219, 0.1) 50%, transparent 100%);
+}
+
+.wishesTree {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 500px;
+}
+
+.treeTrunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(180deg, #8B4513, #654321);
+  border-radius: 10px 10px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: rgba(255, 182, 193, 0.5);
+}
+
+.leavesContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  min-height: 400px;
+  align-items: flex-end;
+}
+
+.wishLeaf {
+  background: var(--leaf-color, rgba(255, 105, 180, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: growLeaf 0.5s ease backwards;
+  position: relative;
+}
+
+.wishLeaf.visible {
+  animation: growLeaf 0.5s ease forwards;
+}
+
+@keyframes growLeaf {
+  from { transform: scale(0) rotate(-180deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.wishLeaf:hover {
+  transform: scale(1.2);
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+}
+
+.wishLeaf.wishRevealed {
+  width: 250px;
+  height: auto;
+  min-height: 100px;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  flex-direction: column;
+}
+
+.wishEmoji {
+  font-size: 1.8rem;
+}
+
+.wishText {
+  font-size: 0.9rem;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   WEATHER SECTION
+   ========================================== */
+
+.weatherSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+}
+
+.weatherGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.weatherCard {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  padding: 35px 25px;
+  text-align: center;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.weatherCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.weatherCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--weather-color);
+}
+
+.weatherCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.weatherIcon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  animation: weatherFloat 3s ease-in-out infinite;
+}
+
+@keyframes weatherFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.weatherSeason {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.weatherTemp {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--weather-color);
+  margin-bottom: 15px;
+}
+
+.weatherDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ==========================================
+   GRATITUDE SECTION
+   ========================================== */
+
+.gratitudeSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 215, 0, 0.08) 50%, transparent 100%);
+}
+
+.gratitudeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.gratitudeCard {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.gratitudeCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gratitudeCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FFD700, #FF69B4, #9370DB);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.gratitudeCard:hover::before {
+  transform: scaleX(1);
+}
+
+.gratitudeCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(255, 215, 0, 0.2);
+}
+
+.gratitudeIcon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, #FFD700, #FF69B4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.gratitudeCard h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.gratitudeCard p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+/* ==========================================
+   LETTER SECTION
+   ========================================== */
+
+.letterSection {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+}
+
+.letterContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.letterPaper {
+  background: linear-gradient(145deg, #FFF8F0, #FFF5EE);
+  border-radius: var(--radius-xl);
+  padding: 60px 50px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: letterAppear 1s ease;
+}
+
+@keyframes letterAppear {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letterPaper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #FF6B6B, #FF69B4, #9370DB, #FFD700);
+}
+
+.letterHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 2px dashed rgba(255, 182, 193, 0.5);
+}
+
+.letterEmoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 15px;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+.letterHeader h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: #e75480;
+  margin-bottom: 10px;
+}
+
+.letterDate {
+  color: #999;
+  font-size: 0.95rem;
+}
+
+.letterBody {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #4a4a4a;
+}
+
+.letterBody p {
+  margin-bottom: 20px;
+  text-indent: 30px;
+}
+
+.letterBody p:first-child {
+  text-indent: 0;
+  font-size: 1.2rem;
+  color: #e75480;
+}
+
+.letterHighlight {
+  background: linear-gradient(120deg, rgba(255, 182, 193, 0.3) 0%, rgba(255, 182, 193, 0.3) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 50%;
+  background-position: 0 90%;
+  font-weight: 600;
+  text-align: center;
+  padding: 15px;
+  border-radius: var(--radius-md);
+  margin-top: 30px;
+}
+
+.letterSignature {
+  text-align: right;
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px dashed rgba(255, 182, 193, 0.5);
+}
+
+.letterSignature p {
+  text-indent: 0;
+  margin-bottom: 5px;
+}
+
+.signatureName {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: #e75480;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.celebrationFooter {
+  position: relative;
+  z-index: 10;
+  padding: 80px 0 40px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.footerMessage {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.footerMessage h3 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #fff 0%, #FFE4E1 50%, #FFC0CB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footerMessage p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footerNav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footerBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.footerBtn:hover {
+  background: var(--gradient-sunset);
+  border-color: transparent;
+  transform: translateY(-3px);
+}
+
+.footerCopy {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   HEART RAIN BUTTON
+   ========================================== */
+
+.heartRainBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 25px;
+  background: var(--gradient-sunset);
+  border: none;
+  border-radius: var(--radius-full);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heartRainBtn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .momentsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .weatherGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .capsulesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gratitudeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .lineBig {
+    font-size: 2.5rem;
+  }
+
+  .clockValue {
+    font-size: 1.8rem;
+  }
+
+  .statsGrid,
+  .momentsGrid,
+  .capsulesGrid,
+  .weatherGrid,
+  .gratitudeGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .capsuleCard {
+    padding: 25px 20px;
+  }
+
+  .letterPaper {
+    padding: 40px 25px;
+  }
+
+  .letterBody {
+    font-size: 1rem;
+  }
+
+  .footerNav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heartRainBtn {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebrationBadge {
+    width: 180px;
+    height: 180px;
+  }
+
+  .badgeNumber {
+    font-size: 4rem;
+  }
+
+  .togetherClock {
+    padding: 20px 25px;
+  }
+
+  .clockDisplay {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .clockSeparator {
+    display: none;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}

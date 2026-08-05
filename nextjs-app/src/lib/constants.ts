@@ -128,6 +128,14 @@ export const NAV_ITEMS: NavItem[] = [
     isSpecial: true,
     gradient: 'linear-gradient(135deg, #FFD700 0%, #FF1493 50%, #FF69B4 100%)',
   },
+  {
+    href: '/500days',
+    icon: 'fas fa-heart-circle-check',
+    label: '500 Ngày Tri Ân',
+    emoji: '💕',
+    isSpecial: true,
+    gradient: 'linear-gradient(135deg, #FF6B6B 0%, #FF69B4 50%, #9370DB 100%)',
+  },
 ];
 
 // ==========================================
