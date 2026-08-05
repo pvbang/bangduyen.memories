@@ -631,8 +631,8 @@ export default function FiveHundredDaysPage() {
                   Hôm nay aiuuuu không hứa gì lớn lao đâu. Aiuuuu chỉ muốn nói <strong>CẢM ƠN EM</strong>.
                 </p>
                 <p>
-                  Cảm ơn em đã đến bên aiuuuu khi aiuuuu cần ai đó. 
-                  Cảm ơn em đã dỗ dành aiuuuu khi aiuuuu buồn. 
+                  Cảm ơn em đã đến bên aiuuuu. 
+                  Cảm ơn em đã dỗ dành aiuuuu. 
                   Cảm ơn em đã cười với aiuuuu khi aiuuuu mệt mỏi. 
                   Cảm ơn em đã ở đây, vẫn ở đây, và sẽ còn ở đây.
                 </p>
@@ -647,9 +647,9 @@ export default function FiveHundredDaysPage() {
                   Nếu có buồn, aiuuuu sẽ ở đây để ôm em.
                 </p>
                 <p>
-                  Không hứa, chỉ tri ân. Tri ân vì em đã yêu aiuuuu. 
+                  Chỉ tri ân. Tri ân vì em đã yêu aiuuuu. 
                   Tri ân vì mỗi sáng aiuuuu thức dậy còn có em. 
-                  Tri ân vì 500 ngày đã qua và aiuuuu vẫn yêu em như ngày đầu tiên.
+                  Tri ân vì 500 ngày đã qua và aiuuuu vẫn yêu emm.
                 </p>
                 <p className={styles.letterHighlight}>
                   Cảm ơn em đã đến, đã ở lại, và đã chọn aiuuuu. 💕
@@ -670,7 +670,7 @@ export default function FiveHundredDaysPage() {
           <div className={styles.footerMessage}>
             <h3>500 ngày là mãi mãi...</h3>
             <p>
-              Không hứa, không thề, chỉ mong bình an và vui vẻ bên nhau 💕
+              Chỉ mong bình an và vui vẻ bên nhau 💕
             </p>
           </div>
           <div className={styles.footerNav}>
