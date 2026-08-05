@@ -237,6 +237,7 @@ function ShootingStars() {
     const stars: Star[] = [];
     
     function createStar() {
+      if (!canvas) return;
       stars.push({
         x: Math.random() * canvas.width,
         y: 0,
